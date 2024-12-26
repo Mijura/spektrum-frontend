@@ -68,7 +68,7 @@ const DynamicComponentLoader = () => {
 			const moduleUrl = URL.createObjectURL(blob)
 
 			// Inject local registry into the evaluation context
-			;(window as any).__LOCAL_COMPONENT_REGISTRY = componentRegistry
+			window.__LOCAL_COMPONENT_REGISTRY = componentRegistry
 
 			await System.import(moduleUrl)
 
@@ -76,7 +76,7 @@ const DynamicComponentLoader = () => {
 
 			// Register the evaluated component
 			const componentName = componentCode.match(/export\s+default\s+(\w+)/)?.[1]
-			if (!componentName || !(window as any).__EvaluatedComponent) {
+			if (!componentName || !window.__EvaluatedComponent) {
 				throw new Error("The code must export a default component.")
 			}
 
