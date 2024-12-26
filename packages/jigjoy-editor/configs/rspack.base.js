@@ -3,6 +3,7 @@ const rspack = require("@rspack/core")
 const Dotenv = require("dotenv-webpack")
 
 const deps = require("../package.json").dependencies
+
 module.exports = {
 	entry: {
 		main: path.join(__dirname, "../src/index.tsx"),
@@ -48,6 +49,7 @@ module.exports = {
 		new rspack.CopyRspackPlugin({
 			patterns: [{ from: "manifest.json" }, { from: "./public/favicon.ico" }],
 		}),
+
 		new Dotenv({
 			path: "./.env",
 			safe: true,
@@ -64,7 +66,6 @@ module.exports = {
 			remotes: {},
 			exposes: {},
 			shared: {
-				...deps,
 				react: {
 					singleton: true,
 					requiredVersion: deps.react,
