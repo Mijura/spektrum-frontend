@@ -3,7 +3,6 @@ const rspack = require("@rspack/core")
 const Dotenv = require("dotenv-webpack")
 
 const deps = require("../package.json").dependencies
-
 module.exports = {
 	entry: {
 		main: path.join(__dirname, "../src/index.tsx"),
@@ -49,7 +48,6 @@ module.exports = {
 		new rspack.CopyRspackPlugin({
 			patterns: [{ from: "manifest.json" }, { from: "./public/favicon.ico" }],
 		}),
-
 		new Dotenv({
 			path: "./.env",
 			safe: true,
@@ -61,7 +59,7 @@ module.exports = {
 			chunks: ["main"],
 		}),
 		new rspack.container.ModuleFederationPlugin({
-			name: "micro-frontend",
+			name: "editor",
 			filename: "remoteEntry.js",
 			remotes: {},
 			exposes: {},

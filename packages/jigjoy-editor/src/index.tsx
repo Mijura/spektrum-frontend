@@ -1,6 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
+import "./types/babel-standalone.d.ts"
+import "./types/global.d.ts"
 import App from "./App"
 
 // Assign React to the global window object

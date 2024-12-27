@@ -3,12 +3,17 @@ import Editor from "@monaco-editor/react"
 import "systemjs/dist/system.min"
 import * as Babel from "@babel/standalone"
 
+import { motion } from "framer-motion"
+window.motion = motion
+
 const DynamicComponentLoader = () => {
 	const [componentCode, setComponentCode] = useState<string>(`
-    import React from 'react';
-
-    const ChildComponent = () => <p>This is a child component!</p>;
-    export default ChildComponent;
+const TestComponent = () => (
+  <div className="p-4 bg-blue-500 text-white rounded">
+    <h1 className="text-2xl font-bold">Hello Tailwind JIT!</h1>
+  </div>
+)
+  export default TestComponent
   `)
 	const [componentRegistry, setComponentRegistry] = useState<Record<string, React.FC>>({})
 	const [selectedComponent, setSelectedComponent] = useState<string>("")
@@ -28,6 +33,16 @@ const DynamicComponentLoader = () => {
 						.join("\n")
 					return bindings
 				})
+				// Replace framer-motion imports
+				.replace(/import\s+{([^}]+)}\s+from\s+['"]framer-motion['"];?/g, (_, imports) => {
+					const bindings = imports
+						.split(",")
+						.map((i) => i.trim())
+						.map((binding) => `const ${binding} = window.${binding};`)
+						.join("\n")
+					return bindings
+				})
+
 				// Ensure hooks are explicitly replaced with React.<hook>
 				.replace(/(?<!\w)useState\b/g, "React.useState")
 				.replace(/(?<!\w)useEffect\b/g, "React.useEffect")
@@ -50,6 +65,8 @@ const DynamicComponentLoader = () => {
 			setError(null)
 
 			const preprocessedCode = preprocessCode(componentCode)
+
+			console.log(preprocessCode)
 
 			const transpiledCode = Babel.transform(preprocessedCode, {
 				presets: [
@@ -93,8 +110,8 @@ const DynamicComponentLoader = () => {
 	}
 
 	return (
-		<div style={{ padding: "20px" }}>
-			<h1>Dynamic Component Loader</h1>
+		<div className="p-[20px]">
+			<h1 className="pb-4">Dynamic Component Loader</h1>
 
 			{/* Monaco Editor */}
 			<Editor
@@ -108,24 +125,18 @@ const DynamicComponentLoader = () => {
 				}}
 			/>
 
-			<button
-				onClick={handleAddComponent}
-				style={{
-					padding: "10px 20px",
-					marginTop: "10px",
-					backgroundColor: "#007BFF",
-					color: "#FFF",
-					border: "none",
-					cursor: "pointer",
-				}}
-			>
+			<button onClick={handleAddComponent} className="bg-pink-500 p-2 rounded-lg my-4">
 				Add Component
 			</button>
 
 			<br />
 			<label>
-				<h3>Select Component to Render:</h3>
-				<select value={selectedComponent} onChange={(e) => setSelectedComponent(e.target.value)} style={{ padding: "5px", fontSize: "16px" }}>
+				<h3 className="py-2">Select Component to Render:</h3>
+				<select
+					value={selectedComponent}
+					onChange={(e) => setSelectedComponent(e.target.value)}
+					style={{ padding: "5px", fontSize: "16px" }}
+				>
 					<option value="" disabled>
 						Select a component
 					</option>
@@ -138,8 +149,14 @@ const DynamicComponentLoader = () => {
 			</label>
 
 			<hr />
-			<h2>Rendered Component</h2>
-			{error ? <p style={{ color: "red" }}>{error}</p> : selectedComponent && componentRegistry[selectedComponent] ? React.createElement(componentRegistry[selectedComponent]) : <p>Please select a component to render.</p>}
+			<h2 className="mt-6 py-2 text-green-800">Rendered Component</h2>
+			{error ? (
+				<p style={{ color: "red" }}>{error}</p>
+			) : selectedComponent && componentRegistry[selectedComponent] ? (
+				<div key={Math.random()}>{React.createElement(componentRegistry[selectedComponent])}</div>
+			) : (
+				<p>Please select a component to render.</p>
+			)}
 		</div>
 	)
 }
