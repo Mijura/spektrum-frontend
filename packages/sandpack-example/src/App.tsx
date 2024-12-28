@@ -5,35 +5,12 @@ import SimpleCodeViewer from "./simple-code-viewer"
 
 export default function App() {
 	const files = {
-		"/tailwind.config.js": `
-		  module.exports = {
-			content: ["./src/**/*.{js,jsx,ts,tsx}"],
-			theme: {
-			  extend: {},
-			},
-			plugins: [],
-		  };
-		`,
-		"/postcss.config.js": `
-		  module.exports = {
-			plugins: {
-			  tailwindcss: {},
-			  autoprefixer: {},
-			},
-		  };
-		`,
-		"/index.css": `
-		  @tailwind base;
-		  @tailwind components;
-		  @tailwind utilities;
-		`,
-		"/App.js": `
-		  import './index.css';
+		"/App.tsx": `
 	  
 		  export default function App() {
 			return (
 			  <div className="flex justify-center items-center h-screen bg-gray-100">
-				<h1 className="text-4xl font-bold text-blue-500">Hello, Tailwind with Sandpack!</h1>
+				<h1 className="text-4xl font-bold text-pink-500">Hello, Tailwind with Sandpack!</h1>
 			  </div>
 			);
 		  }

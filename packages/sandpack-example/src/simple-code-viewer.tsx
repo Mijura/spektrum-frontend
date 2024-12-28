@@ -6,7 +6,7 @@ const SimpleCodeViewer = () => {
 	const { files, activeFile } = sandpack
 
 	const code = files[activeFile].code
-	return <pre>{code}</pre>
+	return <pre className="hidden">{code}</pre>
 }
 
 export default SimpleCodeViewer
