@@ -5,7 +5,7 @@ const Header = () => {
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
 
 	return (
-		<header className="z-50 w-[100%] h-[50px] bg-gray-900 text-white flex items-center justify-between shadow-md px-4">
+		<header className="z-50 w-[100%] h-[50px] bg-[#051c30] border-b border-[#C5C5C5] text-white flex items-center justify-between shadow-md px-4">
 			{/* Left Side: Logo and Navigation */}
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>

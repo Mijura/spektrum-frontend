@@ -1,5 +1,5 @@
 import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
-import { aquaBlue } from "@codesandbox/sandpack-themes"
+import { cyberpunk } from "@codesandbox/sandpack-themes";
 import React, { useState } from "react"
 import SimpleCodeViewer from "./components/simple-code-viewer"
 import LeftSideMenu from "./components/left-side-menu"
@@ -22,18 +22,18 @@ export default function App() {
 	}
 
 	return (
-		<div className="flex flex-col h-[100dvh]">
+		<div className="flex flex-col h-[100dvh] bg-[#042f40]">
 			<LeftSideMenu />
 			<Header />
 			<div className="flex flex-row grow">
-				<div className="w-[30%] h-full flex justify-center items-center">
-					<div className="text-4xl font-bold text-pink-500">Text-to-App</div>
+				<div className="grow ml-[72px] my-10 rounded-[3px]">
+					<div className="border ml-10 h-full bg-[#051c30] border-black grow text-[#1AC5B0]">Text-to-App</div>
 				</div>
 
-				<div className="h-full w-[70%] p-20">
+				<div className="h-full w-[65%] p-10">
 					<SandpackProvider
 						template="react-ts"
-						theme={aquaBlue}
+						theme={cyberpunk}
 						files={files}
 						customSetup={{
 							dependencies: {
@@ -55,10 +55,10 @@ export default function App() {
 								style={{ height: "100%" }}
 								actionsChildren={
 									<div>
-										<button className="bg-yellow-500 p-2 rounded-full" onClick={() => toggleBlocks(!blocksOn)}>
+										<button className="bg-[black] text-white p-2 rounded-lg" onClick={() => toggleBlocks(!blocksOn)}>
 											Building Blocks
 										</button>
-										<button className="bg-pink-500 p-2 rounded-full" onClick={() => toggleEditor(!editorOn)}>
+										<button className="bg-[black] text-white mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
 											Toggle Editor
 										</button>
 									</div>
