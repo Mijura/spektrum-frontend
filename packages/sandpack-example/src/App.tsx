@@ -1,9 +1,11 @@
 import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
 import { cyberpunk } from "@codesandbox/sandpack-themes"
-import React from "react"
+import React, { useState } from "react"
 import SimpleCodeViewer from "./simple-code-viewer"
 
 export default function App() {
+
+	const [editorOn, toggleEditor] = useState(false)
 	const files = {
 		"/App.tsx": `
 	  
@@ -35,8 +37,17 @@ export default function App() {
 			>
 				<SandpackLayout style={{ height: "100%" }}>
 					<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
-					<SandpackCodeEditor style={{ height: "100%" }} />
-					<SandpackPreview showNavigator={true} showOpenInCodeSandbox={false} showRestartButton={true} style={{ height: "100%" }} />
+					{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
+					<SandpackPreview 
+						showNavigator={true} 
+						showOpenInCodeSandbox={false} 
+						showRestartButton={true} 
+						style={{ height: "100%" }}
+						actionsChildren={
+							<button className="bg-pink-500 p-2 rounded-full" onClick={() => toggleEditor(!editorOn)}>
+							  Toggle Editor
+							</button>
+						  } />
 					<SimpleCodeViewer />
 				</SandpackLayout>
 			</SandpackProvider>
