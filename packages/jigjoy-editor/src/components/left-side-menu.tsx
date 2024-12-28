@@ -12,12 +12,12 @@ const LeftSideMenu = () => {
 		<motion.div
 			onHoverStart={() => setMenuExpanded(true)}
 			onHoverEnd={() => setMenuExpanded(false)}
-			className="border-r border-r-[#C5C5C5] h-full bg-[#051c30] text-white flex flex-col shadow-lg fixed top-0 left-0 z-50 text-white"
+			className="border-r border-r-[#4D4D4D] h-full bg-[#151515] flex flex-col shadow-lg fixed top-0 left-0 z-50 text-white"
 		>
 
 			<ul className="flex flex-col gap-2 mt-[100px]">
-			<li className="flex cursor-pointer hover:bg-[#042f40] rounded-lg">
-				<div className="py-2 w-[72px] flex justify-center items-center ">
+			<li className="flex cursor-pointer hover:bg-[#252525] rounded-lg m-1">
+				<div className="py-2 w-[72px] flex justify-center items-center">
 					<EditorIcon />
 					</div>
 					<AnimatePresence>
@@ -29,14 +29,14 @@ const LeftSideMenu = () => {
 											transition={{
 												duration: 0.25,
 											}}
-								className="mr-8 flex items-center"
+								className={` mr-8 grow flex items-center`}
 							>
 								Editor
 							</motion.span>
 						)}
 					</AnimatePresence>
 				</li>
-				<li className="flex cursor-pointer hover:bg-[#042f40] rounded-lg">
+				<li className="flex cursor-pointer hover:bg-[#252525] rounded-lg m-1">
 				<div className="py-2 w-[72px] flex justify-center items-center">
 					<MarketplaceIcon />
 					</div>
@@ -57,7 +57,7 @@ const LeftSideMenu = () => {
 						)}
 					</AnimatePresence>
 				</li>
-				<li className="flex cursor-pointer hover:bg-[#042f40] rounded-lg">
+				<li className="flex cursor-pointer hover:bg-[#252525] rounded-lg m-1">
 				<div className="py-2 w-[72px] flex justify-center items-center">
 					<ProjectsIcon />
 					</div>
@@ -78,7 +78,7 @@ const LeftSideMenu = () => {
 						)}
 					</AnimatePresence>
 				</li>
-				<li className="flex cursor-pointer hover:bg-[#042f40] rounded-lg">
+				<li className="flex cursor-pointer hover:bg-[#252525] rounded-lg m-1">
 				<div className="py-2 w-[72px] flex justify-center items-center">
 					<AchievementsIcon />
 					</div>

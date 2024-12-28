@@ -1,5 +1,5 @@
 import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
-import { cyberpunk } from "@codesandbox/sandpack-themes";
+import { sandpackDark } from "@codesandbox/sandpack-themes"
 import React, { useState } from "react"
 import SimpleCodeViewer from "./components/simple-code-viewer"
 import LeftSideMenu from "./components/left-side-menu"
@@ -22,18 +22,18 @@ export default function App() {
 	}
 
 	return (
-		<div className="flex flex-col h-[100dvh] bg-[#042f40]">
+		<div className="flex flex-col h-[100dvh] bg-[#252525]">
 			<LeftSideMenu />
 			<Header />
 			<div className="flex flex-row grow">
 				<div className="grow ml-[72px] my-10 rounded-[3px]">
-					<div className="border ml-10 h-full bg-[#051c30] border-black grow text-[#1AC5B0]">Text-to-App</div>
+					<div className="border ml-10 h-full bg-[#151515] border-black grow text-white">Text-to-App</div>
 				</div>
 
 				<div className="h-full w-[65%] p-10">
 					<SandpackProvider
 						template="react-ts"
-						theme={cyberpunk}
+						theme={sandpackDark}
 						files={files}
 						customSetup={{
 							dependencies: {
