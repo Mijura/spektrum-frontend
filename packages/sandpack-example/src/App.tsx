@@ -1,20 +1,31 @@
-import { SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
-import { ecoLight } from "@codesandbox/sandpack-themes"
+import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
+import { cyberpunk } from "@codesandbox/sandpack-themes"
 import React from "react"
 
 export default function App() {
 	const files = {
-		"/App.tsx": `export default function App() {
+		"App.tsx": `export default function App() {
   return <h1>Hello Bro</h1>
 }`,
 	}
 
 	return (
-		<div className="p-20">
-			<SandpackProvider template="react-ts" theme={ecoLight} files={files}>
-				<SandpackLayout>
-					<SandpackFileExplorer initialCollapsedFolder={["/components/src/"]} />
-					<SandpackPreview showNavigator={true} showOpenInCodeSandbox={false} />
+		<div className="p-20 h-[100dvh]">
+			<SandpackProvider
+				template="react-ts"
+				theme={cyberpunk}
+				files={files}
+				customSetup={{
+					dependencies: {
+						"framer-motion": "latest",
+					},
+				}}
+				style={{ height: "100%" }}
+			>
+				<SandpackLayout style={{ height: "100%" }}>
+					<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
+					<SandpackCodeEditor style={{ height: "100%" }} />
+					<SandpackPreview showNavigator={true} showOpenInCodeSandbox={false} showRestartButton={true} style={{ height: "100%" }} />
 				</SandpackLayout>
 			</SandpackProvider>
 		</div>
