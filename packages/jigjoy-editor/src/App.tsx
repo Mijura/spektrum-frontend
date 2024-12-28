@@ -25,12 +25,10 @@ export default function App() {
 		<div className="flex flex-col h-[100dvh] bg-[#252525]">
 			<LeftSideMenu />
 			<Header />
-			<div className="flex flex-row grow">
-				<div className="grow ml-[72px] my-10 rounded-[3px]">
-					<div className="border ml-10 h-full bg-[#151515] border-black grow text-white">Text-to-App</div>
-				</div>
+			<div className="flex flex-row grow ml-[72px] pl-2">
 
-				<div className="h-full w-[65%] p-10">
+
+				<div className="h-full w-full p-2">
 					<SandpackProvider
 						template="react-ts"
 						theme={sandpackDark}
@@ -46,8 +44,14 @@ export default function App() {
 						}}
 					>
 						<SandpackLayout style={{ height: "100%" }}>
-							{blocksOn && <SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />}
-							{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
+						<div className="grow rounded-[3px] px-4">
+					<div className="border h-full bg-[#151515] border-black grow text-white">Text-to-App</div>
+					
+				</div>
+							
+				{blocksOn && <SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />}
+				{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
+							<div className="w-[67%]">
 							<SandpackPreview
 								showNavigator={true}
 								showOpenInCodeSandbox={false}
@@ -55,16 +59,18 @@ export default function App() {
 								style={{ height: "100%" }}
 								actionsChildren={
 									<div>
-										<button className="bg-[black] text-white p-2 rounded-lg" onClick={() => toggleBlocks(!blocksOn)}>
+										<button className="bg-[black] text-[#90e86f] p-2 rounded-lg" onClick={() => toggleBlocks(!blocksOn)}>
 											Building Blocks
 										</button>
-										<button className="bg-[black] text-white mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
+										<button className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
 											Toggle Editor
 										</button>
 									</div>
 								}
 							/>
 							<SimpleCodeViewer />
+							</div>
+							
 						</SandpackLayout>
 					</SandpackProvider>
 				</div>
