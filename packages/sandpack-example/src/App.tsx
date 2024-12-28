@@ -1,12 +1,43 @@
 import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
 import { cyberpunk } from "@codesandbox/sandpack-themes"
 import React from "react"
+import SimpleCodeViewer from "./simple-code-viewer"
 
 export default function App() {
 	const files = {
-		"App.tsx": `export default function App() {
-  return <h1>Hello Bro</h1>
-}`,
+		"/tailwind.config.js": `
+		  module.exports = {
+			content: ["./src/**/*.{js,jsx,ts,tsx}"],
+			theme: {
+			  extend: {},
+			},
+			plugins: [],
+		  };
+		`,
+		"/postcss.config.js": `
+		  module.exports = {
+			plugins: {
+			  tailwindcss: {},
+			  autoprefixer: {},
+			},
+		  };
+		`,
+		"/index.css": `
+		  @tailwind base;
+		  @tailwind components;
+		  @tailwind utilities;
+		`,
+		"/App.js": `
+		  import './index.css';
+	  
+		  export default function App() {
+			return (
+			  <div className="flex justify-center items-center h-screen bg-gray-100">
+				<h1 className="text-4xl font-bold text-blue-500">Hello, Tailwind with Sandpack!</h1>
+			  </div>
+			);
+		  }
+		`,
 	}
 
 	return (
@@ -29,6 +60,7 @@ export default function App() {
 					<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
 					<SandpackCodeEditor style={{ height: "100%" }} />
 					<SandpackPreview showNavigator={true} showOpenInCodeSandbox={false} showRestartButton={true} style={{ height: "100%" }} />
+					<SimpleCodeViewer />
 				</SandpackLayout>
 			</SandpackProvider>
 		</div>
