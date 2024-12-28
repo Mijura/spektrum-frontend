@@ -1,9 +1,9 @@
 import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
 import { aquaBlue } from "@codesandbox/sandpack-themes"
 import React, { useState } from "react"
-import SimpleCodeViewer from "./simple-code-viewer"
-import LeftSideMenu from "./left-side-menu"
-import Header from "./header"
+import SimpleCodeViewer from "./components/simple-code-viewer"
+import LeftSideMenu from "./components/left-side-menu"
+import Header from "./components/header"
 
 export default function App() {
 	const [editorOn, toggleEditor] = useState(false)
