@@ -21,6 +21,9 @@ export default function App() {
 					},
 				}}
 				style={{ height: "100%" }}
+				options={{
+					externalResources: ["https://cdn.tailwindcss.com"],
+				}}
 			>
 				<SandpackLayout style={{ height: "100%" }}>
 					<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
