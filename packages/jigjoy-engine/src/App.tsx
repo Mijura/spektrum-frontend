@@ -22,7 +22,7 @@ export default function App() {
 	}
 
 	return (
-		<div className="flex flex-col h-[100dvh] bg-white">
+		<div className="flex flex-col h-[100dvh] bg-[#2F2F2F]">
 			<LeftSideMenu />
 			<Header />
 			<div className="flex flex-row grow ml-[72px] pl-2">
@@ -43,7 +43,7 @@ export default function App() {
 					>
 						<SandpackLayout style={{ height: "100%" }}>
 							<div className="grow rounded-[3px]">
-								<div className="h-full bg-[#151515] grow text-white">Text-to-App</div>
+								<div className="h-full bg-[#151515] grow text-white p-4">Text-to-App</div>
 							</div>
 
 							{blocksOn && <SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />}

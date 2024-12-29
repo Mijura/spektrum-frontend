@@ -4,6 +4,7 @@ import ProjectsIcon from "../icons/projects-icon"
 import MarketplaceIcon from "../icons/marketplace-icon"
 import AchievementsIcon from "../icons/achievements-icon"
 import EditorIcon from "../icons/editor-icon"
+import QuestsIcon from "../icons/quests-icon"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
@@ -21,6 +22,7 @@ const LeftSideMenu = () => {
 					{ name: "editor", icon: EditorIcon, label: "Editor" },
 					{ name: "marketplace", icon: MarketplaceIcon, label: "Marketplace" },
 					{ name: "projects", icon: ProjectsIcon, label: "Projects" },
+					{ name: "quests", icon: QuestsIcon, label: "Quests" },
 					{ name: "achievements", icon: AchievementsIcon, label: "Achievements" },
 				].map(({ name, icon: Icon, label }) => (
 					<li
