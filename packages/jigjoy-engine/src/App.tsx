@@ -1,16 +1,23 @@
-import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
-import { sandpackDark } from "@codesandbox/sandpack-themes"
-import React, { useState } from "react"
-import SimpleCodeViewer from "./components/simple-code-viewer"
-import LeftSideMenu from "./components/left-side-menu"
-import Header from "./components/header"
+import {
+    SandpackCodeEditor,
+    SandpackFileExplorer,
+    SandpackLayout,
+    SandpackPreview,
+    SandpackProvider
+} from '@codesandbox/sandpack-react'
+import { sandpackDark } from '@codesandbox/sandpack-themes'
+import React, { useState } from 'react'
+import SimpleCodeViewer from './components/simple-code-viewer'
+import LeftSideMenu from './components/left-side-menu'
+import Header from './components/header'
+import Guidelines from './components/guidelines'
 
 export default function App() {
-	const [editorOn, toggleEditor] = useState(false)
-	const [blocksOn, toggleBlocks] = useState(false)
+    const [editorOn, toggleEditor] = useState(false)
+    const [blocksOn, toggleBlocks] = useState(false)
 
-	const files = {
-		"/App.tsx": `
+    const files = {
+        '/App.tsx': `
 export default function App() {
 	return (
 		<div className="flex justify-center items-center h-screen bg-gray-100">
@@ -18,59 +25,66 @@ export default function App() {
 		</div>
 	);
 }
-`,
-	}
+`
+    }
 
-	return (
-		<div className="flex flex-col h-[100dvh] bg-[#2F2F2F]">
-			<LeftSideMenu />
-			<Header />
-			<div className="flex flex-row grow ml-[72px] pl-2">
-				<div className="h-full w-full p-4">
-					<SandpackProvider
-						template="react-ts"
-						theme={sandpackDark}
-						files={files}
-						customSetup={{
-							dependencies: {
-								"framer-motion": "latest",
-							},
-						}}
-						style={{ height: "100%" }}
-						options={{
-							externalResources: ["https://cdn.tailwindcss.com"],
-						}}
-					>
-						<SandpackLayout style={{ height: "100%" }}>
-							<div className="grow rounded-[3px]">
-								<div className="h-full bg-[#151515] grow text-white p-4">Text-to-App</div>
-							</div>
+    return (
+        <div className="flex flex-col h-[100dvh] bg-[#2F2F2F]">
+            <LeftSideMenu />
+            <Header />
+            <Guidelines />
+            <div className="flex flex-row grow ml-[72px] pl-2">
+                <div className="h-full w-full p-4">
+                    <SandpackProvider
+                        template="react-ts"
+                        theme={sandpackDark}
+                        files={files}
+                        customSetup={{
+                            dependencies: {
+                                'framer-motion': 'latest'
+                            }
+                        }}
+                        style={{ height: '100%' }}
+                        options={{
+                            externalResources: ['https://cdn.tailwindcss.com']
+                        }}
+                    >
+                        <SandpackLayout style={{ height: '100%' }}>
+                            <div className="grow rounded-[3px]">
+                                <div className="h-full bg-[#151515] grow text-white p-4">Text-to-App</div>
+                            </div>
 
-							{blocksOn && <SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />}
-							{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
-							<div className="w-[67%]">
-								<SandpackPreview
-									showNavigator={true}
-									showOpenInCodeSandbox={false}
-									showRestartButton={true}
-									style={{ height: "100%" }}
-									actionsChildren={
-										<div>
-											<button className="bg-[black] text-[#90e86f] p-2 rounded-lg" onClick={() => toggleBlocks(!blocksOn)}>
-												Building Blocks
-											</button>
-											<button className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
-												Toggle Editor
-											</button>
-										</div>
-									}
-								/>
-								<SimpleCodeViewer />
-							</div>
-						</SandpackLayout>
-					</SandpackProvider>
-				</div>
-			</div>
-		</div>
-	)
+                            {blocksOn && <SandpackFileExplorer autoHiddenFiles={true} style={{ height: '100%' }} />}
+                            {editorOn && <SandpackCodeEditor style={{ height: '100%' }} />}
+                            <div className="w-[67%]">
+                                <SandpackPreview
+                                    showNavigator={true}
+                                    showOpenInCodeSandbox={false}
+                                    showRestartButton={true}
+                                    style={{ height: '100%' }}
+                                    actionsChildren={
+                                        <div>
+                                            <button
+                                                className="bg-[black] text-[#90e86f] p-2 rounded-lg"
+                                                onClick={() => toggleBlocks(!blocksOn)}
+                                            >
+                                                Building Blocks
+                                            </button>
+                                            <button
+                                                className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg"
+                                                onClick={() => toggleEditor(!editorOn)}
+                                            >
+                                                Toggle Editor
+                                            </button>
+                                        </div>
+                                    }
+                                />
+                                <SimpleCodeViewer />
+                            </div>
+                        </SandpackLayout>
+                    </SandpackProvider>
+                </div>
+            </div>
+        </div>
+    )
 }
