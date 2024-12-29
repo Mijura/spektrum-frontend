@@ -23,7 +23,7 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
         },
         exit: (direction: number) => ({
             zIndex: 0,
-            x: direction < 0 ? 1000 : -1000,
+            x: direction > 0 ? -1000 : 1000,
             opacity: 0,
             scale: 0.8
         })
@@ -61,8 +61,11 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
         const newIndex = currentIndex + newDirection
         if (newIndex >= 0 && newIndex < images.length) {
             setCurrentIndex(newIndex)
+            setDirection(newDirection)
         }
     }
+
+    const [direction, setDirection] = useState(0)
 
     return (
         <div className="relative w-full h-[400px] overflow-hidden">
@@ -76,7 +79,7 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
                     <motion.img
                         key={currentIndex}
                         src={images[currentIndex]}
-                        custom={currentIndex}
+                        custom={direction}
                         variants={slideVariants}
                         initial="enter"
                         animate="center"
