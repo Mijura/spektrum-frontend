@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 interface Step {
     name: string
@@ -26,6 +26,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ steps }) => {
         }
     }
 
+    // Calculate the progress percentage for the progress bar
     const progressPercentage = (currentStep / (steps.length - 1)) * 100
 
     return (
@@ -44,6 +45,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ steps }) => {
                     {steps.map((step, index) => {
                         const isCompleted = index < currentStep
                         const isActive = index === currentStep
+
                         const circleStyle = isCompleted
                             ? 'bg-[#90e86f] text-surface1'
                             : isActive
@@ -52,11 +54,14 @@ const Onboarding: React.FC<OnboardingProps> = ({ steps }) => {
 
                         return (
                             <div key={index} className="flex flex-col items-center">
-                                <div
+                                <motion.div
+                                    // If this step is active => scale up; otherwise => scale down
+                                    animate={isActive ? { scale: 1.2 } : { scale: 1 }}
+                                    transition={{ type: 'spring', duration: 0.3 }}
                                     className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold ${circleStyle}`}
                                 >
                                     {index + 1}
-                                </div>
+                                </motion.div>
                                 <p className="mt-2 text-lg font-semibold text-center text-clickable">{step.name}</p>
                             </div>
                         )
@@ -65,34 +70,30 @@ const Onboarding: React.FC<OnboardingProps> = ({ steps }) => {
 
                 {/* Step Title */}
                 <h2 className="text-3xl font-bold text-center mb-6 text-white">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={currentStep}
-                            initial={{ opacity: 0, y: 15 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -15 }}
-                            transition={{ duration: 0.3 }}
-                            className="w-full text-white"
-                        >
-                            {steps[currentStep]?.title}
-                        </motion.div>
-                    </AnimatePresence>
+                    <motion.div
+                        key={currentStep}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -15 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full text-white"
+                    >
+                        {steps[currentStep]?.title}
+                    </motion.div>
                 </h2>
 
                 {/* Step Content */}
                 <div className="flex-grow flex items-center text-center justify-center w-full">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={currentStep}
-                            initial={{ opacity: 0, y: 15 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -15 }}
-                            transition={{ duration: 0.3 }}
-                            className="w-full text-white"
-                        >
-                            {steps[currentStep]?.content}
-                        </motion.div>
-                    </AnimatePresence>
+                    <motion.div
+                        key={currentStep}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -15 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full text-white"
+                    >
+                        {steps[currentStep]?.content}
+                    </motion.div>
                 </div>
 
                 {/* Navigation Buttons */}
