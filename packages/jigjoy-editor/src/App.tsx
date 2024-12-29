@@ -26,9 +26,7 @@ export default function App() {
 			<LeftSideMenu />
 			<Header />
 			<div className="flex flex-row grow ml-[72px] pl-2">
-
-
-				<div className="h-full w-full p-2">
+				<div className="h-full w-full p-4">
 					<SandpackProvider
 						template="react-ts"
 						theme={sandpackDark}
@@ -44,33 +42,31 @@ export default function App() {
 						}}
 					>
 						<SandpackLayout style={{ height: "100%" }}>
-						<div className="grow rounded-[3px] px-4">
-					<div className="border h-full bg-[#151515] border-black grow text-white">Text-to-App</div>
-					
-				</div>
-							
-				{blocksOn && <SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />}
-				{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
-							<div className="w-[67%]">
-							<SandpackPreview
-								showNavigator={true}
-								showOpenInCodeSandbox={false}
-								showRestartButton={true}
-								style={{ height: "100%" }}
-								actionsChildren={
-									<div>
-										<button className="bg-[black] text-[#90e86f] p-2 rounded-lg" onClick={() => toggleBlocks(!blocksOn)}>
-											Building Blocks
-										</button>
-										<button className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
-											Toggle Editor
-										</button>
-									</div>
-								}
-							/>
-							<SimpleCodeViewer />
+							<div className="grow rounded-[3px]">
+								<div className="border h-full bg-[#151515] border-black grow text-white">Text-to-App</div>
 							</div>
-							
+
+							{blocksOn && <SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />}
+							{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
+							<div className="w-[67%]">
+								<SandpackPreview
+									showNavigator={true}
+									showOpenInCodeSandbox={false}
+									showRestartButton={true}
+									style={{ height: "100%" }}
+									actionsChildren={
+										<div>
+											<button className="bg-[black] text-[#90e86f] p-2 rounded-lg" onClick={() => toggleBlocks(!blocksOn)}>
+												Building Blocks
+											</button>
+											<button className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
+												Toggle Editor
+											</button>
+										</div>
+									}
+								/>
+								<SimpleCodeViewer />
+							</div>
 						</SandpackLayout>
 					</SandpackProvider>
 				</div>
