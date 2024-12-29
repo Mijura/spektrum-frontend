@@ -32,14 +32,17 @@ export default function App() {
         <div className="flex flex-col h-[100dvh] bg-[#2F2F2F]">
             <LeftSideMenu />
             <Header />
-            <Modal buttonLabel="Show Tips" modalTitle="Helpful Tips">
-                <p className="mb-4">Here are some helpful tips to get you started:</p>
-                <ul className="list-disc list-inside space-y-2">
-                    <li>Navigate through the menu to explore features</li>
-                    <li>Use the editor to modify your code</li>
-                    <li>Check building blocks for reusable components</li>
-                    <li>Preview your changes in real-time</li>
-                </ul>
+            <Modal buttonLabel="Show Commands" modalTitle="Command Help">
+                <div>
+                    <h3 className="text-[#90e86f] text-2xl font-bold mb-4">/help</h3>
+                    <p className="text-white text-lg mb-6">
+                        Shows info about our basic commands and how to get started.
+                    </p>
+                    <h3 className="text-[#90e86f] text-2xl font-bold mb-4">/imagine</h3>
+                    <p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
+                    <h3 className="text-[#90e86f] text-2xl font-bold mb-4">/refine</h3>
+                    <p className="text-white text-lg">Select a building block to refine.</p>
+                </div>
             </Modal>
             <div className="flex flex-row grow ml-[72px] pl-2">
                 <div className="h-full w-full p-4">
