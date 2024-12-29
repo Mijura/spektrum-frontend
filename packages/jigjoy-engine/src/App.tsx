@@ -27,7 +27,7 @@ export default function App() {
 			<LeftSideMenu />
 			<Header />
 
-			<Modal buttonLabel="Show Commands" modalTitle="Command Help">
+			<Modal buttonLabel="Explore Prompting" modalTitle="Command Help">
 				<div>
 					<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/help</h3>
 					<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
