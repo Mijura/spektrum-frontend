@@ -2,7 +2,14 @@ import React, { useState, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const Guidelines = () => {
+/**
+ * Reusable modal component.
+ *
+ * @param {string} buttonLabel - The text displayed on the button that opens the modal.
+ * @param {string} modalTitle - The title displayed inside the modal.
+ * @param {React.ReactNode} children - The content of the modal (can be text, JSX, etc.).
+ */
+const Modal = ({ buttonLabel = 'Open Modal', modalTitle = 'Modal Title', children }) => {
     const [isOpen, setIsOpen] = useState(false)
     const buttonRef = useRef(null)
 
@@ -22,11 +29,12 @@ const Guidelines = () => {
                 className="px-4 py-2 bg-[#151515] text-[#90e86f] rounded shadow hover:bg-[#252525] focus:outline-none"
                 onClick={openModal}
             >
-                Guidelines
+                {buttonLabel}
             </button>
 
             {/* Modal Portal */}
-            {isOpen && typeof document !== 'undefined' && 
+            {isOpen &&
+                typeof document !== 'undefined' &&
                 ReactDOM.createPortal(
                     <AnimatePresence>
                         <motion.div
@@ -43,18 +51,8 @@ const Guidelines = () => {
                                 className="bg-[#151515] rounded-lg shadow-lg p-6 w-96 relative"
                                 onClick={e => e.stopPropagation()}
                             >
-                                <h2 className="text-xl font-semibold mb-4 text-[#90e86f]">Helpful Tips</h2>
-                                <div className="text-white">
-                                    <p className="mb-4">
-                                        Here are some helpful tips to get started with JigJoy:
-                                    </p>
-                                    <ul className="list-disc list-inside space-y-2">
-                                        <li>Navigate through the menu to explore features</li>
-                                        <li>Use the editor to modify your code</li>
-                                        <li>Check building blocks for reusable components</li>
-                                        <li>Preview your changes in real-time</li>
-                                    </ul>
-                                </div>
+                                <h2 className="text-xl font-semibold mb-4 text-[#90e86f]">{modalTitle}</h2>
+                                <div className="text-white">{children}</div>
                                 <button
                                     className="absolute top-2 right-2 text-gray-400 hover:text-gray-200 text-xl font-bold focus:outline-none"
                                     onClick={closeModal}
@@ -65,10 +63,9 @@ const Guidelines = () => {
                         </motion.div>
                     </AnimatePresence>,
                     document.body
-                )
-            }
+                )}
         </div>
     )
 }
 
-export default Guidelines
+export default Modal
