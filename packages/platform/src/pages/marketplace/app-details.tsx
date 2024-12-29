@@ -10,6 +10,10 @@ interface AppDetailsProps {
         longDescription?: string
         imageUrl: string
         images: string[] // Array of image URLs for the carousel
+        creator: {
+            username: string
+            avatarUrl: string
+        }
     }
     onBack: () => void
 }
