@@ -1,8 +1,15 @@
-import React from 'react'
-import Editor from './pages/editor/editor'
+import React, { useState } from 'react'
+import AchievementsPage from './pages/achievements/achievements'
+import AchievementDetails from './components/achievement-details'
 
 const App = () => {
-    return <Editor />
+    const [selectedAchievement, setSelectedAchievement] = useState(null)
+
+    if (selectedAchievement) {
+        return <AchievementDetails achievement={selectedAchievement} onBack={() => setSelectedAchievement(null)} />
+    }
+
+    return <AchievementsPage onSelectAchievement={setSelectedAchievement} />
 }
 
 export default App
