@@ -75,6 +75,11 @@ module.exports = {
 			shared: {
 				react: {
 					singleton: true,
+					requiredVersion: deps["framer-motion"],
+					eager: true,
+				},
+				react: {
+					singleton: true,
 					requiredVersion: deps.react,
 					eager: true,
 				},

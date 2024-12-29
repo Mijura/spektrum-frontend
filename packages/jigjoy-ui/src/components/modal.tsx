@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import ReactDOM from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function Modal({ buttonLabel, modalTitle, children })  {
+export default function Modal({ portalTarget, buttonLabel, modalTitle, children })  {
 	const [isOpen, setIsOpen] = useState(false)
 	const buttonRef = useRef(null)
 
@@ -37,7 +37,7 @@ export default function Modal({ buttonLabel, modalTitle, children })  {
 							</motion.div>
 						)}
 					</AnimatePresence>,
-					document.body
+					portalTarget
 				)}
 		</div>
 	)
