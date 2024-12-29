@@ -26,7 +26,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ steps }) => {
         }
     }
 
-    const progressPercentage = ((currentStep + 1) / steps.length) * 100
+    const progressPercentage = (currentStep / (steps.length - 1)) * 100
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-surface1">
