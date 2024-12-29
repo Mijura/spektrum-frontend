@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import AppDetailsCarousel from '../../components/app-details-carousel'
+import LikeButton from '../../components/like-button'
 
 interface AppDetailsProps {
     app: {
@@ -32,6 +33,13 @@ export default function AppDetails({ app, onBack }: AppDetailsProps) {
                         <div>
                             <h1 className="text-4xl font-bold mb-4 text-[#90e86f]">{app.name}</h1>
                             <p className="text-lg text-base mb-4">{app.description}</p>
+                            <div className="flex items-center gap-6">
+                                <div className="flex items-center gap-3">
+                                    <img src={app.creator.avatarUrl} alt={app.creator.username} className="w-10 h-10 rounded-full" />
+                                    <span className="text-gray-400 text-lg">Created by <span className="text-white font-medium">{app.creator.username}</span></span>
+                                </div>
+                                <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+                            </div>
                         </div>
                     </div>
 
