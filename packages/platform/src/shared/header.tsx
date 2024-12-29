@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Modal from "./modal"
+import Modal from "../components/modal"
 
 const Header = () => {
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
