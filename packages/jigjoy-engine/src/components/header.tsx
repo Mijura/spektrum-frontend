@@ -10,7 +10,7 @@ const Header = () => {
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>
 				{/* <nav className="flex gap-4">
-					<button className="hover:text-gray-300">Marketplace</button>
+					<button className="hover:text-gray-300">Option</button>
 				</nav> */}
 			</div>
 
