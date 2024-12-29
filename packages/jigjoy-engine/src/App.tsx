@@ -5,6 +5,7 @@ import SimpleCodeViewer from "./components/simple-code-viewer"
 import LeftSideMenu from "./components/left-side-menu"
 import Header from "./components/header"
 import Tabs, { Tab } from "../src/components/tabs/tabs"
+import Modal from "../src/components/modal"
 
 export default function App() {
 	const [editorOn, toggleEditor] = useState(false)
@@ -25,6 +26,17 @@ export default function App() {
 		<div className="flex flex-col h-[100dvh] bg-[#2F2F2F]">
 			<LeftSideMenu />
 			<Header />
+
+			<Modal buttonLabel="Explore Prompting" modalTitle="Command Help">
+				<div>
+					<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/help</h3>
+					<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
+					<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/imagine</h3>
+					<p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
+					<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/refine</h3>
+					<p className="text-white text-lg">Select a building block to refine.</p>
+				</div>
+			</Modal>
 			<div className="flex flex-row grow ml-[72px] pl-2">
 				<div className="h-full w-full p-4">
 					<SandpackProvider

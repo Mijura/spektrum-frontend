@@ -8,7 +8,7 @@ export default function Tabs(props: any) {
 			{/* Tab Buttons */}
 			<div className="flex space-x-2 mt-4">
 				{React.Children.map(props.children, (child, index) => (
-					<button onClick={() => setActiveTab(index)} className={`p-1 rounded-md text-black ${index === activeTab ? "bg-[#6B5A8E] text-white" : "hover:bg-hover text-[#EEEEEE] hover:text-black"} transition-all`}>
+					<button onClick={() => setActiveTab(index)} className={`p-1 rounded-md text-white ${index === activeTab ? "bg-[#6B5A8E] text-white" : "hover:bg-hover text-[#EEEEEE] hover:text-black"} transition-all`}>
 						{child.key}
 					</button>
 				))}
