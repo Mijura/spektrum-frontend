@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import ReactDOM from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 
-const Modal = ({ buttonLabel = "Open Modal", modalTitle = "Modal Title", children }) => {
+export default function Modal({ buttonLabel, modalTitle, children })  {
 	const [isOpen, setIsOpen] = useState(false)
 	const buttonRef = useRef(null)
 
@@ -15,7 +15,7 @@ const Modal = ({ buttonLabel = "Open Modal", modalTitle = "Modal Title", childre
 	}
 
 	return (
-		<div className="">
+		<div>
 			{/* Button to open the modal */}
 			<button ref={buttonRef} className="px-4 py-2 bg-[#151515] text-[#90e86f] rounded shadow hover:bg-[#252525] focus:outline-none" onClick={openModal}>
 				{buttonLabel}
@@ -42,5 +42,3 @@ const Modal = ({ buttonLabel = "Open Modal", modalTitle = "Modal Title", childre
 		</div>
 	)
 }
-
-export default Modal

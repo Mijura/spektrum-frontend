@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
+import { useState } from "react"
 
 export default function Tab(props: any) {
 	const [display, setDisplay] = useState(false)
 
-	useEffect(() => {
+	React.useEffect(() => {
 		setDisplay(props.display)
 	}, [props.display])
 

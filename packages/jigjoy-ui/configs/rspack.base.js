@@ -8,7 +8,7 @@ module.exports = {
 		main: path.join(__dirname, "../src/index.tsx"),
 	},
 	output: {
-		publicPath: "auto",
+		publicPath: "http://localhost:3002/",
 	},
 	mode: "development",
 	target: "web",
@@ -59,12 +59,20 @@ module.exports = {
 			chunks: ["main"],
 		}),
 		new rspack.container.ModuleFederationPlugin({
-			name: "micro-frontend",
+			name: "jigjoy_ui",
 			filename: "remoteEntry.js",
+			library: {
+				name: "jigjoy_ui",
+				type: "assign",
+			},
 			remotes: {},
-			exposes: {},
+			exposes: {
+				"./tabs": "./src/components/tabs",
+				"./tab": "./src/components/tab",
+				"./stepper": "./src/components/stepper",
+				"./modal": "./src/components/modal"
+			},
 			shared: {
-				...deps,
 				react: {
 					singleton: true,
 					requiredVersion: deps.react,
