@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Modal from "./modal"
 
 const Header = () => {
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
@@ -16,10 +17,16 @@ const Header = () => {
 
 			{/* Right Side: Help and Profile */}
 			<div className="flex items-center gap-4 relative">
-				{/* Help Icon */}
-				<button className="hover:text-gray-300">
-					<span className="material-icons">Help</span>
-				</button>
+				<Modal buttonLabel="Docs" modalTitle="Command Help">
+					<div>
+						<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/help</h3>
+						<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
+						<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/imagine</h3>
+						<p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
+						<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/refine</h3>
+						<p className="text-white text-lg">Select a building block to refine.</p>
+					</div>
+				</Modal>
 
 				{/* Profile Icon */}
 				<div className="relative">
