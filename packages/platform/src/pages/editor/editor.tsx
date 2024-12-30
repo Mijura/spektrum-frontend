@@ -3,7 +3,8 @@ import React, { useState } from "react"
 import LeftSideMenu from "../../shared/left-side-menu"
 import Header from "../../shared/header"
 import { sandpackDark } from "@codesandbox/sandpack-themes"
-import Tabs, { Tab } from "../../components/tabs"
+const Tabs = React.lazy(() => import('@jigjoy-ui/tabs'))
+const Tab = React.lazy(() => import('@jigjoy-ui/tab'))
 import SimpleCodeViewer from "./simple-code-viewer"
 
 export default function Editor() {

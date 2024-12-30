@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { Suspense, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Modal from "../components/modal"
+const Modal = React.lazy(() => import('@jigjoy-ui/modal'))
 
 const Header = () => {
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
@@ -17,7 +17,7 @@ const Header = () => {
 
 			{/* Right Side: Help and Profile */}
 			<div className="flex items-center gap-4 relative">
-				<Modal buttonLabel="Docs" modalTitle="Command Help">
+			<Modal portalTarget={document.body} buttonLabel="Docs" modalTitle="Command Help">
 					<div>
 						<h3 className="text-[#90e86f] text-2xl font-bold mb-4">/help</h3>
 						<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
@@ -27,6 +27,7 @@ const Header = () => {
 						<p className="text-white text-lg">Select a building block to refine.</p>
 					</div>
 				</Modal>
+
 
 				{/* Profile Icon */}
 				<div className="relative">

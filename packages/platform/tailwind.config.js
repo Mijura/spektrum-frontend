@@ -10,7 +10,7 @@ const colors = {
 }
 
 module.exports = {
-	content: ["./src/**/*.{html,js,ts,jsx,tsx}"], // Adjust paths to match your project structure
+	content: ["./src/**/*.{html,js,ts,jsx,tsx}" ,"../jigjoy-ui/src/**/*.{js,jsx,ts,tsx}"], // Adjust paths to match your project structure
 	theme: {
 		extend: {
 			colors: {

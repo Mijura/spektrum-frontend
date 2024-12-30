@@ -19,13 +19,3 @@ export default function Tabs(props: any) {
 		</div>
 	)
 }
-
-export function Tab(props: any) {
-	const [display, setDisplay] = useState(false)
-
-	React.useEffect(() => {
-		setDisplay(props.display)
-	}, [props.display])
-
-	return <>{display && props.children}</>
-}

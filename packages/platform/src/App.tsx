@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AchievementsPage from './pages/achievements/achievements'
 import AchievementDetails from './components/achievement-details'
 
+
 const App = () => {
     const [selectedAchievement, setSelectedAchievement] = useState(null)
 
@@ -10,6 +11,8 @@ const App = () => {
     }
 
     return <AchievementsPage onSelectAchievement={setSelectedAchievement} />
+
 }
+
 
 export default App
