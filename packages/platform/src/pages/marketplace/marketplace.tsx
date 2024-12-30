@@ -105,7 +105,7 @@ export default function Marketplace() {
             {/* === Featured Section === */}
             <h1 className="text-3xl font-bold mb-6 text-[#90e86f]">Featured</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                {featuredApps.map(app => (
+                {featuredApps.map((app: any) => (
                     <motion.div
                         key={app.name}
                         className="bg-surface2 rounded-lg p-4 flex gap-4 h-[180px]"
@@ -144,7 +144,7 @@ export default function Marketplace() {
             {/* === Explore Section === */}
             <h1 className="text-3xl font-bold mb-6 text-[#90e86f]">Explore</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {exploreApps.map(app => (
+                {exploreApps.map((app:any) => (
                     <motion.div
                         key={app.name}
                         className="bg-surface2 rounded-lg p-3 flex gap-3 h-[140px]"
