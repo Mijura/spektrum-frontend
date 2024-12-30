@@ -64,7 +64,7 @@ export default function App() {
 									style={{ height: "100%" }}
 									actionsChildren={
 										<div>
-											<button className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
+											<button className="bg-[black] text-clickable mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
 												Toggle Editor
 											</button>
 										</div>

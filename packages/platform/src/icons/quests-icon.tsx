@@ -2,7 +2,7 @@ import React from "react"
 
 export default function QuestsIcon({ color }) {
 	return (
-		<svg width="32" height="32" viewBox="0 0 24 24" className={`${color} fill-current`} xmlns="http://www.w3.org/2000/svg">
+		<svg width="24" height="24" viewBox="0 0 24 24" className={`${color} fill-current`} xmlns="http://www.w3.org/2000/svg">
 			<g clip-path="url(#clip0_110_717)">
 				<path d="M16 10.5C16 11.0523 15.5523 11.5 15 11.5C14.4477 11.5 14 11.0523 14 10.5C14 9.94771 14.4477 9.5 15 9.5C15.5523 9.5 16 9.94771 16 10.5Z" />
 				<path d="M18 13.5C18 14.0523 17.5523 14.5 17 14.5C16.4477 14.5 16 14.0523 16 13.5C16 12.9477 16.4477 12.5 17 12.5C17.5523 12.5 18 12.9477 18 13.5Z" />

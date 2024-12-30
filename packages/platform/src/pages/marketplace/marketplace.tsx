@@ -98,7 +98,7 @@ export default function Marketplace() {
 	return (
 		<div className="container h-[100dvh] mx-auto max-w-screen-xl px-4 pt-20">
 			{/* === Featured Section === */}
-			<h1 className="text-3xl font-bold mb-6 text-[#90e86f]">Featured</h1>
+			<h1 className="text-3xl font-bold mb-6 text-clickable">Featured</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
 				{featuredApps.map((app: any) => (
 					<motion.div
@@ -113,7 +113,7 @@ export default function Marketplace() {
 						<img src={app.imageUrl} alt={app.name} className="w-[140px] h-full rounded-lg object-cover" />
 						<div className="flex flex-col flex-1 justify-between">
 							<div>
-								<h2 className="text-xl font-semibold mb-2 text-[#90e86f]">{app.name}</h2>
+								<h2 className="text-xl font-semibold mb-2 text-clickable">{app.name}</h2>
 								<p className="text-sm text-base">{app.description}</p>
 							</div>
 							<div className="flex items-center justify-between">
@@ -134,7 +134,7 @@ export default function Marketplace() {
 			</div>
 
 			{/* === Explore Section === */}
-			<h1 className="text-3xl font-bold mb-6 text-[#90e86f]">Explore</h1>
+			<h1 className="text-3xl font-bold mb-6 text-clickable">Explore</h1>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-20">
 				{exploreApps.map((app: any) => (
 					<motion.div
@@ -149,7 +149,7 @@ export default function Marketplace() {
 						<img src={app.imageUrl} alt={app.name} className="w-[100px] h-full rounded-lg object-cover" />
 						<div className="flex flex-col flex-1 justify-between">
 							<div>
-								<h2 className="text-lg font-semibold mb-1 text-[#90e86f]">{app.name}</h2>
+								<h2 className="text-lg font-semibold mb-1 text-clickable">{app.name}</h2>
 								<p className="text-xs text-base">{app.description}</p>
 							</div>
 							<div className="flex items-center justify-between">

@@ -4,7 +4,6 @@ import ProjectsIcon from "../icons/projects-icon"
 import MarketplaceIcon from "../icons/marketplace-icon"
 import AchievementsIcon from "../icons/achievements-icon"
 import EditorIcon from "../icons/editor-icon"
-import QuestsIcon from "../icons/quests-icon"
 import { useNavigate } from "@tanstack/react-router"
 
 const LeftSideMenu = () => {
@@ -26,7 +25,6 @@ const LeftSideMenu = () => {
 					{ name: "editor", icon: EditorIcon, label: "Editor", route: "/" },
 					{ name: "browse", icon: MarketplaceIcon, label: "Browse Blocks", route: "/browse" },
 					{ name: "apps", icon: ProjectsIcon, label: "My Apps", route: "/my-apps" },
-					{ name: "quests", icon: QuestsIcon, label: "Quests", route: "/quests" },
 					{ name: "achievements", icon: AchievementsIcon, label: "Achievements", route: "/achievements" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
@@ -41,7 +39,7 @@ const LeftSideMenu = () => {
 						}}
 					>
 						<div className="py-2 w-[72px] flex justify-center items-center">
-							<Icon color={selectedOption === name ? "text-[#B08DF8]" : hoveredOption === name ? "text-[#E5FD78]" : "text-[#90E86F]"} />
+							<Icon color={selectedOption === name ? "text-accent" : hoveredOption === name ? "text-hover" : "text-clickable"} />
 						</div>
 						<AnimatePresence>
 							{menuExpanded && (
