@@ -1,12 +1,13 @@
 import React from 'react'
-import Marketplace from './pages/marketplace/marketplace'
+import Editor from './pages/editor/editor'
 
 function App() {
     return (
         <div>
-            <Marketplace />
+            <Editor />
         </div>
     )
 }
+
 
 export default App
