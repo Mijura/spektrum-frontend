@@ -5,32 +5,36 @@ import MarketplaceIcon from "../icons/marketplace-icon"
 import AchievementsIcon from "../icons/achievements-icon"
 import EditorIcon from "../icons/editor-icon"
 import QuestsIcon from "../icons/quests-icon"
+import { useNavigate } from "@tanstack/react-router"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
 	const [selectedOption, setSelectedOption] = useState("editor")
 	const [hoveredOption, setHoveredOption] = useState("")
 
-	const handleOptionClick = (option) => {
+	const navigate = useNavigate()
+
+	const handleOptionClick = (option, route) => {
 		setSelectedOption(option)
+		navigate({ to: route })
 	}
 
 	return (
 		<motion.div onHoverStart={() => setMenuExpanded(true)} onHoverEnd={() => setMenuExpanded(false)} className="border-r border-r-[#4D4D4D] h-full bg-[#151515] flex flex-col shadow-lg fixed top-0 left-0 z-50 text-white">
 			<ul className="flex flex-col mt-[100px]">
 				{[
-					{ name: "editor", icon: EditorIcon, label: "Editor" },
-					{ name: "marketplace", icon: MarketplaceIcon, label: "Marketplace" },
-					{ name: "projects", icon: ProjectsIcon, label: "Projects" },
-					{ name: "quests", icon: QuestsIcon, label: "Quests" },
-					{ name: "achievements", icon: AchievementsIcon, label: "Achievements" },
-				].map(({ name, icon: Icon, label }) => (
+					{ name: "editor", icon: EditorIcon, label: "Editor", route: "/" },
+					{ name: "marketplace", icon: MarketplaceIcon, label: "Marketplace", route: "/marketplace" },
+					{ name: "projects", icon: ProjectsIcon, label: "Projects", route: "/projects" },
+					{ name: "quests", icon: QuestsIcon, label: "Quests", route: "/quests" },
+					{ name: "achievements", icon: AchievementsIcon, label: "Achievements", route: "/achievements" },
+				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
 						className={`${selectedOption === name ? "bg-[#252525] text-white" : "text-[#C5C5C5]"} hover:text-white flex cursor-pointer hover:bg-[#252525] rounded-lg p-1`}
 						onMouseEnter={() => setHoveredOption(name)}
 						onMouseLeave={() => setHoveredOption("")}
-						onClick={() => handleOptionClick(name)}
+						onClick={() => handleOptionClick(name, route)}
 						style={{
 							filter: hoveredOption && hoveredOption !== name ? "blur(2px)" : "none",
 							transition: "filter 0.25s ease",

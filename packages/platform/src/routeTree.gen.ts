@@ -17,6 +17,8 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const OnboardingLazyImport = createFileRoute('/onboarding')()
+const MarketplaceLazyImport = createFileRoute('/marketplace')()
+const AchievementsLazyImport = createFileRoute('/achievements')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
@@ -26,6 +28,18 @@ const OnboardingLazyRoute = OnboardingLazyImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/onboarding.lazy').then((d) => d.Route))
+
+const MarketplaceLazyRoute = MarketplaceLazyImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/marketplace.lazy').then((d) => d.Route))
+
+const AchievementsLazyRoute = AchievementsLazyImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/achievements.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
@@ -44,6 +58,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
@@ -58,36 +86,46 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/achievements': typeof AchievementsLazyRoute
+  '/marketplace': typeof MarketplaceLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/achievements': typeof AchievementsLazyRoute
+  '/marketplace': typeof MarketplaceLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/achievements': typeof AchievementsLazyRoute
+  '/marketplace': typeof MarketplaceLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/onboarding'
+  fullPaths: '/' | '/achievements' | '/marketplace' | '/onboarding'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/onboarding'
-  id: '__root__' | '/' | '/onboarding'
+  to: '/' | '/achievements' | '/marketplace' | '/onboarding'
+  id: '__root__' | '/' | '/achievements' | '/marketplace' | '/onboarding'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  AchievementsLazyRoute: typeof AchievementsLazyRoute
+  MarketplaceLazyRoute: typeof MarketplaceLazyRoute
   OnboardingLazyRoute: typeof OnboardingLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  AchievementsLazyRoute: AchievementsLazyRoute,
+  MarketplaceLazyRoute: MarketplaceLazyRoute,
   OnboardingLazyRoute: OnboardingLazyRoute,
 }
 
@@ -102,11 +140,19 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/achievements",
+        "/marketplace",
         "/onboarding"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/achievements": {
+      "filePath": "achievements.lazy.tsx"
+    },
+    "/marketplace": {
+      "filePath": "marketplace.lazy.tsx"
     },
     "/onboarding": {
       "filePath": "onboarding.lazy.tsx"
