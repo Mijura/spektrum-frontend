@@ -1,11 +1,8 @@
-import React from "react"
+import React from 'react'
+import { Chat } from './components/chat'
 
 function App() {
-	return (
-		<div className="bg-[#2F2F2F]">
-			<h1 className="text-xl font-bold mb-4">Example Tabs Component</h1>
-		</div>
-	)
+    return <Chat />
 }
 
 export default App
