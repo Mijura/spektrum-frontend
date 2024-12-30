@@ -2,15 +2,17 @@ const colors = {
 	surface1: "#151515",
 	surface2: "#252525",
 	surface3: "#2F2F2F",
-	clickable: "#999999",
+	clickable: "#90E86F",
 	base: "#808080",
 	disabled: "#4D4D4D",
 	hover: "#E5FD78",
-	selected: "#E1CFF8",
+	accent: "#B08DF8",
+	error: "#E1CFF8",
+	errorSurface: "#b08df8",
 }
 
 module.exports = {
-	content: ["./src/**/*.{html,js,ts,jsx,tsx}" ,"../jigjoy-ui/src/**/*.{js,jsx,ts,tsx}"], // Adjust paths to match your project structure
+	content: ["./src/**/*.{html,js,ts,jsx,tsx}", "../jigjoy-ui/src/**/*.{js,jsx,ts,tsx}"],
 	theme: {
 		extend: {
 			colors: {
@@ -21,7 +23,7 @@ module.exports = {
 				base: colors.base,
 				disabled: colors.disabled,
 				hover: colors.hover,
-				selected: colors.selected,
+				accent: colors.accent,
 				error: colors.error,
 				errorSurface: colors.errorSurface,
 			},
