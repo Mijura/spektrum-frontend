@@ -21,7 +21,7 @@ export default function App() {
 	}
 
 	return (
-		<div className="flex flex-row grow ml-[72px] pl-2">
+		<div className="h-full flex flex-row grow ml-[72px] pl-2">
 			<div className="h-full w-full p-4">
 				<SandpackProvider
 					template="react-ts"

@@ -11,7 +11,7 @@ function RootRoute() {
 	return (
 		<div className="flex flex-col h-[100dvh] bg-[#2F2F2F]">
 			<Header />
-			<div className="w-full flex flex-row">
+			<div className="h-full w-full flex flex-row">
 				<div className="w-[72px]">
 					<LeftSideMenu />
 				</div>
