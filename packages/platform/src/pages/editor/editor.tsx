@@ -1,10 +1,8 @@
 import { SandpackCodeEditor, SandpackFileExplorer, SandpackLayout, SandpackPreview, SandpackProvider } from "@codesandbox/sandpack-react"
 import React, { useState } from "react"
-import LeftSideMenu from "../../shared/left-side-menu"
-import Header from "../../shared/header"
 import { sandpackDark } from "@codesandbox/sandpack-themes"
-const Tabs = React.lazy(() => import('@jigjoy-ui/tabs'))
-const Tab = React.lazy(() => import('@jigjoy-ui/tab'))
+const Tabs = React.lazy(() => import("@jigjoy-ui/tabs"))
+const Tab = React.lazy(() => import("@jigjoy-ui/tab"))
 import SimpleCodeViewer from "./simple-code-viewer"
 
 export default function Editor() {
@@ -23,65 +21,60 @@ export default function App() {
 	}
 
 	return (
-		<div className="flex flex-col h-[100dvh] bg-[#2F2F2F]">
-			<LeftSideMenu />
-			<Header />
-
-			<div className="flex flex-row grow ml-[72px] pl-2">
-				<div className="h-full w-full p-4">
-					<SandpackProvider
-						template="react-ts"
-						theme={sandpackDark}
-						files={files}
-						customSetup={{
-							dependencies: {
-								"framer-motion": "latest",
-							},
-						}}
-						style={{ height: "100%" }}
-						options={{
-							externalResources: ["https://cdn.tailwindcss.com"],
-						}}
-					>
-						<SandpackLayout style={{ height: "100%" }}>
-							<div className="flex flex-row w-full">
-								<div className="w-[25%] bg-[#2F2F2F]">
-									<Tabs>
-										<Tab key="Create">
-											<div>
-												<h2 className="text-lg font-semibold">Create</h2>
-												<p>This is the content displayed for the first tab.</p>
-											</div>
-										</Tab>
-										<Tab key="Building Blocks">
-											<div className="h-full flex pr-10">
-												<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
-												{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
-											</div>
-										</Tab>
-									</Tabs>
-								</div>
-
-								<div className="grow">
-									<SandpackPreview
-										showNavigator={true}
-										showOpenInCodeSandbox={false}
-										showRestartButton={true}
-										style={{ height: "100%" }}
-										actionsChildren={
-											<div>
-												<button className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
-													Toggle Editor
-												</button>
-											</div>
-										}
-									/>
-									<SimpleCodeViewer />
-								</div>
+		<div className="flex flex-row grow ml-[72px] pl-2">
+			<div className="h-full w-full p-4">
+				<SandpackProvider
+					template="react-ts"
+					theme={sandpackDark}
+					files={files}
+					customSetup={{
+						dependencies: {
+							"framer-motion": "latest",
+						},
+					}}
+					style={{ height: "100%" }}
+					options={{
+						externalResources: ["https://cdn.tailwindcss.com"],
+					}}
+				>
+					<SandpackLayout style={{ height: "100%" }}>
+						<div className="flex flex-row w-full">
+							<div className="w-[25%] bg-[#2F2F2F]">
+								<Tabs>
+									<Tab key="Create">
+										<div>
+											<h2 className="text-lg font-semibold">Create</h2>
+											<p>This is the content displayed for the first tab.</p>
+										</div>
+									</Tab>
+									<Tab key="Building Blocks">
+										<div className="h-full flex pr-10">
+											<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
+											{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
+										</div>
+									</Tab>
+								</Tabs>
 							</div>
-						</SandpackLayout>
-					</SandpackProvider>
-				</div>
+
+							<div className="grow">
+								<SandpackPreview
+									showNavigator={true}
+									showOpenInCodeSandbox={false}
+									showRestartButton={true}
+									style={{ height: "100%" }}
+									actionsChildren={
+										<div>
+											<button className="bg-[black] text-[#90e86f] mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
+												Toggle Editor
+											</button>
+										</div>
+									}
+								/>
+								<SimpleCodeViewer />
+							</div>
+						</div>
+					</SandpackLayout>
+				</SandpackProvider>
 			</div>
 		</div>
 	)
