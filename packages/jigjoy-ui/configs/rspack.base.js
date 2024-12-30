@@ -70,7 +70,9 @@ module.exports = {
 				"./tabs": "./src/components/tabs",
 				"./tab": "./src/components/tab",
 				"./stepper": "./src/components/stepper",
-				"./modal": "./src/components/modal"
+				"./modal": "./src/components/modal",
+				"./modal-trigger": "./src/components/modal-trigger",
+				"./modal-content": "./src/components/modal-content",
 			},
 			shared: {
 				react: {

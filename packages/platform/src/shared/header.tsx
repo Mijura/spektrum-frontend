@@ -1,7 +1,10 @@
-import React, { Suspense, useState } from "react"
+import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import QuestsWidget from "../components/quests-widget"
+import DocsIcon from "../icons/docs-icon"
 const Modal = React.lazy(() => import("@jigjoy-ui/modal"))
+const ModalTrigger = React.lazy(() => import("@jigjoy-ui/modal-trigger"))
+const ModalContent = React.lazy(() => import("@jigjoy-ui/modal-content"))
 
 const Header = () => {
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
@@ -20,15 +23,20 @@ const Header = () => {
 			<div className="flex items-center gap-4 relative">
 				<QuestsWidget portalTarget={document.body}></QuestsWidget>
 
-				<Modal portalTarget={document.body} buttonLabel="Docs" modalTitle="Command Help">
-					<div>
-						<h3 className="text-clickable text-2xl font-bold mb-4">/help</h3>
-						<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
-						<h3 className="text-clickable text-2xl font-bold mb-4">/imagine</h3>
-						<p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
-						<h3 className="text-clickable text-2xl font-bold mb-4">/refine</h3>
-						<p className="text-white text-lg">Select a building block to refine.</p>
-					</div>
+				<Modal>
+					<ModalTrigger>
+						<DocsIcon color={"text-accent"} />
+					</ModalTrigger>
+					<ModalContent document={document}>
+						<div>
+							<h3 className="text-clickable text-2xl font-bold mb-4">/help</h3>
+							<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
+							<h3 className="text-clickable text-2xl font-bold mb-4">/imagine</h3>
+							<p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
+							<h3 className="text-clickable text-2xl font-bold mb-4">/refine</h3>
+							<p className="text-white text-lg">Select a building block to refine.</p>
+						</div>
+					</ModalContent>
 				</Modal>
 
 				{/* Profile Icon */}
