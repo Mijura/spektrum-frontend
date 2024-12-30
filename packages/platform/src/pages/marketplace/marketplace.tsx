@@ -96,7 +96,7 @@ export default function Marketplace() {
 	}
 
 	return (
-		<div className="w-[60%] min-h-screen bg-surface1 text-white p-6">
+		<div className="container h-[100dvh] mx-auto max-w-screen-xl px-4 pt-20">
 			{/* === Featured Section === */}
 			<h1 className="text-3xl font-bold mb-6 text-[#90e86f]">Featured</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -135,7 +135,7 @@ export default function Marketplace() {
 
 			{/* === Explore Section === */}
 			<h1 className="text-3xl font-bold mb-6 text-[#90e86f]">Explore</h1>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-20">
 				{exploreApps.map((app: any) => (
 					<motion.div
 						key={app.name}

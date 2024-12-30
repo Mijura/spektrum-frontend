@@ -15,7 +15,7 @@ function RootRoute() {
 				<div className="w-[72px]">
 					<LeftSideMenu />
 				</div>
-				<div className="grow flex items-center justify-center">
+				<div className="w-full flex items-center justify-center">
 					<Outlet />
 				</div>
 			</div>

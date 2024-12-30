@@ -24,8 +24,8 @@ const LeftSideMenu = () => {
 			<ul className="flex flex-col mt-[100px]">
 				{[
 					{ name: "editor", icon: EditorIcon, label: "Editor", route: "/" },
-					{ name: "marketplace", icon: MarketplaceIcon, label: "Marketplace", route: "/marketplace" },
-					{ name: "projects", icon: ProjectsIcon, label: "Projects", route: "/projects" },
+					{ name: "browse", icon: MarketplaceIcon, label: "Browse Blocks", route: "/browse" },
+					{ name: "apps", icon: ProjectsIcon, label: "My Apps", route: "/my-apps" },
 					{ name: "quests", icon: QuestsIcon, label: "Quests", route: "/quests" },
 					{ name: "achievements", icon: AchievementsIcon, label: "Achievements", route: "/achievements" },
 				].map(({ name, icon: Icon, label, route }) => (
@@ -45,7 +45,7 @@ const LeftSideMenu = () => {
 						</div>
 						<AnimatePresence>
 							{menuExpanded && (
-								<motion.span initial={{ x: 10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -10, width: 0, opacity: 0 }} transition={{ duration: 0.25, ease: "easeInOut" }} className="mr-8 flex items-center">
+								<motion.span initial={{ x: 10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -10, width: 0, opacity: 0 }} transition={{ duration: 0.25, ease: "easeInOut" }} className="mr-8 truncate flex items-center">
 									{label}
 								</motion.span>
 							)}
