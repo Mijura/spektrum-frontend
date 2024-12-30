@@ -1,8 +1,13 @@
 import React from 'react'
 import Editor from './pages/editor/editor'
 
-const App = () => {
-    return <Editor />
+function App() {
+    return (
+        <div>
+            <Editor />
+        </div>
+    )
 }
+
 
 export default App
