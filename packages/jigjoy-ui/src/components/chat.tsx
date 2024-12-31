@@ -56,9 +56,9 @@ export const Chat: React.FC = () => {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-surface1 font-body">
+        <div className="flex items-center justify-center bg-surface1 font-body grow">
             {/* Main chat container (~30% width, “card” style) */}
-            <div className="h-[750px] w-[30%] flex flex-col bg-surface2 p-4 rounded shadow-md text-white">
+            <div className="h-full w-full flex flex-col bg-surface2 p-4 rounded shadow-md text-white">
                 {/* Message list (scrollable) */}
                 <div className="flex-1 overflow-y-auto space-y-4 mb-4">
                     {messages.map((msg, index) => {

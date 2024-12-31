@@ -9,13 +9,15 @@ export const Route = createRootRoute({
 
 function RootRoute() {
 	return (
-		<div className="flex flex-col bg-[#2F2F2F]">
+		<div className="flex flex-col bg-[#2F2F2F] h-full min-h-screen w-full">
+			<div className="w-full">
 			<Header />
-			<div className="h-full w-full flex flex-row">
-				<div className="w-[72px]">
+			</div>
+			<div className="grow flex flex-row">
+				<div >
 					<LeftSideMenu />
 				</div>
-				<div className="w-full flex items-center justify-center">
+				<div className="grow flex items-center justify-center">
 					<Outlet />
 				</div>
 			</div>
