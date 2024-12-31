@@ -38,8 +38,7 @@ export const Chat: React.FC = () => {
 
     const suggestions = [
         'Craft a new block',
-        'Refine an existing block',
-        'Blend multiple blocks together to create an app'
+        'Refine an existing block'
     ]
 
     const [inputValue, setInputValue] = useState('')
@@ -56,11 +55,11 @@ export const Chat: React.FC = () => {
     }
 
     return (
-        <div className="flex items-center justify-center bg-surface1 font-body grow">
-            {/* Main chat container (~30% width, “card” style) */}
-            <div className="h-full w-full flex flex-col bg-surface2 p-4 rounded shadow-md text-white">
+        <div className="flex flex-col bg-surface1 font-body h-full">
+            {/* Main chat container */}
+            <div className="h-full flex flex-col bg-surface2 p-4 rounded shadow-md text-white">
                 {/* Message list (scrollable) */}
-                <div className="flex-1 overflow-y-auto space-y-4 mb-4">
+                <div className="grow overflow-y-auto space-y-4">
                     {messages.map((msg, index) => {
                         const isSystem = msg.role === 'system'
                         return (
@@ -106,8 +105,31 @@ export const Chat: React.FC = () => {
                     })}
                 </div>
 
+                {/* Suggestion buttons */}
+                {messages.length <= 4 && (
+                    <div className="flex flex-wrap gap-2 justify-center my-4">
+                        {suggestions.map((text, index) => (
+                            <motion.button
+                                key={text}
+                                variants={bubbleVariants}
+                                initial="initial"
+                                animate="animate"
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                                onClick={() => {
+                                    setInputValue(text)
+                                    handleSend()
+                                }}
+                                className="rounded-full px-3 py-1 bg-surface3 text-clickable text-sm
+                             hover:bg-hover transition-colors"
+                            >
+                                {text}
+                            </motion.button>
+                        ))}
+                    </div>
+                )}
+
                 {/* Message input + send button */}
-                <div className="flex items-center space-x-2 mb-4">
+                <div className="flex items-center space-x-2 mt-auto pt-4 pb-2">
                     <input
                         type="text"
                         placeholder="Type your message..."
@@ -138,23 +160,7 @@ export const Chat: React.FC = () => {
                     </button>
                 </div>
 
-                {/* Suggestion buttons (smaller & rounder, matching input style) */}
-                <div className="flex flex-wrap gap-2 justify-center">
-                    {suggestions.map((text, index) => (
-                        <motion.button
-                            key={text}
-                            variants={bubbleVariants}
-                            initial="initial"
-                            animate="animate"
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
-                            onClick={() => setInputValue(text)}
-                            className="rounded-full px-3 py-1 bg-surface3 text-clickable text-sm
-                         hover:bg-hover transition-colors"
-                        >
-                            {text}
-                        </motion.button>
-                    ))}
-                </div>
+
             </div>
         </div>
     )

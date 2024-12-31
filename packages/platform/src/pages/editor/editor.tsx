@@ -4,6 +4,7 @@ import { sandpackDark } from "@codesandbox/sandpack-themes"
 const Tabs = React.lazy(() => import("@jigjoy-ui/tabs"))
 const Tab = React.lazy(() => import("@jigjoy-ui/tab"))
 import SimpleCodeViewer from "./simple-code-viewer"
+import { Chat } from "../../components/chat"
 
 export default function Editor() {
 	const [editorOn, toggleEditor] = useState(false)
@@ -42,9 +43,8 @@ export default function App() {
 							<div className="w-[25%] bg-[#2F2F2F]">
 								<Tabs>
 									<Tab key="Create">
-										<div>
-											<h2 className="text-lg font-semibold">Create</h2>
-											<p>This is the content displayed for the first tab.</p>
+										<div className="h-full w-full">
+											<Chat />
 										</div>
 									</Tab>
 									<Tab key="Building Blocks">

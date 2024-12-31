@@ -1,11 +1,5 @@
-import React from "react"
-import { Chat } from "./components/chat"
+import React from 'react'
 
 export default function App() {
-
-	return (
-		<div className="flex h-[750px] w-[500px]">
-			<Chat />
-		</div>
-	)
+    return <div className="flex h-[750px] w-[500px]"></div>
 }
