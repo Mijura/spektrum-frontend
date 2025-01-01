@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ActivityGraph from '../../components/activity-graph'
 
 interface Achievement {
     id: number
@@ -16,6 +17,34 @@ const achievements = [
 
 const MyProfile = () => {
     const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null)
+    
+    // Generate simulated activity data for the last 365 days
+    const activityData = useMemo(() => {
+        const data: { date: string; count: number }[] = []
+        const end = new Date()
+        const start = new Date(end)
+        start.setDate(start.getDate() - 364) // Go back 364 days to make it 365 total
+
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+            // Generate random activity count with higher probability of lower numbers
+            // and occasional spikes
+            const rand = Math.random()
+            let count = 0
+            if (rand > 0.3) { // 70% chance of activity
+                if (rand > 0.9) { // 10% chance of high activity
+                    count = Math.floor(Math.random() * 15) + 10 // 10-25 blocks
+                } else {
+                    count = Math.floor(Math.random() * 8) + 1 // 1-8 blocks
+                }
+            }
+            
+            data.push({
+                date: d.toISOString().split('T')[0],
+                count
+            })
+        }
+        return data
+    }, [])
     const user = {
         profileImage: 'https://avatars.githubusercontent.com/u/110939072?v=4',
         nickname: 'Lotus',
@@ -36,7 +65,7 @@ const MyProfile = () => {
                 }`}
             >
                 {/* Top Section: Profile Info + Credits */}
-                <div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-6 bg-surface2 rounded-md shadow p-4 border border-disabled">
+                <div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 bg-surface2 rounded-md shadow p-4 border border-disabled">
                     {/* Left: Profile Image & Basic Info */}
                     <div className="flex items-center mb-4 md:mb-0">
                         <img
@@ -89,6 +118,11 @@ const MyProfile = () => {
                             {user.credits}
                         </motion.span>
                     </div>
+                </div>
+
+                {/* Activity Graph */}
+                <div className="w-full max-w-4xl mb-4">
+                    <ActivityGraph data={activityData} />
                 </div>
 
                 {/* Achievements Section */}
