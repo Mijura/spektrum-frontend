@@ -9,7 +9,6 @@ export interface ModalTriggerProps {
 }
 
 const ModalTrigger: FC<ModalTriggerProps> = ({ children, onOpen }) => {
-	if (!onOpen) throw new Error("ModalTrigger must receive onOpen from Modal")
 
 	return React.cloneElement(children as React.ReactElement, {
 		onClick: onOpen,

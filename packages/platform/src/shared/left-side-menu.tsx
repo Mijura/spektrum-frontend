@@ -25,7 +25,7 @@ const LeftSideMenu = () => {
         <motion.div
             onHoverStart={() => setMenuExpanded(true)}
             onHoverEnd={() => setMenuExpanded(false)}
-            className="border-r border-r-[#4D4D4D] h-full bg-[#151515] flex flex-col shadow-lg fixed top-0 left-0 z-50 text-white"
+            className="border-r border-r-[#4D4D4D] h-full bg-[#151515] flex flex-col shadow-lg fixed top-0 left-0 z-20 text-white"
         >
             <ul className="flex flex-col mt-[100px]">
                 {[

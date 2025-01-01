@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Suspense, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import QuestsWidget from "../components/quests-widget"
 import DocsIcon from "../icons/docs-icon"
@@ -10,7 +10,7 @@ const Header = () => {
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
 
 	return (
-		<header className="z-50 w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
+		<header className="flex z-50 w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
 			{/* Left Side: Logo and Navigation */}
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>
@@ -22,12 +22,12 @@ const Header = () => {
 			{/* Right Side: Help and Profile */}
 			<div className="flex items-center gap-4 relative">
 				<QuestsWidget portalTarget={document.body}></QuestsWidget>
-
+				<Suspense fallback={<div>Loading...</div>}>
 				<Modal>
 					<ModalTrigger>
-						<DocsIcon color={"text-accent"} />
+						<DocsIcon color={"text-clickable"} />
 					</ModalTrigger>
-					<ModalContent document={document}>
+					<ModalContent>
 						<div>
 							<h3 className="text-clickable text-2xl font-bold mb-4">/help</h3>
 							<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
@@ -38,6 +38,8 @@ const Header = () => {
 						</div>
 					</ModalContent>
 				</Modal>
+				</Suspense>
+
 
 				{/* Profile Icon */}
 				<div className="relative">
