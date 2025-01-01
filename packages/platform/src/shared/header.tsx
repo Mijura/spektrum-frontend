@@ -1,5 +1,6 @@
 import React, { Suspense, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useNavigate } from "@tanstack/react-router"
 import QuestsWidget from "../components/quests-widget"
 import DocsIcon from "../icons/docs-icon"
 const Modal = React.lazy(() => import("@jigjoy-ui/modal"))
@@ -7,6 +8,7 @@ const ModalTrigger = React.lazy(() => import("@jigjoy-ui/modal-trigger"))
 const ModalContent = React.lazy(() => import("@jigjoy-ui/modal-content"))
 
 const Header = () => {
+	const navigate = useNavigate()
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
 
 	return (
@@ -49,10 +51,25 @@ const Header = () => {
 
 					<AnimatePresence>
 						{isProfileOpen && (
-							<motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute right-0 mt-2 w-48 bg-white text-black shadow-lg rounded-md overflow-hidden">
+							<motion.div 
+								initial={{ opacity: 0, y: -10 }} 
+								animate={{ opacity: 1, y: 0 }} 
+								exit={{ opacity: 0, y: -10 }} 
+								className="absolute right-0 mt-2 w-48 bg-surface2 text-white shadow-lg rounded-md overflow-hidden border border-disabled"
+							>
 								<ul className="flex flex-col">
-									<li className="p-2 hover:bg-gray-100 cursor-pointer">Settings</li>
-									<li className="p-2 hover:bg-gray-100 cursor-pointer">Log out</li>
+									<li 
+										onClick={() => navigate({ to: "/my-profile" })}
+										className="p-2 hover:bg-surface1 cursor-pointer text-clickable hover:text-hover transition-colors"
+									>
+										My Profile
+									</li>
+									<li className="p-2 hover:bg-surface1 cursor-pointer text-clickable hover:text-hover transition-colors">
+										Settings
+									</li>
+									<li className="p-2 hover:bg-surface1 cursor-pointer text-clickable hover:text-hover transition-colors">
+										Log out
+									</li>
 								</ul>
 							</motion.div>
 						)}

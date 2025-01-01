@@ -16,12 +16,18 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const MyProfileLazyImport = createFileRoute('/my-profile')()
 const OnboardingLazyImport = createFileRoute('/onboarding')()
 const BrowseLazyImport = createFileRoute('/browse')()
 const AchievementsLazyImport = createFileRoute('/achievements')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const MyProfileLazyRoute = MyProfileLazyImport.update({
+  path: '/my-profile',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/my-profile.lazy').then((d) => d.Route))
 
 const OnboardingLazyRoute = OnboardingLazyImport.update({
   path: '/onboarding',
@@ -68,6 +74,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrowseLazyImport
       parentRoute: typeof rootRoute
     }
+    '/my-profile': {
+      id: '/my-profile'
+      path: '/my-profile'
+      fullPath: '/my-profile'
+      preLoaderRoute: typeof MyProfileLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
@@ -84,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/achievements': typeof AchievementsLazyRoute
   '/browse': typeof BrowseLazyRoute
+  '/my-profile': typeof MyProfileLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
 }
 
@@ -115,6 +129,7 @@ export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AchievementsLazyRoute: typeof AchievementsLazyRoute
   BrowseLazyRoute: typeof BrowseLazyRoute
+  MyProfileLazyRoute: typeof MyProfileLazyRoute
   OnboardingLazyRoute: typeof OnboardingLazyRoute
 }
 
@@ -122,6 +137,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AchievementsLazyRoute: AchievementsLazyRoute,
   BrowseLazyRoute: BrowseLazyRoute,
+  MyProfileLazyRoute: MyProfileLazyRoute,
   OnboardingLazyRoute: OnboardingLazyRoute,
 }
 
@@ -140,6 +156,7 @@ export const routeTree = rootRoute
         "/",
         "/achievements",
         "/browse",
+        "/my-profile",
         "/onboarding"
       ]
     },
@@ -151,6 +168,9 @@ export const routeTree = rootRoute
     },
     "/browse": {
       "filePath": "browse.lazy.tsx"
+    },
+    "/my-profile": {
+      "filePath": "my-profile.lazy.tsx"
     },
     "/onboarding": {
       "filePath": "onboarding.lazy.tsx"
