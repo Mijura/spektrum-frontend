@@ -84,76 +84,78 @@ const ProgressBar = ({ progress }) => {
 
 const AchievementsPage = ({ onSelectAchievement }) => {
 	return (
-		<div className="min-h-screen py-10 px-8 text-white">
-			<h1 className="text-2xl font-bold mb-6 text-clickable">My Achievements</h1>
+		<div className="flex items-center justify-center ">
+			<div className="min-h-screen py-10 px-8 text-white">
+				<h1 className="text-2xl font-bold mb-6 text-clickable">My Achievements</h1>
 
-			<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-				{achievementsData.map((achievement) => {
-					const isLocked = achievement.status === "locked"
-					const isCompleted = achievement.status === "completed"
-					const isInProgress = achievement.status === "in-progress"
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+					{achievementsData.map((achievement) => {
+						const isLocked = achievement.status === "locked"
+						const isCompleted = achievement.status === "completed"
+						const isInProgress = achievement.status === "in-progress"
 
-					return (
-						<motion.div
-							key={achievement.id}
-							whileHover={{
-								scale: 1.05,
-								boxShadow: "0 0 20px rgba(229, 253, 120, 0.3)",
-							}}
-							transition={{
-								type: "spring",
-								stiffness: 400,
-								damping: 17,
-							}}
-							onClick={() => onSelectAchievement(achievement)}
-							className={`
-                                w-full p-6 rounded-lg shadow-lg text-center cursor-pointer
-                                ${isLocked ? "bg-surface2 opacity-50" : "bg-surface2 hover:bg-surface3"} 
-                                flex flex-col items-center justify-center
-                                transition-colors duration-200
-                            `}
-						>
-							<motion.img
-								src={achievement.icon}
-								alt={`${achievement.name} icon`}
-								className={`w-24 h-24 mb-4 ${isLocked ? "filter grayscale" : ""}`}
+						return (
+							<motion.div
+								key={achievement.id}
 								whileHover={{
-									rotate: [0, -10, 10, -10, 0],
-									transition: {
-										duration: 0.5,
-										ease: "easeInOut",
-									},
+									scale: 1.05,
+									boxShadow: "0 0 20px rgba(229, 253, 120, 0.3)",
 								}}
-							/>
-							<h2 className="text-lg font-semibold mb-3">{achievement.name}</h2>
+								transition={{
+									type: "spring",
+									stiffness: 400,
+									damping: 17,
+								}}
+								onClick={() => onSelectAchievement(achievement)}
+								className={`
+                            w-full p-6 rounded-lg shadow-lg text-center cursor-pointer
+                            ${isLocked ? "bg-surface2 opacity-50" : "bg-surface2 hover:bg-surface3"} 
+                            flex flex-col items-center justify-center
+                            transition-colors duration-200
+                        `}
+							>
+								<motion.img
+									src={achievement.icon}
+									alt={`${achievement.name} icon`}
+									className={`w-24 h-24 mb-4 ${isLocked ? "filter grayscale" : ""}`}
+									whileHover={{
+										rotate: [0, -10, 10, -10, 0],
+										transition: {
+											duration: 0.5,
+											ease: "easeInOut",
+										},
+									}}
+								/>
+								<h2 className="text-lg font-semibold mb-3">{achievement.name}</h2>
 
-							{isCompleted && (
-								<div className="text-clickable font-bold flex items-center">
-									<svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-										<path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-									</svg>
-									Completed
-								</div>
-							)}
+								{isCompleted && (
+									<div className="text-clickable font-bold flex items-center">
+										<svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+										</svg>
+										Completed
+									</div>
+								)}
 
-							{isInProgress && (
-								<div className="w-full">
-									<p className="mb-2 text-sm text-clickable">Progress: {achievement.progress}%</p>
-									<ProgressBar progress={achievement.progress} />
-								</div>
-							)}
+								{isInProgress && (
+									<div className="w-full">
+										<p className="mb-2 text-sm text-clickable">Progress: {achievement.progress}%</p>
+										<ProgressBar progress={achievement.progress} />
+									</div>
+								)}
 
-							{isLocked && (
-								<div className="mt-2 text-sm text-disabled">
-									<svg className="w-5 h-5 mb-1 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m0 0v2m0-2h2m-2 0H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-									</svg>
-									Locked
-								</div>
-							)}
-						</motion.div>
-					)
-				})}
+								{isLocked && (
+									<div className="mt-2 text-sm text-disabled">
+										<svg className="w-5 h-5 mb-1 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m0 0v2m0-2h2m-2 0H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+										</svg>
+										Locked
+									</div>
+								)}
+							</motion.div>
+						)
+					})}
+				</div>
 			</div>
 		</div>
 	)

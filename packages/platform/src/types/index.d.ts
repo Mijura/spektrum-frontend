@@ -1,5 +1,7 @@
-declare module '@jigjoy-ui/tabs'
-declare module '@jigjoy-ui/tab'
-declare module '@jigjoy-ui/stepper'
-declare module '@jigjoy-ui/modal'
-declare module '@jigjoy-ui/card'
+declare module "@jigjoy-ui/tabs"
+declare module "@jigjoy-ui/tab"
+declare module "@jigjoy-ui/stepper"
+declare module "@jigjoy-ui/modal"
+declare module "@jigjoy-ui/modal-trigger"
+declare module "@jigjoy-ui/modal-content"
+declare module "@jigjoy-ui/card"

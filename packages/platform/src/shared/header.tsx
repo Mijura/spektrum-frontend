@@ -1,13 +1,16 @@
 import React, { Suspense, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import QuestsWidget from "../components/quests-widget"
+import DocsIcon from "../icons/docs-icon"
 const Modal = React.lazy(() => import("@jigjoy-ui/modal"))
+const ModalTrigger = React.lazy(() => import("@jigjoy-ui/modal-trigger"))
+const ModalContent = React.lazy(() => import("@jigjoy-ui/modal-content"))
 
 const Header = () => {
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
 
 	return (
-		<header className="z-50 w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
+		<header className="flex z-50 w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
 			{/* Left Side: Logo and Navigation */}
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>
@@ -19,17 +22,24 @@ const Header = () => {
 			{/* Right Side: Help and Profile */}
 			<div className="flex items-center gap-4 relative">
 				<QuestsWidget portalTarget={document.body}></QuestsWidget>
-
-				<Modal portalTarget={document.body} buttonLabel="Docs" modalTitle="Command Help">
-					<div>
-						<h3 className="text-clickable text-2xl font-bold mb-4">/help</h3>
-						<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
-						<h3 className="text-clickable text-2xl font-bold mb-4">/imagine</h3>
-						<p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
-						<h3 className="text-clickable text-2xl font-bold mb-4">/refine</h3>
-						<p className="text-white text-lg">Select a building block to refine.</p>
-					</div>
+				<Suspense fallback={<div>Loading...</div>}>
+				<Modal>
+					<ModalTrigger>
+						<DocsIcon color={"text-clickable"} />
+					</ModalTrigger>
+					<ModalContent>
+						<div>
+							<h3 className="text-clickable text-2xl font-bold mb-4">/help</h3>
+							<p className="text-white text-lg mb-6">Shows info about our basic commands and how to get started.</p>
+							<h3 className="text-clickable text-2xl font-bold mb-4">/imagine</h3>
+							<p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
+							<h3 className="text-clickable text-2xl font-bold mb-4">/refine</h3>
+							<p className="text-white text-lg">Select a building block to refine.</p>
+						</div>
+					</ModalContent>
 				</Modal>
+				</Suspense>
+
 
 				{/* Profile Icon */}
 				<div className="relative">
