@@ -1,108 +1,123 @@
-import React, { useState, useRef, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useEffect } from "react"
+import ReactDOM from "react-dom"
+import { motion, AnimatePresence } from "framer-motion"
 
-interface ModalContextProps {
-  handleOpen: () => void;
-  handleClose: () => void;
-  isOpen: boolean;
+// Props for Modal
+interface ModalProps {
+	children: React.ReactNode
+	onOpenCallback?: () => void
+	onCloseCallback?: () => void
 }
 
-const ModalContext = React.createContext<ModalContextProps | null>(null);
+// Context to manage modal state
+interface ModalContextProps {
+	handleOpen: () => void
+	handleClose: () => void
+	isOpen: boolean
+}
 
-const Modal = ({ children, onOpenCallback, onCloseCallback }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const ModalContext = React.createContext<ModalContextProps | null>(null)
 
-  const handleOpen = () => {
-    setIsOpen(true);
-    if (onOpenCallback) onOpenCallback();
-  };
+// Main Modal component
+const Modal: React.FC<ModalProps> = ({ children, onOpenCallback, onCloseCallback }) => {
+	const [isOpen, setIsOpen] = useState(false)
 
-  const handleClose = () => {
-    setIsOpen(false);
-    if (onCloseCallback) onCloseCallback();
-  };
+	const handleOpen = () => {
+		setIsOpen(true)
+		onOpenCallback?.()
+	}
 
-  const modalContext = { handleOpen, handleClose, isOpen };
+	const handleClose = () => {
+		setIsOpen(false)
+		onCloseCallback?.()
+	}
 
-  return (
-    <ModalContext.Provider value={modalContext}>
-      {children}
-      <AnimatePresence>
-        {isOpen && <ModalPortal onClose={handleClose} />}
-      </AnimatePresence>
-    </ModalContext.Provider>
-  );
-};
+	const modalContext = { handleOpen, handleClose, isOpen }
 
-const ModalTrigger = ({ children }) => {
-  const context = React.useContext(ModalContext);
+	return (
+		<ModalContext.Provider value={modalContext}>
+			{/* Render trigger outside the portal */}
+			{React.Children.map(children, (child) => {
+				if (React.isValidElement(child) && child.type === ModalTrigger) {
+					return child
+				}
+				return null
+			})}
 
-  if (!context) {
-    throw new Error('ModalTrigger must be used within a Modal');
-  }
+			{/* Render modal content inside the portal when open */}
+			<AnimatePresence>
+				{isOpen && (
+					<ModalPortal onClose={handleClose}>
+						{React.Children.map(children, (child) => {
+							if (React.isValidElement(child) && child.type === ModalContent) {
+								return child
+							}
+							return null
+						})}
+					</ModalPortal>
+				)}
+			</AnimatePresence>
+		</ModalContext.Provider>
+	)
+}
 
-  const { handleOpen } = context;
-  return React.cloneElement(children, { onClick: handleOpen });
-};
+// Trigger component
+const ModalTrigger: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+	const context = React.useContext(ModalContext)
 
-const ModalPortal = ({ onClose }) => {
-  const modalRef = useRef<HTMLDivElement | null>(null);
+	if (!context) {
+		throw new Error("ModalTrigger must be used within a Modal")
+	}
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && modalRef.current.contains && !modalRef.current.contains(event.target as Node)) {
-        onClose();
-      }
-    };
+	const { handleOpen } = context
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [onClose]);
+	return React.cloneElement(children, { onClick: handleOpen })
+}
 
-  return ReactDOM.createPortal(
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <motion.div
-        className="bg-white p-6 rounded-lg shadow-lg relative max-w-lg w-full"
-        ref={modalRef}
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-      >
-        <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-          onClick={onClose}
-        >
-          &times;
-        </button>
-        <ModalContent />
-      </motion.div>
-    </div>,
-    document.body
-  );
-};
+// Portal component for modal content
+const ModalPortal: React.FC<{ onClose: () => void; children: React.ReactNode }> = ({ onClose, children }) => {
+	const modalRef = useRef<HTMLDivElement | null>(null)
 
-const ModalContent = () => {
-  const context = React.useContext(ModalContext);
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (modalRef.current && modalRef.current.contains && !modalRef.current.contains(event.target as Node)) {
+				onClose()
+			}
+		}
 
-  if (!context) {
-    throw new Error('ModalContent must be used within a Modal');
-  }
+		document.addEventListener("mousedown", handleClickOutside)
+		return () => document.removeEventListener("mousedown", handleClickOutside)
+	}, [onClose])
 
-  const { isOpen } = context;
+	return ReactDOM.createPortal(
+		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+			<motion.div className="bg-white p-6 rounded-lg shadow-lg relative max-w-lg w-full" ref={modalRef} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.3 }}>
+				<button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800" onClick={onClose}>
+					&times;
+				</button>
+				{children}
+			</motion.div>
+		</div>,
+		document.body,
+	)
+}
 
-  if (!isOpen) {
-    return null;
-  }
+// Content component
+const ModalContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+	const context = React.useContext(ModalContext)
 
-  return (
-    <div>
-      <h1 className="text-xl font-bold mb-4">Modal Content</h1>
-      <p>This is some content inside the modal.</p>
-    </div>
-  );
-};
+	if (!context) {
+		throw new Error("ModalContent must be used within a Modal")
+	}
+
+	const { isOpen } = context
+
+	if (!isOpen) {
+		return null
+	}
+
+	return <>{children}</>
+}
 
 export default Modal
-export { ModalTrigger, ModalContent };
+export { ModalTrigger, ModalContent }

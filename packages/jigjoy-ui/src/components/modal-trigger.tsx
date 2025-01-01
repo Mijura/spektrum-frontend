@@ -9,7 +9,6 @@ export interface ModalTriggerProps {
 }
 
 const ModalTrigger: FC<ModalTriggerProps> = ({ children, onOpen }) => {
-
 	return React.cloneElement(children as React.ReactElement, {
 		onClick: onOpen,
 	})
