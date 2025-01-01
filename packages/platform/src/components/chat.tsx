@@ -65,7 +65,7 @@ export const Chat: React.FC = () => {
 								{isSystem ? (
 									<div className="flex items-start space-x-2">
 										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=S" alt="System Avatar" />
-										<motion.div variants={bubbleVariants} initial="initial" animate="animate" transition={{ duration: 0.3, delay: index * 0.05 }} className="max-w-xs px-3 py-2 rounded bg-surface3 text-base">
+										<motion.div variants={bubbleVariants} initial="initial" animate="animate" transition={{ duration: 0.3, delay: index * 0.05 }} className="max-w-xs px-3 py-2 rounded bg-surface3 text-white">
 											{msg.content}
 										</motion.div>
 									</div>
