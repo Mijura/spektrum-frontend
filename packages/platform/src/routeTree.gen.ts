@@ -20,6 +20,7 @@ const MyProfileLazyImport = createFileRoute('/my-profile')()
 const OnboardingLazyImport = createFileRoute('/onboarding')()
 const BrowseLazyImport = createFileRoute('/browse')()
 const AchievementsLazyImport = createFileRoute('/achievements')()
+const MyAppsLazyImport = createFileRoute('/my-apps')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
@@ -43,6 +44,11 @@ const AchievementsLazyRoute = AchievementsLazyImport.update({
   path: '/achievements',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/achievements.lazy').then((d) => d.Route))
+
+const MyAppsLazyRoute = MyAppsLazyImport.update({
+  path: '/my-apps',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/my-apps.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -88,6 +94,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingLazyImport
       parentRoute: typeof rootRoute
     }
+    '/my-apps': {
+      id: '/my-apps'
+      path: '/my-apps'
+      fullPath: '/my-apps'
+      preLoaderRoute: typeof MyAppsLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -99,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/browse': typeof BrowseLazyRoute
   '/my-profile': typeof MyProfileLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
+  '/my-apps': typeof MyAppsLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -131,6 +145,7 @@ export interface RootRouteChildren {
   BrowseLazyRoute: typeof BrowseLazyRoute
   MyProfileLazyRoute: typeof MyProfileLazyRoute
   OnboardingLazyRoute: typeof OnboardingLazyRoute
+  MyAppsLazyRoute: typeof MyAppsLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -139,6 +154,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrowseLazyRoute: BrowseLazyRoute,
   MyProfileLazyRoute: MyProfileLazyRoute,
   OnboardingLazyRoute: OnboardingLazyRoute,
+  MyAppsLazyRoute: MyAppsLazyRoute,
 }
 
 export const routeTree = rootRoute
