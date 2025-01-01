@@ -16,39 +16,45 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const MyProfileLazyImport = createFileRoute('/my-profile')()
 const OnboardingLazyImport = createFileRoute('/onboarding')()
-const BrowseLazyImport = createFileRoute('/browse')()
-const AchievementsLazyImport = createFileRoute('/achievements')()
+const MyProfileLazyImport = createFileRoute('/my-profile')()
 const MyAppsLazyImport = createFileRoute('/my-apps')()
+const BrowseLazyImport = createFileRoute('/browse')()
+const AuthorizeLazyImport = createFileRoute('/authorize')()
+const AchievementsLazyImport = createFileRoute('/achievements')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
-
-const MyProfileLazyRoute = MyProfileLazyImport.update({
-  path: '/my-profile',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/my-profile.lazy').then((d) => d.Route))
 
 const OnboardingLazyRoute = OnboardingLazyImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/onboarding.lazy').then((d) => d.Route))
 
-const BrowseLazyRoute = BrowseLazyImport.update({
-  path: '/browse',
+const MyProfileLazyRoute = MyProfileLazyImport.update({
+  path: '/my-profile',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/browse.lazy').then((d) => d.Route))
-
-const AchievementsLazyRoute = AchievementsLazyImport.update({
-  path: '/achievements',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/achievements.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/my-profile.lazy').then((d) => d.Route))
 
 const MyAppsLazyRoute = MyAppsLazyImport.update({
   path: '/my-apps',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/my-apps.lazy').then((d) => d.Route))
+
+const BrowseLazyRoute = BrowseLazyImport.update({
+  path: '/browse',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/browse.lazy').then((d) => d.Route))
+
+const AuthorizeLazyRoute = AuthorizeLazyImport.update({
+  path: '/authorize',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/authorize.lazy').then((d) => d.Route))
+
+const AchievementsLazyRoute = AchievementsLazyImport.update({
+  path: '/achievements',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/achievements.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -73,11 +79,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AchievementsLazyImport
       parentRoute: typeof rootRoute
     }
+    '/authorize': {
+      id: '/authorize'
+      path: '/authorize'
+      fullPath: '/authorize'
+      preLoaderRoute: typeof AuthorizeLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/browse': {
       id: '/browse'
       path: '/browse'
       fullPath: '/browse'
       preLoaderRoute: typeof BrowseLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/my-apps': {
+      id: '/my-apps'
+      path: '/my-apps'
+      fullPath: '/my-apps'
+      preLoaderRoute: typeof MyAppsLazyImport
       parentRoute: typeof rootRoute
     }
     '/my-profile': {
@@ -94,13 +114,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingLazyImport
       parentRoute: typeof rootRoute
     }
-    '/my-apps': {
-      id: '/my-apps'
-      path: '/my-apps'
-      fullPath: '/my-apps'
-      preLoaderRoute: typeof MyAppsLazyImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -109,16 +122,20 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/achievements': typeof AchievementsLazyRoute
+  '/authorize': typeof AuthorizeLazyRoute
   '/browse': typeof BrowseLazyRoute
+  '/my-apps': typeof MyAppsLazyRoute
   '/my-profile': typeof MyProfileLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
-  '/my-apps': typeof MyAppsLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/achievements': typeof AchievementsLazyRoute
+  '/authorize': typeof AuthorizeLazyRoute
   '/browse': typeof BrowseLazyRoute
+  '/my-apps': typeof MyAppsLazyRoute
+  '/my-profile': typeof MyProfileLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
 }
 
@@ -126,35 +143,62 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/achievements': typeof AchievementsLazyRoute
+  '/authorize': typeof AuthorizeLazyRoute
   '/browse': typeof BrowseLazyRoute
+  '/my-apps': typeof MyAppsLazyRoute
+  '/my-profile': typeof MyProfileLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/achievements' | '/browse' | '/onboarding'
+  fullPaths:
+    | '/'
+    | '/achievements'
+    | '/authorize'
+    | '/browse'
+    | '/my-apps'
+    | '/my-profile'
+    | '/onboarding'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/achievements' | '/browse' | '/onboarding'
-  id: '__root__' | '/' | '/achievements' | '/browse' | '/onboarding'
+  to:
+    | '/'
+    | '/achievements'
+    | '/authorize'
+    | '/browse'
+    | '/my-apps'
+    | '/my-profile'
+    | '/onboarding'
+  id:
+    | '__root__'
+    | '/'
+    | '/achievements'
+    | '/authorize'
+    | '/browse'
+    | '/my-apps'
+    | '/my-profile'
+    | '/onboarding'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AchievementsLazyRoute: typeof AchievementsLazyRoute
+  AuthorizeLazyRoute: typeof AuthorizeLazyRoute
   BrowseLazyRoute: typeof BrowseLazyRoute
+  MyAppsLazyRoute: typeof MyAppsLazyRoute
   MyProfileLazyRoute: typeof MyProfileLazyRoute
   OnboardingLazyRoute: typeof OnboardingLazyRoute
-  MyAppsLazyRoute: typeof MyAppsLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AchievementsLazyRoute: AchievementsLazyRoute,
+  AuthorizeLazyRoute: AuthorizeLazyRoute,
   BrowseLazyRoute: BrowseLazyRoute,
+  MyAppsLazyRoute: MyAppsLazyRoute,
   MyProfileLazyRoute: MyProfileLazyRoute,
   OnboardingLazyRoute: OnboardingLazyRoute,
-  MyAppsLazyRoute: MyAppsLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -171,7 +215,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/achievements",
+        "/authorize",
         "/browse",
+        "/my-apps",
         "/my-profile",
         "/onboarding"
       ]
@@ -182,8 +228,14 @@ export const routeTree = rootRoute
     "/achievements": {
       "filePath": "achievements.lazy.tsx"
     },
+    "/authorize": {
+      "filePath": "authorize.lazy.tsx"
+    },
     "/browse": {
       "filePath": "browse.lazy.tsx"
+    },
+    "/my-apps": {
+      "filePath": "my-apps.lazy.tsx"
     },
     "/my-profile": {
       "filePath": "my-profile.lazy.tsx"
