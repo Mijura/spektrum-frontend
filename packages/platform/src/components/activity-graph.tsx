@@ -13,24 +13,29 @@ interface ActivityGraphProps {
 const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
     // Calculate the maximum contribution count to normalize the colors
     const maxCount = Math.max(...data.map(day => day.count))
-    
+
     // Function to determine the color intensity based on contribution count
     const getColor = (count: number) => {
         if (count === 0) return 'bg-surface2'
         const intensity = Math.ceil((count / maxCount) * 4)
         switch (intensity) {
-            case 1: return 'bg-accent/25'
-            case 2: return 'bg-accent/50'
-            case 3: return 'bg-accent/75'
-            case 4: return 'bg-accent'
-            default: return 'bg-surface2'
+            case 1:
+                return 'bg-accent/25'
+            case 2:
+                return 'bg-accent/50'
+            case 3:
+                return 'bg-accent/75'
+            case 4:
+                return 'bg-accent'
+            default:
+                return 'bg-surface2'
         }
     }
 
     // Group data by weeks for display
     const weeks: ContributionDay[][] = []
     let currentWeek: ContributionDay[] = []
-    
+
     data.forEach((day, index) => {
         currentWeek.push(day)
         if ((index + 1) % 7 === 0) {
@@ -38,15 +43,15 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
             currentWeek = []
         }
     })
-    
+
     if (currentWeek.length > 0) {
         weeks.push(currentWeek)
     }
 
     return (
         <div className="w-full bg-surface2 p-6 rounded-lg border border-disabled">
-            <h3 className="text-xl font-semibold text-clickable mb-4">Blocks Crafted</h3>
-            <div className="w-full overflow-x-auto">
+            <h3 className="text-xl font-semibold text-clickable mb-2">Blocks Crafted</h3>
+            <div className="w-full overflow-x-auto p-2">
                 <div className="flex gap-[3px] min-w-fit justify-start">
                     {weeks.map((week, weekIndex) => (
                         <div key={weekIndex} className="flex flex-col gap-[3px]">
