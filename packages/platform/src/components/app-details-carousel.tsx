@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 interface AppDetailsCarouselProps {
     images: string[]
+    selectedImage: string | null
+    onImageSelect: (image: string | null) => void
 }
 
-export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) {
+export default function AppDetailsCarousel({ images, selectedImage, onImageSelect }: AppDetailsCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
     const slideVariants = {
         enter: (direction: number) => ({
@@ -39,7 +40,7 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
             scale: 1,
             transition: {
                 duration: 0.3,
-                ease: "easeOut"
+                ease: 'easeOut'
             }
         },
         exit: {
@@ -47,7 +48,28 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
             scale: 0.8,
             transition: {
                 duration: 0.2,
-                ease: "easeIn"
+                ease: 'easeIn'
+            }
+        }
+    }
+
+    const overlayVariants = {
+        hidden: {
+            opacity: 0,
+            backdropFilter: 'blur(0px)'
+        },
+        visible: {
+            opacity: 1,
+            backdropFilter: 'blur(16px)',
+            transition: {
+                duration: 0.3
+            }
+        },
+        exit: {
+            opacity: 0,
+            backdropFilter: 'blur(0px)',
+            transition: {
+                duration: 0.2
             }
         }
     }
@@ -68,7 +90,7 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
     const [direction, setDirection] = useState(0)
 
     return (
-        <div className="relative w-full h-[400px] overflow-hidden">
+        <div className={`relative w-full h-[400px] overflow-hidden`}>
             {/* Image Counter */}
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 bg-surface2 px-3 py-1 rounded-full text-white text-sm">
                 {currentIndex + 1} / {images.length}
@@ -85,13 +107,13 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
                         animate="center"
                         exit="exit"
                         transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
+                            x: { type: 'spring', stiffness: 300, damping: 30 },
                             opacity: { duration: 0.2 }
                         }}
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={1}
-                        onClick={() => setSelectedImage(images[currentIndex])}
+                        onClick={() => onImageSelect(images[currentIndex])}
                         onDragEnd={(e, { offset, velocity }) => {
                             const swipe = swipePower(offset.x, velocity.x)
 
@@ -127,39 +149,7 @@ export default function AppDetailsCarousel({ images }: AppDetailsCarouselProps) 
                 →
             </button>
 
-            {/* Enlarged Image Modal */}
-            <AnimatePresence>
-                {selectedImage && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm"
-                        onClick={() => setSelectedImage(null)}
-                    >
-                        <motion.div
-                            variants={modalVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="relative max-w-[90vw] max-h-[90vh]"
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <img
-                                src={selectedImage}
-                                alt="Enlarged view"
-                                className="max-w-full max-h-[90vh] rounded-lg"
-                            />
-                            <button
-                                onClick={() => setSelectedImage(null)}
-                                className="absolute top-4 right-4 text-white bg-surface2 rounded-full p-2 hover:bg-surface3 transition-colors"
-                            >
-                                ×
-                            </button>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+
         </div>
     )
 }
