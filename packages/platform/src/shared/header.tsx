@@ -1,5 +1,4 @@
 import React, { Suspense, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { useNavigate } from "@tanstack/react-router"
 import QuestsWidget from "../components/quests-widget"
 import DocsIcon from "../icons/docs-icon"
