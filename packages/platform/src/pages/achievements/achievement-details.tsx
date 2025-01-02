@@ -14,13 +14,7 @@ interface AchievementDetailsProps {
 	}
 }
 
-const ProgressBar = ({ progress }) => {
-	return (
-		<div className="w-full bg-surface3 h-3 rounded-full overflow-hidden">
-			<motion.div className="bg-clickable h-3" initial={{ width: 0 }} animate={{ width: `${progress}%` }} transition={{ duration: 0.5, ease: "easeOut" }} />
-		</div>
-	)
-}
+import ProgressBar from '@jigjoy-ui/progress-bar'
 
 const AchievementDetails: React.FC<AchievementDetailsProps> = ({ achievement, onBack }) => {
 	const isLocked = achievement.status === "locked"
@@ -65,7 +59,7 @@ const AchievementDetails: React.FC<AchievementDetailsProps> = ({ achievement, on
 					{isInProgress && (
 						<div className="mb-8">
 							<h2 className="text-xl font-semibold mb-4">Progress</h2>
-							<ProgressBar progress={achievement.progress} />
+							<ProgressBar progressPercent={achievement.progress} />
 							<p className="mt-2 text-clickable">{achievement.progress}% Complete</p>
 						</div>
 					)}

@@ -77,6 +77,7 @@ module.exports = {
 				"./popover-trigger": "./src/components/popover/popover-trigger",
 				"./popover-content": "./src/components/popover/popover-content",
 				"./card": "./src/components/card",
+				"./progress-bar": "./src/components/progress-bar",
 			},
 			shared: {
 				react: {
