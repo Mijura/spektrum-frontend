@@ -40,7 +40,7 @@ export default function App() {
 				>
 					<SandpackLayout style={{ height: "100%" }}>
 						<div className="flex flex-row w-full">
-							<div className="w-[25%] bg-[#2F2F2F]">
+							<div className="w-[33%] bg-[#2F2F2F]">
 								<Tabs>
 									<Tab key="Create">
 										<div className="h-full w-full pr-5 pb-10">
@@ -48,7 +48,7 @@ export default function App() {
 										</div>
 									</Tab>
 									<Tab key="Building Blocks">
-										<div className="h-full flex pr-10">
+										<div className="h-full flex pr-5">
 											<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
 											{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
 										</div>

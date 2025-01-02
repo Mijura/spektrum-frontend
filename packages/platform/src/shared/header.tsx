@@ -4,8 +4,8 @@ import { useNavigate } from "@tanstack/react-router"
 import QuestsWidget from "../components/quests-widget"
 import DocsIcon from "../icons/docs-icon"
 const Modal = React.lazy(() => import("@jigjoy-ui/modal"))
-const ModalTrigger = React.lazy(() => import("@jigjoy-ui/modal-trigger"))
-const ModalContent = React.lazy(() => import("@jigjoy-ui/modal-content"))
+const ModalTrigger = React.lazy(() => import("@jigjoy-ui/modal"))
+const ModalContent = React.lazy(() => import("@jigjoy-ui/modal"))
 
 const Header = () => {
 	const navigate = useNavigate()
@@ -24,7 +24,16 @@ const Header = () => {
 			{/* Right Side: Help and Profile */}
 			<div className="flex items-center gap-4 relative">
 				<QuestsWidget portalTarget={document.body}></QuestsWidget>
-				<Suspense fallback={<div>Loading...</div>}>
+				<Modal>
+      <ModalTrigger>
+        <button>Open Modal</button>
+      </ModalTrigger>
+      <ModalContent>
+        <h1>Modal Content</h1>
+        <p>This content is displayed inside the portal.</p>
+      </ModalContent>
+    </Modal>
+				<Suspense>
 				<Modal>
 					<ModalTrigger>
 						<DocsIcon color={"text-clickable"} />
@@ -40,7 +49,9 @@ const Header = () => {
 						</div>
 					</ModalContent>
 				</Modal>
+
 				</Suspense>
+
 
 
 				{/* Profile Icon */}

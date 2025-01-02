@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react"
 import ReactDOM from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
+import ModalTrigger from "./modal-trigger"
+import ModalContent from "./modal-content"
+import ModalContext from "./modal-context"
 
 // Props for Modal
 interface ModalProps {
@@ -8,15 +11,6 @@ interface ModalProps {
 	onOpenCallback?: () => void
 	onCloseCallback?: () => void
 }
-
-// Context to manage modal state
-interface ModalContextProps {
-	handleOpen: () => void
-	handleClose: () => void
-	isOpen: boolean
-}
-
-const ModalContext = React.createContext<ModalContextProps | null>(null)
 
 // Main Modal component
 const Modal: React.FC<ModalProps> = ({ children, onOpenCallback, onCloseCallback }) => {
@@ -61,18 +55,7 @@ const Modal: React.FC<ModalProps> = ({ children, onOpenCallback, onCloseCallback
 	)
 }
 
-// Trigger component
-const ModalTrigger: React.FC<{ children: React.ReactElement }> = ({ children }) => {
-	const context = React.useContext(ModalContext)
 
-	if (!context) {
-		throw new Error("ModalTrigger must be used within a Modal")
-	}
-
-	const { handleOpen } = context
-
-	return React.cloneElement(children, { onClick: handleOpen })
-}
 
 // Portal component for modal content
 const ModalPortal: React.FC<{ onClose: () => void; children: React.ReactNode }> = ({ onClose, children }) => {
@@ -102,22 +85,4 @@ const ModalPortal: React.FC<{ onClose: () => void; children: React.ReactNode }> 
 	)
 }
 
-// Content component
-const ModalContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	const context = React.useContext(ModalContext)
-
-	if (!context) {
-		throw new Error("ModalContent must be used within a Modal")
-	}
-
-	const { isOpen } = context
-
-	if (!isOpen) {
-		return null
-	}
-
-	return <>{children}</>
-}
-
 export default Modal
-export { ModalTrigger, ModalContent }
