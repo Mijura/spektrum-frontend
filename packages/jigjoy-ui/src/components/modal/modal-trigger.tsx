@@ -1,8 +1,6 @@
 import React from "react"
 import ModalContext from "./modal-context"
 
-const ModalTriggerType = Symbol('ModalTrigger')
-
 const ModalTrigger: React.FC<{ children: React.ReactElement }> = ({ children }) => {
 	const context = React.useContext(ModalContext)
 
@@ -15,6 +13,6 @@ const ModalTrigger: React.FC<{ children: React.ReactElement }> = ({ children }) 
 	return React.cloneElement(children, { onClick: handleOpen })
 }
 
-ModalTrigger.displayName = 'ModalTrigger'
+ModalTrigger.displayName = "ModalTrigger"
 
 export default ModalTrigger

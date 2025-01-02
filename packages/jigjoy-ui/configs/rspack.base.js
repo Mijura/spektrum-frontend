@@ -70,7 +70,12 @@ module.exports = {
 				"./tabs": "./src/components/tabs",
 				"./tab": "./src/components/tab",
 				"./stepper": "./src/components/stepper",
-				"./modal": "./src/components/modal",
+				"./modal": "./src/components/modal/modal",
+				"./modal-trigger": "./src/components/modal/modal-trigger",
+				"./modal-content": "./src/components/modal/modal-content",
+				"./popover": "./src/components/popover/popover",
+				"./popover-trigger": "./src/components/popover/popover-trigger",
+				"./popover-content": "./src/components/popover/popover-content",
 				"./card": "./src/components/card",
 			},
 			shared: {
