@@ -13,6 +13,11 @@ const PopoverContent = React.lazy(() => import("@jigjoy-ui/popover-content"))
 const Header = () => {
 	const navigate = useNavigate()
 	const [isProfileOpen, setIsProfileOpen] = useState(false)
+	const [pricingActive, setPricingActive] = useState(false)
+	const switchToPricing = () => {
+		navigate({ to: "/pricing" })
+		setPricingActive(true)
+	}
 
 	return (
 		<header className="flex w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
@@ -26,6 +31,9 @@ const Header = () => {
 
 			{/* Right Side: Help and Profile */}
 			<div className="flex items-center gap-4 relative">
+				<button className={`${pricingActive ? "text-accent" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`} onClick={switchToPricing}>
+					<span className="material-icons">Pricing</span>
+				</button>
 				<QuestsWidget></QuestsWidget>
 
 				<Suspense>

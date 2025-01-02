@@ -17,14 +17,26 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const OnboardingLazyImport = createFileRoute('/onboarding')()
+const PricingLazyImport = createFileRoute('/pricing')()
 const MyProfileLazyImport = createFileRoute('/my-profile')()
 const MyAppsLazyImport = createFileRoute('/my-apps')()
+const PricingLazyImport = createFileRoute('/pricing')()
 const BrowseLazyImport = createFileRoute('/browse')()
 const AuthorizeLazyImport = createFileRoute('/authorize')()
 const AchievementsLazyImport = createFileRoute('/achievements')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const PricingLazyRoute = PricingLazyImport.update({
+  path: '/pricing',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/pricing.lazy').then((d) => d.Route))
+
+const PricingLazyRoute = PricingLazyImport.update({
+  path: '/pricing',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/pricing.lazy').then((d) => d.Route))
 
 const OnboardingLazyRoute = OnboardingLazyImport.update({
   path: '/onboarding',
@@ -127,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/my-apps': typeof MyAppsLazyRoute
   '/my-profile': typeof MyProfileLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
+  '/pricing': typeof PricingLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -199,6 +212,7 @@ const rootRouteChildren: RootRouteChildren = {
   MyAppsLazyRoute: MyAppsLazyRoute,
   MyProfileLazyRoute: MyProfileLazyRoute,
   OnboardingLazyRoute: OnboardingLazyRoute,
+  PricingLazyRoute: PricingLazyRoute,
 }
 
 export const routeTree = rootRoute
