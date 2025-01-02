@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import AppDetailsCarousel from '../../components/app-details-carousel'
 import LikeButton from '../../components/like-button'
+import Button from '@jigjoy-ui/button'
 
 interface AppDetailsProps {
     app: {
@@ -54,9 +55,7 @@ export default function AppDetails({ app, onBack }: AppDetailsProps) {
                                 </div>
                             </div>
                             <div className="mt-auto flex-none justify-end">
-                                <button className="bg-surface3 hover:bg-hover hover:text-surface1 transition-colors py-2 px-4 rounded-lg text-clickable text-sm">
-                                    Launch App
-                                </button>
+                                <Button>Launch</Button>
                             </div>
                         </div>
 

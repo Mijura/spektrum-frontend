@@ -3,6 +3,7 @@ const Card = React.lazy(() => import('@jigjoy-ui/card'))
 
 import AppDetails from './app-details'
 import LikeButton from '../../components/like-button'
+import Button from '../../../../jigjoy-ui/src/components/button'
 
 const featuredApps = [
     {
@@ -119,12 +120,7 @@ export default function Marketplace() {
                                     </div>
                                     <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
                                 </div>
-                                <button
-                                    onClick={() => setSelectedApp(app)}
-                                    className="bg-surface3 hover:bg-hover hover:text-surface1 transition-colors py-2 px-4 rounded text-clickable"
-                                >
-                                    Launch
-                                </button>
+                                <Button onClick={() => setSelectedApp(app)}>Launch</Button>
                             </div>
                         </div>
                     </Card>
@@ -154,12 +150,7 @@ export default function Marketplace() {
                                     </div>
                                     <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
                                 </div>
-                                <button
-                                    onClick={() => setSelectedApp(app)}
-                                    className="bg-surface3 hover:bg-hover hover:text-surface1 transition-colors py-2 px-4 rounded text-clickable"
-                                >
-                                    Launch
-                                </button>
+                                <Button onClick={() => setSelectedApp(app)}>Launch</Button>
                             </div>
                         </div>
                     </Card>

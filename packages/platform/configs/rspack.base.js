@@ -64,6 +64,23 @@ module.exports = {
 			remotes: {
 				"@jigjoy-ui": "jigjoy_ui@http://localhost:3002/remoteEntry.js",
 			},
+			shared: {
+				react: {
+					singleton: true,
+					requiredVersion: deps.react,
+					eager: true,
+				},
+				"react-dom": {
+					singleton: true,
+					requiredVersion: deps["react-dom"],
+					eager: true,
+				},
+				"framer-motion": {
+					singleton: true,
+					requiredVersion: deps["framer-motion"],
+					eager: true,
+				},
+			},
 			exposes: {},
 			shared: {
 				react: {
