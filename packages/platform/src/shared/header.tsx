@@ -6,6 +6,9 @@ import DocsIcon from '../icons/docs-icon'
 const Modal = React.lazy(() => import('@jigjoy-ui/modal'))
 const ModalTrigger = React.lazy(() => import('@jigjoy-ui/modal-trigger'))
 const ModalContent = React.lazy(() => import('@jigjoy-ui/modal-content'))
+const Popover = React.lazy(() => import('@jigjoy-ui/popover'))
+const PopoverTrigger = React.lazy(() => import('@jigjoy-ui/popover-trigger'))
+const PopoverContent = React.lazy(() => import('@jigjoy-ui/popover-content'))
 
 const Header = () => {
     const navigate = useNavigate()
@@ -17,7 +20,7 @@ const Header = () => {
     }
 
     return (
-        <header className="flex z-50 w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
+        <header className="flex w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
             {/* Left Side: Logo and Navigation */}
             <div className="flex items-center gap-4">
                 <div className="text-xl font-bold cursor-pointer">Logo</div>

@@ -1,11 +1,9 @@
-import React, { useState, useRef } from "react"
-import ReactDOM from "react-dom"
-import { motion, AnimatePresence } from "framer-motion"
+import React, { useState, useRef, Suspense } from "react"
+import { motion } from "framer-motion"
 import QuestsIcon from "../icons/quests-icon"
-
-interface QuestsWidgetProps {
-	portalTarget: HTMLElement
-}
+const Popover = React.lazy(() => import("@jigjoy-ui/popover"))
+const PopoverTrigger = React.lazy(() => import("@jigjoy-ui/popover-trigger"))
+const PopoverContent = React.lazy(() => import("@jigjoy-ui/popover-content"))
 
 const initialQuests = [
 	{
@@ -34,7 +32,7 @@ const initialQuests = [
 	},
 ]
 
-const QuestsWidget: React.FC<QuestsWidgetProps> = ({ portalTarget }) => {
+const QuestsWidget: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [quests, setQuests] = useState(initialQuests)
 	const buttonRef = useRef<HTMLDivElement>(null)
@@ -44,73 +42,50 @@ const QuestsWidget: React.FC<QuestsWidgetProps> = ({ portalTarget }) => {
 		setQuests((prev) => prev.map((q) => (q.id === id ? { ...q, progress: 0 } : q)))
 	}
 
-	const getPopupPosition = () => {
-		if (!buttonRef.current) return { top: 0, left: 0 }
-
-		const rect = buttonRef.current.getBoundingClientRect()
-		return {
-			top: rect.bottom + 8,
-			right: window.innerWidth - rect.right,
-		}
-	}
-
-	const position = getPopupPosition()
-
 	return (
-		<div className="inline-block">
-			<div ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)} className="cursor-pointer" onMouseEnter={() => SetHover(true)} onMouseLeave={() => SetHover(false)}>
-				<QuestsIcon color={isOpen ? "text-accent" : hovered ? "text-hover" : "text-clickable"} />
-			</div>
+		<div>
+			<Suspense>
+				<Popover position="bottom-end" onOpenCallback={() => setIsOpen(true)} onCloseCallback={() => setIsOpen(false)}>
+					<PopoverTrigger>
+						<div ref={buttonRef} className="cursor-pointer" onMouseEnter={() => SetHover(true)} onMouseLeave={() => SetHover(false)}>
+							<QuestsIcon color={isOpen ? "text-accent" : hovered ? "text-hover" : "text-clickable"} />
+						</div>
+					</PopoverTrigger>
+					<PopoverContent>
+						<div className="p-4">
+							<h2 className="text-xl font-bold mb-6">Daily Quests</h2>
+							<div className="space-y-4">
+								{quests.map((quest) => {
+									const isComplete = quest.progress >= quest.goal
+									const progressPercent = Math.min((quest.progress / quest.goal) * 100, 100)
 
-			{typeof document !== "undefined" &&
-				ReactDOM.createPortal(
-					<AnimatePresence>
-						{isOpen && (
-							<motion.div
-								initial={{ opacity: 0, y: 10 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: 10 }}
-								transition={{ duration: 0.2 }}
-								className="fixed bg-surface1 w-80 p-6 rounded-lg shadow-lg border border-disabled z-50"
-								style={{
-									top: position.top,
-									right: position.right,
-								}}
-							>
-								<h2 className="text-xl font-bold mb-6 text-clickable">Daily Quests</h2>
-								<div className="space-y-4">
-									{quests.map((quest) => {
-										const isComplete = quest.progress >= quest.goal
-										const progressPercent = Math.min((quest.progress / quest.goal) * 100, 100)
+									return (
+										<motion.div key={quest.id} className="p-4 bg-surface2 rounded-lg border border-disabled hover:border-hover transition-colors" whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
+											<div className="flex items-center justify-between mb-3">
+												<span className="text-2xl mr-2">{quest.icon}</span>
+												<span className="flex-1 text-base text-clickable font-medium group-hover:text-hover">{quest.title}</span>
+											</div>
 
-										return (
-											<motion.div key={quest.id} className="p-4 bg-surface2 rounded-lg border border-disabled hover:border-hover transition-colors" whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
-												<div className="flex items-center justify-between mb-3">
-													<span className="text-2xl mr-2">{quest.icon}</span>
-													<span className="flex-1 text-base text-clickable font-medium group-hover:text-hover">{quest.title}</span>
-												</div>
+											<div className="w-full bg-disabled h-2 rounded-full overflow-hidden mb-2">
+												<motion.div className="bg-clickable h-2" initial={{ width: 0 }} animate={{ width: `${progressPercent}%` }} transition={{ duration: 0.5 }} />
+											</div>
 
-												<div className="w-full bg-disabled h-2 rounded-full overflow-hidden mb-2">
-													<motion.div className="bg-clickable h-2" initial={{ width: 0 }} animate={{ width: `${progressPercent}%` }} transition={{ duration: 0.5 }} />
-												</div>
-
-												<div className="flex justify-between items-center">
-													<span className="text-sm text-base">
-														{quest.progress}/{quest.goal}
-													</span>
-													<motion.button disabled={!isComplete} onClick={() => handleClaimReward(quest.id)} whileHover={isComplete ? { scale: 1.05 } : {}} whileTap={isComplete ? { scale: 0.95 } : {}} className={`${isComplete ? "bg-clickable hover:bg-hover text-surface1" : "bg-disabled text-base cursor-not-allowed"} px-4 py-1 rounded-md text-sm font-semibold transition-colors`}>
-														{isComplete ? `Claim ${quest.reward}` : quest.reward}
-													</motion.button>
-												</div>
-											</motion.div>
-										)
-									})}
-								</div>
-							</motion.div>
-						)}
-					</AnimatePresence>,
-					portalTarget,
-				)}
+											<div className="flex justify-between items-center">
+												<span className="text-sm text-base">
+													{quest.progress}/{quest.goal}
+												</span>
+												<motion.button disabled={!isComplete} onClick={() => handleClaimReward(quest.id)} whileHover={isComplete ? { scale: 1.05 } : {}} whileTap={isComplete ? { scale: 0.95 } : {}} className={`${isComplete ? "bg-clickable hover:bg-hover text-surface1" : "bg-disabled text-base cursor-not-allowed"} px-4 py-1 rounded-md text-sm font-semibold transition-colors`}>
+													{isComplete ? `Claim ${quest.reward}` : quest.reward}
+												</motion.button>
+											</div>
+										</motion.div>
+									)
+								})}
+							</div>
+						</div>
+					</PopoverContent>
+				</Popover>
+			</Suspense>
 		</div>
 	)
 }
