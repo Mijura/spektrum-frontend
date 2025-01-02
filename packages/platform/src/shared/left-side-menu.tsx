@@ -32,7 +32,7 @@ const LeftSideMenu = () => {
                     { name: 'editor', icon: EditorIcon, label: 'Editor', route: '/' },
                     { name: 'browse', icon: MarketplaceIcon, label: 'Browse Blocks', route: '/browse' },
                     { name: 'apps', icon: ProjectsIcon, label: 'My Apps', route: '/my-apps' },
-                    { name: 'rewards', icon: QuestsIcon, label: 'Rewards', route: '/achievements' }
+                    { name: 'rewards', icon: QuestsIcon, label: 'Rewards', route: '/rewards' }
                 ].map(({ name, icon: Icon, label, route }) => (
                     <li
                         key={name}

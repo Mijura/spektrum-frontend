@@ -189,9 +189,8 @@ const AchievementsPage = ({ onSelectAchievement }) => {
                         return (
                             <Card key={achievement.id}>
                                 <div
-                                    onClick={() => onSelectAchievement(achievement)}
                                     className={`
-					w-full text-center cursor-pointer
+					w-full text-center
 					${isLocked ? 'opacity-50' : ''} 
 					flex flex-col items-center justify-center
 				  `}

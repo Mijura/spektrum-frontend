@@ -1,6 +1,5 @@
 import React, { Suspense, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
-import QuestsWidget from '../components/quests-widget'
 import ProfileButton from '../pages/my-profile/my-profile-button'
 const Modal = React.lazy(() => import('@jigjoy-ui/modal'))
 const ModalTrigger = React.lazy(() => import('@jigjoy-ui/modal-trigger'))
@@ -38,7 +37,6 @@ const Header = () => {
 
             {/* Right Side: Help and Profile */}
             <div className="flex items-center gap-4 relative">
-                <QuestsWidget />
                 <button
                     className={`${pricingActive ? 'text-accent' : 'text-clickable'} flex items-center gap-2 hover:text-hover cursor-pointer`}
                     onClick={switchToPricing}
