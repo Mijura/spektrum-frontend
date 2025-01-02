@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ProjectsIcon from '../icons/projects-icon'
 import MarketplaceIcon from '../icons/marketplace-icon'
-import AchievementsIcon from '../icons/achievements-icon'
+import QuestsIcon from '../icons/quests-icon'
 import EditorIcon from '../icons/editor-icon'
 import DiscordIcon from '../icons/discord-icon'
 import { useNavigate } from '@tanstack/react-router'
@@ -32,7 +32,7 @@ const LeftSideMenu = () => {
                     { name: 'editor', icon: EditorIcon, label: 'Editor', route: '/' },
                     { name: 'browse', icon: MarketplaceIcon, label: 'Browse Blocks', route: '/browse' },
                     { name: 'apps', icon: ProjectsIcon, label: 'My Apps', route: '/my-apps' },
-                    { name: 'achievements', icon: AchievementsIcon, label: 'Achievements', route: '/achievements' }
+                    { name: 'rewards', icon: QuestsIcon, label: 'Rewards', route: '/rewards' }
                 ].map(({ name, icon: Icon, label, route }) => (
                     <li
                         key={name}
