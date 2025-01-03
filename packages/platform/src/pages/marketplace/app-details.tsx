@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import AppDetailsCarousel from '../../components/app-details-carousel'
+import Carousel from '../../components/carousel'
 import LikeButton from '../../components/like-button'
 const Button = lazy(() => import('@jigjoy-ui/button'))
 
@@ -63,23 +63,30 @@ export default function AppDetails({ app, onBack }: AppDetailsProps) {
 
                         <div className="border-t border-surface3 pt-6">
                             <h2 className="text-xl font-semibold mb-4 text-clickable">About</h2>
-                            <p className="text-sm leading-relaxed">
+                            <p className="text-sm leading-relaxed mb-2">
                                 {app.longDescription ||
                                     `${app.description} This is an extended description that provides more details about the application, its features, and how it can benefit users. The detailed information helps users make an informed decision about using the application.`}
                             </p>
                         </div>
 
                         {/* Image Carousel */}
-                        <div className="mb-8 transform">
-                            <AppDetailsCarousel
-                                selectedImage={selectedImage}
-                                onImageSelect={setSelectedImage}
-                                images={[
+                        <div className="p-2 transform overflow-hidden">
+                            <Carousel selectedItem={selectedImage} onItemSelect={setSelectedImage}>
+                                {[
                                     'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
                                     'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
                                     'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif'
-                                ]}
-                            />
+                                ].map((image, index) => (
+                                    <div key={index}>
+                                        <img
+                                            src={image}
+                                            alt={`Slide ${index + 1}`}
+                                            className="rounded-lg shadow-xl"
+                                            onClick={() => setSelectedImage(image)}
+                                        />
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
                     </div>
                 </motion.div>
