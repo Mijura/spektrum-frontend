@@ -131,26 +131,27 @@ export default function Marketplace() {
 
             {/* === Explore Section === */}
             <h1 className="text-3xl font-bold mb-6 text-clickable">Explore</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 pb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-20">
                 {exploreApps.map((app: any) => (
                     <Card key={app.name}>
-                        <img src={app.imageUrl} alt={app.name} className="w-[100px] h-full rounded-lg object-cover" />
+                        <div className="flex justify-center items-center">
+                            <img src={app.imageUrl} alt={app.name} className="w-16 h-16 rounded-full object-cover" />
+                        </div>
                         <div className="flex flex-col flex-1 justify-between">
                             <div>
                                 <h2 className="text-lg font-semibold mb-2 text-clickable">{app.name}</h2>
                                 <p className="text-sm text-base">{app.description}</p>
                             </div>
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between mt-2">
                                 <div className="flex items-center gap-4">
                                     <div className="flex items-center gap-2">
-                                        <img
-                                            src={app.creator.avatarUrl}
-                                            alt={app.creator.username}
-                                            className="w-8 h-8 rounded-full"
-                                        />
-                                        <span className="text-base text-gray-400">by {app.creator.username}</span>
+                                        <span className="text-base text-gray-400 text-xs">
+                                            by {app.creator.username}
+                                        </span>
                                     </div>
-                                    <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+                                    <div className="scale-75">
+                                        <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+                                    </div>
                                 </div>
                                 <Suspense>
                                     <Button onClick={() => setSelectedApp(app)}>Launch</Button>
