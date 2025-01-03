@@ -29,7 +29,7 @@ def generateBlockHandler(message, context):
         print("Message body:", message['body'])
 
         body = json.loads(message['body'])
-        text = body['message']
+        user_message = body['message']
 
         secrets = get_secret()
 
@@ -57,7 +57,8 @@ def generateBlockHandler(message, context):
 
         chain = develop | llm 
 
-        result = chain.invoke({"text": text})
+                # Use invoke with input parameters
+        response_obj = chain.invoke({"text": user_message})
 
         return {
             "statusCode": 200,
@@ -67,7 +68,7 @@ def generateBlockHandler(message, context):
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "Content-Type"
             },
-            "body": result
+            "body": json.dumps({"response": response_obj.content})
         }
     except Exception as e:
         return {
