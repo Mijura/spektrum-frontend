@@ -96,7 +96,7 @@ export default function Marketplace() {
     }
 
     return (
-        <div className="container h-[100dvh] mx-auto max-w-screen-xl px-4 pt-20">
+        <div className="container h-[100dvh] mx-auto max-w-screen-xl px-4 pt-20 h-fit">
             {/* === Featured Section === */}
             <h1 className="text-3xl font-bold mb-6 text-clickable">Featured</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
