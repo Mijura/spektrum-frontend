@@ -71,8 +71,11 @@ export default function AppDetails({ app, onBack }: AppDetailsProps) {
 
                         {/* Image Carousel */}
                         <div className="p-2 transform overflow-hidden">
-                            <Carousel selectedItem={selectedImage} onItemSelect={setSelectedImage}>
+                            <Carousel selectedItem={selectedImage} onItemSelect={setSelectedImage} itemsPerSlide={1}>
                                 {[
+                                    'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
+                                    'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
+                                    'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
                                     'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
                                     'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
                                     'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif'
