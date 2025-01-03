@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 const Card = React.lazy(() => import('@jigjoy-ui/card'))
 
 import AppDetails from './app-details'
 import LikeButton from '../../components/like-button'
-import Button from '../../../../jigjoy-ui/src/components/button'
+const Button = lazy(() => import('@jigjoy-ui/button'))
 
 const featuredApps = [
     {
@@ -120,7 +120,9 @@ export default function Marketplace() {
                                     </div>
                                     <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
                                 </div>
-                                <Button onClick={() => setSelectedApp(app)}>Launch</Button>
+                                <Suspense>
+                                    <Button onClick={() => setSelectedApp(app)}>Launch</Button>
+                                </Suspense>
                             </div>
                         </div>
                     </Card>
@@ -150,7 +152,9 @@ export default function Marketplace() {
                                     </div>
                                     <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
                                 </div>
-                                <Button onClick={() => setSelectedApp(app)}>Launch</Button>
+                                <Suspense>
+                                    <Button onClick={() => setSelectedApp(app)}>Launch</Button>
+                                </Suspense>
                             </div>
                         </div>
                     </Card>

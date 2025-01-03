@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import AppDetailsCarousel from '../../components/app-details-carousel'
 import LikeButton from '../../components/like-button'
-import Button from '@jigjoy-ui/button'
+const Button = lazy(() => import('@jigjoy-ui/button'))
 
 interface AppDetailsProps {
     app: {
@@ -55,7 +55,9 @@ export default function AppDetails({ app, onBack }: AppDetailsProps) {
                                 </div>
                             </div>
                             <div className="mt-auto flex-none justify-end">
-                                <Button>Launch</Button>
+                                <Suspense>
+                                    <Button>Launch</Button>
+                                </Suspense>
                             </div>
                         </div>
 
