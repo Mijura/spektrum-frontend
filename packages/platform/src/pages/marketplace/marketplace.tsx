@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 const Card = React.lazy(() => import('@jigjoy-ui/card'))
 
 import AppDetails from './app-details'
 import LikeButton from '../../components/like-button'
+const Button = lazy(() => import('@jigjoy-ui/button'))
 
 const featuredApps = [
     {
@@ -119,12 +120,9 @@ export default function Marketplace() {
                                     </div>
                                     <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
                                 </div>
-                                <button
-                                    onClick={() => setSelectedApp(app)}
-                                    className="bg-surface3 hover:bg-hover hover:text-surface1 transition-colors py-2 px-4 rounded text-clickable"
-                                >
-                                    Launch
-                                </button>
+                                <Suspense>
+                                    <Button onClick={() => setSelectedApp(app)}>Launch</Button>
+                                </Suspense>
                             </div>
                         </div>
                     </Card>
@@ -133,13 +131,13 @@ export default function Marketplace() {
 
             {/* === Explore Section === */}
             <h1 className="text-3xl font-bold mb-6 text-clickable">Explore</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 pb-20">
                 {exploreApps.map((app: any) => (
                     <Card key={app.name}>
-                        <img src={app.imageUrl} alt={app.name} className="w-[140px] h-full rounded-lg object-cover" />
+                        <img src={app.imageUrl} alt={app.name} className="w-[100px] h-full rounded-lg object-cover" />
                         <div className="flex flex-col flex-1 justify-between">
                             <div>
-                                <h2 className="text-xl font-semibold mb-2 text-clickable">{app.name}</h2>
+                                <h2 className="text-lg font-semibold mb-2 text-clickable">{app.name}</h2>
                                 <p className="text-sm text-base">{app.description}</p>
                             </div>
                             <div className="flex items-center justify-between">
@@ -154,12 +152,9 @@ export default function Marketplace() {
                                     </div>
                                     <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
                                 </div>
-                                <button
-                                    onClick={() => setSelectedApp(app)}
-                                    className="bg-surface3 hover:bg-hover hover:text-surface1 transition-colors py-2 px-4 rounded text-clickable"
-                                >
-                                    Launch
-                                </button>
+                                <Suspense>
+                                    <Button onClick={() => setSelectedApp(app)}>Launch</Button>
+                                </Suspense>
                             </div>
                         </div>
                     </Card>

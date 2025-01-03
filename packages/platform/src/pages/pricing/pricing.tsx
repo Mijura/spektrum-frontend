@@ -1,6 +1,7 @@
-import React, { lazy } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 const Card = lazy(() => import('@jigjoy-ui/card'))
+const Button = lazy(() => import('@jigjoy-ui/button'))
 
 const PricingPage = () => {
     // Card hover animation variants
@@ -54,9 +55,9 @@ const PricingPage = () => {
                                 <p className="text-clickable text-2xl mb-1">{plan.price}</p>
                                 <p className="text-base mb-4 text-center">{plan.description}</p>
                             </div>
-                            <button className="bg-clickable hover:bg-hover text-surface1 font-semibold py-2 px-4 rounded transition-colors duration-200">
-                                {plan.cta}
-                            </button>
+                            <Suspense>
+                                <Button>{plan.cta}</Button>
+                            </Suspense>
                         </div>
                     </Card>
                 ))}

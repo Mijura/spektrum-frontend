@@ -65,8 +65,8 @@ module.exports = {
 				name: "jigjoy_ui",
 				type: "assign",
 			},
-			remotes: {},
-			exposes: {
+			remotes: {},			exposes: {
+				"./button": "./src/components/button",
 				"./tabs": "./src/components/tabs",
 				"./tab": "./src/components/tab",
 				"./stepper": "./src/components/stepper",
