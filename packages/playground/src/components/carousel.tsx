@@ -119,9 +119,10 @@ export default function Carousel({
             >
                 <div className="absolute inset-0">
                     <motion.div
-                        className="absolute left-0 top-0 w-[15%] h-full pointer-events-none"
+                        className="absolute left-0 top-0 w-[8%] h-full pointer-events-none"
                         style={{
-                            background: 'linear-gradient(to right, rgb(241, 241, 241) 0%, rgba(37, 37, 37, 0.0) 100%)'
+                            background:
+                                'linear-gradient(to right, rgba(37, 37, 37, 0.5) 0%, rgba(37, 37, 37, 0.0) 100%)'
                         }}
                         animate={{
                             backdropFilter: isHovered ? 'blur(1px)' : 'blur(0px)'
@@ -129,9 +130,12 @@ export default function Carousel({
                         transition={{ duration: 0.7 }}
                     />
                     <motion.div
-                        className="absolute right-0 top-0 w-[15%] h-full pointer-events-none"
+                        className="absolute right-0 top-0 w-[8%] h-full pointer-events-none"
                         style={{
                             background: 'linear-gradient(to left, rgba(37, 37, 37, 0.5) 0%, rgba(37, 37, 37, 0.0) 100%)'
+                        }}
+                        animate={{
+                            backdropFilter: isHovered ? 'blur(1px)' : 'blur(0px)'
                         }}
                         transition={{ duration: 0.7 }}
                     />
