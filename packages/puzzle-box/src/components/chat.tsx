@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
+import { refactorProject } from "../api/project"
+import { useSandpack } from "@codesandbox/sandpack-react"
 
 interface Message {
 	id: number
@@ -13,6 +15,9 @@ const bubbleVariants = {
 }
 
 export const Chat: React.FC = () => {
+	const { sandpack } = useSandpack()
+	const { files, activeFile } = sandpack
+
 	const [messages, setMessages] = useState<Message[]>([
 		{
 			id: 1,
@@ -40,7 +45,7 @@ export const Chat: React.FC = () => {
 
 	const [inputValue, setInputValue] = useState("")
 
-	const handleSend = () => {
+	const handleSend = async () => {
 		if (!inputValue.trim()) return
 		const newMessage: Message = {
 			id: Date.now(),
@@ -49,6 +54,15 @@ export const Chat: React.FC = () => {
 		}
 		setMessages((prev) => [...prev, newMessage])
 		setInputValue("")
+
+		console.log(files)
+
+		const result = await refactorProject({
+			projectId: "id",
+			message: newMessage.content,
+		})
+
+		console.log(result)
 	}
 
 	return (
