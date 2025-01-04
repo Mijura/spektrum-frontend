@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useState } from 'react'
 const Card = React.lazy(() => import('@jigjoy-ui/card'))
-
+import Carousel from '../../components/carousel'
 import AppDetails from './app-details'
 import LikeButton from '../../components/like-button'
 const Button = lazy(() => import('@jigjoy-ui/button'))
@@ -55,7 +55,7 @@ const featuredApps = [
 const exploreApps = [
     {
         name: 'Solend',
-        description: 'Solend is a DeFi protocol…',
+        description: 'Solend is a DeFi protocol for lending and borrowing assets...',
         imageUrl:
             'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
         creator: {
@@ -66,7 +66,7 @@ const exploreApps = [
     },
     {
         name: 'DeFi Land',
-        description: 'GAMIFIED DECENT…',
+        description: 'GAMIFIED DECENTRAL FINANCE',
         imageUrl:
             'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
         creator: {
@@ -77,7 +77,40 @@ const exploreApps = [
     },
     {
         name: 'Birdeye',
-        description: 'The bird is watching…',
+        description: 'The bird is watching the markets...',
+        imageUrl:
+            'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
+        creator: {
+            username: 'lotus',
+            avatarUrl:
+                'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif'
+        }
+    },
+    {
+        name: 'Jupiter',
+        description: 'The best swap aggregator in Solana',
+        imageUrl:
+            'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
+        creator: {
+            username: 'lotus',
+            avatarUrl:
+                'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif'
+        }
+    },
+    {
+        name: 'Orca',
+        description: 'The friendly DEX for all your trades',
+        imageUrl:
+            'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
+        creator: {
+            username: 'lotus',
+            avatarUrl:
+                'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif'
+        }
+    },
+    {
+        name: 'Marinade',
+        description: 'Liquid staking solution for Solana',
         imageUrl:
             'https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif',
         creator: {
@@ -131,35 +164,37 @@ export default function Marketplace() {
 
             {/* === Explore Section === */}
             <h1 className="text-3xl font-bold mb-6 text-clickable">Explore</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-20">
-                {exploreApps.map((app: any) => (
-                    <Card key={app.name}>
-                        <div className="flex justify-center items-center">
-                            <img src={app.imageUrl} alt={app.name} className="w-16 h-16 rounded-full object-cover" />
-                        </div>
-                        <div className="flex flex-col flex-1 justify-between">
-                            <div>
-                                <h2 className="text-lg font-semibold mb-2 text-clickable">{app.name}</h2>
-                                <p className="text-sm text-base">{app.description}</p>
+            <div className="pb-20">
+                <Carousel itemsPerSlide={3} className="explore-carousel" showCounter={false}>
+                    {exploreApps.map((app: any) => (
+                        <Card key={app.name}>
+                            <div className="flex justify-center items-center">
+                                <img src={app.imageUrl} alt={app.name} className="w-16 h-16 rounded-full object-cover" />
                             </div>
-                            <div className="flex items-center justify-between mt-2">
-                                <div className="flex items-center gap-4">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-base text-gray-400 text-xs">
-                                            by {app.creator.username}
-                                        </span>
-                                    </div>
-                                    <div className="scale-75">
-                                        <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
-                                    </div>
+                            <div className="flex flex-col flex-1 justify-between">
+                                <div>
+                                    <h2 className="text-lg font-semibold mb-2 text-clickable">{app.name}</h2>
+                                    <p className="text-sm text-base">{app.description}</p>
                                 </div>
-                                <Suspense>
-                                    <Button onClick={() => setSelectedApp(app)}>Launch</Button>
-                                </Suspense>
+                                <div className="flex items-center justify-between mt-2">
+                                    <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-base text-gray-400 text-xs">
+                                                by {app.creator.username}
+                                            </span>
+                                        </div>
+                                        <div className="scale-75">
+                                            <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+                                        </div>
+                                    </div>
+                                    <Suspense>
+                                        <Button onClick={() => setSelectedApp(app)}>Launch</Button>
+                                    </Suspense>
+                                </div>
                             </div>
-                        </div>
-                    </Card>
-                ))}
+                        </Card>
+                    ))}
+                </Carousel>
             </div>
         </div>
     )
