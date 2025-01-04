@@ -1,5 +1,8 @@
 import React, { useState } from "react"
 const Card = React.lazy(() => import("@jigjoy-ui/card"))
+const Modal = React.lazy(() => import("@jigjoy-ui/modal"))
+const ModalTrigger = React.lazy(() => import("@jigjoy-ui/modal-trigger"))
+const ModalContent = React.lazy(() => import("@jigjoy-ui/modal-content"))
 import { motion } from "framer-motion"
 
 // Mock data - replace with actual data fetching
@@ -18,59 +21,17 @@ const myApps = [
 	},
 ]
 
-interface EditModalProps {
-	app: any
-	onClose: () => void
-	onSave: (app: any) => void
-}
-
-const EditModal: React.FC<EditModalProps> = ({ app, onClose, onSave }) => {
-	const [name, setName] = useState(app.name)
-	const [description, setDescription] = useState(app.description)
-	const [imageUrl, setImageUrl] = useState(app.imageUrl)
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
-		onSave({ ...app, name, description, imageUrl })
-		onClose()
-	}
-
-	return (
-		<div className="container h-[100dvh] mx-auto max-w-screen-xl px-4 pt-20">
-			<div className="bg-surface2 p-6 rounded-lg w-[500px]">
-				<h2 className="text-2xl font-bold mb-4 text-clickable">Edit App</h2>
-				<form onSubmit={handleSubmit}>
-					<div className="mb-4">
-						<label className="block text-sm font-medium text-base mb-2">Name</label>
-						<input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full p-2 rounded bg-surface3 text-white border border-surface4" />
-					</div>
-					<div className="mb-4">
-						<label className="block text-sm font-medium text-base mb-2">Description</label>
-						<textarea value={description} onChange={(e) => setDescription(e.target.value)} className="w-full p-2 rounded bg-surface3 text-white border border-surface4" rows={3} />
-					</div>
-					<div className="mb-6">
-						<label className="block text-sm font-medium text-base mb-2">Image URL</label>
-						<input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className="w-full p-2 rounded bg-surface3 text-white border border-surface4" />
-					</div>
-					<div className="flex justify-end gap-4">
-						<button type="button" onClick={onClose} className="px-4 py-2 rounded bg-surface3 text-white hover:bg-surface4">
-							Cancel
-						</button>
-						<button type="submit" className="px-4 py-2 rounded bg-clickable text-surface1 hover:bg-hover">
-							Save
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	)
-}
-
 export default function MyApps() {
 	const [editingApp, setEditingApp] = useState<any>(null)
+	const [name, setName] = useState("")
+	const [description, setDescription] = useState("")
+	const [imageUrl, setImageUrl] = useState("")
 
 	const handleEdit = (app: any) => {
 		setEditingApp(app)
+		setName(app.name)
+		setDescription(app.description)
+		setImageUrl(app.imageUrl)
 	}
 
 	const handleDelete = (appId: string) => {
@@ -78,9 +39,18 @@ export default function MyApps() {
 		console.log("Delete app:", appId)
 	}
 
-	const handleSave = (updatedApp: any) => {
+	const handleSave = () => {
+		if (!editingApp) return
+		
+		const updatedApp = {
+			...editingApp,
+			name,
+			description,
+			imageUrl,
+		}
 		// TODO: Implement save functionality
 		console.log("Save app:", updatedApp)
+		setEditingApp(null)
 	}
 
 	return (
@@ -115,7 +85,66 @@ export default function MyApps() {
 				))}
 			</div>
 
-			{editingApp && <EditModal app={editingApp} onClose={() => setEditingApp(null)} onSave={handleSave} />}
+			<React.Suspense>
+				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingApp(null)}>
+					<ModalTrigger>
+						<div style={{ display: 'none' }} ref={(el) => {
+							if (el && editingApp) {
+								el.click();
+							}
+						}} />
+					</ModalTrigger>
+					<ModalContent>
+						<div className="bg-surface2 p-8 rounded-lg w-[600px] max-w-[90vw]">
+							<h2 className="text-2xl font-bold mb-4 text-clickable">Edit App</h2>
+							<form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
+								<div className="mb-4">
+									<label className="block text-sm font-medium text-base mb-2">Name</label>
+									<input 
+										type="text" 
+										value={name} 
+										onChange={(e) => setName(e.target.value)} 
+										className="w-full p-2 rounded bg-surface3 text-white border border-surface4" 
+									/>
+								</div>
+								<div className="mb-4">
+									<label className="block text-sm font-medium text-base mb-2">Description</label>
+									<textarea 
+										value={description} 
+										onChange={(e) => setDescription(e.target.value)} 
+										className="w-full p-2 rounded bg-surface3 text-white border border-surface4" 
+										rows={3} 
+									/>
+								</div>
+								<div className="mb-6">
+									<label className="block text-sm font-medium text-base mb-2">Image URL</label>
+									<input 
+										type="text" 
+										value={imageUrl} 
+										onChange={(e) => setImageUrl(e.target.value)} 
+										className="w-full p-2 rounded bg-surface3 text-white border border-surface4" 
+									/>
+								</div>
+								<div className="flex justify-end gap-4">
+									<button 
+										type="button" 
+										onClick={() => setEditingApp(null)} 
+										className="px-4 py-2 rounded bg-surface3 text-white hover:bg-surface4"
+									>
+										Cancel
+									</button>
+									<button 
+										type="submit" 
+										className="px-4 py-2 rounded bg-clickable text-surface1 hover:bg-hover"
+									>
+										Save
+									</button>
+								</div>
+							</form>
+						</div>
+					</ModalContent>
+				</Modal>
+			</React.Suspense>
 		</div>
 	)
 }
