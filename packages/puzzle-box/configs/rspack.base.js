@@ -59,12 +59,15 @@ module.exports = {
 			chunks: ["main"],
 		}),
 		new rspack.container.ModuleFederationPlugin({
-			name: "micro-frontend",
+			name: "puzzle_box",
 			filename: "remoteEntry.js",
-			remotes: {},
-			exposes: {},
+			exposes: {
+				"./editor": "./src/components/editor",
+			},
+			remotes: {
+				"@jigjoy-ui": "jigjoy_ui@http://localhost:3002/remoteEntry.js",
+			},
 			shared: {
-				...deps,
 				react: {
 					singleton: true,
 					requiredVersion: deps.react,
@@ -73,6 +76,11 @@ module.exports = {
 				"react-dom": {
 					singleton: true,
 					requiredVersion: deps["react-dom"],
+					eager: true,
+				},
+				"framer-motion": {
+					singleton: true,
+					requiredVersion: deps["framer-motion"],
 					eager: true,
 				},
 			},
