@@ -20,10 +20,7 @@ export default function Carousel({
 }: CarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [direction, setDirection] = useState(0)
-    const [leftButtonHovered, setLeftButtonHovered] = useState(false)
-    const [rightButtonHovered, setRightButtonHovered] = useState(false)
-    const [leftElementHovered, setLeftElementHovered] = useState(false)
-    const [rightElementHovered, setRightElementHovered] = useState(false)
+    const [isHovered, setIsHovered] = useState(false)
 
     const totalSlides = Math.ceil(React.Children.count(children) / itemsPerSlide)
 
@@ -64,14 +61,18 @@ export default function Carousel({
     }
 
     return (
-        <div className={`relative w-full group ${className}`}>
-            {/* Item Counter */}
+        <div
+            className={`relative w-full group ${className}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             {showCounter && (
                 <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 bg-surface2 px-3 py-1 rounded-full text-white text-sm">
                     {currentIndex + 1} / {totalSlides}
                 </div>
             )}
-            <div className="relative flex items-center justify-center py-12">
+
+            <div className="relative flex items-center justify-center">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -112,42 +113,31 @@ export default function Carousel({
                     </motion.div>
                 </AnimatePresence>
             </div>
-            {/* Navigation Buttons */}
-            <motion.div
-                className="absolute inset-0 pointer-events-none z-[1] group"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
+
+            <div
+                className={`absolute inset-0 z-[1] transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
             >
-                {/* Blur elements container */}
                 <div className="absolute inset-0">
                     <motion.div
-                        className="absolute left-0 top-1/2 -translate-y-1/2 w-[10%] h-full pointer-events-auto"
+                        className="absolute left-0 top-0 w-[15%] h-full pointer-events-none"
                         style={{
-                            background: 'linear-gradient(to right, rgba(37, 37, 37, 0.1) 0%, transparent 100%)'
+                            background: 'linear-gradient(to right, rgb(241, 241, 241) 0%, rgba(37, 37, 37, 0.0) 100%)'
                         }}
                         animate={{
-                            backdropFilter: leftButtonHovered || leftElementHovered ? 'blur(2px)' : 'blur(0px)'
+                            backdropFilter: isHovered ? 'blur(1px)' : 'blur(0px)'
                         }}
                         transition={{ duration: 0.7 }}
-                        onHoverStart={() => setLeftElementHovered(true)}
-                        onHoverEnd={() => setLeftElementHovered(false)}
                     />
                     <motion.div
-                        className="absolute right-0 top-1/2 -translate-y-1/2 w-[10%] h-full pointer-events-auto"
+                        className="absolute right-0 top-0 w-[15%] h-full pointer-events-none"
                         style={{
-                            background: 'linear-gradient(to left, rgba(37, 37, 37, 0.1) 0%, transparent 100%)'
-                        }}
-                        animate={{
-                            backdropFilter: rightButtonHovered || rightElementHovered ? 'blur(2px)' : 'blur(0px)'
+                            background: 'linear-gradient(to left, rgba(37, 37, 37, 0.5) 0%, rgba(37, 37, 37, 0.0) 100%)'
                         }}
                         transition={{ duration: 0.7 }}
-                        onHoverStart={() => setRightElementHovered(true)}
-                        onHoverEnd={() => setRightElementHovered(false)}
                     />
                 </div>
 
-                <div className="relative w-full h-full flex items-center justify-between z-[1] px-4">
+                <div className="relative w-full h-full flex items-center justify-between px-4">
                     <motion.button
                         className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
                             currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
@@ -155,8 +145,6 @@ export default function Carousel({
                         onClick={() => paginate(-1)}
                         disabled={currentIndex === 0}
                         whileHover={{ scale: 1.05 }}
-                        onHoverStart={() => setLeftButtonHovered(true)}
-                        onHoverEnd={() => setLeftButtonHovered(false)}
                     >
                         <svg
                             width="24"
@@ -175,6 +163,7 @@ export default function Carousel({
                             />
                         </svg>
                     </motion.button>
+
                     <motion.button
                         className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
                             currentIndex === totalSlides - 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
@@ -182,8 +171,6 @@ export default function Carousel({
                         onClick={() => paginate(1)}
                         disabled={currentIndex === totalSlides - 1}
                         whileHover={{ scale: 1.05 }}
-                        onHoverStart={() => setRightButtonHovered(true)}
-                        onHoverEnd={() => setRightButtonHovered(false)}
                     >
                         <svg
                             width="24"
@@ -203,7 +190,7 @@ export default function Carousel({
                         </svg>
                     </motion.button>
                 </div>
-            </motion.div>
+            </div>
         </div>
     )
 }
