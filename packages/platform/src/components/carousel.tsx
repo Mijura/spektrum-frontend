@@ -203,57 +203,6 @@ export default function Carousel({
                         </svg>
                     </motion.button>
                 </div>
-
-                <div className="relative w-full h-full flex items-center justify-between z-[1] px-4 pointer-events-none">
-                    <button
-                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none group/btn ${
-                            currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                        }`}
-                        onClick={() => paginate(-1)}
-                        disabled={currentIndex === 0}
-                    >
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="current-fill"
-                        >
-                            <path
-                                d="M7 2L3 6L7 10"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </button>
-                    <button
-                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
-                            currentIndex === totalSlides - 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                        }`}
-                        onClick={() => paginate(1)}
-                        disabled={currentIndex === totalSlides - 1}
-                    >
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="current-fill"
-                        >
-                            <path
-                                d="M4.5 2L8.5 6L4.5 10"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </button>
-                </div>
             </motion.div>
         </div>
     )
