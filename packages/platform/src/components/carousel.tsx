@@ -20,6 +20,10 @@ export default function Carousel({
 }: CarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [direction, setDirection] = useState(0)
+    const [leftButtonHovered, setLeftButtonHovered] = useState(false)
+    const [rightButtonHovered, setRightButtonHovered] = useState(false)
+    const [leftElementHovered, setLeftElementHovered] = useState(false)
+    const [rightElementHovered, setRightElementHovered] = useState(false)
 
     const totalSlides = Math.ceil(React.Children.count(children) / itemsPerSlide)
 
@@ -109,58 +113,148 @@ export default function Carousel({
                 </AnimatePresence>
             </div>
             {/* Navigation Buttons */}
-            <div className="absolute inset-0 pointer-events-none z-[1] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <motion.div
+                className="absolute inset-0 pointer-events-none z-[1] group"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+            >
+                {/* Blur elements container */}
+                <div className="absolute inset-0">
+                    <motion.div
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-[10%] h-full pointer-events-auto"
+                        style={{
+                            background: 'linear-gradient(to right, rgba(37, 37, 37, 0.1) 0%, transparent 100%)'
+                        }}
+                        animate={{
+                            backdropFilter: leftButtonHovered || leftElementHovered ? 'blur(2px)' : 'blur(0px)'
+                        }}
+                        transition={{ duration: 0.7 }}
+                        onHoverStart={() => setLeftElementHovered(true)}
+                        onHoverEnd={() => setLeftElementHovered(false)}
+                    />
+                    <motion.div
+                        className="absolute right-0 top-1/2 -translate-y-1/2 w-[10%] h-full pointer-events-auto"
+                        style={{
+                            background: 'linear-gradient(to left, rgba(37, 37, 37, 0.1) 0%, transparent 100%)'
+                        }}
+                        animate={{
+                            backdropFilter: rightButtonHovered || rightElementHovered ? 'blur(2px)' : 'blur(0px)'
+                        }}
+                        transition={{ duration: 0.7 }}
+                        onHoverStart={() => setRightElementHovered(true)}
+                        onHoverEnd={() => setRightElementHovered(false)}
+                    />
+                </div>
+
                 <div className="relative w-full h-full flex items-center justify-between z-[1] px-4">
+                    <motion.button
+                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
+                            currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                        }`}
+                        onClick={() => paginate(-1)}
+                        disabled={currentIndex === 0}
+                        whileHover={{ scale: 1.05 }}
+                        onHoverStart={() => setLeftButtonHovered(true)}
+                        onHoverEnd={() => setLeftButtonHovered(false)}
+                    >
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="current-fill"
+                        >
+                            <path
+                                d="M7 2L3 6L7 10"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </motion.button>
+                    <motion.button
+                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
+                            currentIndex === totalSlides - 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                        }`}
+                        onClick={() => paginate(1)}
+                        disabled={currentIndex === totalSlides - 1}
+                        whileHover={{ scale: 1.05 }}
+                        onHoverStart={() => setRightButtonHovered(true)}
+                        onHoverEnd={() => setRightButtonHovered(false)}
+                    >
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="current-fill"
+                        >
+                            <path
+                                d="M4.5 2L8.5 6L4.5 10"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </motion.button>
+                </div>
+
+                <div className="relative w-full h-full flex items-center justify-between z-[1] px-4 pointer-events-none">
                     <button
-                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-clickable rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
+                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none group/btn ${
                             currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                         }`}
                         onClick={() => paginate(-1)}
                         disabled={currentIndex === 0}
                     >
-                        <svg 
-                            width="24" 
-                            height="24" 
-                            viewBox="0 0 12 12" 
-                            fill="none" 
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 12 12"
+                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                             className="current-fill"
                         >
-                            <path 
-                                d="M7 2L3 6L7 10" 
-                                stroke="currentColor" 
-                                strokeWidth="2" 
-                                strokeLinecap="round" 
+                            <path
+                                d="M7 2L3 6L7 10"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
                         </svg>
                     </button>
                     <button
-                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-clickable rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
+                        className={`text-clickable hover:text-surface2 transition-colors pointer-events-auto bg-surface2 hover:bg-hover rounded-full w-12 h-12 flex items-center justify-center shadow-lg text-center leading-none ${
                             currentIndex === totalSlides - 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                         }`}
                         onClick={() => paginate(1)}
                         disabled={currentIndex === totalSlides - 1}
                     >
-                        <svg 
-                            width="24" 
-                            height="24" 
-                            viewBox="0 0 12 12" 
-                            fill="none" 
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 12 12"
+                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                             className="current-fill"
                         >
-                            <path 
-                                d="M4.5 2L8.5 6L4.5 10" 
-                                stroke="currentColor" 
-                                strokeWidth="2" 
-                                strokeLinecap="round" 
+                            <path
+                                d="M4.5 2L8.5 6L4.5 10"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
                         </svg>
                     </button>
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }
