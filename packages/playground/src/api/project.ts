@@ -1,7 +1,7 @@
 export const API_HOST = process.env.REACT_APP_API
 
 interface RefactorRequest {
-	projectId: string
+	id: string
 	message: string
 }
 

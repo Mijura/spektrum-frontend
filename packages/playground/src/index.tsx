@@ -4,6 +4,9 @@ import "./types/index.d.ts"
 import "./index.css"
 import { routeTree } from "./routeTree.gen"
 import { createRouter, RouterProvider } from "@tanstack/react-router"
+import { Provider } from "react-redux"
+import { PersistGate } from "redux-persist/integration/react"
+import { persistor, store } from "./util/store"
 
 const root = document.createElement("div")
 document.body.appendChild(root)
@@ -21,6 +24,10 @@ declare module "@tanstack/react-router" {
 
 rootDiv.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				<RouterProvider router={router} />
+			</PersistGate>
+		</Provider>
 	</React.StrictMode>,
 )
