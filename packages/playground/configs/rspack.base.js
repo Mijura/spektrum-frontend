@@ -63,7 +63,6 @@ module.exports = {
 			filename: "remoteEntry.js",
 			remotes: {
 				"@jigjoy-ui": "jigjoy_ui@http://localhost:3002/remoteEntry.js",
-				"@puzzle-box": "puzzle_box@http://localhost:3001/remoteEntry.js",
 			},
 			shared: {
 				react: {

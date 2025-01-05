@@ -1,5 +1,9 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
+import { useSandpack } from "@codesandbox/sandpack-react"
+import { refactorProject } from "../api/project"
+import { useDispatch } from "react-redux"
+import { projectUpdated } from "../reducers/editor-reducer"
 
 interface Message {
 	id: number
@@ -13,6 +17,11 @@ const bubbleVariants = {
 }
 
 export const Chat: React.FC = () => {
+	const { sandpack } = useSandpack()
+	const { files, activeFile } = sandpack
+
+	const dispatch = useDispatch()
+
 	const [messages, setMessages] = useState<Message[]>([
 		{
 			id: 1,
@@ -40,7 +49,7 @@ export const Chat: React.FC = () => {
 
 	const [inputValue, setInputValue] = useState("")
 
-	const handleSend = () => {
+	const handleSend = async () => {
 		if (!inputValue.trim()) return
 		const newMessage: Message = {
 			id: Date.now(),
@@ -49,6 +58,15 @@ export const Chat: React.FC = () => {
 		}
 		setMessages((prev) => [...prev, newMessage])
 		setInputValue("")
+
+		const refactoredProject = await refactorProject({
+			id: "id",
+			message: newMessage.content,
+		})
+
+		console.log(refactoredProject)
+
+		dispatch(projectUpdated(refactoredProject))
 	}
 
 	return (
@@ -65,13 +83,25 @@ export const Chat: React.FC = () => {
 								{isSystem ? (
 									<div className="flex items-start space-x-2">
 										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=S" alt="System Avatar" />
-										<motion.div variants={bubbleVariants} initial="initial" animate="animate" transition={{ duration: 0.3, delay: index * 0.05 }} className="max-w-xs px-3 py-2 rounded bg-surface3 text-white">
+										<motion.div
+											variants={bubbleVariants}
+											initial="initial"
+											animate="animate"
+											transition={{ duration: 0.3, delay: index * 0.05 }}
+											className="max-w-xs px-3 py-2 rounded bg-surface3 text-white"
+										>
 											{msg.content}
 										</motion.div>
 									</div>
 								) : (
 									<div className="flex items-start space-x-2">
-										<motion.div variants={bubbleVariants} initial="initial" animate="animate" transition={{ duration: 0.3, delay: index * 0.05 }} className="max-w-xs px-3 py-2 rounded bg-clickable text-surface1">
+										<motion.div
+											variants={bubbleVariants}
+											initial="initial"
+											animate="animate"
+											transition={{ duration: 0.3, delay: index * 0.05 }}
+											className="max-w-xs px-3 py-2 rounded bg-clickable text-surface1"
+										>
 											{msg.content}
 										</motion.div>
 										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=U" alt="User Avatar" />
@@ -124,7 +154,14 @@ export const Chat: React.FC = () => {
 						aria-label="Send"
 					>
 						{/* Paper Airplane Icon (Heroicon-style) */}
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="w-5 h-5"
+						>
 							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.5l16.5 6.75-16.5 6.75v-15z" />
 						</svg>
 					</button>

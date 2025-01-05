@@ -10,19 +10,13 @@ const colors = {
 	accent: "#B08DF8",
 	error: "#E1CFF8",
 	errorSurface: "#b08df8",
-	heading: "#C5C5C5"
+	heading: "#C5C5C5",
 }
 
 module.exports = {
-	content: [
-		"./src/**/*.{html,js,ts,jsx,tsx}",
-		"../jigjoy-ui/src/**/*.{js,jsx,ts,tsx}",
-		"../puzzle-box/src/**/*.{js,jsx,ts,tsx}",
-	],
+	content: ["./src/**/*.{html,js,ts,jsx,tsx}", "../jigjoy-ui/src/**/*.{js,jsx,ts,tsx}"],
 	theme: {
-
 		extend: {
-
 			colors: {
 				surface1: colors.surface1,
 				surface2: colors.surface2,
@@ -35,7 +29,7 @@ module.exports = {
 				accent: colors.accent,
 				error: colors.error,
 				errorSurface: colors.errorSurface,
-				heading: colors.heading
+				heading: colors.heading,
 			},
 
 			fontFamily: {
