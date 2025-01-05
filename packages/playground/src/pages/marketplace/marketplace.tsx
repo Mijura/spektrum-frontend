@@ -165,9 +165,9 @@ export default function Marketplace() {
             {/* === Explore Section === */}
             <h1 className="text-3xl font-bold mb-6 text-heading">Explore</h1>
             <div className="pb-20">
-                <Carousel itemsPerSlide={3} className="explore-carousel" showCounter={false}>
+                <Carousel itemsPerSlide={3} className="explore-carousel pointer-events-none" showCounter={false}>
                     {exploreApps.map((app: any) => (
-                        <Card key={app.name}>
+                        <Card key={app.name} className="pointer-events-auto">
                             <div className="flex justify-center items-center">
                                 <img src={app.imageUrl} alt={app.name} className="w-16 h-16 rounded-full object-cover" />
                             </div>

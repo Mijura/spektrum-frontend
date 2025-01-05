@@ -97,7 +97,15 @@ export default function Carousel({
                                 paginate(-1)
                             }
                         }}
-                        className={`w-full h-auto cursor-pointer ${itemsPerSlide === 1 ? 'max-w-[50%] mx-auto' : ''}`}
+                        dragMomentum={false}
+                        whileDrag={{ cursor: 'grabbing' }}
+                        onPointerDownCapture={(e) => {
+                            // Prevent drag if clicking on a button or interactive element
+                            if ((e.target as HTMLElement).closest('button')) {
+                                e.stopPropagation()
+                            }
+                        }}
+                        className={`w-full h-auto ${itemsPerSlide === 1 ? 'max-w-[50%] mx-auto' : ''}`}
                     >
                         <div
                             className={`grid grid-cols-1 ${
@@ -118,27 +126,29 @@ export default function Carousel({
                 className={`absolute inset-0 z-[1] transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
             >
                 <div className="absolute inset-0">
-                    <motion.div
-                        className="absolute left-0 top-0 w-[8%] h-full pointer-events-none"
-                        style={{
-                            background:
-                                'linear-gradient(to right, rgba(37, 37, 37, 0.5) 0%, rgba(37, 37, 37, 0.0) 100%)'
-                        }}
-                        animate={{
-                            backdropFilter: isHovered ? 'blur(1px)' : 'blur(0px)'
-                        }}
-                        transition={{ duration: 0.7 }}
-                    />
-                    <motion.div
-                        className="absolute right-0 top-0 w-[8%] h-full pointer-events-none"
-                        style={{
-                            background: 'linear-gradient(to left, rgba(37, 37, 37, 0.5) 0%, rgba(37, 37, 37, 0.0) 100%)'
-                        }}
-                        animate={{
-                            backdropFilter: isHovered ? 'blur(1px)' : 'blur(0px)'
-                        }}
-                        transition={{ duration: 0.7 }}
-                    />
+                    <div className="absolute inset-0 pointer-events-none">
+                        <motion.div
+                            className="absolute left-0 top-0 w-[8%] h-full"
+                            style={{
+                                background:
+                                    'linear-gradient(to right, rgba(37, 37, 37, 0.5) 0%, rgba(37, 37, 37, 0.0) 100%)'
+                            }}
+                            animate={{
+                                backdropFilter: isHovered ? 'blur(1px)' : 'blur(0px)'
+                            }}
+                            transition={{ duration: 0.7 }}
+                        />
+                        <motion.div
+                            className="absolute right-0 top-0 w-[8%] h-full"
+                            style={{
+                                background: 'linear-gradient(to left, rgba(37, 37, 37, 0.5) 0%, rgba(37, 37, 37, 0.0) 100%)'
+                            }}
+                            animate={{
+                                backdropFilter: isHovered ? 'blur(1px)' : 'blur(0px)'
+                            }}
+                            transition={{ duration: 0.7 }}
+                        />
+                    </div>
                 </div>
 
                 <div className="relative w-full h-full flex items-center justify-between px-4">
