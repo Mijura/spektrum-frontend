@@ -53,14 +53,14 @@ const Header = () => {
                         </ModalTrigger>
                         <ModalContent>
                             <div>
-                                <h3 className="text-clickable text-2xl font-bold mb-4">/help</h3>
-                                <p className="text-white text-lg mb-6">
+                                <h3 className="text-heading text-2xl font-bold mb-4">/help</h3>
+                                <p className="text-base text-lg mb-6">
                                     Shows info about our basic commands and how to get started.
                                 </p>
-                                <h3 className="text-clickable text-2xl font-bold mb-4">/craft</h3>
-                                <p className="text-white text-lg mb-6">Generate a block/app using a textual prompt.</p>
-                                <h3 className="text-clickable text-2xl font-bold mb-4">/refine</h3>
-                                <p className="text-white text-lg">Select a building block to refine.</p>
+                                <h3 className="text-heading text-2xl font-bold mb-4">/craft</h3>
+                                <p className="text-base text-lg mb-6">Generate a block/app using a textual prompt.</p>
+                                <h3 className="text-heading text-2xl font-bold mb-4">/refine</h3>
+                                <p className="text-base text-lg">Select a building block to refine.</p>
                             </div>
                         </ModalContent>
                     </Modal>
