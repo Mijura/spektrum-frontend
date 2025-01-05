@@ -74,7 +74,7 @@ const MyProfile = () => {
                             className="w-20 h-20 rounded-full mr-4 object-cover border-2 border-accent"
                         />
                         <div className="flex flex-col">
-                            <span className="text-xl font-semibold text-clickable">{user.nickname}</span>
+                            <span className="text-xl font-semibold text-heading">{user.nickname}</span>
                             <span className="text-base">{user.dateJoined}</span>
                             {/* Level and XP */}
                             <div className="flex items-center gap-2 mt-1">
@@ -139,9 +139,9 @@ const MyProfile = () => {
                             whileHover={{ scale: 1.02 }}
                         >
                             <div className="h-16 w-16 bg-surface1 rounded-md mb-3 flex items-center justify-center border border-disabled">
-                                <span className="text-accent text-xl font-bold">{achievement.id}</span>
+                                <span className="text-heading text-xl font-bold">{achievement.id}</span>
                             </div>
-                            <h3 className="text-lg font-semibold text-clickable mb-1">{achievement.title}</h3>
+                            <h3 className="text-lg font-semibold text-heading mb-1">{achievement.title}</h3>
                             <p className="text-base">{achievement.description}</p>
                         </motion.div>
                     ))}
@@ -178,7 +178,7 @@ const MyProfile = () => {
                                     ✕
                                 </button>
                             </div>
-                            <h2 className="text-2xl font-bold text-clickable mb-4">
+                            <h2 className="text-2xl font-bold text-heading mb-4">
                                 {selectedAchievement.title}
                             </h2>
                             <p className="text-base mb-6">{selectedAchievement.description}</p>

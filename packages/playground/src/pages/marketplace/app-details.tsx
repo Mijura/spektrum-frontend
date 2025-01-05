@@ -35,9 +35,9 @@ export default function AppDetails({ app, onBack }: AppDetailsProps) {
                         <div className="flex flex-row gap-6 mb-8">
                             <img src={app.imageUrl} alt={app.name} className="w-32 h-32 rounded-lg" />
                             <div>
-                                <h1 className="text-2xl font-bold mb-4 text-clickable">{app.name}</h1>
+                                <h1 className="text-2xl font-bold mb-4 text-heading">{app.name}</h1>
 
-                                <p className="text-sm text-base mb-4">{app.description}</p>
+                                <p className="text-sm text-base mb-4 text-base">{app.description}</p>
 
                                 <div className="flex items-center gap-6">
                                     <div className="flex items-center gap-3">
@@ -62,8 +62,8 @@ export default function AppDetails({ app, onBack }: AppDetailsProps) {
                         </div>
 
                         <div className="border-t border-surface3 pt-6">
-                            <h2 className="text-xl font-semibold mb-4 text-clickable">About</h2>
-                            <p className="text-sm leading-relaxed mb-2">
+                            <h2 className="text-xl font-semibold mb-4 text-heading">About</h2>
+                            <p className="text-sm leading-relaxed mb-2 text-base">
                                 {app.longDescription ||
                                     `${app.description} This is an extended description that provides more details about the application, its features, and how it can benefit users. The detailed information helps users make an informed decision about using the application.`}
                             </p>

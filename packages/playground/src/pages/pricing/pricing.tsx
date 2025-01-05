@@ -40,7 +40,7 @@ const PricingPage = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-2xl md:text-3xl font-bold text-clickable mb-8"
+                className="text-2xl md:text-3xl font-bold text-heading mb-8"
             >
                 Choose Your Plan
             </motion.h1>
@@ -51,8 +51,8 @@ const PricingPage = () => {
                     <Card key={plan.name}>
                         <div className="flex flex-col items-center w-[275px]">
                             <div className="h-fit min-h-[150px] flex flex-col items-center">
-                                <h2 className="text-xl font-semibold mb-2 text-white">{plan.name}</h2>
-                                <p className="text-clickable text-2xl mb-1">{plan.price}</p>
+                                <h2 className="text-xl font-semibold mb-2 text-heading">{plan.name}</h2>
+                                <p className="text-accent text-2xl mb-1">{plan.price}</p>
                                 <p className="text-base mb-4 text-center">{plan.description}</p>
                             </div>
                             <Suspense>

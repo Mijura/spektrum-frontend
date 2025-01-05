@@ -55,14 +55,14 @@ export default function MyApps() {
 
 	return (
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
-			<h1 className="text-3xl font-bold mb-6 text-clickable">My Apps</h1>
+			<h1 className="text-3xl font-bold mb-6 text-heading">My Apps</h1>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 				{myApps.map((app) => (
 					<Card key={app.id}>
 						<img src={app.imageUrl} alt={app.name} className="w-[140px] h-full rounded-lg object-cover" />
 						<div className="flex flex-col flex-1 justify-between">
 							<div>
-								<h2 className="text-xl font-semibold mb-2 text-clickable">{app.name}</h2>
+								<h2 className="text-xl font-semibold mb-2 text-heading">{app.name}</h2>
 								<p className="text-sm text-base">{app.description}</p>
 							</div>
 							<div className="flex justify-end gap-4">

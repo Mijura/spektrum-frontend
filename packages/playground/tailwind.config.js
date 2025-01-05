@@ -10,6 +10,7 @@ const colors = {
 	accent: "#B08DF8",
 	error: "#E1CFF8",
 	errorSurface: "#b08df8",
+	heading: "#C5C5C5"
 }
 
 module.exports = {
@@ -19,7 +20,9 @@ module.exports = {
 		"../puzzle-box/src/**/*.{js,jsx,ts,tsx}",
 	],
 	theme: {
+
 		extend: {
+
 			colors: {
 				surface1: colors.surface1,
 				surface2: colors.surface2,
@@ -32,7 +35,9 @@ module.exports = {
 				accent: colors.accent,
 				error: colors.error,
 				errorSurface: colors.errorSurface,
+				heading: colors.heading
 			},
+
 			fontFamily: {
 				body: [
 					"-apple-system",
@@ -77,7 +82,7 @@ module.exports = {
 		},
 	},
 	plugins: [
-		function ({ addUtilities }) {
+		function ({ addBase, addUtilities }) {
 			addUtilities({
 				".italic-comment": {
 					fontStyle: "italic",

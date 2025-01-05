@@ -131,14 +131,14 @@ export default function Marketplace() {
     return (
         <div className="container h-[100dvh] mx-auto max-w-screen-xl px-4 pt-20 h-fit">
             {/* === Featured Section === */}
-            <h1 className="text-3xl font-bold mb-6 text-clickable">Featured</h1>
+            <h1 className="text-3xl font-bold mb-6 text-heading">Featured</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                 {featuredApps.map((app: any) => (
                     <Card key={app.name}>
                         <img src={app.imageUrl} alt={app.name} className="w-[140px] h-full rounded-lg object-cover" />
                         <div className="flex flex-col flex-1 justify-between">
                             <div>
-                                <h2 className="text-xl font-semibold mb-2 text-clickable">{app.name}</h2>
+                                <h2 className="text-xl font-semibold mb-2 text-heading">{app.name}</h2>
                                 <p className="text-sm text-base">{app.description}</p>
                             </div>
                             <div className="flex items-center justify-between">
@@ -163,7 +163,7 @@ export default function Marketplace() {
             </div>
 
             {/* === Explore Section === */}
-            <h1 className="text-3xl font-bold mb-6 text-clickable">Explore</h1>
+            <h1 className="text-3xl font-bold mb-6 text-heading">Explore</h1>
             <div className="pb-20">
                 <Carousel itemsPerSlide={3} className="explore-carousel" showCounter={false}>
                     {exploreApps.map((app: any) => (
@@ -173,7 +173,7 @@ export default function Marketplace() {
                             </div>
                             <div className="flex flex-col flex-1 justify-between">
                                 <div>
-                                    <h2 className="text-lg font-semibold mb-2 text-clickable">{app.name}</h2>
+                                    <h2 className="text-lg font-semibold mb-2 text-heading">{app.name}</h2>
                                     <p className="text-sm text-base">{app.description}</p>
                                 </div>
                                 <div className="flex items-center justify-between mt-2">
