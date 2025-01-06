@@ -11,7 +11,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({ initialLikes, onLike }) => {
 	const [likes, setLikes] = useState(initialLikes)
 	const [showStars, setShowStars] = useState(false)
 
-	const handleClick = () => {
+	const handleClick = (e: React.MouseEvent) => {
+		e.stopPropagation()
 		if (!isLiked) {
 			setLikes((prev) => prev + 1)
 			setShowStars(true)

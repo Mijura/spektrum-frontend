@@ -134,28 +134,23 @@ export default function Marketplace() {
             <h1 className="text-3xl font-bold mb-6 text-heading">Featured</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                 {featuredApps.map((app: any) => (
-                    <Card key={app.name}>
+                    <Card key={app.name} onClick={() => setSelectedApp(app)}>
                         <img src={app.imageUrl} alt={app.name} className="w-[140px] h-full rounded-lg object-cover" />
                         <div className="flex flex-col flex-1 justify-between">
                             <div>
                                 <h2 className="text-xl font-semibold mb-2 text-heading">{app.name}</h2>
                                 <p className="text-sm text-base">{app.description}</p>
                             </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-4">
-                                    <div className="flex items-center gap-2">
-                                        <img
-                                            src={app.creator.avatarUrl}
-                                            alt={app.creator.username}
-                                            className="w-8 h-8 rounded-full"
-                                        />
-                                        <span className="text-base text-gray-400">by {app.creator.username}</span>
-                                    </div>
-                                    <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+                            <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-2">
+                                    <img
+                                        src={app.creator.avatarUrl}
+                                        alt={app.creator.username}
+                                        className="w-8 h-8 rounded-full"
+                                    />
+                                    <span className="text-base text-gray-400">by {app.creator.username}</span>
                                 </div>
-                                <Suspense>
-                                    <Button onClick={() => setSelectedApp(app)}>Launch</Button>
-                                </Suspense>
+                                <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
                             </div>
                         </div>
                     </Card>
@@ -165,9 +160,9 @@ export default function Marketplace() {
             {/* === Explore Section === */}
             <h1 className="text-3xl font-bold mb-6 text-heading">Explore</h1>
             <div className="pb-20">
-                <Carousel itemsPerSlide={3} className="explore-carousel" showCounter={false}>
+                <Carousel itemsPerSlide={3} className="explore-carousel pointer-events-none" showCounter={false}>
                     {exploreApps.map((app: any) => (
-                        <Card key={app.name}>
+                        <Card key={app.name} className="pointer-events-auto" onClick={() => setSelectedApp(app)}>
                             <div className="flex justify-center items-center">
                                 <img src={app.imageUrl} alt={app.name} className="w-16 h-16 rounded-full object-cover" />
                             </div>
@@ -176,20 +171,15 @@ export default function Marketplace() {
                                     <h2 className="text-lg font-semibold mb-2 text-heading">{app.name}</h2>
                                     <p className="text-sm text-base">{app.description}</p>
                                 </div>
-                                <div className="flex items-center justify-between mt-2">
-                                    <div className="flex items-center gap-4">
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-base text-gray-400 text-xs">
-                                                by {app.creator.username}
-                                            </span>
-                                        </div>
-                                        <div className="scale-75">
-                                            <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
-                                        </div>
+                                <div className="flex items-center gap-4 mt-2">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-base text-gray-400 text-xs">
+                                            by {app.creator.username}
+                                        </span>
                                     </div>
-                                    <Suspense>
-                                        <Button onClick={() => setSelectedApp(app)}>Launch</Button>
-                                    </Suspense>
+                                    <div className="scale-75">
+                                        <LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+                                    </div>
                                 </div>
                             </div>
                         </Card>
