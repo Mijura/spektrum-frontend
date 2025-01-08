@@ -4,6 +4,7 @@ import { useSandpack } from "@codesandbox/sandpack-react"
 import { refactorProject } from "../api/project"
 import { useDispatch } from "react-redux"
 import { projectUpdated } from "../reducers/editor-reducer"
+import PlainIcon from "../icons/plain-icon"
 
 interface Message {
 	id: number
@@ -153,17 +154,7 @@ export const Chat: React.FC = () => {
                        text-sm hover:bg-hover transition-colors flex items-center justify-center"
 						aria-label="Send"
 					>
-						{/* Paper Airplane Icon (Heroicon-style) */}
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							stroke="currentColor"
-							className="w-5 h-5"
-						>
-							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.5l16.5 6.75-16.5 6.75v-15z" />
-						</svg>
+						<PlainIcon />
 					</button>
 				</div>
 			</div>
