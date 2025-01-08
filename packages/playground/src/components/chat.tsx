@@ -77,19 +77,19 @@ export const Chat: React.FC = () => {
 				{/* Message list (scrollable) */}
 				<div className="grow overflow-y-auto space-y-4">
 					{messages.map((msg, index) => {
-						const isSystem = msg.role === "system"
+						const isUser = msg.role === "user"
 						return (
-							<div key={msg.id} className={`flex ${isSystem ? "justify-start" : "justify-end"}`}>
+							<div key={msg.id} className={`flex ${isUser ? "justify-start" : "justify-end"}`}>
 								{/* System: avatar left, bubble right | User: bubble left, avatar right */}
-								{isSystem ? (
+								{isUser ? (
 									<div className="flex items-start space-x-2">
-										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=S" alt="System Avatar" />
+										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=U" alt="User Avatar" />
 										<motion.div
 											variants={bubbleVariants}
 											initial="initial"
 											animate="animate"
 											transition={{ duration: 0.3, delay: index * 0.05 }}
-											className="max-w-xs px-3 py-2 rounded bg-surface3 text-white"
+											className="max-w-xs px-3 py-2 rounded bg-clickable text-surface1"
 										>
 											{msg.content}
 										</motion.div>
@@ -101,11 +101,11 @@ export const Chat: React.FC = () => {
 											initial="initial"
 											animate="animate"
 											transition={{ duration: 0.3, delay: index * 0.05 }}
-											className="max-w-xs px-3 py-2 rounded bg-clickable text-surface1"
+											className="max-w-xs px-3 py-2 rounded bg-surface3 text-white"
 										>
 											{msg.content}
 										</motion.div>
-										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=U" alt="User Avatar" />
+										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=S" alt="System Avatar" />
 									</div>
 								)}
 							</div>
