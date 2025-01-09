@@ -1,21 +1,42 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 
 export default function Tabs(props: any) {
-	const [activeTab, setActiveTab] = useState(0)
+    const [activeTab, setActiveTab] = useState(0)
 
-	return (
-		<div className="h-full w-full">
-			{/* Tab Buttons */}
-			<div className="flex space-x-2 mt-4">
-				{React.Children.map(props.children, (child, index) => (
-					<button onClick={() => setActiveTab(index)} className={`p-1 rounded-md text-white ${index === activeTab ? "bg-[#6B5A8E] text-white" : "hover:bg-hover text-[#EEEEEE] hover:text-black"} transition-all`}>
-						{child.key}
-					</button>
-				))}
-			</div>
+    return (
+        <div className="h-full w-full max-h-full">
+            {/* Tab Buttons */}
+            <div className="flex items-end -mb-px gap-1">
+                {React.Children.map(props.children, (child, index) => {
+                    const isActive = index === activeTab
+                    return (
+                        <button
+                            key={index}
+                            onClick={() => setActiveTab(index)}
+                            className={`
+                                relative px-4 py-2 text-sm font-medium
+                                transition-colors duration-300
+                                rounded-t-md
+                                outline-none
+                                ${
+                                    isActive
+                                        ? 'bg-[#6B5A8E] text-white'
+                                        : 'text-clickable bg-surface1 hover:bg-hover hover:text-black'
+                                }
+                            `}
+                        >
+                            {child.key}
+                        </button>
+                    )
+                })}
+            </div>
 
-			{/* Tab Content */}
-			<div className="h-full pt-6">{React.Children.map(props.children, (child, index) => React.cloneElement(child, { display: activeTab === index }))}</div>
-		</div>
-	)
+            {/* Tab Content */}
+            <div className="border border-surface3 rounded-b-md h-full">
+                {React.Children.map(props.children, (child, index) =>
+                    React.cloneElement(child, { display: activeTab === index })
+                )}
+            </div>
+        </div>
+    )
 }
