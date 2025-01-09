@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+const Chip = React.lazy(() => import("@jigjoy-ui/chip"))
+import React, { Suspense, useState } from "react"
 import { motion } from "framer-motion"
 import { useProject } from "../util/store"
 import { refactorProject } from "../api/project"
@@ -82,7 +83,6 @@ export default function Chat() {
 						const isUser = msg.role === "user"
 						return (
 							<div key={msg.id} className={`flex ${isUser ? "justify-start" : "justify-end"}`}>
-								{/* System: avatar left, bubble right | User: bubble left, avatar right */}
 								{isUser ? (
 									<div className="flex items-start space-x-2">
 										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=U" alt="User Avatar" />
@@ -115,26 +115,22 @@ export default function Chat() {
 					})}
 				</div>
 
-				{/* Suggestion buttons */}
+				{/* Suggestion chips */}
 				{messages.length <= 4 && (
 					<div className="flex flex-wrap gap-2 justify-center my-4">
-						{suggestions.map((text, index) => (
-							<motion.button
-								key={text}
-								variants={bubbleVariants}
-								initial="initial"
-								animate="animate"
-								transition={{ duration: 0.3, delay: index * 0.1 }}
-								onClick={() => {
-									setInputValue(text)
-									handleSend()
-								}}
-								className="rounded-full px-3 py-1 bg-surface3 text-clickable text-sm
-                             hover:bg-hover transition-colors"
-							>
-								{text}
-							</motion.button>
-						))}
+						<Suspense>
+							{suggestions.map((text, index) => (
+								<Chip
+									key={text}
+									label={text}
+									delay={index}
+									onClick={() => {
+										setInputValue(text)
+										handleSend()
+									}}
+								/>
+							))}
+						</Suspense>
 					</div>
 				)}
 
@@ -144,8 +140,8 @@ export default function Chat() {
 						type="text"
 						placeholder="Type your message..."
 						className="flex-1 border border-disabled bg-surface1 rounded-full 
-                       px-3 py-2 text-sm placeholder-base
-                       focus:outline-none focus:ring-2 focus:ring-hover"
+                      px-3 py-2 text-sm placeholder-base
+                      focus:outline-none focus:ring-2 focus:ring-hover"
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
 						onKeyDown={(e) => e.key === "Enter" && handleSend()}
@@ -153,7 +149,7 @@ export default function Chat() {
 					<button
 						onClick={handleSend}
 						className="bg-clickable text-surface1 px-4 py-2 rounded-full 
-                       text-sm hover:bg-hover transition-colors flex items-center justify-center"
+                      text-sm hover:bg-hover transition-colors flex items-center justify-center"
 						aria-label="Send"
 					>
 						<PlainIcon />
