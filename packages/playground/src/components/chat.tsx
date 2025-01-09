@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { useSandpack } from "@codesandbox/sandpack-react"
+import { useProject } from "../util/store"
 import { refactorProject } from "../api/project"
 import { useDispatch } from "react-redux"
 import { projectUpdated } from "../reducers/editor-reducer"
@@ -17,9 +17,8 @@ const bubbleVariants = {
 	animate: { opacity: 1, y: 0 },
 }
 
-export const Chat: React.FC = () => {
-	const { sandpack } = useSandpack()
-	const { files, activeFile } = sandpack
+export default function Chat() {
+	const project = useProject()
 
 	const dispatch = useDispatch()
 
@@ -60,14 +59,17 @@ export const Chat: React.FC = () => {
 		setMessages((prev) => [...prev, newMessage])
 		setInputValue("")
 
-		const refactoredProject = await refactorProject({
+		let refactoredProject = await refactorProject({
 			id: "id",
+			project: project,
 			message: newMessage.content,
 		})
 
-		console.log(refactoredProject)
-
-		dispatch(projectUpdated(refactoredProject))
+		const updatedProject = {
+			...project,
+			...refactoredProject,
+		}
+		dispatch(projectUpdated(updatedProject))
 	}
 
 	return (

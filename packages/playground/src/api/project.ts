@@ -1,17 +1,23 @@
 export const API_HOST = process.env.REACT_APP_API
 
-interface RefactorRequest {
+interface ChangeRequest {
 	id: string
 	message: string
+	project: any
 }
 
-export async function refactorProject(request: RefactorRequest): Promise<void> {
+interface Project {
+	id: string
+	files: any
+}
+
+export async function refactorProject(changeRequest: ChangeRequest): Promise<any> {
 	const options = {
-		method: "POST",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(request),
+		body: JSON.stringify(changeRequest),
 	}
 
 	const res: any = await fetch(`${API_HOST}/project/refactor`, options)

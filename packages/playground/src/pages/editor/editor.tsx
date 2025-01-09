@@ -9,8 +9,7 @@ import React, { Suspense, useState } from "react"
 import { sandpackDark } from "@codesandbox/sandpack-themes"
 const Tabs = React.lazy(() => import("@jigjoy-ui/tabs"))
 const Tab = React.lazy(() => import("@jigjoy-ui/tab"))
-import SimpleCodeViewer from "../../components/simple-code-viewer"
-import { Chat } from "../../components/chat"
+import Chat from "../../components/chat"
 import { useProject } from "../../util/store"
 
 export default function Editor() {
@@ -71,7 +70,6 @@ export default function Editor() {
 												</div>
 											}
 										/>
-										<SimpleCodeViewer />
 									</div>
 								</div>
 							</SandpackLayout>
