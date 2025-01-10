@@ -3,6 +3,9 @@ const rspack = require("@rspack/core")
 const Dotenv = require("dotenv-webpack")
 
 const deps = require("../package.json").dependencies
+
+const JIGJOY_UI_URL = process.env.JIGJOY_UI_URL || "http://localhost:3002"
+
 module.exports = {
 	entry: {
 		main: path.join(__dirname, "../src/index.tsx"),
@@ -62,7 +65,7 @@ module.exports = {
 			name: "playground",
 			filename: "remoteEntry.js",
 			remotes: {
-				"@jigjoy-ui": "jigjoy_ui@http://localhost:3002/remoteEntry.js",
+				"@jigjoy-ui": `jigjoy_ui@${JIGJOY_UI_URL}/remoteEntry.js`,
 			},
 			shared: {
 				react: {
