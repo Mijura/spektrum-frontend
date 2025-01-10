@@ -4,14 +4,14 @@ const Dotenv = require("dotenv-webpack")
 
 const deps = require("../package.json").dependencies
 
-const JIGJOY_UI_URL = process.env.JIGJOY_UI_URL || "http://localhost:3002"
+const JIGJOY_UI_URL = process.env.JIGJOY_UI_URL
 
 module.exports = {
 	entry: {
 		main: path.join(__dirname, "../src/index.tsx"),
 	},
 	output: {
-		publicPath: "http://localhost:3000/",
+		publicPath: "auto",
 	},
 	mode: "development",
 	target: "web",

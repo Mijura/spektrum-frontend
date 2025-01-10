@@ -1,6 +1,7 @@
 const path = require("path")
 const { merge } = require("webpack-merge")
 const rspackBaseConfig = require("./rspack.base")
+const Dotenv = require("dotenv-webpack")
 
 // @ts-ignore
 module.exports = merge(rspackBaseConfig, {
