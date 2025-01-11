@@ -1,10 +1,11 @@
-import React, { Suspense, useState } from "react"
-const Card = React.lazy(() => import("@jigjoy-ui/card"))
-const Carousel = React.lazy(() => import("@jigjoy-ui/carousel"))
+import React, { lazy, Suspense, useState } from "react"
+const Card = lazy(() => import("@jigjoy-ui/card"))
+const Carousel = lazy(() => import("@jigjoy-ui/carousel"))
 import ProjectDetails from "./project-details"
 import LikeButton from "../../components/like-button"
+import Project from "../../types/project"
 
-const featuredProjects = [
+const featuredProjects: Project[] = [
 	{
 		name: "AssetDash",
 		description: "Get exclusive crypto-native deals, giveaways, discounts…",
@@ -47,7 +48,7 @@ const featuredProjects = [
 	},
 ]
 
-const exploreProjects = [
+const exploreProjects: Project[] = [
 	{
 		name: "Solend",
 		description: "Solend is a DeFi protocol for lending and borrowing assets...",
@@ -114,7 +115,7 @@ export default function Marketplace() {
 	const [selectedProject, setSelectedProject] = useState(null)
 
 	if (selectedProject) {
-		return <ProjectDetails project={selectedProject} onBack={() => setSelectedProject(null)} />
+		return <ProjectDetails project={selectedProject} />
 	}
 
 	return (

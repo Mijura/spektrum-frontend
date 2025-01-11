@@ -34,3 +34,5 @@ export const useAppSelector = useSelector.withTypes<RootState>()
 
 export const useProject = () =>
 	useAppSelector((state: any) => state.workspace.projects.find((proj: any) => (proj.id = state.workspace.activeProject)))
+
+export const useProjects = () => useAppSelector((state: any) => state.workspace.projects)

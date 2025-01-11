@@ -1,33 +1,21 @@
-import React, { useState } from "react"
-const Card = React.lazy(() => import("@jigjoy-ui/card"))
-const Modal = React.lazy(() => import("@jigjoy-ui/modal"))
-const ModalTrigger = React.lazy(() => import("@jigjoy-ui/modal-trigger"))
-const ModalContent = React.lazy(() => import("@jigjoy-ui/modal-content"))
+import React, { lazy, Suspense, useState } from "react"
+const Card = lazy(() => import("@jigjoy-ui/card"))
+const Modal = lazy(() => import("@jigjoy-ui/modal"))
+const ModalTrigger = lazy(() => import("@jigjoy-ui/modal-trigger"))
+const ModalContent = lazy(() => import("@jigjoy-ui/modal-content"))
 import { motion } from "framer-motion"
-
-// Mock data - replace with actual data fetching
-const projects = [
-	{
-		id: "1",
-		name: "My First project",
-		description: "This is my first project built with JigJoy",
-		imageUrl: "https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif",
-	},
-	{
-		id: "2",
-		name: "Cool Game",
-		description: "An awesome game built using JigJoy engine",
-		imageUrl: "https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif",
-	},
-]
+import { useProjects } from "../../util/store"
+import Project from "../../types/project"
 
 export default function MyProjects() {
+	const projects = useProjects()
 	const [editingProject, setEditingProject] = useState<any>(null)
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
 	const [imageUrl, setImageUrl] = useState("")
 
 	const handleEdit = (project: any) => {
+		console.log(project)
 		setEditingProject(project)
 		setName(project.name)
 		setDescription(project.description)
@@ -57,65 +45,67 @@ export default function MyProjects() {
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
 			<h1 className="text-3xl font-bold mb-6 text-heading">My Projects</h1>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-				{projects.map((project) => (
-					<Card key={project.id}>
-						<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
-						<div className="flex flex-col flex-1 justify-between">
-							<div>
-								<h2 className="text-xl font-semibold mb-2 text-heading">{project.name}</h2>
-								<p className="text-sm text-base">{project.description}</p>
-							</div>
-							<div className="flex justify-end gap-4">
-								<motion.button
-									whileHover={{ scale: 1.1 }}
-									whileTap={{ scale: 0.95 }}
-									onClick={() => handleEdit(project)}
-									className="p-2 rounded-full bg-surface3 text-clickable hover:bg-hover hover:text-surface1"
-								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="20"
-										height="20"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										strokeWidth="2"
-										strokeLinecap="round"
-										strokeLinejoin="round"
+				<Suspense>
+					{projects.map((project: Project) => (
+						<Card>
+							<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
+							<div className="flex flex-col flex-1 justify-between">
+								<div>
+									<h2 className="text-xl font-semibold mb-2 text-heading">{project.name}</h2>
+									<p className="text-sm text-base">{project.description}</p>
+								</div>
+								<div className="flex justify-end gap-4">
+									<motion.button
+										whileHover={{ scale: 1.1 }}
+										whileTap={{ scale: 0.95 }}
+										onClick={() => handleEdit(project)}
+										className="p-2 rounded-full bg-surface3 text-clickable hover:bg-hover hover:text-surface1"
 									>
-										<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-										<path d="m15 5 4 4" />
-									</svg>
-								</motion.button>
-								<motion.button
-									whileHover={{ scale: 1.1 }}
-									whileTap={{ scale: 0.95 }}
-									onClick={() => handleDelete(project.id)}
-									className="p-2 rounded-full bg-surface3 text-red-500 hover:bg-red-500 hover:text-white"
-								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="20"
-										height="20"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										strokeWidth="2"
-										strokeLinecap="round"
-										strokeLinejoin="round"
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="20"
+											height="20"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										>
+											<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+											<path d="m15 5 4 4" />
+										</svg>
+									</motion.button>
+									<motion.button
+										whileHover={{ scale: 1.1 }}
+										whileTap={{ scale: 0.95 }}
+										onClick={() => handleDelete(project.id)}
+										className="p-2 rounded-full bg-surface3 text-red-500 hover:bg-red-500 hover:text-white"
 									>
-										<path d="M3 6h18" />
-										<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-										<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-									</svg>
-								</motion.button>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="20"
+											height="20"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										>
+											<path d="M3 6h18" />
+											<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+											<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+										</svg>
+									</motion.button>
+								</div>
 							</div>
-						</div>
-					</Card>
-				))}
+						</Card>
+					))}
+				</Suspense>
 			</div>
 
-			<React.Suspense>
+			<Suspense>
 				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
 					<ModalTrigger>
 						<div
@@ -179,7 +169,7 @@ export default function MyProjects() {
 						</div>
 					</ModalContent>
 				</Modal>
-			</React.Suspense>
+			</Suspense>
 		</div>
 	)
 }

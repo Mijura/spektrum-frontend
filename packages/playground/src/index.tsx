@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import "../types/index.d.ts"
+import "./types/jigjoy-ui.d.ts"
 import "./index.css"
 import { routeTree } from "./routeTree.gen"
 import { createRouter, RouterProvider } from "@tanstack/react-router"

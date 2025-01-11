@@ -1,8 +1,8 @@
 import React, { lazy, Suspense, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-const Carousel = React.lazy(() => import("@jigjoy-ui/carousel"))
 import LikeButton from "../../components/like-button"
 const Button = lazy(() => import("@jigjoy-ui/button"))
+const Carousel = lazy(() => import("@jigjoy-ui/carousel"))
 
 interface ProjectDetailsProps {
 	project: {
@@ -16,7 +16,6 @@ interface ProjectDetailsProps {
 			avatarUrl: string
 		}
 	}
-	onBack: () => void
 }
 
 export default function ProjectDetails({ project }: ProjectDetailsProps) {

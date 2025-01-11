@@ -14,7 +14,7 @@ const LeftSideMenu = () => {
 
 	const navigate = useNavigate()
 
-	const handleOptionClick = (option, route) => {
+	const handleOptionClick = (option: string, route: string) => {
 		setSelectedOption(option)
 		if (route) {
 			navigate({ to: route })

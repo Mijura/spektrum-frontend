@@ -1,5 +1,5 @@
-import React from "react"
-const Stepper = React.lazy(() => import("@jigjoy-ui/stepper"))
+import React, { lazy } from "react"
+const Stepper = lazy(() => import("@jigjoy-ui/stepper"))
 
 export default function Onboarding() {
 	const steps = [
