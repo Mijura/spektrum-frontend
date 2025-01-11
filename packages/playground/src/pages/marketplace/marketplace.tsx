@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { Suspense, useState } from "react"
 const Card = React.lazy(() => import("@jigjoy-ui/card"))
-import Carousel from "../../../../jigjoy-ui/src/components/carousel"
+const Carousel = React.lazy(() => import("@jigjoy-ui/carousel"))
 import ProjectDetails from "./project-details"
 import LikeButton from "../../components/like-button"
 
@@ -123,51 +123,55 @@ export default function Marketplace() {
 			<h1 className="text-3xl font-bold mb-6 text-heading">Featured</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
 				{featuredProjects.map((project: any) => (
-					<Card key={project.name} onClick={() => setSelectedProject(project)}>
-						<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
-						<div className="flex flex-col flex-1 justify-between">
-							<div>
-								<h2 className="text-xl font-semibold mb-2 text-heading">{project.name}</h2>
-								<p className="text-sm text-base">{project.description}</p>
-							</div>
-							<div className="flex items-center gap-4">
-								<div className="flex items-center gap-2">
-									<img src={project.creator.avatarUrl} alt={project.creator.username} className="w-8 h-8 rounded-full" />
-									<span className="text-base text-gray-400">by {project.creator.username}</span>
+					<Suspense>
+						<Card key={project.name} onClick={() => setSelectedProject(project)}>
+							<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
+							<div className="flex flex-col flex-1 justify-between">
+								<div>
+									<h2 className="text-xl font-semibold mb-2 text-heading">{project.name}</h2>
+									<p className="text-sm text-base">{project.description}</p>
 								</div>
-								<LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+								<div className="flex items-center gap-4">
+									<div className="flex items-center gap-2">
+										<img src={project.creator.avatarUrl} alt={project.creator.username} className="w-8 h-8 rounded-full" />
+										<span className="text-base text-gray-400">by {project.creator.username}</span>
+									</div>
+									<LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+								</div>
 							</div>
-						</div>
-					</Card>
+						</Card>
+					</Suspense>
 				))}
 			</div>
 
 			{/* === Explore Section === */}
 			<h1 className="text-3xl font-bold mb-6 text-heading">Explore</h1>
 			<div className="pb-20">
-				<Carousel itemsPerSlide={3} className="explore-carousel pointer-events-none" showCounter={false}>
-					{exploreProjects.map((project: any) => (
-						<Card key={project.name} className="pointer-events-auto" onClick={() => setSelectedProject(project)}>
-							<div className="flex justify-center items-center">
-								<img src={project.imageUrl} alt={project.name} className="w-16 h-16 rounded-full object-cover" />
-							</div>
-							<div className="flex flex-col flex-1 justify-between">
-								<div>
-									<h2 className="text-lg font-semibold mb-2 text-heading">{project.name}</h2>
-									<p className="text-sm text-base">{project.description}</p>
+				<Suspense>
+					<Carousel itemsPerSlide={3} className="pointer-events-none" showCounter={false}>
+						{exploreProjects.map((project: any) => (
+							<Card key={project.name} className="pointer-events-auto" onClick={() => setSelectedProject(project)}>
+								<div className="flex justify-center items-center">
+									<img src={project.imageUrl} alt={project.name} className="w-16 h-16 rounded-full object-cover" />
 								</div>
-								<div className="flex items-center gap-4 mt-2">
-									<div className="flex items-center gap-2">
-										<span className="text-base text-gray-400 text-xs">by {project.creator.username}</span>
+								<div className="flex flex-col flex-1 justify-between">
+									<div>
+										<h2 className="text-lg font-semibold mb-2 text-heading">{project.name}</h2>
+										<p className="text-sm text-base">{project.description}</p>
 									</div>
-									<div className="scale-75">
-										<LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+									<div className="flex items-center gap-4 mt-2">
+										<div className="flex items-center gap-2">
+											<span className="text-base text-gray-400 text-xs">by {project.creator.username}</span>
+										</div>
+										<div className="scale-75">
+											<LikeButton initialLikes={Math.floor(Math.random() * 1000)} />
+										</div>
 									</div>
 								</div>
-							</div>
-						</Card>
-					))}
-				</Carousel>
+							</Card>
+						))}
+					</Carousel>
+				</Suspense>
 			</div>
 		</div>
 	)

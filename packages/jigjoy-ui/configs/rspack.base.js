@@ -80,6 +80,7 @@ module.exports = {
 				"./card": "./src/components/card",
 				"./progress-bar": "./src/components/progress-bar",
 				"./chip": "./src/components/chip",
+				"./carousel": "./src/components/carousel",
 			},
 			shared: {
 				react: {
