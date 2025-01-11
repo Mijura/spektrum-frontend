@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import Carousel from "../../components/carousel"
+import Carousel from "../../../../jigjoy-ui/src/components/carousel"
 import LikeButton from "../../components/like-button"
 const Button = lazy(() => import("@jigjoy-ui/button"))
 

@@ -5,7 +5,7 @@ import {
 	SandpackPreview,
 	SandpackProvider,
 } from "@codesandbox/sandpack-react"
-import React, { Suspense, useState } from "react"
+import React, { Suspense } from "react"
 import { sandpackDark } from "@codesandbox/sandpack-themes"
 const Tabs = React.lazy(() => import("@jigjoy-ui/tabs"))
 const Tab = React.lazy(() => import("@jigjoy-ui/tab"))
@@ -13,8 +13,6 @@ import Chat from "../../components/chat"
 import { useProject } from "../../util/store"
 
 export default function Editor() {
-	const [editorOn, toggleEditor] = useState(false)
-
 	const project = useProject()
 
 	return (
@@ -46,7 +44,7 @@ export default function Editor() {
 														<Chat />
 													</div>
 												</Tab>
-												<Tab key="Source">
+												<Tab key="Dev Mode">
 													<div className="h-full flex flex-col">
 														<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "25%" }} />
 														<SandpackCodeEditor showTabs={false} style={{ height: "75%" }} />

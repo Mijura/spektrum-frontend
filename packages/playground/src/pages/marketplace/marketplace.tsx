@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 const Card = React.lazy(() => import("@jigjoy-ui/card"))
-import Carousel from "../../components/carousel"
+import Carousel from "../../../../jigjoy-ui/src/components/carousel"
 import ProjectDetails from "./project-details"
 import LikeButton from "../../components/like-button"
 

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { useProject } from "../util/store"
 import { refactorProject } from "../api/project"
 import { useDispatch } from "react-redux"
-import { projectUpdated } from "../reducers/editor-reducer"
+import { projectUpdated } from "../reducers/workspace-reducer"
 import PlainIcon from "../icons/plain-icon"
 
 interface Message {

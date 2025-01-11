@@ -1,17 +1,17 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import editorReducer from "../reducers/editor-reducer"
 import { useDispatch, useSelector } from "react-redux"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
+import workspaceReducer from "../reducers/workspace-reducer"
 
 const rootReducer = combineReducers({
-	editor: editorReducer,
+	workspace: workspaceReducer,
 })
 
 const persistConfig = {
 	key: "root",
 	storage: storage,
-	whitelist: ["editor"],
+	whitelist: ["workspace"],
 }
 
 const persistedReducer = persistReducer<ReturnType<typeof rootReducer>>(persistConfig, rootReducer)
@@ -32,4 +32,5 @@ export type AppDispatch = typeof store.dispatch
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useAppSelector = useSelector.withTypes<RootState>()
 
-export const useProject = () => useAppSelector((state: any) => state.editor.project)
+export const useProject = () =>
+	useAppSelector((state: any) => state.workspace.projects.find((proj: any) => (proj.id = state.workspace.activeProject)))

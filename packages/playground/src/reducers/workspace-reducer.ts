@@ -4,15 +4,17 @@ interface Project {
 	id: string
 	files: any
 }
-interface EditorState {
-	project: Project
+interface WorkspaceState {
+	projects: Project[]
+	activeProject: string
 }
 
-let initialState: EditorState = {
-	project: {
-		id: "proj",
-		files: {
-			"/App.tsx": `
+let initialState: WorkspaceState = {
+	projects: [
+		{
+			id: "proj",
+			files: {
+				"/App.tsx": `
 export default function App() {
 	return (
 		<div className="flex justify-center items-center h-screen bg-gray-100">
@@ -20,17 +22,21 @@ export default function App() {
 		</div>
 	);
 }`,
+			},
 		},
-	},
+	],
+	activeProject: "proj",
 }
 
 export const editorSlice = createSlice({
-	name: "project",
+	name: "workspace",
 	initialState,
 
 	reducers: {
 		projectUpdated: (state, action: PayloadAction<any>) => {
-			state.project = action.payload
+			const project = action.payload
+			let index = state.projects.findIndex((p: any) => p.id == project.id)
+			state.projects.splice(index, 1, project)
 		},
 	},
 })
