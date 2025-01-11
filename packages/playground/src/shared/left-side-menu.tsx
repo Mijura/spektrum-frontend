@@ -30,8 +30,8 @@ const LeftSideMenu = () => {
 			<ul className="flex flex-col mt-[100px]">
 				{[
 					{ name: "editor", icon: EditorIcon, label: "Editor", route: "/" },
-					{ name: "browse", icon: MarketplaceIcon, label: "Browse Blocks", route: "/browse" },
-					{ name: "apps", icon: ProjectsIcon, label: "My Apps", route: "/my-apps" },
+					{ name: "browse", icon: MarketplaceIcon, label: "Browse Components", route: "/browse-components" },
+					{ name: "projects", icon: ProjectsIcon, label: "My Projects", route: "/my-projects" },
 					// { name: 'rewards', icon: QuestsIcon, label: 'Rewards', route: '/rewards' }
 				].map(({ name, icon: Icon, label, route }) => (
 					<li

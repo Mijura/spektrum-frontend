@@ -16,184 +16,238 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const OnboardingLazyImport = createFileRoute('/onboarding')()
-const PricingLazyImport = createFileRoute('/pricing')()
-const MyProfileLazyImport = createFileRoute('/my-profile')()
-const MyAppsLazyImport = createFileRoute('/my-apps')()
-const PricingLazyImport = createFileRoute('/pricing')()
-const BrowseLazyImport = createFileRoute('/browse')()
-const AuthorizeLazyImport = createFileRoute('/authorize')()
 const RewardsLazyImport = createFileRoute('/rewards')()
+const PricingLazyImport = createFileRoute('/pricing')()
+const OnboardingLazyImport = createFileRoute('/onboarding')()
+const MyProjectsLazyImport = createFileRoute('/my-projects')()
+const MyProfileLazyImport = createFileRoute('/my-profile')()
+const BrowseComponentsLazyImport = createFileRoute('/browse-components')()
+const AuthorizeLazyImport = createFileRoute('/authorize')()
+const AuthorizationLazyImport = createFileRoute('/authorization')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const PricingLazyRoute = PricingLazyImport.update({
-    path: '/pricing',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/pricing.lazy').then(d => d.Route))
+const RewardsLazyRoute = RewardsLazyImport.update({
+  path: '/rewards',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/rewards.lazy').then((d) => d.Route))
 
 const PricingLazyRoute = PricingLazyImport.update({
-    path: '/pricing',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/pricing.lazy').then(d => d.Route))
+  path: '/pricing',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/pricing.lazy').then((d) => d.Route))
 
 const OnboardingLazyRoute = OnboardingLazyImport.update({
-    path: '/onboarding',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/onboarding.lazy').then(d => d.Route))
+  path: '/onboarding',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/onboarding.lazy').then((d) => d.Route))
+
+const MyProjectsLazyRoute = MyProjectsLazyImport.update({
+  path: '/my-projects',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/my-projects.lazy').then((d) => d.Route))
 
 const MyProfileLazyRoute = MyProfileLazyImport.update({
-    path: '/my-profile',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/my-profile.lazy').then(d => d.Route))
+  path: '/my-profile',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/my-profile.lazy').then((d) => d.Route))
 
-const MyAppsLazyRoute = MyAppsLazyImport.update({
-    path: '/my-apps',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/my-apps.lazy').then(d => d.Route))
-
-const BrowseLazyRoute = BrowseLazyImport.update({
-    path: '/browse',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/browse.lazy').then(d => d.Route))
+const BrowseComponentsLazyRoute = BrowseComponentsLazyImport.update({
+  path: '/browse-components',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/browse-components.lazy').then((d) => d.Route),
+)
 
 const AuthorizeLazyRoute = AuthorizeLazyImport.update({
-    path: '/authorize',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/authorize.lazy').then(d => d.Route))
+  path: '/authorize',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/authorize.lazy').then((d) => d.Route))
 
-const RewardsLazyRoute = RewardsLazyImport.update({
-    path: '/rewards',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/rewards.lazy').then(d => d.Route))
+const AuthorizationLazyRoute = AuthorizationLazyImport.update({
+  path: '/authorization',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/authorization.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
-    path: '/',
-    getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/index.lazy').then(d => d.Route))
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
-    interface FileRoutesByPath {
-        '/': {
-            id: '/'
-            path: '/'
-            fullPath: '/'
-            preLoaderRoute: typeof IndexLazyImport
-            parentRoute: typeof rootRoute
-        }
-        '/rewards': {
-            id: '/rewards'
-            path: '/rewards'
-            fullPath: '/rewards'
-            preLoaderRoute: typeof RewardsLazyImport
-            parentRoute: typeof rootRoute
-        }
-        '/authorize': {
-            id: '/authorize'
-            path: '/authorize'
-            fullPath: '/authorize'
-            preLoaderRoute: typeof AuthorizeLazyImport
-            parentRoute: typeof rootRoute
-        }
-        '/browse': {
-            id: '/browse'
-            path: '/browse'
-            fullPath: '/browse'
-            preLoaderRoute: typeof BrowseLazyImport
-            parentRoute: typeof rootRoute
-        }
-        '/my-apps': {
-            id: '/my-apps'
-            path: '/my-apps'
-            fullPath: '/my-apps'
-            preLoaderRoute: typeof MyAppsLazyImport
-            parentRoute: typeof rootRoute
-        }
-        '/my-profile': {
-            id: '/my-profile'
-            path: '/my-profile'
-            fullPath: '/my-profile'
-            preLoaderRoute: typeof MyProfileLazyImport
-            parentRoute: typeof rootRoute
-        }
-        '/onboarding': {
-            id: '/onboarding'
-            path: '/onboarding'
-            fullPath: '/onboarding'
-            preLoaderRoute: typeof OnboardingLazyImport
-            parentRoute: typeof rootRoute
-        }
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
     }
+    '/authorization': {
+      id: '/authorization'
+      path: '/authorization'
+      fullPath: '/authorization'
+      preLoaderRoute: typeof AuthorizationLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/authorize': {
+      id: '/authorize'
+      path: '/authorize'
+      fullPath: '/authorize'
+      preLoaderRoute: typeof AuthorizeLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/browse-components': {
+      id: '/browse-components'
+      path: '/browse-components'
+      fullPath: '/browse-components'
+      preLoaderRoute: typeof BrowseComponentsLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/my-profile': {
+      id: '/my-profile'
+      path: '/my-profile'
+      fullPath: '/my-profile'
+      preLoaderRoute: typeof MyProfileLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/my-projects': {
+      id: '/my-projects'
+      path: '/my-projects'
+      fullPath: '/my-projects'
+      preLoaderRoute: typeof MyProjectsLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsLazyImport
+      parentRoute: typeof rootRoute
+    }
+  }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-    '/': typeof IndexLazyRoute
-    '/rewards': typeof RewardsLazyRoute
-    '/authorize': typeof AuthorizeLazyRoute
-    '/browse': typeof BrowseLazyRoute
-    '/my-apps': typeof MyAppsLazyRoute
-    '/my-profile': typeof MyProfileLazyRoute
-    '/onboarding': typeof OnboardingLazyRoute
-    '/pricing': typeof PricingLazyRoute
+  '/': typeof IndexLazyRoute
+  '/authorization': typeof AuthorizationLazyRoute
+  '/authorize': typeof AuthorizeLazyRoute
+  '/browse-components': typeof BrowseComponentsLazyRoute
+  '/my-profile': typeof MyProfileLazyRoute
+  '/my-projects': typeof MyProjectsLazyRoute
+  '/onboarding': typeof OnboardingLazyRoute
+  '/pricing': typeof PricingLazyRoute
+  '/rewards': typeof RewardsLazyRoute
 }
 
 export interface FileRoutesByTo {
-    '/': typeof IndexLazyRoute
-    '/rewards': typeof RewardsLazyRoute
-    '/authorize': typeof AuthorizeLazyRoute
-    '/browse': typeof BrowseLazyRoute
-    '/my-apps': typeof MyAppsLazyRoute
-    '/my-profile': typeof MyProfileLazyRoute
-    '/onboarding': typeof OnboardingLazyRoute
+  '/': typeof IndexLazyRoute
+  '/authorization': typeof AuthorizationLazyRoute
+  '/authorize': typeof AuthorizeLazyRoute
+  '/browse-components': typeof BrowseComponentsLazyRoute
+  '/my-profile': typeof MyProfileLazyRoute
+  '/my-projects': typeof MyProjectsLazyRoute
+  '/onboarding': typeof OnboardingLazyRoute
+  '/pricing': typeof PricingLazyRoute
+  '/rewards': typeof RewardsLazyRoute
 }
 
 export interface FileRoutesById {
-    __root__: typeof rootRoute
-    '/': typeof IndexLazyRoute
-    '/rewards': typeof RewardsLazyRoute
-    '/authorize': typeof AuthorizeLazyRoute
-    '/browse': typeof BrowseLazyRoute
-    '/my-apps': typeof MyAppsLazyRoute
-    '/my-profile': typeof MyProfileLazyRoute
-    '/onboarding': typeof OnboardingLazyRoute
+  __root__: typeof rootRoute
+  '/': typeof IndexLazyRoute
+  '/authorization': typeof AuthorizationLazyRoute
+  '/authorize': typeof AuthorizeLazyRoute
+  '/browse-components': typeof BrowseComponentsLazyRoute
+  '/my-profile': typeof MyProfileLazyRoute
+  '/my-projects': typeof MyProjectsLazyRoute
+  '/onboarding': typeof OnboardingLazyRoute
+  '/pricing': typeof PricingLazyRoute
+  '/rewards': typeof RewardsLazyRoute
 }
 
 export interface FileRouteTypes {
-    fileRoutesByFullPath: FileRoutesByFullPath
-    fullPaths: '/' | '/rewards' | '/authorize' | '/browse' | '/my-apps' | '/my-profile' | '/onboarding'
-    fileRoutesByTo: FileRoutesByTo
-    to: '/' | '/rewards' | '/authorize' | '/browse' | '/my-apps' | '/my-profile' | '/onboarding'
-    id: '__root__' | '/' | '/Rewards' | '/authorize' | '/browse' | '/my-apps' | '/my-profile' | '/onboarding'
-    fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/authorization'
+    | '/authorize'
+    | '/browse-components'
+    | '/my-profile'
+    | '/my-projects'
+    | '/onboarding'
+    | '/pricing'
+    | '/rewards'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/authorization'
+    | '/authorize'
+    | '/browse-components'
+    | '/my-profile'
+    | '/my-projects'
+    | '/onboarding'
+    | '/pricing'
+    | '/rewards'
+  id:
+    | '__root__'
+    | '/'
+    | '/authorization'
+    | '/authorize'
+    | '/browse-components'
+    | '/my-profile'
+    | '/my-projects'
+    | '/onboarding'
+    | '/pricing'
+    | '/rewards'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-    IndexLazyRoute: typeof IndexLazyRoute
-    RewardsLazyRoute: typeof RewardsLazyRoute
-    AuthorizeLazyRoute: typeof AuthorizeLazyRoute
-    BrowseLazyRoute: typeof BrowseLazyRoute
-    MyAppsLazyRoute: typeof MyAppsLazyRoute
-    MyProfileLazyRoute: typeof MyProfileLazyRoute
-    OnboardingLazyRoute: typeof OnboardingLazyRoute
+  IndexLazyRoute: typeof IndexLazyRoute
+  AuthorizationLazyRoute: typeof AuthorizationLazyRoute
+  AuthorizeLazyRoute: typeof AuthorizeLazyRoute
+  BrowseComponentsLazyRoute: typeof BrowseComponentsLazyRoute
+  MyProfileLazyRoute: typeof MyProfileLazyRoute
+  MyProjectsLazyRoute: typeof MyProjectsLazyRoute
+  OnboardingLazyRoute: typeof OnboardingLazyRoute
+  PricingLazyRoute: typeof PricingLazyRoute
+  RewardsLazyRoute: typeof RewardsLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-    IndexLazyRoute: IndexLazyRoute,
-    RewardsLazyRoute: RewardsLazyRoute,
-    AuthorizeLazyRoute: AuthorizeLazyRoute,
-    BrowseLazyRoute: BrowseLazyRoute,
-    MyAppsLazyRoute: MyAppsLazyRoute,
-    MyProfileLazyRoute: MyProfileLazyRoute,
-    OnboardingLazyRoute: OnboardingLazyRoute,
-    PricingLazyRoute: PricingLazyRoute
+  IndexLazyRoute: IndexLazyRoute,
+  AuthorizationLazyRoute: AuthorizationLazyRoute,
+  AuthorizeLazyRoute: AuthorizeLazyRoute,
+  BrowseComponentsLazyRoute: BrowseComponentsLazyRoute,
+  MyProfileLazyRoute: MyProfileLazyRoute,
+  MyProjectsLazyRoute: MyProjectsLazyRoute,
+  OnboardingLazyRoute: OnboardingLazyRoute,
+  PricingLazyRoute: PricingLazyRoute,
+  RewardsLazyRoute: RewardsLazyRoute,
 }
 
-export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>()
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 
@@ -204,34 +258,42 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/rewards",
+        "/authorization",
         "/authorize",
-        "/browse",
-        "/my-apps",
+        "/browse-components",
         "/my-profile",
-        "/onboarding"
+        "/my-projects",
+        "/onboarding",
+        "/pricing",
+        "/rewards"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
     },
-    "/rewards": {
-      "filePath": "Rewards.lazy.tsx"
+    "/authorization": {
+      "filePath": "authorization.lazy.tsx"
     },
     "/authorize": {
       "filePath": "authorize.lazy.tsx"
     },
-    "/browse": {
-      "filePath": "browse.lazy.tsx"
-    },
-    "/my-apps": {
-      "filePath": "my-apps.lazy.tsx"
+    "/browse-components": {
+      "filePath": "browse-components.lazy.tsx"
     },
     "/my-profile": {
       "filePath": "my-profile.lazy.tsx"
     },
+    "/my-projects": {
+      "filePath": "my-projects.lazy.tsx"
+    },
     "/onboarding": {
       "filePath": "onboarding.lazy.tsx"
+    },
+    "/pricing": {
+      "filePath": "pricing.lazy.tsx"
+    },
+    "/rewards": {
+      "filePath": "rewards.lazy.tsx"
     }
   }
 }
