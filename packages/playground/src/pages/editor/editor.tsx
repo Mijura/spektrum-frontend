@@ -37,19 +37,19 @@ export default function Editor() {
 							}}
 						>
 							<SandpackLayout style={{ height: "100%" }}>
-								<div className="flex flex-row w-full">
-									<div className="w-[33%]">
+								<div className="flex flex-row w-full bg-surface3">
+									<div className="w-[33%] mr-[20px]">
 										<Suspense>
 											<Tabs>
-												<Tab key="Create">
+												<Tab key="Discovery">
 													<div className="h-full w-full pr-5 pb-10">
 														<Chat />
 													</div>
 												</Tab>
-												<Tab key="Building Blocks">
-													<div className="h-full flex pr-5">
-														<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "100%" }} />
-														{editorOn && <SandpackCodeEditor style={{ height: "100%" }} />}
+												<Tab key="Source">
+													<div className="h-full flex flex-col">
+														<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "25%" }} />
+														<SandpackCodeEditor showTabs={false} style={{ height: "75%" }} />
 													</div>
 												</Tab>
 											</Tabs>
@@ -62,13 +62,6 @@ export default function Editor() {
 											showOpenInCodeSandbox={false}
 											showRestartButton={true}
 											style={{ height: "100%" }}
-											actionsChildren={
-												<div>
-													<button className="bg-surface3 text-clickable mx-1 p-2 rounded-lg" onClick={() => toggleEditor(!editorOn)}>
-														Toggle Editor
-													</button>
-												</div>
-											}
 										/>
 									</div>
 								</div>

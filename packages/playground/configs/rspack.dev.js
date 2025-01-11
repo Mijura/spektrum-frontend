@@ -1,7 +1,6 @@
 const path = require("path")
 const { merge } = require("webpack-merge")
 const rspackBaseConfig = require("./rspack.base")
-const Dotenv = require("dotenv-webpack")
 
 const devConfig = {
 	mode: "development",

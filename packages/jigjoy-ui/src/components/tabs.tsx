@@ -4,9 +4,9 @@ export default function Tabs(props: any) {
 	const [activeTab, setActiveTab] = useState(0)
 
 	return (
-		<div className="h-full w-full max-h-full">
+		<div className="h-full w-full max-h-full bg-surface3">
 			{/* Tab Buttons */}
-			<div className="flex items-end -mb-px gap-1">
+			<div className="flex items-end -mb-px">
 				{React.Children.map(props.children, (child, index) => {
 					const isActive = index === activeTab
 					return (
@@ -15,14 +15,12 @@ export default function Tabs(props: any) {
 							onClick={() => setActiveTab(index)}
 							className={`
                                 relative px-4 py-2 text-sm font-medium
-                                transition-colors duration-300
                                 rounded-t-md
-                                outline-none
                                 ${
-																																	isActive
-																																		? "bg-accent text-white"
-																																		: "text-clickable bg-surface1 hover:bg-hover hover:text-black"
-																																}
+																	isActive
+																		? "text-accent bg-black"
+																		: "text-clickable bg-surface3 hover:bg-hover hover:text-black"
+																}
                             `}
 						>
 							{child.key}
@@ -32,8 +30,10 @@ export default function Tabs(props: any) {
 			</div>
 
 			{/* Tab Content */}
-			<div className="border border-surface3 rounded-b-md h-full">
-				{React.Children.map(props.children, (child, index) => React.cloneElement(child, { display: activeTab === index }))}
+			<div className="rounded-md h-full bg-black">
+				{React.Children.map(props.children, (child, index) =>
+					React.cloneElement(child, { display: activeTab === index }),
+				)}
 			</div>
 		</div>
 	)
