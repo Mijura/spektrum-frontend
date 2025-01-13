@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import ProjectsIcon from "../icons/projects-icon"
-import MarketplaceIcon from "../icons/marketplace-icon"
+// import MarketplaceIcon from "../icons/marketplace-icon"
 // import QuestsIcon from "../icons/quests-icon"
 import EditorIcon from "../icons/editor-icon"
 import DiscordIcon from "../icons/discord-icon"
@@ -30,7 +30,7 @@ const LeftSideMenu = () => {
 			<ul className="flex flex-col mt-[100px]">
 				{[
 					{ name: "editor", icon: EditorIcon, label: "Editor", route: "/" },
-					{ name: "browse", icon: MarketplaceIcon, label: "Browse Components", route: "/browse-components" },
+					// { name: "browse", icon: MarketplaceIcon, label: "Browse Components", route: "/browse-components" },
 					{ name: "projects", icon: ProjectsIcon, label: "My Projects", route: "/my-projects" },
 					// { name: 'rewards', icon: QuestsIcon, label: 'Rewards', route: '/rewards' }
 				].map(({ name, icon: Icon, label, route }) => (
