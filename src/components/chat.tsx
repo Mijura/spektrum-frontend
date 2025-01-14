@@ -85,7 +85,7 @@ export default function Chat() {
 							<div key={msg.id} className={`flex ${isUser ? "justify-start" : "justify-end"}`}>
 								{isUser ? (
 									<div className="flex items-start space-x-2">
-										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=U" alt="User Avatar" />
+										<img className="w-8 h-8 rounded-full" src="https://avatars.githubusercontent.com/u/110939072?v=4" alt="User Avatar" />
 										<motion.div
 											variants={bubbleVariants}
 											initial="initial"
@@ -107,7 +107,7 @@ export default function Chat() {
 										>
 											{msg.content}
 										</motion.div>
-										<img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/32?text=S" alt="System Avatar" />
+										<img className="w-8 h-8 rounded-full" src="favicon.ico" alt="System Avatar" />
 									</div>
 								)}
 							</div>
