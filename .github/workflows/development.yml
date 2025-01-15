@@ -8,6 +8,9 @@ jobs:
  deploy:
   runs-on: ubuntu-latest
   environment: development
+  permissions:
+    contents: read
+    packages: read
 
   steps:
    - name: Checkout
