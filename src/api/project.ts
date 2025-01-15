@@ -6,11 +6,6 @@ interface ChangeRequest {
 	project: any
 }
 
-interface Project {
-	id: string
-	files: any
-}
-
 export async function refactorProject(changeRequest: ChangeRequest): Promise<any> {
 	const options = {
 		method: "PUT",
