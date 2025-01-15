@@ -18,8 +18,8 @@ jobs:
      with:
       node-version: 18
 
-  - name: "Create .npmrc file"
-    run: |
+   - name: "Create .npmrc file"
+     run: |
       echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
       echo "@jigjoy-io:registry=https://npm.pkg.github.com" >> .npmrc
       cat .npmrc
