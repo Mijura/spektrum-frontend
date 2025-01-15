@@ -1,9 +1,6 @@
 const path = require("path")
 const rspack = require("@rspack/core")
 const Dotenv = require("dotenv-webpack")
-const deps = require("../package.json").dependencies
-
-const JIGJOY_UI_URL = process.env.JIGJOY_UI_URL
 
 module.exports = {
 	entry: {
@@ -59,7 +56,7 @@ module.exports = {
 			title: "Text-to-play engine that transforms imagination into playful apps.",
 			filename: "index.html",
 			chunks: ["main"],
-		})
+		}),
 	],
 	resolve: {
 		extensions: [".jsx", ".tsx", ".ts", ".js", ".json"],

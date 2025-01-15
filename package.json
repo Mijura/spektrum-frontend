@@ -5,9 +5,9 @@
 	"scripts": {
 		"generate-routes": "tsr generate",
 		"watch-routes": "tsr watch",
-		"start": "JIGJOY_UI_URL=http://localhost:3002 rspack serve --config configs/rspack.dev.js",
-		"serve": "JIGJOY_UI_URL=http://localhost:3002 rspack serve --config configs/rspack.dev.js",
-		"build": "JIGJOY_UI_URL=https://jigjoy.io/jigjoy-ui rspack --config configs/rspack.prod.js",
+		"start": "rspack serve --config configs/rspack.dev.js",
+		"serve": "rspack serve --config configs/rspack.dev.js",
+		"build": "rspack --config configs/rspack.prod.js",
 		"format": "prettier --write \"{src,backend}/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
