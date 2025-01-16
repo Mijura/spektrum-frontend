@@ -67,7 +67,7 @@ export default function Chat() {
 		})
 
 		const updatedProject = {
-			...project,
+			...JSON.parse(JSON.stringify(project)),
 			...refactoredProject,
 		}
 		dispatch(projectUpdated(updatedProject))

@@ -29,8 +29,8 @@ export const editorSlice = createSlice({
 
 	reducers: {
 		projectUpdated: (state, action: PayloadAction<any>) => {
-			const project = action.payload
-			let index = state.projects.findIndex((p: any) => p.id == project.id)
+			let project = action.payload
+			let index = state.projects.findIndex((p: any) => p.id === project.id)
 			state.projects.splice(index, 1, project)
 		},
 	},

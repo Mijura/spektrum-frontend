@@ -33,6 +33,6 @@ export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useAppSelector = useSelector.withTypes<RootState>()
 
 export const useProject = () =>
-	useAppSelector((state: any) => state.workspace.projects.find((proj: any) => (proj.id = state.workspace.activeProject)))
+	useAppSelector((state: any) => state.workspace.projects.find((project: any) => project.id === state.workspace.activeProject))
 
 export const useProjects = () => useAppSelector((state: any) => state.workspace.projects)
