@@ -13,13 +13,7 @@ let initialState: EditorState = {
 				"/App.tsx": `
 export default function App() {
 	return (
-	<div>
-			<div className="flex justify-center items-center h-screen bg-gray-100">
-			<h1 className="text-4xl font-bold text-pink-500">Welcome, to JigJoy Playground!</h1>
-		</div>
-	
-	</div>
-
+	<></>
 	);
 }`,
 			},

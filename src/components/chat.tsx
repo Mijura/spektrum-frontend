@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from "react"
 import { motion } from "framer-motion"
 import { useProject } from "../util/store"
-import { refactorProject } from "../api/project"
+import { implementRequest } from "../api/project"
 import { useDispatch } from "react-redux"
 import { messageAdded, sourceCodeUpdated } from "../reducers/editor-reducer"
 import PlainIcon from "../icons/plain-icon"
@@ -39,7 +39,7 @@ export default function Chat() {
 
 		setInputValue("")
 
-		let newSourceCode = await refactorProject({
+		let newSourceCode = await implementRequest({
 			id: "id",
 			project: project,
 			message: newMessage.content,

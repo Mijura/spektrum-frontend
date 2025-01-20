@@ -6,7 +6,7 @@ interface ChangeRequest {
 	project: any
 }
 
-export async function refactorProject(changeRequest: ChangeRequest): Promise<any> {
+export async function implementRequest(changeRequest: ChangeRequest): Promise<any> {
 	const options = {
 		method: "PUT",
 		headers: {
@@ -15,6 +15,6 @@ export async function refactorProject(changeRequest: ChangeRequest): Promise<any
 		body: JSON.stringify(changeRequest),
 	}
 
-	const res: any = await fetch(`${API_HOST}/project/refactor`, options)
+	const res: any = await fetch(`${API_HOST}/project/implement`, options)
 	return await res.json()
 }
