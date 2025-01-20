@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { useProject } from "../util/store"
 import { refactorProject } from "../api/project"
 import { useDispatch } from "react-redux"
-import { projectUpdated } from "../reducers/workspace-reducer"
+import { messageAdded, projectUpdated } from "../reducers/editor-reducer"
 import PlainIcon from "../icons/plain-icon"
 import { Chip } from "@jigjoy-io/ui"
 
@@ -23,30 +23,7 @@ export default function Chat() {
 
 	const dispatch = useDispatch()
 
-	const [messages, setMessages] = useState<Message[]>([
-		{
-			id: 1,
-			role: "system",
-			content: "Welcome to the chat! How can I help you?",
-		},
-		{
-			id: 2,
-			role: "user",
-			content: "I need help creating my first block.",
-		},
-		{
-			id: 3,
-			role: "system",
-			content: "Sure! Just type /craft to get started.",
-		},
-		{
-			id: 4,
-			role: "user",
-			content: "Awesome, thanks for the tip!",
-		},
-	])
-
-	const suggestions = ["Craft a new block", "Refine an existing block"]
+	const suggestions = ["Create a website template...", "Create an note taking app..."]
 
 	const [inputValue, setInputValue] = useState("")
 
@@ -57,7 +34,9 @@ export default function Chat() {
 			role: "user",
 			content: inputValue.trim(),
 		}
-		setMessages((prev) => [...prev, newMessage])
+
+		dispatch(messageAdded(newMessage))
+
 		setInputValue("")
 
 		let refactoredProject = await refactorProject({
@@ -69,18 +48,22 @@ export default function Chat() {
 		const updatedProject = {
 			...project,
 			...refactoredProject,
-			id: project.id
+			id: project.id,
+			chatHistory: project.chatHistory
 		}
+
+		updatedProject.chatHistory = project.chatHistory
 		dispatch(projectUpdated(updatedProject))
+
 	}
 
-	return (
+	return (project &&
 		<div className="flex flex-col font-body h-full">
 			{/* Main chat container */}
 			<div className="h-full flex flex-col bg-surface1 p-4 rounded shadow-md text-white">
 				{/* Message list (scrollable) */}
 				<div className="grow overflow-y-auto space-y-4">
-					{messages.map((msg, index) => {
+					{project.chatHistory.map((msg, index) => {
 						const isUser = msg.role === "user"
 						return (
 							<div key={msg.id} className={`flex ${isUser ? "justify-start" : "justify-end"}`}>
@@ -117,7 +100,7 @@ export default function Chat() {
 				</div>
 
 				{/* Suggestion chips */}
-				{messages.length <= 4 && (
+				{project.chatHistory.length <= 1 && (
 					<div className="flex flex-wrap gap-2 justify-center my-4">
 						<Suspense>
 							{suggestions.map((text, index) => (

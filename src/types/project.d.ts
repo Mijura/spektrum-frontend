@@ -5,4 +5,5 @@ export default interface Project {
 	imageUrl?: string
 	files?: any
 	creator?: any
-}
+	chatHistory: any[] 
+} 

@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { useDispatch, useSelector } from "react-redux"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
-import workspaceReducer from "../reducers/workspace-reducer"
+import workspaceReducer from "../reducers/editor-reducer"
 
 const rootReducer = combineReducers({
 	workspace: workspaceReducer,
@@ -32,7 +32,4 @@ export type AppDispatch = typeof store.dispatch
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useAppSelector = useSelector.withTypes<RootState>()
 
-export const useProject = () =>
-	useAppSelector((state: any) => state.workspace.projects.find((project: any) => project.id === state.workspace.activeProject))
-
-export const useProjects = () => useAppSelector((state: any) => state.workspace.projects)
+export const useProject = () => useAppSelector((state: any) => state.workspace.project)
