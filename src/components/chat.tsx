@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { useProject } from "../util/store"
 import { refactorProject } from "../api/project"
 import { useDispatch } from "react-redux"
-import { messageAdded, projectUpdated } from "../reducers/editor-reducer"
+import { messageAdded, sourceCodeUpdated } from "../reducers/editor-reducer"
 import PlainIcon from "../icons/plain-icon"
 import { Chip } from "@jigjoy-io/ui"
 
@@ -39,21 +39,13 @@ export default function Chat() {
 
 		setInputValue("")
 
-		let refactoredProject = await refactorProject({
+		let newSourceCode = await refactorProject({
 			id: "id",
 			project: project,
 			message: newMessage.content,
 		})
 
-		const updatedProject = {
-			...project,
-			...refactoredProject,
-			id: project.id,
-			chatHistory: project.chatHistory
-		}
-
-		updatedProject.chatHistory = project.chatHistory
-		dispatch(projectUpdated(updatedProject))
+		dispatch(sourceCodeUpdated(newSourceCode))
 
 	}
 

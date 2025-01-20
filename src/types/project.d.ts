@@ -3,7 +3,7 @@ export default interface Project {
 	name?: string
 	description?: string
 	imageUrl?: string
-	files?: any
+	sourceCode?: any
 	creator?: any
 	chatHistory: any[] 
 } 

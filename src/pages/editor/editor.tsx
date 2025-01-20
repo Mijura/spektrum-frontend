@@ -22,7 +22,7 @@ export default function Editor() {
 						<SandpackProvider
 							template="react-ts"
 							theme={sandpackDark}
-							files={project.files}
+							files={project.sourceCode}
 							customSetup={{
 								dependencies: {
 									"framer-motion": "latest",

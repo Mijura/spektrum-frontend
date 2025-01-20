@@ -9,7 +9,7 @@ let initialState: EditorState = {
 			name: "My First project",
 			description: "This is my first project built with JigJoy",
 			imageUrl: "https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif",
-			files: {
+			sourceCode: {
 				"/App.tsx": `
 export default function App() {
 	return (
@@ -33,7 +33,7 @@ export default function App() {
 }
 
 export const editorSlice = createSlice({
-	name: "workspace",
+	name: "editor",
 	initialState,
 
 	reducers: {
@@ -44,9 +44,13 @@ export const editorSlice = createSlice({
 		messageAdded: (state, action: PayloadAction<any>) => {
 			state.project.chatHistory.push(action.payload)
 		},
+
+		sourceCodeUpdated: (state, action: PayloadAction<any>) => {
+			state.project.sourceCode = action.payload
+		},
 	},
 })
 
-export const { projectUpdated, messageAdded } = editorSlice.actions
+export const { projectUpdated, messageAdded, sourceCodeUpdated } = editorSlice.actions
 
 export default editorSlice.reducer
