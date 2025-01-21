@@ -1,10 +1,10 @@
-import React, { Suspense, useState } from "react"
+import React, { useState } from "react"
 import ProjectDetails from "./project-details"
 import LikeButton from "../../components/like-button"
 import Project from "../../types/project"
 import { Card, Carousel } from "@jigjoy-io/ui"
 
-const featuredProjects: Project[] = [
+const featuredProjects: any[] = [
 	{
 		name: "AssetDash",
 		description: "Get exclusive crypto-native deals, giveaways, discounts…",
@@ -47,7 +47,7 @@ const featuredProjects: Project[] = [
 	},
 ]
 
-const exploreProjects: Project[] = [
+const exploreProjects: any[] = [
 	{
 		name: "Solend",
 		description: "Solend is a DeFi protocol for lending and borrowing assets...",
@@ -123,7 +123,6 @@ export default function Marketplace() {
 			<h1 className="text-3xl font-bold mb-6 text-heading">Featured</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
 				{featuredProjects.map((project: any) => (
-					<Suspense>
 						<Card key={project.name} onClick={() => setSelectedProject(project)}>
 							<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
 							<div className="flex flex-col flex-1 justify-between">
@@ -140,14 +139,12 @@ export default function Marketplace() {
 								</div>
 							</div>
 						</Card>
-					</Suspense>
 				))}
 			</div>
 
 			{/* === Explore Section === */}
 			<h1 className="text-3xl font-bold mb-6 text-heading">Explore</h1>
 			<div className="pb-20">
-				<Suspense>
 					<Carousel itemsPerSlide={3} className="pointer-events-none" showCounter={false}>
 						{exploreProjects.map((project: any) => (
 							<Card key={project.name} className="pointer-events-auto" onClick={() => setSelectedProject(project)}>
@@ -171,7 +168,6 @@ export default function Marketplace() {
 							</Card>
 						))}
 					</Carousel>
-				</Suspense>
 			</div>
 		</div>
 	)

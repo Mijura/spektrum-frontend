@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react"
+import React, { useState } from "react"
 import { useNavigate } from "@tanstack/react-router"
 import ProfileButton from "../pages/my-profile/my-profile-button"
 import { Popover, PopoverContent, PopoverTrigger } from "@jigjoy-io/ui"
@@ -39,7 +39,7 @@ const Header = () => {
 					<span className="material-icons">Pricing</span>
 				</button>
 
-				{/* <Suspense>
+				{/* 
                     <Modal>
                         <ModalTrigger>
                             <button className="flex items-center gap-2 hover:text-hover text-clickable cursor-pointer">
@@ -59,9 +59,9 @@ const Header = () => {
                             </div>
                         </ModalContent>
                     </Modal>
-                </Suspense> */}
+                */}
 
-				<Suspense>
+				
 					<Popover position="bottom-end">
 						<PopoverTrigger>
 							<div className="flex flex-col">
@@ -89,7 +89,7 @@ const Header = () => {
 							</ul>
 						</PopoverContent>
 					</Popover>
-				</Suspense>
+				
 			</div>
 		</header>
 	)

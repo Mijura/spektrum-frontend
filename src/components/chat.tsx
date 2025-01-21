@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { useProject } from "../util/store"
 import { implementRequest } from "../api/project"
@@ -94,7 +94,6 @@ export default function Chat() {
 				{/* Suggestion chips */}
 				{project.chatHistory.length <= 1 && (
 					<div className="flex flex-wrap gap-2 justify-center my-4">
-						<Suspense>
 							{suggestions.map((text, index) => (
 								<Chip
 									key={text}
@@ -106,7 +105,6 @@ export default function Chat() {
 									}}
 								/>
 							))}
-						</Suspense>
 					</div>
 				)}
 

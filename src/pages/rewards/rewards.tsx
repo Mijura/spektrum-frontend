@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react"
+import React from "react"
 import { motion } from "framer-motion"
 import { Card, ProgressBar } from "@jigjoy-io/ui"
 
@@ -134,7 +134,6 @@ const Rewards = ({ onSelectAchievement }) => {
 						const isComplete = quest.progress >= quest.goal
 
 						return (
-							<Suspense>
 								<Card key={quest.id}>
 									<div className="w-full flex flex-col gap-1">
 										{/* Header with icon & title */}
@@ -172,7 +171,6 @@ const Rewards = ({ onSelectAchievement }) => {
 										</div>
 									</div>
 								</Card>
-							</Suspense>
 						)
 					})}
 				</div>

@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 // import { useProjects } from "../../util/store"
 import Project from "../../types/project"
@@ -42,7 +42,6 @@ export default function MyProjects() {
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
 			<h1 className="text-3xl font-bold mb-6 text-heading">My Projects</h1>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-				<Suspense>
 					{/* {projects.map((project: Project) => (
 						<Card>
 							<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
@@ -99,7 +98,6 @@ export default function MyProjects() {
 							</div>
 						</Card>
 					))} */}
-				</Suspense>
 			</div>
 
 			<Modal onOpenCallback={() => { }} onCloseCallback={() => setEditingProject(null)}>

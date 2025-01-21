@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Button, Card } from '@jigjoy-io/ui'
 

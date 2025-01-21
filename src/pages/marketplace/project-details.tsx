@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from "react"
+import React, { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import LikeButton from "../../components/like-button"
 import { Button, Carousel } from "@jigjoy-io/ui"
@@ -62,7 +62,6 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
 						{/* Image Carousel */}
 						<div className="p-2 transform overflow-hidden">
-							<Suspense>
 								<Carousel itemsPerSlide={1}>
 									{[
 										"https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif",
@@ -82,7 +81,6 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 										</div>
 									))}
 								</Carousel>
-							</Suspense>
 						</div>
 					</div>
 				</motion.div>
