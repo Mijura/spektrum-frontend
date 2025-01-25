@@ -13,7 +13,10 @@ let initialState: EditorState = {
 				"/App.tsx": `
 export default function App() {
 	return (
-	<></>
+	<div>
+	
+	</div>
+
 	);
 }`,
 			},

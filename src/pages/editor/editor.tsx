@@ -35,7 +35,7 @@ export default function Editor() {
 						>
 							<SandpackLayout 
 											style={{ height: "100%" }}>
-								<div className="flex flex-row w-full bg-surface3 h-full ">
+								<div className="flex flex-row w-full bg-surface3 h-full max-h-[94dvh] ">
 									<div className="w-[33%] mr-[20px]">
 											<Tabs>
 												<Tab key="Discovery">
