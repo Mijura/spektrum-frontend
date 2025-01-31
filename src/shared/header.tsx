@@ -21,7 +21,7 @@ const Header = () => {
 	]
 
 	return (
-		<header className="flex w-[100%] h-[50px] bg-[#151515] border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
+		<header className="flex w-[100%] h-[50px] bg-surface1 border-b border-[#4D4D4D] text-white flex items-center justify-between shadow-md px-4">
 			{/* Left Side: Logo and Navigation */}
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>
@@ -61,35 +61,33 @@ const Header = () => {
                     </Modal>
                 */}
 
-				
-					<Popover position="bottom-end">
-						<PopoverTrigger>
-							<div className="flex flex-col">
-								{testData.map((user, index) => (
-									<ProfileButton
-										key={index}
-										profileImage={user.profileImage}
-										username={user.username}
-										subscriptionType={user.subscriptionType}
-									/>
-								))}
-							</div>
-						</PopoverTrigger>
-						<PopoverContent>
-							<ul className="flex flex-col w-[150px] text-end">
-								<li
-									onClick={() => navigate({ to: "/my-profile" })}
-									className="p-2 hover:bg-surface1 cursor-pointer text-clickable hover:text-hover transition-colors"
-								>
-									My Profile
-								</li>
-								<li className="p-2 hover:bg-surface1 cursor-pointer text-clickable hover:text-hover transition-colors">
-									Log out
-								</li>
-							</ul>
-						</PopoverContent>
-					</Popover>
-				
+				<Popover position="bottom-end">
+					<PopoverTrigger>
+						<div className="flex flex-col">
+							{testData.map((user, index) => (
+								<ProfileButton
+									key={index}
+									profileImage={user.profileImage}
+									username={user.username}
+									subscriptionType={user.subscriptionType}
+								/>
+							))}
+						</div>
+					</PopoverTrigger>
+					<PopoverContent>
+						<ul className="flex flex-col w-[150px] text-end">
+							<li
+								onClick={() => navigate({ to: "/my-profile" })}
+								className="p-2 hover:bg-surface1 cursor-pointer text-clickable hover:text-hover transition-colors"
+							>
+								My Profile
+							</li>
+							<li className="p-2 hover:bg-surface1 cursor-pointer text-clickable hover:text-hover transition-colors">
+								Log out
+							</li>
+						</ul>
+					</PopoverContent>
+				</Popover>
 			</div>
 		</header>
 	)

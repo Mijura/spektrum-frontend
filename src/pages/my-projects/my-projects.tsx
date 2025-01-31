@@ -42,7 +42,7 @@ export default function MyProjects() {
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
 			<h1 className="text-3xl font-bold mb-6 text-heading">My Projects</h1>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-					{/* {projects.map((project: Project) => (
+				{/* {projects.map((project: Project) => (
 						<Card>
 							<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
 							<div className="flex flex-col flex-1 justify-between">
@@ -100,7 +100,7 @@ export default function MyProjects() {
 					))} */}
 			</div>
 
-			<Modal onOpenCallback={() => { }} onCloseCallback={() => setEditingProject(null)}>
+			<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
 				<ModalTrigger>
 					<div
 						style={{ display: "none" }}

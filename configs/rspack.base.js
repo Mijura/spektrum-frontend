@@ -1,6 +1,12 @@
 const path = require("path")
 const rspack = require("@rspack/core")
 const Dotenv = require("dotenv-webpack")
+const RefreshPlugin = require("@rspack/plugin-react-refresh")
+
+const isDev = process.env.NODE_ENV === "development"
+
+// Target browsers, see: https://github.com/browserslist/browserslist
+const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"]
 
 module.exports = {
 	entry: {
@@ -27,6 +33,8 @@ module.exports = {
 							transform: {
 								react: {
 									runtime: "automatic",
+									development: isDev,
+									refresh: isDev,
 								},
 							},
 						},
@@ -36,14 +44,12 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: [rspack.CssExtractRspackPlugin.loader, "css-loader", "postcss-loader"],
+				use: ["postcss-loader"],
+				type: "css",
 			},
 		],
 	},
 	plugins: [
-		new rspack.CssExtractRspackPlugin({
-			filename: "[name].[contenthash].css",
-		}),
 		new rspack.CopyRspackPlugin({
 			patterns: [{ from: "manifest.json" }, { from: "./public/favicon.ico" }],
 		}),
@@ -53,12 +59,24 @@ module.exports = {
 		}),
 		new rspack.HtmlRspackPlugin({
 			template: "public/index.html",
-			title: "Text-to-play engine that transforms imagination into playful apps.",
+			title: "Build apps with natural language",
 			filename: "index.html",
 			chunks: ["main"],
 		}),
-	],
+		isDev ? new RefreshPlugin() : null,
+	].filter(Boolean),
+	optimization: {
+		minimizer: [
+			new rspack.SwcJsMinimizerRspackPlugin(),
+			new rspack.LightningCssMinimizerRspackPlugin({
+				minimizerOptions: { targets },
+			}),
+		],
+	},
 	resolve: {
 		extensions: [".jsx", ".tsx", ".ts", ".js", ".json"],
+	},
+	experiments: {
+		css: true,
 	},
 }
