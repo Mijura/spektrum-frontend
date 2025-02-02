@@ -46,54 +46,58 @@ export default function Chat() {
 		})
 
 		dispatch(sourceCodeUpdated(newSourceCode))
-
 	}
 
-	return (project &&
-		<div className="flex flex-col font-body h-full">
-			{/* Main chat container */}
-			<div className="h-full flex flex-col bg-surface1 p-4 rounded shadow-md text-white">
-				{/* Message list (scrollable) */}
-				<div className="grow overflow-y-auto space-y-4">
-					{project.chatHistory.map((msg, index) => {
-						const isUser = msg.role === "user"
-						return (
-							<div key={msg.id} className={`flex ${isUser ? "justify-start" : "justify-end"}`}>
-								{isUser ? (
-									<div className="flex items-start space-x-2">
-										<img className="w-8 h-8 rounded-full" src="https://avatars.githubusercontent.com/u/110939072?v=4" alt="User Avatar" />
-										<motion.div
-											variants={bubbleVariants}
-											initial="initial"
-											animate="animate"
-											transition={{ duration: 0.3, delay: index * 0.05 }}
-											className="max-w-xs px-3 py-2 rounded bg-clickable text-surface1"
-										>
-											{msg.content}
-										</motion.div>
-									</div>
-								) : (
-									<div className="flex items-start space-x-2">
-										<motion.div
-											variants={bubbleVariants}
-											initial="initial"
-											animate="animate"
-											transition={{ duration: 0.3, delay: index * 0.05 }}
-											className="max-w-xs px-3 py-2 rounded bg-surface3 text-white"
-										>
-											{msg.content}
-										</motion.div>
-										<img className="w-8 h-8 rounded-full" src="favicon.ico" alt="System Avatar" />
-									</div>
-								)}
-							</div>
-						)
-					})}
-				</div>
+	return (
+		project && (
+			<div className="flex flex-col font-body h-full">
+				{/* Main chat container */}
+				<div className="h-full flex flex-col bg-surface1 p-4 rounded shadow-md text-white">
+					{/* Message list (scrollable) */}
+					<div className="grow overflow-y-auto space-y-4">
+						{project.chatHistory.map((msg, index) => {
+							const isUser = msg.role === "user"
+							return (
+								<div key={msg.id} className={`flex ${isUser ? "justify-start" : "justify-end"}`}>
+									{isUser ? (
+										<div className="flex items-start space-x-2">
+											<img
+												className="w-8 h-8 rounded-full"
+												src="https://avatars.githubusercontent.com/u/110939072?v=4"
+												alt="User Avatar"
+											/>
+											<motion.div
+												variants={bubbleVariants}
+												initial="initial"
+												animate="animate"
+												transition={{ duration: 0.3, delay: index * 0.05 }}
+												className="max-w-xs px-3 py-2 rounded bg-clickable text-surface1"
+											>
+												{msg.content}
+											</motion.div>
+										</div>
+									) : (
+										<div className="flex items-start space-x-2">
+											<motion.div
+												variants={bubbleVariants}
+												initial="initial"
+												animate="animate"
+												transition={{ duration: 0.3, delay: index * 0.05 }}
+												className="max-w-xs px-3 py-2 rounded bg-surface3 text-white"
+											>
+												{msg.content}
+											</motion.div>
+											<img className="w-8 h-8 rounded-full" src="favicon.ico" alt="System Avatar" />
+										</div>
+									)}
+								</div>
+							)
+						})}
+					</div>
 
-				{/* Suggestion chips */}
-				{project.chatHistory.length <= 1 && (
-					<div className="flex flex-wrap gap-2 justify-center my-4">
+					{/* Suggestion chips */}
+					{project.chatHistory.length <= 1 && (
+						<div className="flex flex-wrap gap-2 justify-center my-4">
 							{suggestions.map((text, index) => (
 								<Chip
 									key={text}
@@ -105,31 +109,32 @@ export default function Chat() {
 									}}
 								/>
 							))}
-					</div>
-				)}
+						</div>
+					)}
 
-				{/* Message input + send button */}
-				<div className="flex items-center space-x-2 mt-auto pt-4 pb-2">
-					<input
-						type="text"
-						placeholder="Type your message..."
-						className="flex-1 border border-disabled bg-surface1 rounded-full 
+					{/* Message input + send button */}
+					<div className="flex items-center space-x-2 mt-auto pt-4 pb-2">
+						<input
+							type="text"
+							placeholder="Type your message..."
+							className="flex-1 border border-disabled bg-surface1 rounded-full 
                       px-3 py-2 text-sm placeholder-base
                       focus:outline-none focus:ring-2 focus:ring-hover"
-						value={inputValue}
-						onChange={(e) => setInputValue(e.target.value)}
-						onKeyDown={(e) => e.key === "Enter" && handleSend()}
-					/>
-					<button
-						onClick={handleSend}
-						className="bg-clickable text-surface1 px-4 py-2 rounded-full 
+							value={inputValue}
+							onChange={(e) => setInputValue(e.target.value)}
+							onKeyDown={(e) => e.key === "Enter" && handleSend()}
+						/>
+						<button
+							onClick={handleSend}
+							className="bg-clickable text-surface1 px-4 py-2 rounded-full 
                       text-sm hover:bg-hover transition-colors flex items-center justify-center"
-						aria-label="Send"
-					>
-						<PlainIcon />
-					</button>
+							aria-label="Send"
+						>
+							<PlainIcon />
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		)
 	)
 }

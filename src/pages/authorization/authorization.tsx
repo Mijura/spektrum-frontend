@@ -40,9 +40,17 @@ export default function Authorization() {
 			/>
 
 			{/* Main Content Container */}
-			<motion.div className="relative flex flex-col justify-center items-center min-h-screen bg-transparent" variants={containerVariants} initial="hidden" animate="visible" transition={{ duration: 0.3 }}>
+			<motion.div
+				className="relative flex flex-col justify-center items-center min-h-screen bg-transparent"
+				variants={containerVariants}
+				initial="hidden"
+				animate="visible"
+				transition={{ duration: 0.3 }}
+			>
 				{/* Replace this placeholder with your actual logo */}
-				<div className="w-20 h-20 mb-4 flex items-center justify-center bg-accent text-white font-bold rounded-full">Logo</div>
+				<div className="w-20 h-20 mb-4 flex items-center justify-center bg-accent text-white font-bold rounded-full">
+					Logo
+				</div>
 
 				<h1 className="text-3xl text-white font-bold mb-6">Welcome to JigJoy Playground</h1>
 

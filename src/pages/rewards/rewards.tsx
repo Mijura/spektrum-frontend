@@ -134,43 +134,43 @@ const Rewards = ({ onSelectAchievement }) => {
 						const isComplete = quest.progress >= quest.goal
 
 						return (
-								<Card key={quest.id}>
-									<div className="w-full flex flex-col gap-1">
-										{/* Header with icon & title */}
-										<div className="flex items-center gap-3 p-1">
-											<span className="text-2xl">{quest.icon}</span>
-											<span className="flex-1 text-base text-heading font-medium hover:text-hover">{quest.title}</span>
-										</div>
+							<Card key={quest.id}>
+								<div className="w-full flex flex-col gap-1">
+									{/* Header with icon & title */}
+									<div className="flex items-center gap-3 p-1">
+										<span className="text-2xl">{quest.icon}</span>
+										<span className="flex-1 text-base text-heading font-medium hover:text-hover">{quest.title}</span>
+									</div>
 
-										<div className="flex items-center gap-2 p-1 text-wrap min-h-[64px]">
-											<span className="text-sm text-base">{quest.description}</span>
-										</div>
+									<div className="flex items-center gap-2 p-1 text-wrap min-h-[64px]">
+										<span className="text-sm text-base">{quest.description}</span>
+									</div>
 
-										{/* Progress bar */}
-										<div className="flex flex-col gap-3 p-1">
-											<ProgressBar progressPercent={progressPercent} />
-											{/* Progress stats & Claim button */}
-											<div className="flex justify-between items-center p-2">
-												<span className="text-sm text-base">
-													{quest.progress}/{quest.goal}
-												</span>
+									{/* Progress bar */}
+									<div className="flex flex-col gap-3 p-1">
+										<ProgressBar progressPercent={progressPercent} />
+										{/* Progress stats & Claim button */}
+										<div className="flex justify-between items-center p-2">
+											<span className="text-sm text-base">
+												{quest.progress}/{quest.goal}
+											</span>
 
-												<motion.button
-													disabled={!isComplete}
-													onClick={() => handleClaimReward(quest.id)}
-													whileHover={isComplete ? { scale: 1.05 } : {}}
-													whileTap={isComplete ? { scale: 0.95 } : {}}
-													className={`
+											<motion.button
+												disabled={!isComplete}
+												onClick={() => handleClaimReward(quest.id)}
+												whileHover={isComplete ? { scale: 1.05 } : {}}
+												whileTap={isComplete ? { scale: 0.95 } : {}}
+												className={`
                                                 ${isComplete ? "bg-clickable hover:bg-hover text-surface1" : "bg-disabled text-base cursor-not-allowed"}
                                                 px-4 py-1 rounded-md text-sm font-semibold transition-colors
                                             `}
-												>
-													{isComplete ? `Claim ${quest.reward}` : quest.reward}
-												</motion.button>
-											</div>
+											>
+												{isComplete ? `Claim ${quest.reward}` : quest.reward}
+											</motion.button>
 										</div>
 									</div>
-								</Card>
+								</div>
+							</Card>
 						)
 					})}
 				</div>

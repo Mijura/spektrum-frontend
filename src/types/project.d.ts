@@ -5,5 +5,5 @@ export default interface Project {
 	imageUrl?: string
 	sourceCode?: any
 	creator?: any
-	chatHistory: any[] 
-} 
+	chatHistory: any[]
+}
