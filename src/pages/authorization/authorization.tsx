@@ -27,43 +27,43 @@ const buttonVariants = {
 
 export default function Authorization() {
 	return (
-		<div className="relative min-h-screen w-full overflow-hidden">
+		<div className="relative h-full w-full overflow-hidden">
 			{/* Galaxy Background Layer */}
 			<motion.div
 				className="absolute inset-0"
+				variants={backgroundVariants}
+				animate="animate"
 				style={{
 					backgroundImage: "radial-gradient(circle, #b08df8, #252525, #151515)",
 					backgroundSize: "400% 400%",
 				}}
-				variants={backgroundVariants}
-				animate="animate"
 			/>
 
 			{/* Main Content Container */}
 			<motion.div
-				className="relative flex flex-col justify-center items-center min-h-screen bg-transparent"
+				className="relative flex flex-col mt-40 items-center min-h-screen bg-transparent"
 				variants={containerVariants}
 				initial="hidden"
 				animate="visible"
 				transition={{ duration: 0.3 }}
 			>
 				{/* Replace this placeholder with your actual logo */}
-				<div className="w-20 h-20 mb-4 flex items-center justify-center bg-accent text-white font-bold rounded-full">
+				<div className="w-20 h-20 mb-4 flex items-center justify-center bg-accent text-heading font-bold rounded-full">
 					Logo
 				</div>
 
-				<h1 className="text-3xl text-white font-bold mb-6">Welcome to JigJoy Playground</h1>
+				<h1 className="text-3xl text-base font-bold mb-6 text-hover">Welcome to JigJoy Playground</h1>
 
 				<motion.input
 					type="email"
 					placeholder="Email Address"
 					className="
             mb-6 w-72 px-4 py-2
-            bg-surface2 text-base text-white
+            bg-surface2 text-heading
             rounded outline-none
-            border border-[#E5FD78]
-            placeholder:text-[#E5FD78] placeholder:opacity-60
-            focus:ring-2 focus:ring-[#E5FD78]
+            border border-hover
+            placeholder:text-hover placeholder:opacity-60
+            focus:ring-2 focus:ring-hover
           "
 					whileFocus={{ scale: 1.02 }}
 				/>
@@ -71,9 +71,9 @@ export default function Authorization() {
 				<motion.button
 					className="
             px-6 py-2
-            bg-[#E5FD78] text-surface1 font-semibold 
-            rounded border border-[#E5FD78]
-            hover:bg-[#E5FD78]
+            bg-hover text-surface1 font-semibold 
+            rounded border border-hover
+            hover:bg-hover
             transition-colors duration-200
           "
 					variants={buttonVariants}

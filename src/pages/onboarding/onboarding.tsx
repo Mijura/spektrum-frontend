@@ -21,7 +21,7 @@ export default function Onboarding() {
 	]
 
 	return (
-		<div className="w-full">
+		<div className="w-full h-full">
 			<Stepper steps={steps} />
 		</div>
 	)
