@@ -3,13 +3,6 @@ import { motion } from "framer-motion"
 import { Button, Card } from "@jigjoy-io/ui"
 
 const PricingPage = () => {
-	// Card hover animation variants
-	const cardVariants = {
-		initial: { opacity: 0, y: 20 },
-		animate: { opacity: 1, y: 0 },
-		whileHover: { scale: 1.05, boxShadow: "0px 0px 20px rgba(229, 253, 120, 0.4)" },
-	}
-
 	// Centralized pricing plans data
 	const pricingPlans = [
 		{
