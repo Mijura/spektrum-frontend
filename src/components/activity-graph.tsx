@@ -16,7 +16,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 
 	// Function to determine the color intensity based on contribution count
 	const getColor = (count: number) => {
-		if (count === 0) return "bg-surface2"
+		if (count === 0) return "bg-surface-2"
 		const intensity = Math.ceil((count / maxCount) * 4)
 		switch (intensity) {
 			case 1:
@@ -28,7 +28,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 			case 4:
 				return "bg-accent"
 			default:
-				return "bg-surface2"
+				return "bg-surface-2"
 		}
 	}
 
@@ -49,7 +49,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 	}
 
 	return (
-		<div className="w-full bg-surface2 p-6 rounded-lg border border-disabled">
+		<div className="w-full bg-surface-2 p-6 rounded-lg border border-disabled">
 			<h3 className="text-xl font-semibold text-heading mb-2">Blocks Crafted</h3>
 			<div className="w-full overflow-x-auto p-2">
 				<div className="flex gap-[3px] min-w-fit justify-start">
@@ -72,7 +72,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 			<div className="flex items-center gap-2 mt-4 text-sm text-base">
 				<span>Less</span>
 				<div className="flex gap-[3px]">
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-surface2" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-surface-2" />
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-accent/25" />
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-accent/50" />
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-accent/75" />

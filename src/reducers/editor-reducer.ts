@@ -55,56 +55,10 @@ const defaultFiles = {
 export default function App() {
 	return (
 	<div className="text-pink-500">
-fdsa
+Hello world
 	</div>
 
 	);
-}`,
-
-	"/postcss-config.js": `
-const config = {
-  plugins: {
-    "@tailwindcss/postcss": {},
-  },
-};
-export default config;
-`,
-	"/tailwind.config.js": `
-
-module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-	theme: {
-		extend: {
-			scale: {
-				110: "1.1",
-			},
-			maxWidth: {
-				"8xl": "88rem", // 1408px
-				"9xl": "96rem", // 1536px
-			},
-			colors: {
-				surface1: "#151515",
-				surface2: "#252525",
-				surface3: "#2F2F2F",
-				clickable: "#90E86F",
-				base: "#C5C5C5",
-				disabled: "#4D4D4D",
-				outline: "#4D4D4D",
-				hover: "#E5FD78",
-				accent: "#B08DF8",
-				error: "#E1CFF8",
-				errorSurface: "#b08df8",
-				heading: "#808080",
-				galaxy: {
-					purple: "#B08DF8",
-					blue: "#64B5F6",
-					pink: "#FF79C6",
-					green: "#50FA7B",
-				},
-			},
-		},
-	},
-	plugins: [],
 }
 
 `,

@@ -59,7 +59,7 @@ export default function Authorization() {
 					placeholder="Email Address"
 					className="
             mb-6 w-72 px-4 py-2
-            bg-surface2 text-heading
+            bg-surface-2 text-heading
             rounded outline-none
             border border-hover
             placeholder:text-hover placeholder:opacity-60
@@ -71,7 +71,7 @@ export default function Authorization() {
 				<motion.button
 					className="
             px-6 py-2
-            bg-hover text-surface1 font-semibold 
+            bg-hover text-surface-1 font-semibold 
             rounded border border-hover
             hover:bg-hover
             transition-colors duration-200

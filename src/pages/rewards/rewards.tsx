@@ -161,7 +161,7 @@ const Rewards = ({ onSelectAchievement }) => {
 												whileHover={isComplete ? { scale: 1.05 } : {}}
 												whileTap={isComplete ? { scale: 0.95 } : {}}
 												className={`
-                                                ${isComplete ? "bg-clickable hover:bg-hover text-surface1" : "bg-disabled text-base cursor-not-allowed"}
+                                                ${isComplete ? "bg-clickable hover:bg-hover text-surface-1" : "bg-disabled text-base cursor-not-allowed"}
                                                 px-4 py-1 rounded-md text-sm font-semibold transition-colors
                                             `}
 											>

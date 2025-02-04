@@ -62,10 +62,10 @@ const MyProfile = () => {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5 }}
-				className={`min-h-screen bg-surface1 p-6 flex flex-col items-center ${selectedAchievement ? "blur-sm" : ""}`}
+				className={`min-h-screen bg-surface-1 p-6 flex flex-col items-center ${selectedAchievement ? "blur-sm" : ""}`}
 			>
 				{/* Top Section: Profile Info + Credits */}
-				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 bg-surface2 rounded-md shadow p-4 border border-disabled">
+				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 bg-surface-2 rounded-md shadow p-4 border border-disabled">
 					{/* Left: Profile Image & Basic Info */}
 					<div className="flex items-center mb-4 md:mb-0">
 						<img
@@ -130,7 +130,7 @@ const MyProfile = () => {
 					{achievements.map((achievement) => (
 						<motion.div
 							key={achievement.id}
-							className="bg-surface2 rounded-md shadow p-4 flex flex-col items-start border border-disabled hover:border-hover cursor-pointer"
+							className="bg-surface-2 rounded-md shadow p-4 flex flex-col items-start border border-disabled hover:border-hover cursor-pointer"
 							initial={{ opacity: 0, y: 30 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
@@ -138,7 +138,7 @@ const MyProfile = () => {
 							onClick={() => setSelectedAchievement(achievement)}
 							whileHover={{ scale: 1.02 }}
 						>
-							<div className="h-16 w-16 bg-surface1 rounded-md mb-3 flex items-center justify-center border border-disabled">
+							<div className="h-16 w-16 bg-surface-1 rounded-md mb-3 flex items-center justify-center border border-disabled">
 								<span className="text-heading text-xl font-bold">{achievement.id}</span>
 							</div>
 							<h3 className="text-lg font-semibold text-heading mb-1">{achievement.title}</h3>
@@ -162,11 +162,11 @@ const MyProfile = () => {
 							initial={{ scale: 0.8, opacity: 0 }}
 							animate={{ scale: 1, opacity: 1 }}
 							exit={{ scale: 0.8, opacity: 0 }}
-							className="bg-surface2 p-8 rounded-lg shadow-xl border border-hover max-w-md w-full mx-4"
+							className="bg-surface-2 p-8 rounded-lg shadow-xl border border-hover max-w-md w-full mx-4"
 							onClick={(e) => e.stopPropagation()}
 						>
 							<div className="flex items-center justify-between mb-6">
-								<div className="h-20 w-20 bg-surface1 rounded-md flex items-center justify-center border border-disabled">
+								<div className="h-20 w-20 bg-surface-1 rounded-md flex items-center justify-center border border-disabled">
 									<span className="text-accent text-3xl font-bold">{selectedAchievement.id}</span>
 								</div>
 								<button onClick={() => setSelectedAchievement(null)} className="text-base hover:text-hover">

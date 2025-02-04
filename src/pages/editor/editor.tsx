@@ -17,7 +17,7 @@ export default function Editor() {
 	return (
 		<>
 			{project && (
-				<div className="h-full flex flex-row pl-2 bg-surface3">
+				<div className="h-full flex flex-row pl-2 bg-surface-3">
 					<div className="h-full w-full p-4">
 						<SandpackProvider
 							theme={sandpackDark}
@@ -29,7 +29,7 @@ export default function Editor() {
 							style={{ height: "100%" }}
 						>
 							<SandpackLayout style={{ height: "100%" }}>
-								<div className="flex flex-row w-full bg-surface3 h-full max-h-[94dvh] ">
+								<div className="flex flex-row w-full bg-surface-3 h-full max-h-[94dvh] ">
 									<div className="w-[33%] mr-[20px]">
 										<Tabs>
 											<Tab key="Discovery">

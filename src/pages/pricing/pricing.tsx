@@ -26,7 +26,7 @@ const PricingPage = () => {
 	]
 
 	return (
-		<div className="bg-surface1 text-base min-h-screen flex flex-col items-center px-4 py-8 font-body">
+		<div className="bg-surface-1 text-base min-h-screen flex flex-col items-center px-4 py-8 font-body">
 			{/* Page Heading */}
 			<motion.h1
 				initial={{ opacity: 0, y: -20 }}

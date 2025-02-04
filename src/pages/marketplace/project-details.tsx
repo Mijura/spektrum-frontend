@@ -22,14 +22,14 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
 	return (
 		<>
-			<div className="bg-surface2 text-white p-6 relative">
+			<div className="bg-surface-2 text-white p-6 relative">
 				<motion.div
 					className={`container h-[100dvh] max-w-3xl mx-auto relative`}
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
 				>
-					<div className="bg-surface2 rounded-lg p-4 h-auto">
+					<div className="bg-surface-2 rounded-lg p-4 h-auto">
 						<div className="flex flex-row gap-6 mb-8">
 							<img src={project.imageUrl} alt={project.name} className="w-32 h-32 rounded-lg" />
 							<div>
@@ -52,7 +52,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 							</div>
 						</div>
 
-						<div className="border-t border-surface3 pt-6">
+						<div className="border-t border-surface-3 pt-6">
 							<h2 className="text-xl font-semibold mb-4 text-heading">About</h2>
 							<p className="text-sm leading-relaxed mb-2 text-base">
 								{project.longDescription ||
@@ -106,7 +106,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 							<img src={selectedImage} alt="Enlarged view" className="max-w-full max-h-[90vh] rounded-lg" />
 							<button
 								onClick={() => setSelectedImage(null)}
-								className="absolute top-4 right-4 text-white bg-surface2 rounded-full p-2 hover:bg-surface3 transition-colors"
+								className="absolute top-4 right-4 text-white bg-surface-2 rounded-full p-2 hover:bg-surface-3 transition-colors"
 							>
 								×
 							</button>

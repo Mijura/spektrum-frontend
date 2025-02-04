@@ -52,7 +52,7 @@ export default function Chat() {
 		project && (
 			<div className="flex flex-col font-body h-full">
 				{/* Main chat container */}
-				<div className="h-full flex flex-col bg-surface1 p-4 rounded shadow-md text-white">
+				<div className="h-full flex flex-col bg-surface-1 p-4 rounded shadow-md text-white">
 					{/* Message list (scrollable) */}
 					<div className="grow overflow-y-auto space-y-4">
 						{project.chatHistory.map((msg, index) => {
@@ -71,7 +71,7 @@ export default function Chat() {
 												initial="initial"
 												animate="animate"
 												transition={{ duration: 0.3, delay: index * 0.05 }}
-												className="max-w-xs px-3 py-2 rounded bg-clickable text-surface1"
+												className="max-w-xs px-3 py-2 rounded bg-clickable text-surface-1"
 											>
 												{msg.content}
 											</motion.div>
@@ -83,7 +83,7 @@ export default function Chat() {
 												initial="initial"
 												animate="animate"
 												transition={{ duration: 0.3, delay: index * 0.05 }}
-												className="max-w-xs px-3 py-2 rounded bg-surface3 text-white"
+												className="max-w-xs px-3 py-2 rounded bg-surface-3 text-white"
 											>
 												{msg.content}
 											</motion.div>
@@ -117,7 +117,7 @@ export default function Chat() {
 						<input
 							type="text"
 							placeholder="Type your message..."
-							className="flex-1 border border-disabled bg-surface1 rounded-full 
+							className="flex-1 border border-disabled bg-surface-1 rounded-full 
                       px-3 py-2 text-sm placeholder-base
                       focus:outline-none focus:ring-2 focus:ring-hover"
 							value={inputValue}
@@ -126,7 +126,7 @@ export default function Chat() {
 						/>
 						<button
 							onClick={handleSend}
-							className="bg-clickable text-surface1 px-4 py-2 rounded-full 
+							className="bg-clickable text-surface-1 px-4 py-2 rounded-full 
                       text-sm hover:bg-hover transition-colors flex items-center justify-center"
 							aria-label="Send"
 						>

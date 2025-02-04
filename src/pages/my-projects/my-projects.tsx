@@ -55,7 +55,7 @@ export default function MyProjects() {
 										whileHover={{ scale: 1.1 }}
 										whileTap={{ scale: 0.95 }}
 										onClick={() => handleEdit(project)}
-										className="p-2 rounded-full bg-surface3 text-clickable hover:bg-hover hover:text-surface1"
+										className="p-2 rounded-full bg-surface-3 text-clickable hover:bg-hover hover:text-surface-1"
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ export default function MyProjects() {
 										whileHover={{ scale: 1.1 }}
 										whileTap={{ scale: 0.95 }}
 										onClick={() => handleDelete(project.id)}
-										className="p-2 rounded-full bg-surface3 text-red-500 hover:bg-red-500 hover:text-white"
+										className="p-2 rounded-full bg-surface-3 text-red-500 hover:bg-red-500 hover:text-white"
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ export default function MyProjects() {
 					/>
 				</ModalTrigger>
 				<ModalContent>
-					<div className="bg-surface2 p-8 rounded-lg w-[600px] max-w-[90vw]">
+					<div className="bg-surface-2 p-8 rounded-lg w-[600px] max-w-[90vw]">
 						<h2 className="text-2xl font-bold mb-4 text-clickable">Edit project</h2>
 						<form
 							onSubmit={(e) => {
@@ -126,7 +126,7 @@ export default function MyProjects() {
 									type="text"
 									value={name}
 									onChange={(e) => setName(e.target.value)}
-									className="w-full p-2 rounded bg-surface3 text-white border border-surface4"
+									className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
 								/>
 							</div>
 							<div className="mb-4">
@@ -134,7 +134,7 @@ export default function MyProjects() {
 								<textarea
 									value={description}
 									onChange={(e) => setDescription(e.target.value)}
-									className="w-full p-2 rounded bg-surface3 text-white border border-surface4"
+									className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
 									rows={3}
 								/>
 							</div>
@@ -144,18 +144,18 @@ export default function MyProjects() {
 									type="text"
 									value={imageUrl}
 									onChange={(e) => setImageUrl(e.target.value)}
-									className="w-full p-2 rounded bg-surface3 text-white border border-surface4"
+									className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
 								/>
 							</div>
 							<div className="flex justify-end gap-4">
 								<button
 									type="button"
 									onClick={() => setEditingProject(null)}
-									className="px-4 py-2 rounded bg-surface3 text-white hover:bg-surface4"
+									className="px-4 py-2 rounded bg-surface-3 text-white hover:bg-surface4"
 								>
 									Cancel
 								</button>
-								<button type="submit" className="px-4 py-2 rounded bg-clickable text-surface1 hover:bg-hover">
+								<button type="submit" className="px-4 py-2 rounded bg-clickable text-surface-1 hover:bg-hover">
 									Save
 								</button>
 							</div>

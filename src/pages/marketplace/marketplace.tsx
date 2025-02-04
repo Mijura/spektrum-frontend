@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import ProjectDetails from "./project-details"
 import LikeButton from "../../components/like-button"
-import Project from "../../types/project"
 import { Card, Carousel } from "@jigjoy-io/ui"
 
 const featuredProjects: any[] = [
