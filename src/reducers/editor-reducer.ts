@@ -3,9 +3,6 @@ import { EditorState } from "./editor-types"
 import Project from "../types/project"
 
 const defaultFiles = {
-	"/src/index.css": `
-@import "tailwindcss";
-	`,
 	"/src/index.tsx": `
 	import React, { StrictMode } from "react";
   	import { createRoot } from "react-dom/client";
@@ -18,49 +15,15 @@ const defaultFiles = {
 	  <App />
 	</StrictMode>
   );`,
-	"/package.json": `{
-	"name": "project",
-	"private": true,
-	"scripts": {
-		"start": "rspack serve --config configs/rspack.dev.js",
-		"serve": "rspack serve --config configs/rspack.dev.js"
-	},
-	"dependencies": {
-	  "react": "^18.0.0",
-	  "react-dom": "^18.0.0",
-	  "react-scripts": "^4.0.0",
-	  "postcss": "^8.4.38",
-	  "@tailwindcss/postcss": "^4.0.0-alpha.13",
-	  "tailwindcss": "^4.0.0"
-	},
-	"devDependencies": {
-		"@rspack/cli": "^1.0.14",
-		"@rspack/core": "^1.0.14",
-		"@rspack/dev-server": "^1.0.9",
-		"@tanstack/router-cli": "^1.92.11",
-		"@tanstack/router-devtools": "^1.92.11",
-		"@tanstack/router-plugin": "^1.92.11",
-		"@types/node": "^20.12.12",
-		"@types/react": "^19.0.7",
-		"@types/react-dom": "^19.0.3",
-		"css-loader": "^7.1.1",
-		"dotenv-webpack": "^8.1.0",
-		"style-loader": "^4.0.0",
-		"typescript": "^5.4.5",
-		"webpack-merge": "^6.0.1"
-	}
-  }
-  `,
 	"src/App.tsx": `
 export default function App() {
 	return (
-	<div className="text-pink-500">
+	<div>
 Hello world
 	</div>
 
 	);
 }
-
 `,
 }
 let initialState: EditorState = {
