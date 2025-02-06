@@ -21,11 +21,11 @@ export default function Editor() {
 					<div className="h-full w-full p-4">
 						<SandpackProvider theme={sandpackDark} files={project.sourceCode} template="react-ts" style={{ height: "100%" }}>
 							<SandpackLayout style={{ height: "100%" }}>
-								<div className="flex flex-row w-full bg-surface-3 h-full max-h-[94dvh] ">
+								<div className="flex flex-row w-full bg-surface-3">
 									<div className="w-[33%] mr-[20px]">
 										<Tabs>
 											<Tab key="Discovery">
-												<div className="h-full w-full pr-5 pb-10">
+												<div className="h-[100%] max-h-[88dvh] w-full">
 													<Chat />
 												</div>
 											</Tab>
