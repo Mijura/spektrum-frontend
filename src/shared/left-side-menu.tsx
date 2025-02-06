@@ -6,16 +6,21 @@ import ProjectsIcon from "../icons/projects-icon"
 import EditorIcon from "../icons/editor-icon"
 import DiscordIcon from "../icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
+import { useDispatch } from "react-redux"
+import { pageLoaded } from "../reducers/page-reducer"
+import { usePage } from "../util/store"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
-	const [selectedOption, setSelectedOption] = useState("editor")
 	const [hoveredOption, setHoveredOption] = useState("")
 
+	const page = usePage()
+
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
 
 	const handleOptionClick = (option: string, route: string) => {
-		setSelectedOption(option)
+		dispatch(pageLoaded(option))
 		if (route) {
 			navigate({ to: route })
 		}
@@ -36,7 +41,7 @@ const LeftSideMenu = () => {
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
-						className={`${selectedOption === name ? "bg-surface-2" : ""} flex cursor-pointer hover:bg-surface-2 rounded-lg p-1`}
+						className={`${page === name ? "bg-surface-2" : ""} flex cursor-pointer hover:bg-surface-2 rounded-lg p-1`}
 						onMouseEnter={() => setHoveredOption(name)}
 						onMouseLeave={() => setHoveredOption("")}
 						onClick={() => handleOptionClick(name, route)}
@@ -46,9 +51,7 @@ const LeftSideMenu = () => {
 						}}
 					>
 						<div className="py-2 w-[72px] flex justify-center items-center">
-							<Icon
-								color={selectedOption === name ? "text-accent" : hoveredOption === name ? "text-hover" : "text-clickable"}
-							/>
+							<Icon color={page === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} />
 						</div>
 						<AnimatePresence>
 							{menuExpanded && (

@@ -71,7 +71,7 @@ const MyProfile = () => {
 						<img
 							src={user.profileImage}
 							alt="Profile"
-							className="w-20 h-20 rounded-full mr-4 object-cover border-2 border-accent"
+							className="w-20 h-20 rounded-full mr-4 object-cover border-2 border-base"
 						/>
 						<div className="flex flex-col">
 							<span className="text-xl font-semibold text-heading">{user.nickname}</span>
@@ -86,7 +86,7 @@ const MyProfile = () => {
 							<div className="flex items-center mt-2">
 								<div className="w-40 bg-disabled h-4 rounded-full mr-2 relative">
 									<motion.div
-										className="bg-accent h-4 rounded-full"
+										className="bg-primary h-4 rounded-full"
 										style={{
 											width: `${user.progressToNextLevel}%`,
 										}}
@@ -113,7 +113,7 @@ const MyProfile = () => {
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
 							transition={{ type: "spring", stiffness: 200 }}
-							className="text-2xl font-bold text-accent"
+							className="text-2xl font-bold text-primary"
 						>
 							{user.credits}
 						</motion.span>

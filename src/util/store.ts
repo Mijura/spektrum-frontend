@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from "react-redux"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
 import editorReducer from "../reducers/editor-reducer"
+import pageReducer from "../reducers/page-reducer"
 
 const rootReducer = combineReducers({
 	editor: editorReducer,
+	page: pageReducer,
 })
 
 const persistConfig = {
 	key: "root",
 	storage: storage,
-	whitelist: ["editor"],
+	whitelist: ["editor", "page"],
 }
 
 const persistedReducer = persistReducer<ReturnType<typeof rootReducer>>(persistConfig, rootReducer)
@@ -33,3 +35,4 @@ export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useAppSelector = useSelector.withTypes<RootState>()
 
 export const useProject = () => useAppSelector((state: any) => state.editor.project)
+export const usePage = () => useAppSelector((state: any) => state.page.selected)

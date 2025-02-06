@@ -126,7 +126,7 @@ export default function Chat() {
 						/>
 						<button
 							onClick={handleSend}
-							className="bg-clickable text-surface-1 px-4 py-2 rounded-full 
+							className="bg-primary text-surface-1 px-4 py-2 rounded-full 
                       text-sm hover:bg-hover transition-colors flex items-center justify-center"
 							aria-label="Send"
 						>

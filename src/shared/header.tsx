@@ -1,15 +1,19 @@
-import React, { useState } from "react"
+import React, { use, useState } from "react"
 import { useNavigate } from "@tanstack/react-router"
 import ProfileButton from "../pages/my-profile/my-profile-button"
 import { Popover, PopoverContent, PopoverTrigger } from "@jigjoy-io/ui"
+import { usePage } from "../util/store"
+import { pageLoaded } from "../reducers/page-reducer"
+import { useDispatch } from "react-redux"
 
 const Header = () => {
 	const navigate = useNavigate()
-	const [isProfileOpen, setIsProfileOpen] = useState(false)
-	const [pricingActive, setPricingActive] = useState(false)
-	const switchToPricing = () => {
-		navigate({ to: "/pricing" })
-		setPricingActive(true)
+	const page = usePage()
+	const dispatch = useDispatch()
+
+	const switchToPage = (page) => {
+		navigate({ to: `/${page}` })
+		dispatch(pageLoaded(page))
 	}
 
 	const testData = [
@@ -33,51 +37,24 @@ const Header = () => {
 			{/* Right Side: Help and Profile */}
 			<div className="flex items-center gap-4 relative">
 				<button
-					className={`${pricingActive ? "text-accent" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
-					onClick={switchToPricing}
+					className={`${page == "pricing" ? "text-secondary" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
+					onClick={() => switchToPage("pricing")}
 				>
 					<span className="material-icons">Pricing</span>
 				</button>
-
-				{/* 
-                    <Modal>
-                        <ModalTrigger>
-                            <button className="flex items-center gap-2 hover:text-hover text-clickable cursor-pointer">
-                                <span className="material-icons">Docs</span>
-                            </button>
-                        </ModalTrigger>
-                        <ModalContent>
-                            <div>
-                                <h3 className="text-heading text-2xl font-bold mb-4">/help</h3>
-                                <p className="text-base text-lg mb-6">
-                                    Shows info about our basic commands and how to get started.
-                                </p>
-                                <h3 className="text-heading text-2xl font-bold mb-4">/craft</h3>
-                                <p className="text-base text-lg mb-6">Generate a block/app using a textual prompt.</p>
-                                <h3 className="text-heading text-2xl font-bold mb-4">/refine</h3>
-                                <p className="text-base text-lg">Select a building block to refine.</p>
-                            </div>
-                        </ModalContent>
-                    </Modal>
-                */}
 
 				<Popover position="bottom-end">
 					<PopoverTrigger>
 						<div className="flex flex-col">
 							{testData.map((user, index) => (
-								<ProfileButton
-									key={index}
-									profileImage={user.profileImage}
-									username={user.username}
-									subscriptionType={user.subscriptionType}
-								/>
+								<ProfileButton key={index} profileImage={user.profileImage} username={user.username} />
 							))}
 						</div>
 					</PopoverTrigger>
 					<PopoverContent>
 						<ul className="flex flex-col w-[150px] text-end">
 							<li
-								onClick={() => navigate({ to: "/my-profile" })}
+								onClick={() => switchToPage("my-profile")}
 								className="p-2 hover:bg-surface-1 cursor-pointer text-clickable hover:text-hover transition-colors"
 							>
 								My Profile

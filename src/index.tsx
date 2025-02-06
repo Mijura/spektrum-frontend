@@ -26,7 +26,7 @@ rootDiv.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<JigJoyUIProvider theme="light">
+				<JigJoyUIProvider theme="dark">
 					<RouterProvider router={router} />
 				</JigJoyUIProvider>
 			</PersistGate>

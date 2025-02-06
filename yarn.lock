@@ -463,10 +463,10 @@
     wrap-ansi "^8.1.0"
     wrap-ansi-cjs "npm:wrap-ansi@^7.0.0"
 
-"@jigjoy-io/ui@^0.1.10":
-  version "0.1.10"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ui/0.1.10/c2f84d86cb23cd5bf850ff39f76c283acb31d320#c2f84d86cb23cd5bf850ff39f76c283acb31d320"
-  integrity sha512-rkwd8d27ssKgsSk6CWO3+O5zFa2XYmA3EASSAPnF8KNpr+Oa2iuUmlOJpRmbrYkP4PtVpkIuH5udggxtWVGWrA==
+"@jigjoy-io/ui@^0.1.12":
+  version "0.1.12"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ui/0.1.12/79df59631b5f4681d1c9a5f595742275d932ca80#79df59631b5f4681d1c9a5f595742275d932ca80"
+  integrity sha512-/nTOpNWERbzLGhidOLxz1BJX278vIdQ1zjNg6/nTHDnWaS9sXedFYzemjIUg0d0pJAlNnDNCbSxu8j9ZF13qWQ==
   dependencies:
     "@emotion/is-prop-valid" "^1.3.1"
 
