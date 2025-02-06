@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@codesandbox/sandpack-react": "^2.19.10",
 		"@codesandbox/sandpack-themes": "^2.0.21",
-		"@jigjoy-io/ui": "^0.1.8",
+		"@jigjoy-io/ui": "^0.1.10",
 		"@reduxjs/toolkit": "^2.5.0",
 		"@tanstack/react-router": "^1.92.11",
 		"framer-motion": "^11.18.0",
