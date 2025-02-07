@@ -23,7 +23,7 @@ const MyProfile = () => {
 		const data: { date: string; count: number }[] = []
 		const end = new Date()
 		const start = new Date(end)
-		start.setDate(start.getDate() - 364) // Go back 364 days to make it 365 total
+		start.setDate(start.getDate() - 445) // Go back 364 days to make it 365 total
 
 		for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
 			// Generate random activity count with higher probability of lower numbers
@@ -84,9 +84,9 @@ const MyProfile = () => {
 							</div>
 							{/* Progress Bar + Chest */}
 							<div className="flex items-center mt-2">
-								<div className="w-40 bg-disabled h-4 rounded-full mr-2 relative">
+								<div className="w-40 bg-disabled h-2 rounded-[3px] mr-2 relative">
 									<motion.div
-										className="bg-primary h-4 rounded-full"
+										className="bg-primary h-2 rounded-[3px]"
 										style={{
 											width: `${user.progressToNextLevel}%`,
 										}}
@@ -94,7 +94,8 @@ const MyProfile = () => {
 										animate={{ width: `${user.progressToNextLevel}%` }}
 										transition={{ duration: 0.8 }}
 									/>
-								</div>
+								</div>{" "}
+								&nbsp;&nbsp;&nbsp;
 								<motion.div whileHover={{ scale: 1.1, rotate: 10 }} className="cursor-pointer">
 									<img
 										src="https://jigjoy-dev.s3.eu-west-1.amazonaws.com/chest_nobg.png"
