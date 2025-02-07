@@ -60,7 +60,7 @@ const LeftSideMenu = () => {
 									animate={{ x: 0, opacity: 1 }}
 									exit={{ x: -10, width: 0, opacity: 0 }}
 									transition={{ duration: 0.25, ease: "easeInOut" }}
-									className="mr-8 truncate flex items-center"
+									className={`${page === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} mr-8 truncate flex items-center`}
 								>
 									{label}
 								</motion.span>
