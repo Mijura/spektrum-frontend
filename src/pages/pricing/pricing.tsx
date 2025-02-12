@@ -26,7 +26,7 @@ const PricingPage = () => {
 	]
 
 	return (
-		<div className="bg-surface-1 text-base min-h-screen flex flex-col items-center px-4 py-8 font-body">
+		<div className="bg-surface-1 w-full text-base flex flex-col items-center px-4 py-8 font-body">
 			{/* Page Heading */}
 			<motion.h1
 				initial={{ opacity: 0, y: -20 }}
@@ -47,7 +47,7 @@ const PricingPage = () => {
 								<p className="text-secondary text-2xl mb-1">{plan.price}</p>
 								<p className="text-base mb-4 text-center">{plan.description}</p>
 							</div>
-							<Button className="bg-pink-500">{plan.cta}</Button>
+							<Button>{plan.cta}</Button>
 						</div>
 					</Card>
 				))}

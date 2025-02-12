@@ -62,7 +62,7 @@ const MyProfile = () => {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5 }}
-				className={`min-h-screen bg-surface-1 p-6 flex flex-col items-center ${selectedAchievement ? "blur-sm" : ""}`}
+				className={`w-full bg-surface-1 p-6 flex flex-col items-center ${selectedAchievement ? "blur-sm" : ""}`}
 			>
 				{/* Top Section: Profile Info + Credits */}
 				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 bg-surface-2 rounded-md shadow p-4 border border-disabled">
