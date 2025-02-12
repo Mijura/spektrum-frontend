@@ -24,12 +24,12 @@ export default function Editor() {
 								<div className="flex flex-row w-full bg-surface-3">
 									<div className="w-[33%] mr-[20px]">
 										<Tabs>
-											<Tab key="Discovery">
+											<Tab key="Chat">
 												<div className="h-[100%] max-h-[88dvh] w-full">
 													<Chat />
 												</div>
 											</Tab>
-											<Tab key="Dev Mode">
+											<Tab key="Source Code">
 												<div className="h-full flex flex-col">
 													<SandpackFileExplorer autoHiddenFiles={true} style={{ height: "25%" }} />
 													<SandpackCodeEditor showTabs={false} style={{ height: "75%" }} />

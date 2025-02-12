@@ -1,34 +1,36 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { EditorState } from "./editor-types"
 import Project from "../types/project"
+import { v4 as uuidv4 } from "uuid"
 
 const defaultFiles = {
-	"/src/index.tsx": `
-	import React, { StrictMode } from "react";
-  	import { createRoot } from "react-dom/client";
-  	import App from "./App";
-	import "./index.css"; 
+	"src/index.css": `
+	@import "tailwindcss";
+		`,
+	"src/index.tsx": `
+		import React, { StrictMode } from "react";
+		  import { createRoot } from "react-dom/client";
+		  import App from "./App";
+		import "./index.css"; 
+	
+		const root = createRoot(document.getElementById("root"));
+		root.render(
+			<StrictMode>
+				<App />
+				</StrictMode>
+		);`,
 
-  const root = createRoot(document.getElementById("root"));
-  root.render(
-	<StrictMode>
-	  <App />
-	</StrictMode>
-  );`,
 	"src/App.tsx": `
-export default function App() {
-	return (
-	<div>
-Hello world
-	</div>
-
-	);
-}
+		export default function App() {
+			return (
+				<div className="text-pink-500 font-bold">Hello world</div>
+		);
+	}
 `,
 }
 let initialState: EditorState = {
 	project: {
-		id: "1bf60676-3a75-41cb-9379-3fa320a162c9",
+		id: uuidv4(),
 		name: "My First project",
 		description: "This is my first project built with JigJoy",
 		imageUrl: "https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif",

@@ -47,7 +47,7 @@ const PricingPage = () => {
 								<p className="text-secondary text-2xl mb-1">{plan.price}</p>
 								<p className="text-base mb-4 text-center">{plan.description}</p>
 							</div>
-							<Button>{plan.cta}</Button>
+							<Button className="bg-pink-500">{plan.cta}</Button>
 						</div>
 					</Card>
 				))}

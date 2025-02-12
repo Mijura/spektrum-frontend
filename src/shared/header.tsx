@@ -25,7 +25,7 @@ const Header = () => {
 	]
 
 	return (
-		<header className="flex w-[100%] h-[50px] bg-surface-1 border-b border-outline text-white flex items-center justify-between shadow-md px-4">
+		<header className="flex w-[100%] h-[50px] bg-surface-1 border-b border-outline text-white items-center justify-between shadow-md px-4">
 			{/* Left Side: Logo and Navigation */}
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>
