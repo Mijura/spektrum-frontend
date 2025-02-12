@@ -13,9 +13,9 @@ function RootRoute() {
 			<div className="h-fit w-full">
 				<Header />
 			</div>
-			<div className="grow flex flex-row">
+			<div className="h-full flex flex-row">
 				<LeftSideMenu />
-				<div className="grow pl-[72px]">
+				<div className="grow pl-[72px] flex">
 					<Outlet />
 				</div>
 			</div>
