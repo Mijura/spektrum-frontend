@@ -10,8 +10,8 @@ export default function Editor() {
 	return (
 		<>
 			{project && (
-				<div className="grow flex flex-row p-8 bg-surface-3 gap-8">
-					<div className="w-[33%] h-full">
+				<div className="grow flex flex-row p-4 bg-surface-3 gap-4">
+					<div className="w-[50%] h-full">
 						<Tabs>
 							<Tab key="Chat">
 								<Chat />
