@@ -5,27 +5,29 @@ import { v4 as uuidv4 } from "uuid"
 
 const defaultFiles = {
 	"src/index.css": `
-	@import "tailwindcss";
+		@import "tailwindcss";
 		`,
 	"src/index.tsx": `
-		import React, { StrictMode } from "react";
-		  import { createRoot } from "react-dom/client";
-		  import App from "./App";
-		import "./index.css"; 
-	
-		const root = createRoot(document.getElementById("root"));
-		root.render(
-			<StrictMode>
+		import React from "react"
+		import ReactDOM from "react-dom/client"
+		import App from "./App"
+		import "./index.css"
+
+		ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+			<React.StrictMode>
 				<App />
-				</StrictMode>
-		);`,
+			</React.StrictMode>
+		)
+	`,
 
 	"src/App.tsx": `
 		export default function App() {
-			return (
-				<div className="text-pink-500 font-bold">Hello world</div>
-		);
-	}
+    		return (
+        		<div className="bg-red-500 text-white p-4">
+  					Hello World!
+				</div>
+    		)
+		}
 `,
 }
 let initialState: EditorState = {

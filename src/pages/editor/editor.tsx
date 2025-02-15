@@ -26,7 +26,11 @@ export default function Editor() {
 							<ReloadIcon color="ml-4 text-base" />
 							<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
 						</div>
-						<iframe src="https://jigjoy.io/" className="grow" />
+						<iframe
+							src={`http://jigjoy-frontend.s3-website-eu-west-1.amazonaws.com/${project.id}`}
+							allowTransparency={false}
+							className="grow"
+						/>
 					</div>
 				</div>
 			)}

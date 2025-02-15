@@ -2,3 +2,7 @@
 @import "../node_modules/@jigjoy-io/ui/dist/theme.css";
 
 @import "tailwindcss";
+
+iframe {
+	background-color: white !important;
+}
