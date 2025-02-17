@@ -13,7 +13,7 @@ function RootRoute() {
 			<div className="h-fit w-full">
 				<Header />
 			</div>
-			<div className="flex flex-row overflow-y-auto">
+			<div className="grow flex flex-row overflow-y-auto">
 				<LeftSideMenu />
 				<div className="grow pl-[72px] flex">
 					<Outlet />
