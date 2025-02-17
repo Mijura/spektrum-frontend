@@ -52,9 +52,9 @@ export default function Chat() {
 		project && (
 			<div className="flex flex-col font-body h-full">
 				{/* Main chat container */}
-				<div className="h-full flex flex-col bg-surface-1 p-4 rounded shadow-md text-white">
+				<div className="flex flex-col bg-surface-1 p-4 rounded shadow-md text-white h-full">
 					{/* Message list (scrollable) */}
-					<div className="grow overflow-y-auto space-y-4">
+					<div className="space-y-4 max-h-[84%] grow overflow-y-auto">
 						{project.chatHistory.map((msg, index) => {
 							const isUser = msg.role === "user"
 							return (
@@ -95,43 +95,45 @@ export default function Chat() {
 						})}
 					</div>
 
-					{/* Suggestion chips */}
-					{project.chatHistory.length <= 1 && (
-						<div className="flex flex-wrap gap-2 justify-center my-4">
-							{suggestions.map((text, index) => (
-								<Chip
-									key={text}
-									label={text}
-									delay={index}
-									onClick={() => {
-										setInputValue(text)
-										handleSend()
-									}}
-								/>
-							))}
-						</div>
-					)}
+					<div className="my-4 h-fit">
+						{/* Suggestion chips */}
+						{project.chatHistory.length <= 1 && (
+							<div className="flex flex-wrap gap-2 justify-center my-4">
+								{suggestions.map((text, index) => (
+									<Chip
+										key={text}
+										label={text}
+										delay={index}
+										onClick={() => {
+											setInputValue(text)
+											handleSend()
+										}}
+									/>
+								))}
+							</div>
+						)}
 
-					{/* Message input + send button */}
-					<div className="flex items-center space-x-2 mt-auto pt-4 pb-2">
-						<input
-							type="text"
-							placeholder="Type your message..."
-							className="flex-1 border border-disabled bg-surface-1 rounded-full 
+						{/* Message input + send button */}
+						<div className="flex items-center space-x-2 mt-auto pt-4 pb-2">
+							<input
+								type="text"
+								placeholder="Type your message..."
+								className="flex-1 border border-disabled bg-surface-1 rounded-full 
                       px-3 py-2 text-sm placeholder-base
                       focus:outline-none focus:ring-2 focus:ring-hover"
-							value={inputValue}
-							onChange={(e) => setInputValue(e.target.value)}
-							onKeyDown={(e) => e.key === "Enter" && handleSend()}
-						/>
-						<button
-							onClick={handleSend}
-							className="bg-primary text-surface-1 px-4 py-2 rounded-full 
+								value={inputValue}
+								onChange={(e) => setInputValue(e.target.value)}
+								onKeyDown={(e) => e.key === "Enter" && handleSend()}
+							/>
+							<button
+								onClick={handleSend}
+								className="bg-primary text-surface-1 px-4 py-2 rounded-full 
                       text-sm hover:bg-hover transition-colors flex items-center justify-center"
-							aria-label="Send"
-						>
-							<PlainIcon />
-						</button>
+								aria-label="Send"
+							>
+								<PlainIcon />
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>

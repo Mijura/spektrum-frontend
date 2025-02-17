@@ -9,11 +9,11 @@ export const Route = createRootRoute({
 
 function RootRoute() {
 	return (
-		<div className="flex flex-col bg-surface-3 h-[100dvh] min-h-[100dvh] max-h-[100dvh] w-full">
+		<div className="flex flex-col bg-surface-3 h-screen min-h-screen max-h-screen w-full">
 			<div className="h-fit w-full">
 				<Header />
 			</div>
-			<div className="h-full flex flex-row">
+			<div className="flex flex-row overflow-y-auto">
 				<LeftSideMenu />
 				<div className="grow pl-[72px] flex">
 					<Outlet />
