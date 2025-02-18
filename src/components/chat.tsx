@@ -29,6 +29,7 @@ export default function Chat() {
 
 	const handleSend = async () => {
 		if (!inputValue.trim()) return
+
 		const newMessage: Message = {
 			id: Date.now(),
 			role: "user",
@@ -39,11 +40,15 @@ export default function Chat() {
 
 		setInputValue("")
 
+		console.log(project)
+
 		let newSourceCode = await implementRequest({
 			id: "id",
 			project: project,
 			message: newMessage.content,
 		})
+
+		console.log(newSourceCode)
 
 		dispatch(sourceCodeUpdated(newSourceCode))
 	}
