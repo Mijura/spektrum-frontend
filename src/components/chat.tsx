@@ -40,15 +40,11 @@ export default function Chat() {
 
 		setInputValue("")
 
-		console.log(project)
-
 		let newSourceCode = await implementRequest({
 			id: "id",
 			project: project,
 			message: newMessage.content,
 		})
-
-		console.log(newSourceCode)
 
 		dispatch(sourceCodeUpdated(newSourceCode))
 	}
@@ -59,7 +55,7 @@ export default function Chat() {
 				{/* Main chat container */}
 				<div className="flex flex-col bg-surface-1 p-4 rounded shadow-md text-white h-full">
 					{/* Message list (scrollable) */}
-					<div className="space-y-4 max-h-[84%] grow overflow-y-auto">
+					<div className="space-y-4 grow overflow-y-auto">
 						{project.chatHistory.map((msg, index) => {
 							const isUser = msg.role === "user"
 							return (
