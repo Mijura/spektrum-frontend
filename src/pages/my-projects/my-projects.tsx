@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import { motion } from "framer-motion"
 // import { useProjects } from "../../util/store"
 import Project from "../../types/project"
-import { Card, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
+import { Button, Card, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
+import { createNewProject } from "../../api/project"
 
 export default function MyProjects() {
 	//const projects = useProjects()
@@ -38,9 +39,14 @@ export default function MyProjects() {
 		setEditingProject(null)
 	}
 
+	const handleCreateNewProject = async () => {
+		await createNewProject()
+	}
+
 	return (
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
 			<h1 className="text-3xl font-bold mb-6 text-heading">My Projects</h1>
+			<Button onClick={handleCreateNewProject}>Create new Project</Button>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 				{/* {projects.map((project: Project) => (
 						<Card>

@@ -1,4 +1,5 @@
 export const API_HOST = process.env.REACT_APP_API
+export const HOSTING_API = process.env.REACT_APP_FRONTEND_STORAGE
 
 interface ChangeRequest {
 	id: string
@@ -16,5 +17,14 @@ export async function implementRequest(changeRequest: ChangeRequest): Promise<an
 	}
 
 	const res: any = await fetch(`${API_HOST}/project/implement`, options)
+	return await res.json()
+}
+
+export async function createNewProject(): Promise<any> {
+	const options = {
+		method: "POST",
+	}
+
+	const res: any = await fetch(`${HOSTING_API}/project/new`, options)
 	return await res.json()
 }
