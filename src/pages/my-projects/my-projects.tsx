@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import { motion } from "framer-motion"
 // import { useProjects } from "../../util/store"
 import Project from "../../types/project"
-import { Button, Card, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
+import { Button, Card, Loader, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
 import { createNewProject } from "../../api/project"
+import { useNavigate } from "@tanstack/react-router"
 
 export default function MyProjects() {
 	//const projects = useProjects()
@@ -11,6 +12,8 @@ export default function MyProjects() {
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
 	const [imageUrl, setImageUrl] = useState("")
+	const [loading, setLoading] = useState(false)
+	const navigate = useNavigate()
 
 	const handleEdit = (project: any) => {
 		console.log(project)
@@ -40,10 +43,17 @@ export default function MyProjects() {
 	}
 
 	const handleCreateNewProject = async () => {
-		await createNewProject()
+		setLoading(true)
+		const project = await createNewProject()
+		setLoading(false)
+		navigate({
+			to: `/${project.projectId}`,
+		})
 	}
 
-	return (
+	return loading ? (
+		<Loader message="Project intialization" />
+	) : (
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
 			<h1 className="text-3xl font-bold mb-6 text-heading">My Projects</h1>
 			<Button onClick={handleCreateNewProject}>Create new Project</Button>

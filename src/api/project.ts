@@ -1,3 +1,5 @@
+import { ProjectNotFoundError } from "../util/errors/project-not-found-error"
+
 export const API_HOST = process.env.REACT_APP_API
 export const HOSTING_API = process.env.REACT_APP_FRONTEND_STORAGE
 
@@ -26,5 +28,11 @@ export async function createNewProject(): Promise<any> {
 	}
 
 	const res: any = await fetch(`${HOSTING_API}/project/new`, options)
+	return await res.json()
+}
+
+export async function fetchProject(id: string) {
+	const res: any = await fetch(`${HOSTING_API}/project/fetch/${id}`)
+	if (res.status == 404) throw new ProjectNotFoundError()
 	return await res.json()
 }

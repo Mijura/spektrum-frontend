@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Chat from "../../components/chat"
 import { useProject } from "../../util/store"
 import { Tabs, Tab } from "@jigjoy-io/ui"
 import ReloadIcon from "../../icons/reload-icon"
-import { v4 as uuidv4 } from "uuid"
 
 export const STORAGE_URL = process.env.REACT_APP_FRONTEND_STORAGE
 
 export default function Editor() {
-	const [key, setKey] = useState(uuidv4())
 	const project = useProject()
-
-	useEffect(() => {
-		setKey(uuidv4())
-	}, [project])
 
 	return (
 		<>
@@ -34,7 +28,7 @@ export default function Editor() {
 							<ReloadIcon color="ml-4 text-base" />
 							<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
 						</div>
-						<iframe key={key} src={`${STORAGE_URL}/${project.id}`} className="grow" />
+						<iframe src={`${STORAGE_URL}/${project.projectId}`} className="grow" />
 					</div>
 				</div>
 			)}
