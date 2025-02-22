@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { useProject } from "../util/store"
-import { implementRequest } from "../api/project"
+import { implementRequest, updateProject } from "../api/project"
 import { useDispatch } from "react-redux"
 import { messageAdded, sourceCodeUpdated } from "../reducers/editor-reducer"
 import PlainIcon from "../icons/plain-icon"
@@ -46,7 +46,16 @@ export default function Chat() {
 			message: newMessage.content,
 		})
 
-		dispatch(sourceCodeUpdated(newSourceCode))
+		console.log(newSourceCode)
+
+		dispatch(
+			sourceCodeUpdated({
+				...project.sourceCode,
+				...newSourceCode,
+			}),
+		)
+
+		await updateProject({ projectId: project.projectId, sourceCode: { ...newSourceCode } })
 	}
 
 	return (

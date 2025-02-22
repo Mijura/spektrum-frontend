@@ -32,7 +32,7 @@ const defaultFiles = {
 }
 let initialState: EditorState = {
 	project: {
-		id: uuidv4(),
+		projectId: uuidv4(),
 		name: "My First project",
 		description: "This is my first project built with JigJoy",
 		imageUrl: "https://jigjoy-dev.s3.eu-west-1.amazonaws.com/assets/257aacc0-f677-4133-8732-b0d44e8ff4ef/look_after.gif",

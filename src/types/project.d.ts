@@ -1,5 +1,5 @@
 export default interface Project {
-	id?: string
+	projectId?: string
 	name?: string
 	description?: string
 	imageUrl?: string

@@ -36,3 +36,17 @@ export async function fetchProject(id: string) {
 	if (res.status == 404) throw new ProjectNotFoundError()
 	return await res.json()
 }
+
+export async function updateProject(project: any): Promise<any> {
+	console.log(project)
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(project),
+	}
+
+	const res: any = await fetch(`${HOSTING_API}/project/update`, options)
+	return await res.json()
+}

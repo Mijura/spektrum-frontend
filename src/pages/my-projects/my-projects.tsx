@@ -91,7 +91,7 @@ export default function MyProjects() {
 									<motion.button
 										whileHover={{ scale: 1.1 }}
 										whileTap={{ scale: 0.95 }}
-										onClick={() => handleDelete(project.id)}
+										onClick={() => handleDelete(project.projectId)}
 										className="p-2 rounded-full bg-surface-3 text-red-500 hover:bg-red-500 hover:text-white"
 									>
 										<svg
