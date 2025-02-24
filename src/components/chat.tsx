@@ -91,7 +91,7 @@ export default function Chat() {
 												initial="initial"
 												animate="animate"
 												transition={{ duration: 0.3, delay: index * 0.05 }}
-												className="max-w-xs px-3 py-2 rounded bg-surface-3 text-white"
+												className="max-w-xs px-3 py-2 rounded bg-surface-3 text-heading"
 											>
 												{msg.content}
 											</motion.div>
