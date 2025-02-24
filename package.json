@@ -11,7 +11,7 @@
 		"format": "prettier --write \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
-		"@jigjoy-io/ui": "^0.1.15",
+		"@jigjoy-io/ui": "^0.1.16",
 		"@reduxjs/toolkit": "^2.5.0",
 		"@tanstack/react-router": "^1.92.11",
 		"framer-motion": "^11.18.0",

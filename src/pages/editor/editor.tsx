@@ -1,7 +1,7 @@
 import React from "react"
 import Chat from "../../components/chat"
 import { useProject } from "../../util/store"
-import { Tabs, Tab, Button } from "@jigjoy-io/ui"
+import { Tabs, Tab } from "@jigjoy-io/ui"
 import ReloadIcon from "../../icons/reload-icon"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
@@ -17,18 +17,18 @@ export default function Editor() {
 						<Chat />
 					</div>
 					<div className="flex flex-col w-full">
-						<Tabs>
-							<Tab key="Preview">
+						<Tabs className="h-full">
+							<Tab key="Preview" className="flex flex-col h-full">
 								<div className="h-[40px] flex flew-row bg-surface-1 rounded-tr-lg">
 									<ReloadIcon color="ml-4 text-base" />
 									<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
 								</div>
-								<div className="grow">
+								<div className="flex h-full">
 									<iframe src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
 								</div>
 							</Tab>
 							<Tab key="Source Code">
-								<div className="flex flex-col"></div>
+								<div></div>
 							</Tab>
 						</Tabs>
 					</div>
