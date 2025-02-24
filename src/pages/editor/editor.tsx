@@ -1,7 +1,7 @@
 import React from "react"
 import Chat from "../../components/chat"
 import { useProject } from "../../util/store"
-import { Tabs, Tab } from "@jigjoy-io/ui"
+import { Tabs, Tab, Button } from "@jigjoy-io/ui"
 import ReloadIcon from "../../icons/reload-icon"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
@@ -13,22 +13,24 @@ export default function Editor() {
 		<>
 			{project && (
 				<div className="grow flex flex-row p-4 bg-surface-3 gap-4">
-					<div className="w-[50%] h-full overflow-y-hidden">
+					<div className="w-[40%] h-full overflow-y-hidden rounded-lg">
+						<Chat />
+					</div>
+					<div className="flex flex-col w-full">
 						<Tabs>
-							<Tab key="Chat">
-								<Chat />
+							<Tab key="Preview">
+								<div className="h-[40px] flex flew-row bg-surface-1 rounded-tr-lg">
+									<ReloadIcon color="ml-4 text-base" />
+									<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
+								</div>
+								<div className="grow">
+									<iframe src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
+								</div>
 							</Tab>
 							<Tab key="Source Code">
 								<div className="flex flex-col"></div>
 							</Tab>
 						</Tabs>
-					</div>
-					<div className="flex flex-col w-full border border-black">
-						<div className="h-[40px] flex flew-row bg-surface-1">
-							<ReloadIcon color="ml-4 text-base" />
-							<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
-						</div>
-						<iframe src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
 					</div>
 				</div>
 			)}
