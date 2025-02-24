@@ -4,7 +4,7 @@ import { useProject } from "../../util/store"
 import { Tabs, Tab } from "@jigjoy-io/ui"
 import ReloadIcon from "../../icons/reload-icon"
 
-export const STORAGE_URL = process.env.REACT_APP_FRONTEND_STORAGE
+export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
 export default function Editor() {
 	const project = useProject()
@@ -28,7 +28,7 @@ export default function Editor() {
 							<ReloadIcon color="ml-4 text-base" />
 							<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
 						</div>
-						<iframe src={`${STORAGE_URL}/${project.projectId}`} className="grow" />
+						<iframe src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
 					</div>
 				</div>
 			)}

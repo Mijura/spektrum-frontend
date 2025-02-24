@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { EditorState } from "./editor-types"
+import { EditorState } from "../types/editor"
 import Project from "../types/project"
 import { v4 as uuidv4 } from "uuid"
 
