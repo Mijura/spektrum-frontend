@@ -13,7 +13,7 @@ export default function Editor() {
 		<>
 			{project && (
 				<div className="grow flex flex-row p-4 bg-surface-3 gap-4">
-					<div className="w-[40%] h-full overflow-y-hidden rounded-lg">
+					<div className="xl:w-[50%] 2xl:w-[33%] h-full overflow-y-hidden rounded-lg">
 						<Chat />
 					</div>
 					<div className="flex flex-col w-full">
