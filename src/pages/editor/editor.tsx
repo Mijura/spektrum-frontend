@@ -1,13 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Chat from "../../components/chat"
 import { useProject } from "../../util/store"
 import { Tabs, Tab } from "@jigjoy-io/ui"
 import ReloadIcon from "../../icons/reload-icon"
+import { v4 as uuidv4 } from "uuid"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
 export default function Editor() {
 	const project = useProject()
+	const [iframeKey, setIframeKey] = React.useState(uuidv4())
+
+	useEffect(() => {
+		setIframeKey(uuidv4())
+	}, [project.sourceCode])
 
 	return (
 		<>
@@ -24,7 +30,7 @@ export default function Editor() {
 									<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
 								</div>
 								<div className="flex h-full">
-									<iframe src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
+									<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
 								</div>
 							</Tab>
 							{/* <Tab key="Source Code">
