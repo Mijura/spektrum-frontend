@@ -122,12 +122,12 @@ const MyProfile = () => {
 				</div>
 
 				{/* Activity Graph */}
-				<div className="w-full max-w-4xl mb-4">
+				{/* <div className="w-full max-w-4xl mb-4">
 					<ActivityGraph data={activityData} />
-				</div>
+				</div> */}
 
 				{/* Achievements Section */}
-				<div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+				{/* <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 					{achievements.map((achievement) => (
 						<motion.div
 							key={achievement.id}
@@ -146,7 +146,7 @@ const MyProfile = () => {
 							<p className="text-base">{achievement.description}</p>
 						</motion.div>
 					))}
-				</div>
+				</div> */}
 			</motion.div>
 
 			{/* Achievement Modal */}
