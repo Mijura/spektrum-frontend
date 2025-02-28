@@ -27,9 +27,9 @@ export default function Editor() {
 									<iframe src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
 								</div>
 							</Tab>
-							<Tab key="Source Code">
+							{/* <Tab key="Source Code">
 								<div></div>
-							</Tab>
+							</Tab> */}
 						</Tabs>
 					</div>
 				</div>
