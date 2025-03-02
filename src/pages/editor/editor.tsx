@@ -30,7 +30,7 @@ export default function Editor() {
 									<div className="m-2 rounded-full bg-surface-2 w-full px-4 text-base">/</div>
 								</div>
 								<div className="flex h-full">
-									<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_API}/${project.projectId}`} className="grow" />
+									<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_API}/${project.id}`} className="grow" />
 								</div>
 							</Tab>
 							{/* <Tab key="Source Code">
