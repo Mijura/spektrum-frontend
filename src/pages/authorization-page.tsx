@@ -1,7 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
 
-// Animates the background gradient position for a subtle shifting effect
 const backgroundVariants = {
 	animate: {
 		backgroundPosition: ["0% 0%", "100% 100%"],
@@ -13,13 +12,11 @@ const backgroundVariants = {
 	},
 }
 
-// Container fade-in animation for the main content
 const containerVariants = {
 	hidden: { opacity: 0, y: 20 },
 	visible: { opacity: 1, y: 0 },
 }
 
-// Button hover/tap variants
 const buttonVariants = {
 	hover: { scale: 1.05 },
 	tap: { scale: 0.95 },

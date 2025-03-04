@@ -1,3 +1,0 @@
-interface IconProps {
-	color: string
-}

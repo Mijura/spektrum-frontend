@@ -1,13 +1,13 @@
-import React, { useEffect } from "react"
-import Chat from "../../components/chat"
 import { Tabs, Tab } from "@jigjoy-io/ui"
-import ReloadIcon from "../../icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"
-import { useProject } from "../../shared/store"
+import Chat from "../components/chat"
+import ReloadIcon from "../shared/icons/reload-icon"
+import React, { useEffect } from "react"
+import { useProject } from "../hooks/use-project"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
-export default function Editor() {
+export default function EditorPage() {
 	const project = useProject()
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
 
@@ -33,9 +33,6 @@ export default function Editor() {
 									<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_API}/${project.id}`} className="grow" />
 								</div>
 							</Tab>
-							{/* <Tab key="Source Code">
-								<div></div>
-							</Tab> */}
 						</Tabs>
 					</div>
 				</div>

@@ -1,14 +1,12 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import ProjectsIcon from "../icons/projects-icon"
-// import MarketplaceIcon from "../icons/marketplace-icon"
-// import QuestsIcon from "../icons/quests-icon"
-import EditorIcon from "../icons/editor-icon"
-import DiscordIcon from "../icons/discord-icon"
+import ProjectsIcon from "../shared/icons/projects-icon"
+import EditorIcon from "../shared/icons/editor-icon"
+import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { pageLoaded } from "../shared/reducers/page-reducer"
-import { usePage } from "../shared/store"
+import { usePage } from "../hooks/use-page"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
@@ -35,9 +33,7 @@ const LeftSideMenu = () => {
 			<ul className="flex flex-col mt-[100px]">
 				{[
 					{ name: "editor", icon: EditorIcon, label: "Editor", route: "/" },
-					// { name: "browse", icon: MarketplaceIcon, label: "Browse Components", route: "/browse-components" },
-					{ name: "projects", icon: ProjectsIcon, label: "My Projects", route: "/my-projects" },
-					// { name: 'rewards', icon: QuestsIcon, label: 'Rewards', route: '/rewards' }
+					{ name: "projects", icon: ProjectsIcon, label: "My Projects", route: "/projects" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}

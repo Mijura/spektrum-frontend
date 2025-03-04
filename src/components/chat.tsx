@@ -3,9 +3,9 @@ import { motion } from "framer-motion"
 import { implementRequest } from "../api/project"
 import { useDispatch } from "react-redux"
 import { messageAdded, sourceCodeUpdated } from "../shared/reducers/editor-reducer"
-import PlainIcon from "../icons/plain-icon"
+import PlainIcon from "../shared/icons/plain-icon"
 import { Chip } from "@jigjoy-io/ui"
-import { useProject } from "../shared/store"
+import { useProject } from "../hooks/use-project"
 
 interface Message {
 	id: number

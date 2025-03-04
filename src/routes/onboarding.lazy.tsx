@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from "@tanstack/react-router"
-import Onboarding from "../pages/onboarding/onboarding"
+import OnboardingPage from "../pages/onboarding-page"
 
 export const Route = createLazyFileRoute("/onboarding" as never)({
-	component: Onboarding,
+	component: OnboardingPage,
 })

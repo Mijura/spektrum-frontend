@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import { useDispatch, useSelector } from "react-redux"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
 import editorReducer from "./reducers/editor-reducer"
@@ -26,13 +25,3 @@ export const store = configureStore({
 		}),
 })
 export const persistor = persistStore(store)
-
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
-export const useAppSelector = useSelector.withTypes<RootState>()
-
-export const useProject = () => useAppSelector((state: any) => state.editor.project)
-export const usePage = () => useAppSelector((state: any) => state.page.selected)

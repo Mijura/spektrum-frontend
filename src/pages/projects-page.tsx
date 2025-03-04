@@ -1,12 +1,9 @@
 import React, { useState } from "react"
-import { motion } from "framer-motion"
-// import { useProjects } from "../../util/store"
-import Project from "../../types/project"
-import { Button, Card, Loader, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
-import { createNewProject } from "../../api/project"
+import { Button, Loader, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
 import { useNavigate } from "@tanstack/react-router"
+import { createNewProject } from "../api/project"
 
-export default function MyProjects() {
+export default function ProjectsPage() {
 	//const projects = useProjects()
 	const [editingProject, setEditingProject] = useState<any>(null)
 	const [name, setName] = useState("")

@@ -2,8 +2,7 @@ import React from "react"
 import { motion } from "framer-motion"
 import { Button, Card } from "@jigjoy-io/ui"
 
-const PricingPage = () => {
-	// Centralized pricing plans data
+export default function PricingPage() {
 	const pricingPlans = [
 		{
 			name: "Beginner",
@@ -55,5 +54,3 @@ const PricingPage = () => {
 		</div>
 	)
 }
-
-export default PricingPage
