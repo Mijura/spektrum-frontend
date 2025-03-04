@@ -1,5 +1,5 @@
 import React from "react"
-import { usePage } from "../../util/store"
+import { usePage } from "../../shared/store"
 
 const ProfileButton = ({ profileImage, username }) => {
 	const page = usePage()

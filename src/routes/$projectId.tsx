@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router"
 import Editor from "../pages/editor/editor"
 import { Loader } from "@jigjoy-io/ui"
 import React, { useEffect } from "react"
-import { PostError } from "../util/errors/post-error"
 import { fetchProject } from "../api/project"
 import { useDispatch } from "react-redux"
 import { projectUpdated } from "../reducers/editor-reducer"
+import { PostError } from "../shared/errors/post-error"
 
 export const Route: any = createFileRoute("/$projectId" as never)({
 	loader: async ({ params: { projectId } }) => {

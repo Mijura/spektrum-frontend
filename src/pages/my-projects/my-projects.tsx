@@ -47,7 +47,7 @@ export default function MyProjects() {
 		const project = await createNewProject()
 		setLoading(false)
 		navigate({
-			to: `/${project.projectId}`,
+			to: `/${project.id}`,
 		})
 	}
 

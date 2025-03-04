@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { useProject } from "../util/store"
 import { implementRequest } from "../api/project"
 import { useDispatch } from "react-redux"
 import { messageAdded, sourceCodeUpdated } from "../reducers/editor-reducer"
 import PlainIcon from "../icons/plain-icon"
 import { Chip } from "@jigjoy-io/ui"
+import { useProject } from "../shared/store"
 
 interface Message {
 	id: number

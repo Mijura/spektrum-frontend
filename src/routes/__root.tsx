@@ -1,7 +1,7 @@
 import React from "react"
 import { createRootRoute, Outlet } from "@tanstack/react-router"
-import Header from "../shared/header"
-import LeftSideMenu from "../shared/left-side-menu"
+import Header from "../components/header"
+import LeftSideMenu from "../components/left-side-menu"
 
 export const Route = createRootRoute({
 	component: RootRoute,

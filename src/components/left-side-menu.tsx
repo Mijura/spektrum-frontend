@@ -8,7 +8,7 @@ import DiscordIcon from "../icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { pageLoaded } from "../reducers/page-reducer"
-import { usePage } from "../util/store"
+import { usePage } from "../shared/store"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)

@@ -5,8 +5,8 @@ import { routeTree } from "./routeTree.gen"
 import { createRouter, RouterProvider } from "@tanstack/react-router"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
-import { persistor, store } from "./util/store"
 import { JigJoyUIProvider } from "@jigjoy-io/ui"
+import { persistor, store } from "./shared/store"
 
 const root = document.createElement("div")
 document.body.appendChild(root)

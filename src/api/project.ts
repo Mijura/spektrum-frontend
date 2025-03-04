@@ -1,4 +1,4 @@
-import { ProjectNotFoundError } from "../util/errors/project-not-found-error"
+import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 

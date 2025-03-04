@@ -1,9 +1,9 @@
 import React, { useEffect } from "react"
 import Chat from "../../components/chat"
-import { useProject } from "../../util/store"
 import { Tabs, Tab } from "@jigjoy-io/ui"
 import ReloadIcon from "../../icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"
+import { useProject } from "../../shared/store"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 

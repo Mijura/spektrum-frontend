@@ -1,10 +1,10 @@
-import React, { use, useState } from "react"
+import React from "react"
 import { useNavigate } from "@tanstack/react-router"
 import ProfileButton from "../pages/my-profile/my-profile-button"
 import { Popover, PopoverContent, PopoverTrigger } from "@jigjoy-io/ui"
-import { usePage } from "../util/store"
 import { pageLoaded } from "../reducers/page-reducer"
 import { useDispatch } from "react-redux"
+import { usePage } from "../shared/store"
 
 const Header = () => {
 	const navigate = useNavigate()
