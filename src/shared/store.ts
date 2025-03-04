@@ -2,8 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { useDispatch, useSelector } from "react-redux"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
-import editorReducer from "../reducers/editor-reducer"
-import pageReducer from "../reducers/page-reducer"
+import editorReducer from "./reducers/editor-reducer"
+import pageReducer from "./reducers/page-reducer"
 
 const rootReducer = combineReducers({
 	editor: editorReducer,

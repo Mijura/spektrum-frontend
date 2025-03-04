@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate } from "@tanstack/react-router"
 import ProfileButton from "../pages/my-profile/my-profile-button"
 import { Popover, PopoverContent, PopoverTrigger } from "@jigjoy-io/ui"
-import { pageLoaded } from "../reducers/page-reducer"
+import { pageLoaded } from "../shared/reducers/page-reducer"
 import { useDispatch } from "react-redux"
 import { usePage } from "../shared/store"
 

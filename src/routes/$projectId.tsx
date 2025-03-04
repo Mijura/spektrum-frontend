@@ -4,7 +4,7 @@ import { Loader } from "@jigjoy-io/ui"
 import React, { useEffect } from "react"
 import { fetchProject } from "../api/project"
 import { useDispatch } from "react-redux"
-import { projectUpdated } from "../reducers/editor-reducer"
+import { projectUpdated } from "../shared/reducers/editor-reducer"
 import { PostError } from "../shared/errors/post-error"
 
 export const Route: any = createFileRoute("/$projectId" as never)({

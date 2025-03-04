@@ -7,7 +7,7 @@ import EditorIcon from "../icons/editor-icon"
 import DiscordIcon from "../icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
-import { pageLoaded } from "../reducers/page-reducer"
+import { pageLoaded } from "../shared/reducers/page-reducer"
 import { usePage } from "../shared/store"
 
 const LeftSideMenu = () => {
