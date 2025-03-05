@@ -17,7 +17,7 @@ export async function implementRequest(changeRequest: ChangeRequest): Promise<an
 		body: JSON.stringify(changeRequest),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/project/implement`, options)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/implement`, options)
 	return await res.json()
 }
 
@@ -26,12 +26,12 @@ export async function createNewProject(): Promise<any> {
 		method: "POST",
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/project/new`, options)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/new`, options)
 	return await res.json()
 }
 
 export async function fetchProject(id: string) {
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/project/fetch/${id}`)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/fetch/${id}`)
 	if (res.status == 404) throw new ProjectNotFoundError()
 	return await res.json()
 }

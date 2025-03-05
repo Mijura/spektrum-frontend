@@ -52,8 +52,8 @@ export default function ProjectsPage() {
 		<Loader message="Project intialization" />
 	) : (
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
-			<h1 className="text-3xl font-bold mb-6 text-heading">My Projects</h1>
-			<Button onClick={handleCreateNewProject}>Create new Project</Button>
+			<h1 className="text-3xl font-bold mb-6 text-heading">My projects</h1>
+			<Button onClick={handleCreateNewProject}>Create new project</Button>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 				{/* {projects.map((project: Project) => (
 						<Card>
