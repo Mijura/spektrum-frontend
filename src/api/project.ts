@@ -3,12 +3,11 @@ import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
 interface ChangeRequest {
-	id: string
+	projectId: string
 	message: string
-	project: any
 }
 
-export async function implementRequest(changeRequest: ChangeRequest): Promise<any> {
+export async function develop(changeRequest: ChangeRequest): Promise<any> {
 	const options = {
 		method: "PUT",
 		headers: {
@@ -17,7 +16,7 @@ export async function implementRequest(changeRequest: ChangeRequest): Promise<an
 		body: JSON.stringify(changeRequest),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/implement`, options)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/develop`, options)
 	return await res.json()
 }
 
