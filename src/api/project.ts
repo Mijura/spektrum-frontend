@@ -25,7 +25,7 @@ export async function createNewProject(): Promise<any> {
 		method: "POST",
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/new`, options)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}`, options)
 	return await res.json()
 }
 
