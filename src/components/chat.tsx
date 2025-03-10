@@ -62,7 +62,7 @@ export default function Chat() {
 				<div className="flex flex-col bg-surface-1 p-4 rounded shadow-md text-white h-full">
 					{/* Message list (scrollable) */}
 					<div className="space-y-4 grow overflow-y-auto">
-						{project.chatHistory.map((msg, index) => {
+						{project.chatHistory.map((msg: Message, index: number) => {
 							const isUser = msg.role === "user"
 							return (
 								<div key={msg.id} className={`flex ${isUser ? "justify-start" : "justify-end"}`}>

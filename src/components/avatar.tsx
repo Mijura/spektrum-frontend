@@ -1,6 +1,11 @@
 import React from "react"
 
-const Avatar = ({ profileImage, username }) => {
+interface AvatarProps {
+	profileImage: string
+	username: string
+}
+
+const Avatar: React.FC<AvatarProps> = ({ profileImage, username }) => {
 	return (
 		<button className="cursor-pointer text-base hover:text-gray-300 flex items-center gap-2">
 			<img src={profileImage} alt="Profile" className={`w-8 h-8 rounded-full object-cover border border-base`} />

@@ -1,6 +1,10 @@
 import React from "react"
 
-export default function EditorIcon({ color }) {
+interface EditorIconProps {
+	color: string
+}
+
+export default function EditorIcon({ color }: EditorIconProps) {
 	return (
 		<svg
 			width="32"

@@ -1,6 +1,10 @@
 import React from "react"
 
-export default function ProjectsIcon({ color }) {
+interface ProjectsIconProps {
+	color: string
+}
+
+export default function ProjectsIcon({ color }: ProjectsIconProps) {
 	return (
 		<svg
 			width="32"

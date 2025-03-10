@@ -1,6 +1,10 @@
 import React from "react"
 
-export default function DiscordIcon({ color }) {
+interface DiscordIconProps {
+	color: string
+}
+
+export default function DiscordIcon({ color }: DiscordIconProps) {
 	return (
 		<svg
 			viewBox="0 -28.5 256 256"

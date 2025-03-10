@@ -1,9 +1,7 @@
 const path = require("path")
 const rspack = require("@rspack/core")
 const Dotenv = require("dotenv-webpack")
-const RefreshPlugin = require("@rspack/plugin-react-refresh")
-
-const isDev = process.env.NODE_ENV === "development"
+const { TsCheckerRspackPlugin } = require("ts-checker-rspack-plugin")
 
 // Target browsers, see: https://github.com/browserslist/browserslist
 const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"]
@@ -20,6 +18,10 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.svg$/,
+				type: "asset",
+			},
+			{
 				test: /\.(ts|tsx|js|jsx)$/,
 				use: {
 					loader: "builtin:swc-loader",
@@ -33,8 +35,6 @@ module.exports = {
 							transform: {
 								react: {
 									runtime: "automatic",
-									development: isDev,
-									refresh: isDev,
 								},
 							},
 						},
@@ -50,21 +50,24 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new rspack.CopyRspackPlugin({
-			patterns: [{ from: "manifest.json" }, { from: "./public/favicon.ico" }],
+		new rspack.HtmlRspackPlugin({
+			template: path.join(__dirname, "../public/index.html"),
 		}),
 		new Dotenv({
 			path: "./.env",
 			safe: true,
 		}),
-		new rspack.HtmlRspackPlugin({
-			template: "public/index.html",
-			title: "Build apps with natural language",
-			filename: "index.html",
-			chunks: ["main"],
+		new TsCheckerRspackPlugin({
+			typescript: {
+				configOverwrite: {
+					compilerOptions: {
+						jsx: "react-jsx",
+						allowJs: true,
+					},
+				},
+			},
 		}),
-		isDev ? new RefreshPlugin() : null,
-	].filter(Boolean),
+	],
 	optimization: {
 		minimizer: [
 			new rspack.SwcJsMinimizerRspackPlugin(),

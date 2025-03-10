@@ -11,7 +11,7 @@ const Header = () => {
 	const page = usePage()
 	const dispatch = useDispatch()
 
-	const switchToPage = (page) => {
+	const switchToPage = (page: string) => {
 		navigate({ to: `/${page}` })
 		dispatch(pageLoaded(page))
 	}

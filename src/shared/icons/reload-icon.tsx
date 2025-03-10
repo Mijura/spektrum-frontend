@@ -1,6 +1,10 @@
 import React from "react"
 
-export default function ReloadIcon({ color }) {
+interface ReloadIconProps {
+	color: string
+}
+
+export default function ReloadIcon({ color }: ReloadIconProps) {
 	return (
 		<div className="flex justify-center items-center">
 			<svg height="24" viewBox="0 0 16 16" width="24" className={`${color} fill-current`}>
