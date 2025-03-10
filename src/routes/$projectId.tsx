@@ -43,5 +43,5 @@ function EditorComponent() {
 		)
 	}, [])
 
-	return <EditorPage />
+	return <EditorPage id={project.id} />
 }
