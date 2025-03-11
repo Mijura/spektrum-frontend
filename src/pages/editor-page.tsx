@@ -4,6 +4,7 @@ import Chat from "../components/chat"
 import ReloadIcon from "../shared/icons/reload-icon"
 import React, { useEffect } from "react"
 import { useProject } from "../hooks/use-project"
+import { deploy } from "../api/project"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
@@ -15,7 +16,10 @@ export default function EditorPage(props: any) {
 		setIframeKey(uuidv4())
 	}, [project.sourceCode])
 
-	const handleDeploy = () => {}
+	const handleDeploy = async () => {
+		const project = await deploy(props.id)
+		console.log(project)
+	}
 
 	return (
 		<>

@@ -20,6 +20,22 @@ export async function develop(changeRequest: ChangeRequest): Promise<any> {
 	return await res.json()
 }
 
+export async function deploy(projectId: string): Promise<any> {
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			projectId: projectId,
+		}),
+	}
+
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/deploy`, options)
+
+	return await res.json()
+}
+
 export async function createNewProject(): Promise<any> {
 	const options = {
 		method: "POST",
