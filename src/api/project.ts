@@ -11,7 +11,7 @@ export async function develop(changeRequest: ChangeRequest): Promise<any> {
 	const options = {
 		method: "PUT",
 		headers: {
-			"Content-Type": "application/json",
+			"Content-Type": "text/event-stream",
 		},
 		body: JSON.stringify(changeRequest),
 	}
