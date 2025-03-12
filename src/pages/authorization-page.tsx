@@ -25,17 +25,6 @@ const buttonVariants = {
 export default function Authorization() {
 	return (
 		<div className="relative h-full w-full overflow-hidden">
-			{/* Galaxy Background Layer */}
-			<motion.div
-				className="absolute inset-0"
-				variants={backgroundVariants}
-				animate="animate"
-				style={{
-					backgroundImage: "radial-gradient(circle, #b08df8, #252525, #151515)",
-					backgroundSize: "400% 400%",
-				}}
-			/>
-
 			{/* Main Content Container */}
 			<motion.div
 				className="relative flex flex-col mt-40 items-center min-h-screen bg-transparent"
@@ -49,7 +38,7 @@ export default function Authorization() {
 					Logo
 				</div>
 
-				<h1 className="text-3xl text-base font-bold mb-6 text-hover">Welcome to JigJoy Playground</h1>
+				<h1 className="text-3xl text-base font-bold mb-6">Welcome to JigJoy Playground</h1>
 
 				<motion.input
 					type="email"
