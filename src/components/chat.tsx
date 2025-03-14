@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { develop } from "../api/project"
 import { useDispatch } from "react-redux"
@@ -6,6 +6,7 @@ import { messageAdded, sourceCodeUpdated } from "../shared/reducers/editor-reduc
 import PlainIcon from "../shared/icons/plain-icon"
 import { Chip } from "@jigjoy-io/ui"
 import { useProject } from "../hooks/use-project"
+import io from "socket.io-client"
 
 interface Message {
 	id: number
@@ -22,10 +23,38 @@ export default function Chat() {
 	const project = useProject()
 
 	const dispatch = useDispatch()
+	const [socketInstance, setSocket] = useState<any>(null)
 
 	const suggestions = ["Create a website template...", "Create an note taking app..."]
 
 	const [inputValue, setInputValue] = useState("")
+
+	const [updates, setUpdates] = useState<string[]>([])
+	const [isListening, setIsListening] = useState(false)
+
+	// Function to handle updates from SSE
+	const handleUpdate = (data: any) => {
+		console.log(JSON.stringify(data))
+		setUpdates((prevUpdates) => [...prevUpdates, data.message])
+
+		// dispatch(
+		// 	sourceCodeUpdated({
+		// 		...project.sourceCode,
+		// 		...newSourceCode,
+		// 	}),
+		// )
+	}
+
+	// Handle SSE connection errors
+	const handleError = (error: any) => {
+		console.error("SSE Error:", error)
+	}
+
+	useEffect(() => {
+		return () => {
+			if (socketInstance) socketInstance.disconnect() // Cleanup when component unmounts
+		}
+	}, [])
 
 	const handleSend = async () => {
 		if (!inputValue.trim()) return
@@ -40,19 +69,23 @@ export default function Chat() {
 
 		setInputValue("")
 
-		let newSourceCode = await develop({
+		const changeRequest = {
 			projectId: project.id,
-			message: newMessage.content,
-		})
+			message: newMessage.content.trim(),
+		}
 
-		console.log(newSourceCode)
-
-		dispatch(
-			sourceCodeUpdated({
-				...project.sourceCode,
-				...newSourceCode,
-			}),
+		const newSocket = develop(
+			changeRequest,
+			(data) => setUpdates((prev) => [...prev, data.message]),
+			(data) => {
+				console.log(data)
+			},
+			(err) => console.error("WebSocket Error:", err),
 		)
+
+		setSocket(newSocket)
+
+		console.log("Sending message to WebSocket...")
 	}
 
 	return (

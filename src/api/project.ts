@@ -7,17 +7,45 @@ interface ChangeRequest {
 	message: string
 }
 
-export async function develop(changeRequest: ChangeRequest): Promise<any> {
-	const options = {
-		method: "PUT",
-		headers: {
-			"Content-Type": "text/event-stream",
-		},
-		body: JSON.stringify(changeRequest),
-	}
+import { io } from "socket.io-client"
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/develop`, options)
-	return await res.json()
+export const develop = (
+	changeRequest: any,
+	onUpdate: (data: any) => void,
+	onDone: (data: any) => void,
+	onError: (error: any) => void,
+) => {
+	const socket = io("http://localhost:3000")
+
+	socket.on("connect", () => {
+		console.log("Connected to WebSocket")
+		socket.emit("develop", {
+			projectId: changeRequest.projectId,
+			message: changeRequest.message,
+		})
+	})
+
+	socket.on("update", (data) => {
+		console.log("Received update:", data)
+		onUpdate(data)
+	})
+
+	socket.on("done", (data) => {
+		console.log("Development complete!", data)
+		onDone(data)
+		socket.disconnect()
+	})
+
+	socket.on("error", (error) => {
+		onError(error)
+		console.error("WebSocket Error:", error)
+	})
+
+	// // Return a function to close the connection when needed
+	// return () => {
+	// 	console.log("Closing WebSocket connection...")
+	// 	socket.disconnect()
+	// }
 }
 
 export async function deploy(projectId: string): Promise<any> {
