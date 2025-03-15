@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router"
 import { Loader } from "@jigjoy-io/ui"
 import { fetchProject } from "../api/project"
 import { useDispatch } from "react-redux"
-import { projectUpdated } from "../shared/reducers/editor-reducer"
+import { projectUpdated } from "../shared/reducers/project-reducer"
 import { PostError } from "../shared/errors/post-error"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import EditorPage from "../pages/editor-page"
 
 export const Route: any = createFileRoute("/$projectId" as never)({

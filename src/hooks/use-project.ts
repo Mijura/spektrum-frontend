@@ -6,4 +6,4 @@ type RootState = ReturnType<typeof store.getState>
 
 const useAppSelector = useSelector.withTypes<RootState>()
 
-export const useProject = () => useAppSelector((state: any) => state.editor.project)
+export const useProject = () => useAppSelector((state: any) => state.project.project)

@@ -1,18 +1,18 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
-import editorReducer from "./reducers/editor-reducer"
+import projectReducer from "./reducers/project-reducer"
 import pageReducer from "./reducers/page-reducer"
 
 const rootReducer = combineReducers({
-	editor: editorReducer,
+	project: projectReducer,
 	page: pageReducer,
 })
 
 const persistConfig = {
 	key: "root",
 	storage: storage,
-	whitelist: ["editor", "page"],
+	whitelist: ["project", "page"],
 }
 
 const persistedReducer = persistReducer<ReturnType<typeof rootReducer>>(persistConfig, rootReducer)

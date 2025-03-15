@@ -2,7 +2,7 @@ import { Tabs, Tab, Button } from "@jigjoy-io/ui"
 import { v4 as uuidv4 } from "uuid"
 import Chat from "../components/chat"
 import ReloadIcon from "../shared/icons/reload-icon"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useProject } from "../hooks/use-project"
 import { deploy } from "../api/project"
 
@@ -11,31 +11,6 @@ export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_A
 export default function EditorPage(props: any) {
 	const project = useProject()
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
-
-	const [messages, setMessages] = useState<string[]>([])
-	const [finalState, setFinalState] = useState(null)
-
-	useEffect(() => {
-		const eventSource = new EventSource("http://localhost:3000/develop")
-
-		eventSource.onmessage = (event) => {
-			const data = JSON.parse(event.data)
-			console.log(data)
-			setMessages((prev) => [...prev, `Node: ${data.node} - ${JSON.stringify(data.values)}`])
-		}
-
-		eventSource.addEventListener("final", (event) => {
-			console.log(event.data)
-			setFinalState(JSON.parse(event.data))
-			eventSource.close()
-		})
-
-		eventSource.onerror = () => {
-			eventSource.close()
-		}
-
-		return () => eventSource.close()
-	}, [])
 
 	useEffect(() => {
 		setIframeKey(uuidv4())

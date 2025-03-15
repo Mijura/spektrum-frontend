@@ -1,4 +1,3 @@
-import React from "react"
 import { useNavigate } from "@tanstack/react-router"
 import Avatar from "./avatar"
 import { Popover, PopoverContent, PopoverTrigger } from "@jigjoy-io/ui"

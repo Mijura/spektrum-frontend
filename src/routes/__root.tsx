@@ -1,4 +1,3 @@
-import React from "react"
 import { createRootRoute } from "@tanstack/react-router"
 import MainLayout from "../pages/layouts/main-layout"
 

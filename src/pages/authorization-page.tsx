@@ -1,16 +1,4 @@
-import React from "react"
 import { motion } from "framer-motion"
-
-const backgroundVariants = {
-	animate: {
-		backgroundPosition: ["0% 0%", "100% 100%"],
-		transition: {
-			duration: 60, // Adjust for faster or slower animation
-			repeat: Infinity,
-			ease: "linear",
-		},
-	},
-}
 
 const containerVariants = {
 	hidden: { opacity: 0, y: 20 },

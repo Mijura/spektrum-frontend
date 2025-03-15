@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import ProjectsIcon from "../shared/icons/projects-icon"
 import EditorIcon from "../shared/icons/editor-icon"

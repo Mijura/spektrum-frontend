@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { Button, Loader, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"

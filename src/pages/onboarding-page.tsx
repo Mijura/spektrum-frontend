@@ -1,5 +1,4 @@
 import { Stepper } from "@jigjoy-io/ui"
-import React from "react"
 
 export default function OnboardingPage() {
 	const steps = [

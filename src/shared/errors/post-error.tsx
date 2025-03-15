@@ -1,5 +1,4 @@
 import { ErrorComponent, ErrorComponentProps } from "@tanstack/react-router"
-import React from "react"
 import { ProjectNotFoundError } from "./project-not-found-error"
 import { ProjectNotFound } from "./project-not-found"
 

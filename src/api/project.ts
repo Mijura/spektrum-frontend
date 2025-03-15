@@ -10,7 +10,7 @@ interface ChangeRequest {
 import { io } from "socket.io-client"
 
 export const develop = (
-	changeRequest: any,
+	changeRequest: ChangeRequest,
 	onUpdate: (data: any) => void,
 	onDone: (data: any) => void,
 	onError: (error: any) => void,
@@ -40,12 +40,6 @@ export const develop = (
 		onError(error)
 		console.error("WebSocket Error:", error)
 	})
-
-	// // Return a function to close the connection when needed
-	// return () => {
-	// 	console.log("Closing WebSocket connection...")
-	// 	socket.disconnect()
-	// }
 }
 
 export async function deploy(projectId: string): Promise<any> {

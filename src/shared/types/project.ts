@@ -7,3 +7,7 @@ export default interface Project {
 	creator?: any
 	chatHistory: any[]
 }
+
+export interface ProjectState {
+	project: Project
+}

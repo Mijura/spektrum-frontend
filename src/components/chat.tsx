@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { develop } from "../api/project"
 import { useDispatch } from "react-redux"
-import { messageAdded, sourceCodeUpdated } from "../shared/reducers/editor-reducer"
+import { messageAdded, sourceCodeUpdated } from "../shared/reducers/project-reducer"
 import PlainIcon from "../shared/icons/plain-icon"
 import { Chip } from "@jigjoy-io/ui"
 import { useProject } from "../hooks/use-project"
@@ -31,14 +31,10 @@ export default function Chat() {
 
 	// Function to handle updates from SSE
 	const handleDone = (data: any) => {
-		console.log(JSON.stringify(data))
-
 		dispatch(sourceCodeUpdated({ id: uuidv4() }))
 	}
 
-	const handleUpdate = (data: any) => {
-		console.log(data)
-	}
+	const handleUpdate = (data: any) => {}
 
 	// Handle SSE connection errors
 	const handleError = (error: any) => {
