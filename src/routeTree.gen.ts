@@ -17,6 +17,7 @@ import { Route as ProjectIdImport } from './routes/$projectId'
 
 // Create Virtual Routes
 
+const WelcomeLazyImport = createFileRoute('/welcome')()
 const ProjectsLazyImport = createFileRoute('/projects')()
 const ProfileLazyImport = createFileRoute('/profile')()
 const PricingLazyImport = createFileRoute('/pricing')()
@@ -25,6 +26,11 @@ const AuthorizationLazyImport = createFileRoute('/authorization')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const WelcomeLazyRoute = WelcomeLazyImport.update({
+  path: '/welcome',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/welcome.lazy').then((d) => d.Route))
 
 const ProjectsLazyRoute = ProjectsLazyImport.update({
   path: '/projects',
@@ -114,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsLazyImport
       parentRoute: typeof rootRoute
     }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -127,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/projects': typeof ProjectsLazyRoute
+  '/welcome': typeof WelcomeLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -137,6 +151,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/projects': typeof ProjectsLazyRoute
+  '/welcome': typeof WelcomeLazyRoute
 }
 
 export interface FileRoutesById {
@@ -148,6 +163,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/projects': typeof ProjectsLazyRoute
+  '/welcome': typeof WelcomeLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -160,6 +176,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/profile'
     | '/projects'
+    | '/welcome'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -169,6 +186,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/profile'
     | '/projects'
+    | '/welcome'
   id:
     | '__root__'
     | '/'
@@ -178,6 +196,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/profile'
     | '/projects'
+    | '/welcome'
   fileRoutesById: FileRoutesById
 }
 
@@ -189,6 +208,7 @@ export interface RootRouteChildren {
   PricingLazyRoute: typeof PricingLazyRoute
   ProfileLazyRoute: typeof ProfileLazyRoute
   ProjectsLazyRoute: typeof ProjectsLazyRoute
+  WelcomeLazyRoute: typeof WelcomeLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingLazyRoute: PricingLazyRoute,
   ProfileLazyRoute: ProfileLazyRoute,
   ProjectsLazyRoute: ProjectsLazyRoute,
+  WelcomeLazyRoute: WelcomeLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -219,7 +240,8 @@ export const routeTree = rootRoute
         "/onboarding",
         "/pricing",
         "/profile",
-        "/projects"
+        "/projects",
+        "/welcome"
       ]
     },
     "/": {
@@ -242,6 +264,9 @@ export const routeTree = rootRoute
     },
     "/projects": {
       "filePath": "projects.lazy.tsx"
+    },
+    "/welcome": {
+      "filePath": "welcome.lazy.tsx"
     }
   }
 }
