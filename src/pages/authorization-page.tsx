@@ -22,7 +22,7 @@ export default function Authorization() {
 				transition={{ duration: 0.3 }}
 			>
 				{/* Replace this placeholder with your actual logo */}
-				<div className="w-20 h-20 mb-4 flex items-center justify-center bg-accent text-heading font-bold rounded-full">
+				<div className="w-20 h-20 mb-4 flex items-center justify-center bg-accent text-base font-bold rounded-full">
 					Logo
 				</div>
 
@@ -33,7 +33,7 @@ export default function Authorization() {
 					placeholder="Email Address"
 					className="
             mb-6 w-72 px-4 py-2
-            bg-surface-2 text-heading
+            bg-surface-2 text-base
             rounded outline-none
             border border-hover
             placeholder:text-hover placeholder:opacity-60

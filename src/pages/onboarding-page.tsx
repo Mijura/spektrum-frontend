@@ -1,4 +1,4 @@
-import { Stepper } from "@jigjoy-io/ui"
+import { Stepper } from "@honeycomb-app/design"
 
 export default function OnboardingPage() {
 	const steps = [

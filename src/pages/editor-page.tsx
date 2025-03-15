@@ -1,4 +1,4 @@
-import { Tabs, Tab, Button } from "@jigjoy-io/ui"
+import { Tabs, Tab, Button } from "@honeycomb-app/design"
 import { v4 as uuidv4 } from "uuid"
 import Chat from "../components/chat"
 import ReloadIcon from "../shared/icons/reload-icon"

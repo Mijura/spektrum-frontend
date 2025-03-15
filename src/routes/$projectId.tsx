@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { Loader } from "@jigjoy-io/ui"
+import { Loader } from "@honeycomb-app/design"
 import { fetchProject } from "../api/project"
 import { useDispatch } from "react-redux"
 import { projectUpdated } from "../shared/reducers/project-reducer"

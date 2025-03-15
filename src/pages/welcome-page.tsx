@@ -1,4 +1,4 @@
-import { Button } from "@jigjoy-io/ui"
+import { Button } from "@honeycomb-app/design"
 import { motion } from "framer-motion"
 
 const sentences = [
@@ -44,12 +44,12 @@ export default function WelcomePage() {
 			>
 				<div className="w-full max-w-3xl items-start justify-between bg-surface-2 rounded-md shadow p-4 border border-disabled flex flex-wrap">
 					{/* First message */}
-					<div className="w-full text-heading py-4">{staggeredText(sentences[0], 0)}</div>
+					<div className="w-full text-base py-4">{staggeredText(sentences[0], 0)}</div>
 
 					{/* Second message with delay */}
-					<div className="w-full text-heading py-4">{staggeredText(sentences[1], 7)}</div>
+					<div className="w-full text-base py-4">{staggeredText(sentences[1], 7)}</div>
 
-					<div className="w-full text-heading py-4">
+					<div className="w-full text-base py-4">
 						{staggeredText(sentences[2], 12)} {/* Starts after first sentence */}
 					</div>
 

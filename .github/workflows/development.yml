@@ -9,8 +9,8 @@ jobs:
   runs-on: ubuntu-latest
   environment: development
   permissions:
-    contents: read
-    packages: read
+   contents: read
+   packages: read
 
   steps:
    - name: Checkout
@@ -24,9 +24,9 @@ jobs:
    - name: "Create .npmrc file"
      run: |
       echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_GITHUB_TOKEN }}" > .npmrc
-      echo "@jigjoy-io:registry=https://npm.pkg.github.com" >> .npmrc
+      echo "@honeycomb-app:registry=https://npm.pkg.github.com" >> .npmrc
       cat .npmrc
-          
+
    - name: "Create env file"
      run: |
       touch .env

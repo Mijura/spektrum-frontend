@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router"
 import Avatar from "./avatar"
-import { Popover, PopoverContent, PopoverTrigger } from "@jigjoy-io/ui"
+import { Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
 import { pageLoaded } from "../shared/reducers/page-reducer"
 import { useDispatch } from "react-redux"
 import { usePage } from "../hooks/use-page"

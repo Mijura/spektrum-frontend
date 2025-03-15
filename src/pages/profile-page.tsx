@@ -28,7 +28,7 @@ export default function ProfilePage() {
 							className="w-20 h-20 rounded-full mr-4 object-cover border-2 border-base"
 						/>
 						<div className="flex flex-col">
-							<span className="text-xl font-semibold text-heading">{user.nickname}</span>
+							<span className="text-xl font-semibold text-base">{user.nickname}</span>
 							<span className="text-base">{user.dateJoined}</span>
 							{/* Level and XP */}
 							<div className="flex items-center gap-2 mt-1">

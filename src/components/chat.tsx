@@ -4,7 +4,7 @@ import { develop } from "../api/project"
 import { useDispatch } from "react-redux"
 import { messageAdded, sourceCodeUpdated } from "../shared/reducers/project-reducer"
 import PlainIcon from "../shared/icons/plain-icon"
-import { Chip } from "@jigjoy-io/ui"
+import { Chip } from "@honeycomb-app/design"
 import { useProject } from "../hooks/use-project"
 import { v4 as uuidv4 } from "uuid"
 
@@ -107,7 +107,7 @@ export default function Chat() {
 												initial="initial"
 												animate="animate"
 												transition={{ duration: 0.3, delay: index * 0.05 }}
-												className="max-w-xs px-3 py-2 rounded bg-surface-3 text-heading"
+												className="max-w-xs px-3 py-2 rounded bg-surface-3 text-base"
 											>
 												{msg.content}
 											</motion.div>

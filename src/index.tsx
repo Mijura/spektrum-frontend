@@ -5,7 +5,7 @@ import { routeTree } from "./routeTree.gen"
 import { createRouter, RouterProvider } from "@tanstack/react-router"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
-import { JigJoyUIProvider } from "@jigjoy-io/ui"
+import { JigJoyUIProvider } from "@honeycomb-app/design"
 import { persistor, store } from "./shared/store"
 
 const root = document.createElement("div")

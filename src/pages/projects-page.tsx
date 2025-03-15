@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, Loader, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui"
+import { Button, Loader, Modal, ModalContent, ModalTrigger } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 
@@ -52,7 +52,7 @@ export default function ProjectsPage() {
 		<Loader message="Project intialization" />
 	) : (
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
-			<h1 className="text-3xl font-bold mb-6 text-heading">My projects</h1>
+			<h1 className="text-3xl font-bold mb-6 text-base">My projects</h1>
 			<Button onClick={handleCreateNewProject}>Create new project</Button>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 				{/* {projects.map((project: Project) => (
@@ -60,7 +60,7 @@ export default function ProjectsPage() {
 							<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
 							<div className="flex flex-col flex-1 justify-between">
 								<div>
-									<h2 className="text-xl font-semibold mb-2 text-heading">{project.name}</h2>
+									<h2 className="text-xl font-semibold mb-2 text-base">{project.name}</h2>
 									<p className="text-sm text-base">{project.description}</p>
 								</div>
 								<div className="flex justify-end gap-4">

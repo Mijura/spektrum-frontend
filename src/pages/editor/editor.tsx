@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import Chat from "../../components/chat"
-import { Tabs, Tab } from "@jigjoy-io/ui"
+import { Tabs, Tab } from "@honeycomb-app/design"
 import { v4 as uuidv4 } from "uuid"
 import { useProject } from "../../hooks/use-project"
 import ReloadIcon from "../../shared/icons/reload-icon"
