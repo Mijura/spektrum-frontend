@@ -41,7 +41,7 @@ export default function PricingPage() {
 					<Card key={plan.name}>
 						<div className="flex flex-col items-center w-[275px]">
 							<div className="h-fit min-h-[150px] flex flex-col items-center">
-								<h2 className="text-xl font-semibold mb-2 text-base">{plan.name}</h2>
+								<h2 className="text-2xl font-semibold mb-2 ">{plan.name}</h2>
 								<p className="text-secondary text-2xl mb-1">{plan.price}</p>
 								<p className="text-base mb-4 text-center">{plan.description}</p>
 							</div>

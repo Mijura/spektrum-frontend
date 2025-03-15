@@ -60,7 +60,7 @@ export default function WelcomePage() {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 20, duration: 1 }} // Appears after text
 					>
-						<Button className="font-bold animate-bounce">Start Building</Button>
+						<Button className="animate-bounce">Start Building</Button>
 					</motion.div>
 				</div>
 			</motion.div>
