@@ -6,7 +6,7 @@ import { messageAdded, sourceCodeUpdated } from "../shared/reducers/editor-reduc
 import PlainIcon from "../shared/icons/plain-icon"
 import { Chip } from "@jigjoy-io/ui"
 import { useProject } from "../hooks/use-project"
-import io from "socket.io-client"
+import { v4 as uuidv4 } from "uuid"
 
 interface Message {
 	id: number
@@ -29,20 +29,15 @@ export default function Chat() {
 
 	const [inputValue, setInputValue] = useState("")
 
-	const [updates, setUpdates] = useState<string[]>([])
-	const [isListening, setIsListening] = useState(false)
-
 	// Function to handle updates from SSE
-	const handleUpdate = (data: any) => {
+	const handleDone = (data: any) => {
 		console.log(JSON.stringify(data))
-		setUpdates((prevUpdates) => [...prevUpdates, data.message])
 
-		// dispatch(
-		// 	sourceCodeUpdated({
-		// 		...project.sourceCode,
-		// 		...newSourceCode,
-		// 	}),
-		// )
+		dispatch(sourceCodeUpdated({ id: uuidv4() }))
+	}
+
+	const handleUpdate = (data: any) => {
+		console.log(data)
 	}
 
 	// Handle SSE connection errors
@@ -74,14 +69,7 @@ export default function Chat() {
 			message: newMessage.content.trim(),
 		}
 
-		const newSocket = develop(
-			changeRequest,
-			(data) => setUpdates((prev) => [...prev, data.message]),
-			(data) => {
-				console.log(data)
-			},
-			(err) => console.error("WebSocket Error:", err),
-		)
+		const newSocket = develop(changeRequest, handleUpdate, handleDone, handleError)
 
 		setSocket(newSocket)
 
