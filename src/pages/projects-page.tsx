@@ -49,7 +49,9 @@ export default function ProjectsPage() {
 	}
 
 	return loading ? (
-		<Loader message="Project intialization" />
+		<div className="w-full h-full flex items-center justify-center">
+			<Loader message="Project intialization" />
+		</div>
 	) : (
 		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
 			<h1 className="text-3xl font-bold mb-6 text-base">My projects</h1>

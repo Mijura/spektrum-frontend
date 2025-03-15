@@ -21,7 +21,11 @@ export const Route: any = createFileRoute("/$projectId" as never)({
 })
 
 function PendingComponent() {
-	return <Loader message="Project loading" />
+	return (
+		<div className="w-full h-full flex items-center justify-center">
+			<Loader message="Project loading" />
+		</div>
+	)
 }
 
 function EditorComponent() {
