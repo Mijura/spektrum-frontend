@@ -42,7 +42,6 @@ export default function ProjectsPage() {
 	const handleCreateNewProject = async () => {
 		setLoading(true)
 		const project = await createNewProject()
-		setLoading(false)
 		navigate({
 			to: `/${project.id}`,
 		})
