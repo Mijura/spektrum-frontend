@@ -24,7 +24,7 @@ export default function PricingPage() {
 	]
 
 	return (
-		<div className="bg-surface-1 w-full text-base flex flex-col items-center px-4 py-8 font-body">
+		<div className="bg-surface-100 w-full text-base flex flex-col items-center px-4 py-8 font-body">
 			{/* Page Heading */}
 			<motion.h1
 				initial={{ opacity: 0, y: -20 }}
@@ -38,7 +38,7 @@ export default function PricingPage() {
 			{/* Pricing Cards Container */}
 			<div className="flex flex-col md:flex-row gap-8">
 				{pricingPlans.map((plan) => (
-					<Card key={plan.name}>
+					<Card key={plan.name} className="hover:border-[#8ACB99]">
 						<div className="flex flex-col items-center w-[275px]">
 							<div className="h-fit min-h-[150px] flex flex-col items-center">
 								<h2 className="text-2xl font-semibold mb-2 ">{plan.name}</h2>

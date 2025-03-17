@@ -4,7 +4,7 @@ import LeftSideMenu from "../../components/left-side-menu"
 
 export default function MainLayout() {
 	return (
-		<div className="flex flex-col bg-surface-3 h-screen min-h-screen max-h-screen w-full">
+		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full">
 			<div className="h-fit w-full">
 				<Header />
 			</div>

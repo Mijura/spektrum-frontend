@@ -16,10 +16,10 @@ export default function ProfilePage() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5 }}
-				className={`w-full bg-surface-1 p-6 flex flex-col items-center`}
+				className={`w-full bg-surface-100 p-6 flex flex-col items-center`}
 			>
 				{/* Top Section: Profile Info + Credits */}
-				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 bg-surface-2 rounded-md shadow p-4 border border-disabled">
+				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 bg-surface-200 rounded-md shadow p-4 border border-disabled">
 					{/* Left: Profile Image & Basic Info */}
 					<div className="flex items-center mb-4 md:mb-0">
 						<img

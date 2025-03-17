@@ -18,7 +18,7 @@ export default function Tooltip(props: any) {
 			{on &&
 				createPortal(
 					<div className="fixed w-max" style={{ top: top, left: left, transform: "translateY(36px)" }}>
-						<div className="-translate-x-[50%] text-sm p-1 px-3 rounded-[3px] bg-surface-1 !text-base shadow">
+						<div className="-translate-x-[50%] text-sm p-1 px-3 rounded-[3px] bg-surface-100 !text-base shadow">
 							<div>{props.message}</div>
 						</div>
 					</div>,

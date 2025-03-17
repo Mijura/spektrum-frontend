@@ -28,7 +28,7 @@ const LeftSideMenu = () => {
 		<motion.div
 			onHoverStart={() => setMenuExpanded(true)}
 			onHoverEnd={() => setMenuExpanded(false)}
-			className="border-r border-r-outline h-full bg-surface-1 flex flex-col shadow-lg fixed top-0 left-0 z-20 text-base"
+			className="border-r border-r-outline h-full bg-surface-100 flex flex-col shadow-lg fixed top-0 left-0 z-20 text-base"
 		>
 			<ul className="flex flex-col mt-[100px]">
 				{[
@@ -37,7 +37,7 @@ const LeftSideMenu = () => {
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
-						className={`${page === name ? "bg-surface-2" : ""} flex cursor-pointer hover:bg-surface-2 rounded-lg p-1`}
+						className={`${page === name ? "bg-surface-200" : ""} flex cursor-pointer hover:bg-surface-200 rounded-lg p-1`}
 						onMouseEnter={() => setHoveredOption(name)}
 						onMouseLeave={() => setHoveredOption("")}
 						onClick={() => handleOptionClick(name, route)}
@@ -68,8 +68,8 @@ const LeftSideMenu = () => {
 			<div className="mt-auto mb-4 flex justify-center">
 				<div
 					className={`${
-						hoveredOption === "discord" ? "bg-surface-2" : ""
-					} flex cursor-pointer hover:bg-surface-2 rounded-lg p-1`}
+						hoveredOption === "discord" ? "bg-surface-200" : ""
+					} flex cursor-pointer hover:bg-surface-200 rounded-lg p-1`}
 					onMouseEnter={() => setHoveredOption("discord")}
 					onMouseLeave={() => setHoveredOption("")}
 					onClick={() => window.open("https://discord.gg/2pjggCfaea", "_blank")}

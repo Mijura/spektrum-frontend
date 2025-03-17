@@ -28,7 +28,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ initialLikes, onLike }) => {
 		<div className="relative inline-flex items-center gap-2">
 			<motion.button
 				onClick={handleClick}
-				className={`flex items-center justify-center w-8 h-8 rounded-full ${isLiked ? "bg-clickable text-surface-1" : "bg-surface-3 text-clickable"}`}
+				className={`flex items-center justify-center w-8 h-8 rounded-full ${isLiked ? "bg-clickable text-surface-100" : "bg-surface-300 text-clickable"}`}
 				whileHover={{ scale: 1.1 }}
 				whileTap={{ scale: 0.95 }}
 			>
