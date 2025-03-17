@@ -1,13 +1,30 @@
+import { Button } from "@honeycomb-app/design"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
+import { useNavigate } from "@tanstack/react-router"
+import { pageLoaded } from "../shared/reducers/page-reducer"
+import { useDispatch } from "react-redux"
 
 export default function TokenRewards() {
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	const switchToPricing = () => {
+		navigate({ to: "/pricing" })
+		dispatch(pageLoaded("pricing"))
+	}
+
 	return (
 		<div className="flex flex-col font-body h-fit">
 			<div className="flex flex-col bg-surface-100 p-4 shadow-md text-white h-full">
-				<div className="flex flex-row gap-3 justify-end">
-					<div className="text-base">
-						Available <span className="text-wax font-bold">40 tokens</span>
+				<div className="flex flex-row gap-3 w-full">
+					<div className="w-fit">
+						<Button onClick={switchToPricing} className="p-0 bg-primary hover:bg-hover-primary px-1 rounded-sm">
+							Buy tokens
+						</Button>
+					</div>
+					<div className="text-base grow flex flex-row justify-end">
+						Balance:&nbsp;<span className="text-wax font-bold">40 tokens</span>
 					</div>
 				</div>
 				<h1 className="w-fit mt-4 text-sm">Token Rewards</h1>

@@ -13,8 +13,12 @@ export default function WorkspacePage(props: any) {
 	const project = useProject()
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
 
-	useEffect(() => {
+	const reloadPage = () => {
 		setIframeKey(uuidv4())
+	}
+
+	useEffect(() => {
+		reloadPage()
 	}, [project.sourceCode])
 
 	const handleDeploy = async () => {
@@ -120,7 +124,11 @@ export default function WorkspacePage(props: any) {
 							<Tab key="Preview" className="flex flex-col h-full">
 								<div className="flex flex-col h-full">
 									<div className="h-[40px] flex flew-row bg-surface-100 rounded-tr-lg">
-										<ReloadIcon color="ml-4 text-base" />
+										<Tooltip message="Reload page">
+											<div onClick={reloadPage}>
+												<ReloadIcon color="ml-4 h-[40px] items-center text-clickable hover:text-base cursor-pointer" />
+											</div>
+										</Tooltip>
 										<div className="m-2 rounded-full bg-surface-200 w-full px-4 text-base">/</div>
 									</div>
 									<div className="flex h-full">
