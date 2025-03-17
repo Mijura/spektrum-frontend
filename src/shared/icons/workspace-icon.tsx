@@ -1,8 +1,8 @@
-interface EditorIconProps {
+interface WorkspaceIconProps {
 	color: string
 }
 
-export default function EditorIcon({ color }: EditorIconProps) {
+export default function WorkspaceIcon({ color }: WorkspaceIconProps) {
 	return (
 		<svg
 			width="32"

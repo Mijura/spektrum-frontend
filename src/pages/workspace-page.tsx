@@ -8,7 +8,7 @@ import { deploy } from "../api/project"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
-export default function EditorPage(props: any) {
+export default function WorkspacePage(props: any) {
 	const project = useProject()
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
 

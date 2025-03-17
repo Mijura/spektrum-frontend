@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { projectUpdated } from "../shared/reducers/project-reducer"
 import { PostError } from "../shared/errors/post-error"
 import { useEffect } from "react"
-import EditorPage from "../pages/editor-page"
+import WorkspacePage from "../pages/workspace-page"
 
 export const Route: any = createFileRoute("/$projectId" as never)({
 	loader: async ({ params: { projectId } }) => {
@@ -17,7 +17,7 @@ export const Route: any = createFileRoute("/$projectId" as never)({
 	},
 	errorComponent: PostError,
 	pendingComponent: PendingComponent,
-	component: EditorComponent,
+	component: WorkspaceComponent,
 })
 
 function PendingComponent() {
@@ -28,7 +28,7 @@ function PendingComponent() {
 	)
 }
 
-function EditorComponent() {
+function WorkspaceComponent() {
 	const project = Route.useLoaderData()
 	const dispatch = useDispatch()
 
@@ -47,5 +47,5 @@ function EditorComponent() {
 		)
 	}, [])
 
-	return <EditorPage id={project.id} />
+	return <WorkspacePage id={project.id} />
 }

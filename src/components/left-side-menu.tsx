@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import ProjectsIcon from "../shared/icons/projects-icon"
-import EditorIcon from "../shared/icons/editor-icon"
+import WorkspaceIcon from "../shared/icons/workspace-icon"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
@@ -32,7 +32,7 @@ const LeftSideMenu = () => {
 		>
 			<ul className="flex flex-col mt-[100px]">
 				{[
-					{ name: "editor", icon: EditorIcon, label: "Editor", route: "/" },
+					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/" },
 					{ name: "projects", icon: ProjectsIcon, label: "My Projects", route: "/projects" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li

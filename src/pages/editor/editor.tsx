@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import Chat from "../../components/token-rewards"
+import TokenRewards from "../../components/token-rewards"
 import { Tabs, Tab } from "@honeycomb-app/design"
 import { v4 as uuidv4 } from "uuid"
 import { useProject } from "../../hooks/use-project"
@@ -7,7 +7,7 @@ import ReloadIcon from "../../shared/icons/reload-icon"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
-export default function Editor() {
+export default function Workspace() {
 	const project = useProject()
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
 
@@ -18,9 +18,9 @@ export default function Editor() {
 	return (
 		<>
 			{project && (
-				<div className="grow flex flex-row p-4 bg-surface-300 gap-4">
+				<div className="grow flex flex-row bg-surface-300">
 					<div className="xl:w-[50%] 2xl:w-[33%] h-full overflow-y-hidden rounded-lg">
-						<Chat />
+						<TokenRewards />
 					</div>
 					<div className="flex flex-col w-full">
 						<Tabs className="h-full">
