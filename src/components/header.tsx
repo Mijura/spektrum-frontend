@@ -31,7 +31,7 @@ const Header = () => {
 
 			<div className="flex items-center gap-4 relative">
 				<button
-					className={`${page == "pricing" ? "text-[#A3BE8C]" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
+					className={`${page == "pricing" ? "text-secondary" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
 					onClick={() => switchToPage("pricing")}
 				>
 					<span className="material-icons">Buy tokens</span>

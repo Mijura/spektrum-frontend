@@ -47,7 +47,7 @@ const LeftSideMenu = () => {
 						}}
 					>
 						<div className="py-2 w-[72px] flex justify-center items-center">
-							<Icon color={page === name ? "text-[#A3BE8C]" : hoveredOption === name ? "text-hover" : "text-clickable"} />
+							<Icon color={page === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} />
 						</div>
 						<AnimatePresence>
 							{menuExpanded && (
@@ -56,7 +56,7 @@ const LeftSideMenu = () => {
 									animate={{ x: 0, opacity: 1 }}
 									exit={{ x: -10, width: 0, opacity: 0 }}
 									transition={{ duration: 0.25, ease: "easeInOut" }}
-									className={`${page === name ? "text-[#A3BE8C]" : hoveredOption === name ? "text-hover" : "text-clickable"} mr-8 truncate flex items-center`}
+									className={`${page === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} mr-8 truncate flex items-center`}
 								>
 									{label}
 								</motion.span>

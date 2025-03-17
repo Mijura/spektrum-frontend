@@ -30,7 +30,7 @@ export default function TokenRewards() {
 				<h1 className="w-fit mt-4 text-sm">Token Rewards</h1>
 
 				<div className="my-3 text-sm text-base">Complete challenges to earn tokens</div>
-				<div className="border-b border-[#B3F589] w-full border-[2px] rounded-[2px]"></div>
+				<div className="border-b border-progress w-full border-[2px] rounded-[2px]"></div>
 				<div className="my-2 text-sm text-base">100% done</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckboxIcon />

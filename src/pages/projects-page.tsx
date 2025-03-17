@@ -136,7 +136,7 @@ export default function ProjectsPage() {
 					</ModalContent>
 				</Modal>
 			</div>
-			<div className="border-b border-[#AA9BF5] w-full"></div>
+			<div className="border-b border-2 border-disabled w-full"></div>
 		</div>
 	)
 }

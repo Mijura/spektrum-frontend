@@ -137,7 +137,7 @@ export default function WorkspacePage(props: any) {
 								</div>
 							</Tab>
 							<Tab key="Deployment">
-								<Button className="h-fit m-4 w-fit bg-[#E6B85C] hover:bg-[#D4A373]" onClick={handleDeploy}>
+								<Button className="h-fit m-4 w-fit bg-primary hover:bg-hover-primary" onClick={handleDeploy}>
 									Deploy to Production
 								</Button>
 							</Tab>
