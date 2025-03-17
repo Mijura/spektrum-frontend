@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Button, Loader, Modal, ModalContent, ModalTrigger } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
+import Tooltip from "../shared/tooltip"
 
 export default function ProjectsPage() {
 	//const projects = useProjects()
@@ -52,10 +53,26 @@ export default function ProjectsPage() {
 			<Loader message="Project intialization" />
 		</div>
 	) : (
-		<div className="container mx-auto max-w-screen-xl px-4 pt-20">
-			<h1 className="text-3xl font-bold mb-6 text-base">My projects</h1>
-			<Button onClick={handleCreateNewProject}>Create new project</Button>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+		<div className="ml-20 px-4 pt-20">
+			<div className="flex flex-row w-[300px] h-fit">
+				<h1 className="mb-3 text-base w-fit">My projects</h1>
+
+				<div className="flex justify-end grow">
+					<Tooltip message="Create project">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="size-6 cursor-pointer text-clickable hover:text-base"
+							onClick={handleCreateNewProject}
+						>
+							<path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+						</svg>
+					</Tooltip>
+				</div>
+
 				{/* {projects.map((project: Project) => (
 						<Card>
 							<img src={project.imageUrl} alt={project.name} className="w-[140px] h-full rounded-lg object-cover" />
@@ -112,71 +129,72 @@ export default function ProjectsPage() {
 							</div>
 						</Card>
 					))} */}
-			</div>
 
-			<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
-				<ModalTrigger>
-					<div
-						style={{ display: "none" }}
-						ref={(el) => {
-							if (el && editingProject) {
-								el.click()
-							}
-						}}
-					/>
-				</ModalTrigger>
-				<ModalContent>
-					<div className="bg-surface-2 p-8 rounded-lg w-[600px] max-w-[90vw]">
-						<h2 className="text-2xl font-bold mb-4 text-clickable">Edit project</h2>
-						<form
-							onSubmit={(e) => {
-								e.preventDefault()
-								handleSave()
+				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
+					<ModalTrigger>
+						<div
+							style={{ display: "none" }}
+							ref={(el) => {
+								if (el && editingProject) {
+									el.click()
+								}
 							}}
-						>
-							<div className="mb-4">
-								<label className="block text-sm font-medium text-base mb-2">Name</label>
-								<input
-									type="text"
-									value={name}
-									onChange={(e) => setName(e.target.value)}
-									className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
-								/>
-							</div>
-							<div className="mb-4">
-								<label className="block text-sm font-medium text-base mb-2">Description</label>
-								<textarea
-									value={description}
-									onChange={(e) => setDescription(e.target.value)}
-									className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
-									rows={3}
-								/>
-							</div>
-							<div className="mb-6">
-								<label className="block text-sm font-medium text-base mb-2">Image URL</label>
-								<input
-									type="text"
-									value={imageUrl}
-									onChange={(e) => setImageUrl(e.target.value)}
-									className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
-								/>
-							</div>
-							<div className="flex justify-end gap-4">
-								<button
-									type="button"
-									onClick={() => setEditingProject(null)}
-									className="px-4 py-2 rounded bg-surface-3 text-white hover:bg-surface4"
-								>
-									Cancel
-								</button>
-								<button type="submit" className="px-4 py-2 rounded bg-clickable text-surface-1 hover:bg-hover">
-									Save
-								</button>
-							</div>
-						</form>
-					</div>
-				</ModalContent>
-			</Modal>
+						/>
+					</ModalTrigger>
+					<ModalContent>
+						<div className="bg-surface-2 p-8 rounded-lg w-[600px] max-w-[90vw]">
+							<h2 className="text-2xl font-bold mb-4 text-clickable">Edit project</h2>
+							<form
+								onSubmit={(e) => {
+									e.preventDefault()
+									handleSave()
+								}}
+							>
+								<div className="mb-4">
+									<label className="block text-sm font-medium text-base mb-2">Name</label>
+									<input
+										type="text"
+										value={name}
+										onChange={(e) => setName(e.target.value)}
+										className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
+									/>
+								</div>
+								<div className="mb-4">
+									<label className="block text-sm font-medium text-base mb-2">Description</label>
+									<textarea
+										value={description}
+										onChange={(e) => setDescription(e.target.value)}
+										className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
+										rows={3}
+									/>
+								</div>
+								<div className="mb-6">
+									<label className="block text-sm font-medium text-base mb-2">Image URL</label>
+									<input
+										type="text"
+										value={imageUrl}
+										onChange={(e) => setImageUrl(e.target.value)}
+										className="w-full p-2 rounded bg-surface-3 text-white border border-surface4"
+									/>
+								</div>
+								<div className="flex justify-end gap-4">
+									<button
+										type="button"
+										onClick={() => setEditingProject(null)}
+										className="px-4 py-2 rounded bg-surface-3 text-white hover:bg-surface4"
+									>
+										Cancel
+									</button>
+									<button type="submit" className="px-4 py-2 rounded bg-clickable text-surface-1 hover:bg-hover">
+										Save
+									</button>
+								</div>
+							</form>
+						</div>
+					</ModalContent>
+				</Modal>
+			</div>
+			<div className="border-b border-[#AA9BF5] w-full"></div>
 		</div>
 	)
 }

@@ -42,10 +42,10 @@ export default function PricingPage() {
 						<div className="flex flex-col items-center w-[275px]">
 							<div className="h-fit min-h-[150px] flex flex-col items-center">
 								<h2 className="text-2xl font-semibold mb-2 ">{plan.name}</h2>
-								<p className="text-secondary text-2xl mb-1">{plan.price}</p>
+								<p className="text-[#AA9BF5] text-2xl mb-1">{plan.price}</p>
 								<p className="text-base mb-4 text-center">{plan.description}</p>
 							</div>
-							<Button>{plan.cta}</Button>
+							<Button className="bg-[#A3BE8C]">{plan.cta}</Button>
 						</div>
 					</Card>
 				))}

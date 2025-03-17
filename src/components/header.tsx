@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router"
 import Avatar from "./avatar"
-import { Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
+import { Button, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
 import { pageLoaded } from "../shared/reducers/page-reducer"
 import { useDispatch } from "react-redux"
 import { usePage } from "../hooks/use-page"
@@ -31,10 +31,10 @@ const Header = () => {
 
 			<div className="flex items-center gap-4 relative">
 				<button
-					className={`${page == "pricing" ? "text-secondary" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
+					className={`${page == "pricing" ? "text-[#A3BE8C]" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
 					onClick={() => switchToPage("pricing")}
 				>
-					<span className="material-icons">Pricing</span>
+					<span className="material-icons">Buy tokens</span>
 				</button>
 
 				<Popover position="bottom-end">
