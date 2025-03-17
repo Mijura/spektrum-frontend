@@ -11,7 +11,7 @@
 		"format": "prettier --write \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
-		"@honeycomb-app/design": "^0.0.12",
+		"@honeycomb-app/design": "^0.0.14",
 		"@reduxjs/toolkit": "^2.5.0",
 		"@tanstack/react-router": "^1.92.11",
 		"framer-motion": "^11.18.0",

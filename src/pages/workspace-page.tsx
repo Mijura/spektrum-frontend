@@ -5,6 +5,7 @@ import ReloadIcon from "../shared/icons/reload-icon"
 import React, { useEffect } from "react"
 import { useProject } from "../hooks/use-project"
 import { deploy } from "../api/project"
+import Tooltip from "../shared/tooltip"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
@@ -91,13 +92,38 @@ export default function WorkspacePage(props: any) {
 					</div>
 					<div className="flex flex-row w-full">
 						<Tabs>
-							<Tab key="Preview" className="flex flex-col h-full">
-								<div className="h-[40px] flex flew-row bg-surface-100 rounded-tr-lg">
-									<ReloadIcon color="ml-4 text-base" />
-									<div className="m-2 rounded-full bg-surface-200 w-full px-4 text-base">/</div>
+							<Tab key="Planning">
+								<div className="ml-4 mt-8 px-4 w-[300px]">
+									<div className="flex flex-row w-full h-fit">
+										<h1 className="mb-3 text-base w-fit">Tickets</h1>
+
+										<div className="flex justify-end grow">
+											<Tooltip message="Create new ticket">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													fill="none"
+													viewBox="0 0 24 24"
+													strokeWidth={1.5}
+													stroke="currentColor"
+													className="size-6 cursor-pointer text-clickable hover:text-base"
+												>
+													<path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+												</svg>
+											</Tooltip>
+										</div>
+									</div>
+									<div className="border-b border-disabled w-full"></div>
 								</div>
-								<div className="flex h-full">
-									<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_API}/${project.id}`} className="grow" />
+							</Tab>
+							<Tab key="Preview" className="flex flex-col h-full">
+								<div className="flex flex-col h-full">
+									<div className="h-[40px] flex flew-row bg-surface-100 rounded-tr-lg">
+										<ReloadIcon color="ml-4 text-base" />
+										<div className="m-2 rounded-full bg-surface-200 w-full px-4 text-base">/</div>
+									</div>
+									<div className="flex h-full">
+										<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_API}/${project.id}`} className="grow" />
+									</div>
 								</div>
 							</Tab>
 							<Tab key="Deployment">
