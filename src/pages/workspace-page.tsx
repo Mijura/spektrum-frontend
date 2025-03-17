@@ -24,9 +24,70 @@ export default function WorkspacePage(props: any) {
 	return (
 		<>
 			{project && (
-				<div key={props.id} className="grow flex flex-row p-4 gap-4">
-					<div className="w-[450px] h-full overflow-y-hidden rounded-[2px] ">
+				<div key={props.id} className="grow flex flex-row p-2 pl-4 gap-3">
+					<div className="w-[450px] flex flex-col h-full overflow-y-hidden rounded-[2px]">
 						<TokenRewards />
+						<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md text-white h-full">
+							<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base mb-4">Development History</div>
+
+							<div className="flex flex-row gap-3 items-center">
+								<svg
+									aria-hidden="true"
+									focusable="false"
+									viewBox="0 0 16 16"
+									width="16"
+									height="16"
+									fill="currentColor"
+									className="inline-block text-disabled"
+								>
+									<path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path>
+								</svg>
+								<div className="text-disabled">Finished tickets on Mar 17, 2025</div>
+							</div>
+							<div className="mt-2 flex flex-col items-center">
+								<div className="flex flex-row w-full ml-3">
+									<div className="border-l-2 border-disabled"></div>
+									<div className="ml-2 h-[50px] grow items-center flex w-full ">
+										<div className="p-2 h-[40px] rounded-sm w-full"></div>
+									</div>
+								</div>
+								<div className="flex flex-row w-full ml-3">
+									<div className="border-l-2 border-disabled"></div>
+									<div className="ml-2 h-[50px] grow items-center flex w-full ">
+										<div className="p-2 h-[40px] rounded-sm w-full"></div>
+									</div>
+								</div>
+							</div>
+
+							<div className="flex flex-row gap-3 mt-2 items-center">
+								<svg
+									aria-hidden="true"
+									focusable="false"
+									viewBox="0 0 16 16"
+									width="16"
+									height="16"
+									fill="currentColor"
+									className="inline-block text-disabled"
+								>
+									<path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path>
+								</svg>
+								<div className="text-disabled">Finished tickets on Mar 16, 2025</div>
+							</div>
+							<div className="mt-2 flex flex-col items-center">
+								<div className="flex flex-row w-full ml-3">
+									<div className="border-l-2 border-disabled"></div>
+									<div className="ml-2 h-[50px] grow items-center flex w-full ">
+										<div className="p-2 h-[40px] rounded-sm w-full"></div>
+									</div>
+								</div>
+								<div className="flex flex-row w-full ml-3">
+									<div className="border-l-2 border-disabled"></div>
+									<div className="ml-2 h-[50px] grow items-center flex w-full ">
+										<div className="p-2 h-[40px] rounded-sm w-full"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div className="flex flex-row w-full">
 						<Tabs>
