@@ -29,7 +29,7 @@ export default function WorkspacePage(props: any) {
 					<div className="w-[450px] flex flex-col h-full overflow-y-hidden rounded-[2px]">
 						<TokenRewards />
 						<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md text-white h-full">
-							<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base mb-4">Development History</div>
+							<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base text-sm mb-4">Development History</div>
 
 							<div className="flex flex-row gap-3 items-center">
 								<svg
@@ -94,8 +94,8 @@ export default function WorkspacePage(props: any) {
 						<Tabs>
 							<Tab key="Planning">
 								<div className="ml-4 mt-8 px-4 w-[300px]">
-									<div className="flex flex-row w-full h-fit">
-										<h1 className="mb-3 text-base w-fit">Tickets</h1>
+									<div className="flex flex-row w-full h-fit mb-2">
+										<h1 className="ml-2 text-base text-sm w-fit flex items-center">Active Tickets</h1>
 
 										<div className="flex justify-end grow">
 											<Tooltip message="Create new ticket">
@@ -103,6 +103,8 @@ export default function WorkspacePage(props: any) {
 													xmlns="http://www.w3.org/2000/svg"
 													fill="none"
 													viewBox="0 0 24 24"
+													width="8"
+													height="8"
 													strokeWidth={1.5}
 													stroke="currentColor"
 													className="size-6 cursor-pointer text-clickable hover:text-base"
@@ -127,7 +129,7 @@ export default function WorkspacePage(props: any) {
 								</div>
 							</Tab>
 							<Tab key="Deployment">
-								<Button className="h-fit w-fit bg-[#E6B85C] hover:bg-[#D4A373]" onClick={handleDeploy}>
+								<Button className="h-fit m-4 w-fit bg-[#E6B85C] hover:bg-[#D4A373]" onClick={handleDeploy}>
 									Deploy to Production
 								</Button>
 							</Tab>

@@ -10,7 +10,7 @@ export default function TokenRewards() {
 						Available <span className="text-wax font-bold">40 tokens</span>
 					</div>
 				</div>
-				<h1 className="w-fit mt-4">Token Rewards</h1>
+				<h1 className="w-fit mt-4 text-sm">Token Rewards</h1>
 
 				<div className="my-3 text-sm text-base">Complete challenges to earn tokens</div>
 				<div className="border-b border-[#B3F589] w-full border-[2px] rounded-[2px]"></div>
