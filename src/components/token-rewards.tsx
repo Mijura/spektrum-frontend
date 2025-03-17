@@ -6,8 +6,9 @@ export default function TokenRewards() {
 		<div className="flex flex-col font-body h-fit">
 			<div className="flex flex-col bg-surface-100 p-4 shadow-md text-white h-full">
 				<div className="flex flex-row gap-3 justify-end">
-					<div className="text-base">Available:</div>
-					<div className="text-wax font-bold">40 tokens</div>
+					<div className="text-base">
+						Available <span className="text-wax font-bold">40 tokens</span>
+					</div>
 				</div>
 				<h1 className="w-fit mt-4">Token Rewards</h1>
 

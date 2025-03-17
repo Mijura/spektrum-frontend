@@ -54,7 +54,7 @@ export default function ProjectsPage() {
 	) : (
 		<div className="ml-20 px-4 pt-20">
 			<div className="flex flex-row w-[300px] h-fit">
-				<h1 className="mb-3 text-base w-fit">My projects</h1>
+				<h1 className="mb-3 text-base w-fit">Projects</h1>
 
 				<div className="flex justify-end grow">
 					<Tooltip message="Create project">

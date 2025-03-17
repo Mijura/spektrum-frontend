@@ -33,7 +33,7 @@ const LeftSideMenu = () => {
 			<ul className="flex flex-col mt-[100px]">
 				{[
 					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/" },
-					{ name: "projects", icon: ProjectsIcon, label: "My Projects", route: "/projects" },
+					{ name: "projects", icon: ProjectsIcon, label: "Projects", route: "/projects" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
@@ -90,7 +90,7 @@ const LeftSideMenu = () => {
 								transition={{ duration: 0.25, ease: "easeInOut" }}
 								className="mr-8 truncate flex items-center"
 							>
-								Join Discord
+								Join Community
 							</motion.span>
 						)}
 					</AnimatePresence>
