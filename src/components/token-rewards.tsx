@@ -49,12 +49,12 @@ export default function TokenRewards() {
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckboxIcon />
-					<div className="text-sm text-base">Create task</div>
+					<div className="text-sm text-base">Create ticket</div>
 					<div className="text-base grow items-end text-xs">20 tokens</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckboxIcon />
-					<div className="text-sm text-base">Run a workflow</div>
+					<div className="text-sm text-base">Complete a development activity</div>
 					<div className="text-base grow items-end text-xs">20 tokens</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">

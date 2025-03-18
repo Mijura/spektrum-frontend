@@ -33,7 +33,9 @@ export default function WorkspacePage(props: any) {
 					<div className="w-[450px] flex flex-col h-full overflow-y-hidden rounded-[2px]">
 						<TokenRewards />
 						<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md text-white h-full">
-							<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base text-sm mb-4">Development History</div>
+							<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base text-sm mb-4">
+								Development Activities
+							</div>
 
 							<div className="flex flex-row gap-3 items-center">
 								<svg
@@ -99,7 +101,7 @@ export default function WorkspacePage(props: any) {
 							<Tab key="Planning">
 								<div className="ml-4 mt-8 px-4 w-[300px]">
 									<div className="flex flex-row w-full h-fit mb-2">
-										<h1 className="ml-2 text-base text-sm w-fit flex items-center">Active Tickets</h1>
+										<h1 className="ml-2 text-base text-sm w-fit flex items-center">Tickets</h1>
 
 										<div className="flex justify-end grow">
 											<Tooltip message="Create new ticket">
@@ -136,7 +138,7 @@ export default function WorkspacePage(props: any) {
 									</div>
 								</div>
 							</Tab>
-							<Tab key="Deployment">
+							<Tab key="Production">
 								<Button className="h-fit m-4 w-fit bg-primary hover:bg-hover-primary" onClick={handleDeploy}>
 									Deploy to Production
 								</Button>
