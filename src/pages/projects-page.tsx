@@ -53,25 +53,32 @@ export default function ProjectsPage() {
 		</div>
 	) : (
 		<div className="ml-20 px-4 pt-20">
-			<div className="flex flex-row w-[300px] h-fit">
-				<h1 className="mb-3 text-base w-fit">Projects</h1>
+			<div className="mt-8 px-4 w-[300px]">
+				<div className="flex flex-row w-full h-fit mb-2">
+					<h1 className="text-white text-sm w-fit flex items-center">Projects</h1>
 
-				<div className="flex justify-end grow">
-					<Tooltip message="Create project">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							stroke="currentColor"
-							className="size-6 cursor-pointer text-clickable hover:text-base"
-							onClick={handleCreateNewProject}
-						>
-							<path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-						</svg>
-					</Tooltip>
+					<div className="flex justify-end grow">
+						<Tooltip message="Create new project" className="bg-surface-200">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								width="8"
+								height="8"
+								strokeWidth={1.5}
+								stroke="currentColor"
+								className="size-6 cursor-pointer text-clickable hover:text-base"
+								onClick={handleCreateNewProject}
+							>
+								<path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+							</svg>
+						</Tooltip>
+					</div>
 				</div>
+				<div className="border-b border-disabled w-full"></div>
+			</div>
 
+			<div className="flex flex-row w-[300px] h-fit">
 				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
 					<ModalTrigger>
 						<div
@@ -136,7 +143,6 @@ export default function ProjectsPage() {
 					</ModalContent>
 				</Modal>
 			</div>
-			<div className="border-b border-2 border-disabled w-full"></div>
 		</div>
 	)
 }
