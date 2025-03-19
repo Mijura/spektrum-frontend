@@ -1,6 +1,38 @@
 import { motion } from "framer-motion"
+import ActivityGraph from "../components/activity-graph"
+import { useMemo } from "react"
 
 export default function ProfilePage() {
+	// Generate simulated activity data for the last 365 days
+	const activityData = useMemo(() => {
+		const data: { date: string; count: number }[] = []
+		const end = new Date()
+		const start = new Date(end)
+		start.setDate(start.getDate() - 400) // Go back 364 days to make it 365 total
+
+		for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+			// Generate random activity count with higher probability of lower numbers
+			// and occasional spikes
+			const rand = Math.random()
+			let count = 0
+			if (rand > 0.3) {
+				// 70% chance of activity
+				if (rand > 0.9) {
+					// 10% chance of high activity
+					count = Math.floor(Math.random() * 15) + 10 // 10-25 blocks
+				} else {
+					count = Math.floor(Math.random() * 8) + 1 // 1-8 blocks
+				}
+			}
+
+			data.push({
+				date: d.toISOString().split("T")[0],
+				count,
+			})
+		}
+		return data
+	}, [])
+
 	const user = {
 		profileImage: "https://avatars.githubusercontent.com/u/110939072?v=4",
 		nickname: "Lotus",
@@ -40,7 +72,7 @@ export default function ProfilePage() {
 							<div className="flex items-center mt-2">
 								<div className="w-40 bg-disabled h-2 rounded-[3px] mr-2 relative">
 									<motion.div
-										className="bg-primary h-2 rounded-[3px]"
+										className="bg-secondary h-2 rounded-[3px]"
 										style={{
 											width: `${user.progressToNextLevel}%`,
 										}}
@@ -68,11 +100,15 @@ export default function ProfilePage() {
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
 							transition={{ type: "spring", stiffness: 200 }}
-							className="text-2xl font-bold text-primary"
+							className="text-2xl font-bold text-wax"
 						>
 							{user.credits}
 						</motion.span>
 					</div>
+				</div>
+				{/* Activity Graph */}
+				<div className="w-full max-w-4xl mb-4">
+					<ActivityGraph data={activityData} />
 				</div>
 			</motion.div>
 		</>

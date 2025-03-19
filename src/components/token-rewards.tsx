@@ -24,7 +24,7 @@ export default function TokenRewards() {
 						</Button>
 					</div>
 					<div className="text-base grow flex flex-row justify-end">
-						Balance:&nbsp;<span className="text-wax font-bold">40 tokens</span>
+						Balance:&nbsp;<span className="text-wax font-bold">4 tokens</span>
 					</div>
 				</div>
 				<h1 className="w-fit mt-4 text-sm">Token Rewards</h1>
@@ -35,32 +35,32 @@ export default function TokenRewards() {
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckboxIcon />
 					<div className="text-sm text-base">Create account</div>
-					<div className="text-base grow items-end text-xs">20 tokens</div>
+					<div className="text-base grow items-end text-xs">2 tokens</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckmarkIcon />
 					<div className="text-sm text-disabled line-through">Meet the team</div>
-					<div className="grow items-end text-xs text-wax">20 tokens earned</div>
+					<div className="grow items-end text-xs text-wax">2 tokens earned</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckmarkIcon />
 					<div className="text-sm text-disabled line-through">Create a project</div>
-					<div className="text-wax grow items-end text-xs">20 tokens earned</div>
+					<div className="text-wax grow items-end text-xs">2 tokens earned</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckboxIcon />
 					<div className="text-sm text-base">Create ticket</div>
-					<div className="text-base grow items-end text-xs">20 tokens</div>
+					<div className="text-base grow items-end text-xs">2 tokens</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckboxIcon />
-					<div className="text-sm text-base">Complete a development activity</div>
-					<div className="text-base grow items-end text-xs">20 tokens</div>
+					<div className="text-sm text-base">Run ticket execution</div>
+					<div className="text-base grow items-end text-xs">2 tokens</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full">
 					<CheckboxIcon />
 					<div className="text-sm text-base">Deploy to production</div>
-					<div className="text-base grow items-end text-xs">20 tokens</div>
+					<div className="text-base grow items-end text-xs">2 tokens</div>
 				</div>
 			</div>
 		</div>

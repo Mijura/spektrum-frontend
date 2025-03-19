@@ -20,13 +20,13 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 		const intensity = Math.ceil((count / maxCount) * 4)
 		switch (intensity) {
 			case 1:
-				return "bg-primary/25"
+				return "bg-secondary/25"
 			case 2:
-				return "bg-primary/50"
+				return "bg-secondary/50"
 			case 3:
-				return "bg-primary/75"
+				return "bg-secondary/75"
 			case 4:
-				return "bg-primary"
+				return "bg-secondary"
 			default:
 				return "bg-surface-200"
 		}
@@ -50,7 +50,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 
 	return (
 		<div className="w-full bg-surface-200 p-6 rounded-lg border border-disabled">
-			<h3 className="text-xl font-semibold text-base mb-2">Blocks Crafted</h3>
+			<h3 className="text-xl font-semibold text-base mb-2">Development Activity</h3>
 			<div className="w-full overflow-x-auto p-2">
 				<div className="flex gap-[3px] min-w-fit justify-start">
 					{weeks.map((week, weekIndex) => (
@@ -73,10 +73,10 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 				<span>Less</span>
 				<div className="flex gap-[3px]">
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-surface-200" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary/25" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary/50" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary/75" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary/25" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary/50" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary/75" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary" />
 				</div>
 				<span>More</span>
 			</div>
