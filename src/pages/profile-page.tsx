@@ -48,10 +48,10 @@ export default function ProfilePage() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5 }}
-				className={`w-full bg-surface-100 p-6 flex flex-col items-center`}
+				className={`w-full bg-surface-100 p-6 flex flex-col items-center pt-20`}
 			>
 				{/* Top Section: Profile Info + Credits */}
-				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 bg-surface-200 rounded-md shadow p-4 border border-disabled">
+				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-surface-300">
 					{/* Left: Profile Image & Basic Info */}
 					<div className="flex items-center mb-4 md:mb-0">
 						<img
@@ -80,22 +80,14 @@ export default function ProfilePage() {
 										animate={{ width: `${user.progressToNextLevel}%` }}
 										transition={{ duration: 0.8 }}
 									/>
-								</div>{" "}
-								&nbsp;&nbsp;&nbsp;
-								<motion.div whileHover={{ scale: 1.1, rotate: 10 }} className="cursor-pointer">
-									<img
-										src="https://jigjoy-dev.s3.eu-west-1.amazonaws.com/chest_nobg.png"
-										alt="Reward Chest"
-										className="w-10 h-10"
-									/>
-								</motion.div>
+								</div>
 							</div>
 						</div>
 					</div>
 
 					{/* Right: Credits Widget */}
 					<div className="flex flex-col items-center md:items-end">
-						<span className="text-lg font-semibold text-base">Credits</span>
+						<span className="text-lg text-base">Tokens</span>
 						<motion.span
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
@@ -107,7 +99,7 @@ export default function ProfilePage() {
 					</div>
 				</div>
 				{/* Activity Graph */}
-				<div className="w-full max-w-4xl mb-4">
+				<div className="w-full max-w-4xl my-6 border border-surface-300 rounded-sm">
 					<ActivityGraph data={activityData} />
 				</div>
 			</motion.div>

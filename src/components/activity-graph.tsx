@@ -49,8 +49,8 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 	}
 
 	return (
-		<div className="w-full bg-surface-200 p-6 rounded-lg border border-disabled">
-			<h3 className="text-xl font-semibold text-base mb-2">Development Activity</h3>
+		<div className="w-full p-6">
+			<h3 className="text-xl text-base mb-2">Development Activity</h3>
 			<div className="w-full overflow-x-auto p-2">
 				<div className="flex gap-[3px] min-w-fit justify-start">
 					{weeks.map((week, weekIndex) => (
