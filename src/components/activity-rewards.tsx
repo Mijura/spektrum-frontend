@@ -5,7 +5,7 @@ import { useNavigate } from "@tanstack/react-router"
 import { pageLoaded } from "../shared/reducers/page-reducer"
 import { useDispatch } from "react-redux"
 
-export default function TokenRewards() {
+export default function ActivityRewards() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
