@@ -31,7 +31,7 @@ export default function WorkspacePage(props: any) {
 			<div key={props.id} className="grow flex flex-row p-2 pl-4 gap-3">
 				<div className="w-[450px] flex flex-col h-full overflow-y-hidden rounded-[2px]">
 					<TokenRewards />
-					<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md text-white h-full">
+					<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md h-full">
 						<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base text-sm mb-4">
 							Development Activities
 						</div>
@@ -120,6 +120,84 @@ export default function WorkspacePage(props: any) {
 									</div>
 								</div>
 								<div className="border-b border-disabled w-full"></div>
+								<div className="w-full bg-surface-200 p-4 rounded-lg border border-disabled my-4 cursor-pointer hover:opacity-90">
+									<div className="flex flex-row text-clickable">Implement a login page</div>
+									<div className="mt-2 flex flex-row gap-2 w-full">
+										<Tooltip message="Change status">
+											<svg
+												fill="none"
+												viewBox="0 0 24 24"
+												stroke-width="1.5"
+												stroke="currentColor"
+												className="size-6 border border-disabled rounded-md text-base hover:opacity-75"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+												/>
+											</svg>
+										</Tooltip>
+
+										<div className="flex grow w-full justify-end">
+											<Tooltip message="Run execution">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													fill="none"
+													viewBox="0 0 24 24"
+													stroke-width="1.5"
+													stroke="currentColor"
+													className="size-5 text-secondary hover:opacity-75"
+												>
+													<path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
+													/>
+												</svg>
+											</Tooltip>
+										</div>
+									</div>
+								</div>
+								<div className="w-full bg-surface-200 p-4 rounded-lg border border-disabled my-4 cursor-pointer hover:opacity-90">
+									<div className="flex flex-row text-clickable">Implement a register page</div>
+									<div className="mt-2 flex flex-row gap-2 w-full">
+										<Tooltip message="Change status">
+											<svg
+												fill="none"
+												viewBox="0 0 24 24"
+												stroke-width="1.5"
+												stroke="currentColor"
+												className="size-6 border border-disabled rounded-md text-base hover:opacity-75"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+												/>
+											</svg>
+										</Tooltip>
+
+										<div className="flex grow w-full justify-end">
+											<Tooltip message="Run execution">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													fill="none"
+													viewBox="0 0 24 24"
+													stroke-width="1.5"
+													stroke="currentColor"
+													className="size-5 text-secondary hover:opacity-75"
+												>
+													<path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
+													/>
+												</svg>
+											</Tooltip>
+										</div>
+									</div>
+								</div>
 							</div>
 						</Tab>
 						<Tab key="Preview" className="flex flex-col h-full">

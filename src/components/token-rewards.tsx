@@ -23,44 +23,44 @@ export default function TokenRewards() {
 							Buy tokens
 						</Button>
 					</div>
-					<div className="text-base grow flex flex-row justify-end">
+					<div className="text-clickable grow flex flex-row justify-end">
 						Balance:&nbsp;<span className="text-wax font-bold">4 tokens</span>
 					</div>
 				</div>
-				<h1 className="w-fit mt-4 text-sm">Token Rewards</h1>
+				<h1 className="w-fit mt-4 text-sm text-base">Activity Rewards</h1>
 
-				<div className="my-3 text-sm text-base">Complete challenges to earn tokens</div>
+				<div className="my-3 text-sm text-clickable">Complete challenges to earn tokens</div>
 				<div className="border-b border-progress w-full border-[2px] rounded-[2px]"></div>
-				<div className="my-2 text-sm text-base">100% done</div>
-				<div className="flex flex-row gap-2 items-center w-full">
+				<div className="my-2 text-sm text-clickable">100% done</div>
+				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckboxIcon />
-					<div className="text-sm text-base">Create account</div>
-					<div className="text-base grow items-end text-xs">2 tokens</div>
+					<div className="text-sm">Create account</div>
+					<div className="grow items-end text-xs">2 tokens</div>
 				</div>
-				<div className="flex flex-row gap-2 items-center w-full">
+				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckmarkIcon />
 					<div className="text-sm text-disabled line-through">Meet the team</div>
 					<div className="grow items-end text-xs text-wax">2 tokens earned</div>
 				</div>
-				<div className="flex flex-row gap-2 items-center w-full">
+				<div className="flex flex-row gap-2 items-center w-full ">
 					<CheckmarkIcon />
 					<div className="text-sm text-disabled line-through">Create a project</div>
 					<div className="text-wax grow items-end text-xs">2 tokens earned</div>
 				</div>
-				<div className="flex flex-row gap-2 items-center w-full">
+				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckboxIcon />
-					<div className="text-sm text-base">Create ticket</div>
-					<div className="text-base grow items-end text-xs">2 tokens</div>
+					<div className="text-sm">Create ticket</div>
+					<div className="grow items-end text-xs">2 tokens</div>
 				</div>
-				<div className="flex flex-row gap-2 items-center w-full">
+				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckboxIcon />
-					<div className="text-sm text-base">Run ticket execution</div>
-					<div className="text-base grow items-end text-xs">2 tokens</div>
+					<div className="text-sm">Run ticket execution</div>
+					<div className="grow items-end text-xs">2 tokens</div>
 				</div>
-				<div className="flex flex-row gap-2 items-center w-full">
+				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckboxIcon />
-					<div className="text-sm text-base">Deploy to production</div>
-					<div className="text-base grow items-end text-xs">2 tokens</div>
+					<div className="text-sm">Deploy to production</div>
+					<div className="grow items-end text-xs">2 tokens</div>
 				</div>
 			</div>
 		</div>
