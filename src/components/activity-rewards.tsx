@@ -4,10 +4,20 @@ import CheckmarkIcon from "../shared/icons/checkmark-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { pageLoaded } from "../shared/reducers/page-reducer"
 import { useDispatch } from "react-redux"
+import { motion } from "framer-motion"
 
 export default function ActivityRewards() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
+	const user = {
+		profileImage: "https://avatars.githubusercontent.com/u/110939072?v=4",
+		nickname: "Lotus",
+		dateJoined: "Joined on January 1, 2022",
+		credits: 4,
+		level: 5,
+		progressToNextLevel: 40, // as a percentage
+	}
 
 	const switchToPricing = () => {
 		navigate({ to: "/pricing" })
@@ -30,8 +40,21 @@ export default function ActivityRewards() {
 				<h1 className="w-fit mt-4 text-sm text-base">Activity Rewards</h1>
 
 				<div className="my-3 text-sm text-clickable">Complete challenges to earn tokens</div>
-				<div className="border-b border-progress w-full border-[2px] rounded-[2px]"></div>
-				<div className="my-2 text-sm text-clickable">100% done</div>
+				{/* Progress Bar  */}
+				<div className="flex items-center mt-2">
+					<div className="w-full bg-disabled h-1 rounded-[3px] mr-2 relative">
+						<motion.div
+							className="bg-progress/75 h-1 rounded-[3px]"
+							style={{
+								width: `${user.progressToNextLevel}%`,
+							}}
+							initial={{ width: 0 }}
+							animate={{ width: `${user.progressToNextLevel}%` }}
+							transition={{ duration: 0.8 }}
+						/>
+					</div>
+				</div>
+				<div className="my-2 text-sm text-clickable">{user.progressToNextLevel}% done</div>
 				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckboxIcon />
 					<div className="text-sm">Create account</div>

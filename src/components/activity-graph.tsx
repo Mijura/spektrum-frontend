@@ -20,13 +20,13 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 		const intensity = Math.ceil((count / maxCount) * 4)
 		switch (intensity) {
 			case 1:
-				return "bg-secondary/25"
+				return "bg-honey/25"
 			case 2:
-				return "bg-secondary/50"
+				return "bg-honey/50"
 			case 3:
-				return "bg-secondary/75"
+				return "bg-honey/75"
 			case 4:
-				return "bg-secondary"
+				return "bg-honey"
 			default:
 				return "bg-surface-200"
 		}
@@ -73,10 +73,10 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 				<span>Less</span>
 				<div className="flex gap-[3px]">
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-surface-200" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary/25" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary/50" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary/75" />
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-secondary" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-honey/25" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-honey/50" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-honey/75" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-honey" />
 				</div>
 				<span>More</span>
 			</div>

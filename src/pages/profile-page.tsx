@@ -37,9 +37,9 @@ export default function ProfilePage() {
 		profileImage: "https://avatars.githubusercontent.com/u/110939072?v=4",
 		nickname: "Lotus",
 		dateJoined: "Joined on January 1, 2022",
-		credits: 120,
+		credits: 4,
 		level: 5,
-		progressToNextLevel: 60, // as a percentage
+		progressToNextLevel: 40, // as a percentage
 	}
 
 	return (
@@ -68,11 +68,11 @@ export default function ProfilePage() {
 								<span className="text-sm text-base">•</span>
 								<span className="text-sm text-base">{user.progressToNextLevel * 10} / 1000 XP</span>
 							</div>
-							{/* Progress Bar + Chest */}
+							{/* Progress Bar  */}
 							<div className="flex items-center mt-2">
-								<div className="w-40 bg-disabled h-2 rounded-[3px] mr-2 relative">
+								<div className="w-40 bg-disabled h-1 rounded-[3px] mr-2 relative">
 									<motion.div
-										className="bg-secondary h-2 rounded-[3px]"
+										className="bg-progress/75 h-1 rounded-[3px]"
 										style={{
 											width: `${user.progressToNextLevel}%`,
 										}}

@@ -1,6 +1,6 @@
 import { Tabs, Tab, Button } from "@honeycomb-app/design"
 import { v4 as uuidv4 } from "uuid"
-import TokenRewards from "../components/token-rewards"
+import ActivityRewards from "../components/activity-rewards"
 import ReloadIcon from "../shared/icons/reload-icon"
 import React, { useEffect } from "react"
 import { useProject } from "../hooks/use-project"
@@ -30,7 +30,7 @@ export default function WorkspacePage(props: any) {
 		project && (
 			<div key={props.id} className="grow flex flex-row p-2 pl-4 gap-3">
 				<div className="w-[450px] flex flex-col h-full overflow-y-hidden rounded-[2px]">
-					<TokenRewards />
+					<ActivityRewards />
 					<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md h-full">
 						<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base text-sm mb-4">
 							Development Activities
