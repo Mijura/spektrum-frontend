@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import ActivityGraph from "../components/activity-graph"
 import { useMemo } from "react"
-import HexbinChart from "../components/hexbin-chart"
+import HexbinActivityChart from "../components/hexbin-chart"
 
 export default function ProfilePage() {
 	// Generate simulated activity data for the last 365 days
@@ -52,7 +52,7 @@ export default function ProfilePage() {
 				className={`w-full bg-surface-100 p-6 flex flex-col items-center pt-20`}
 			>
 				{/* Top Section: Profile Info + Credits */}
-				<div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-surface-300">
+				<div className="w-full max-w-[1224px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-surface-300">
 					{/* Left: Profile Image & Basic Info */}
 					<div className="flex items-center mb-4 md:mb-0">
 						<img
@@ -100,9 +100,9 @@ export default function ProfilePage() {
 					</div>
 				</div>
 				{/* Activity Graph */}
-				<div className="w-full max-w-4xl my-6 border border-surface-300 rounded-sm">
+				<div className="w-full max-w-[1224px] p-2 h-fit my-6 border border-surface-300 rounded-sm">
 					{/* <ActivityGraph data={activityData} /> */}
-					<HexbinChart />
+					<HexbinActivityChart />
 				</div>
 			</motion.div>
 		</>
