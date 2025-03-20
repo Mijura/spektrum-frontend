@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import ActivityGraph from "../components/activity-graph"
 import { useMemo } from "react"
+import HexbinChart from "../components/hexbin-chart"
 
 export default function ProfilePage() {
 	// Generate simulated activity data for the last 365 days
@@ -8,7 +9,7 @@ export default function ProfilePage() {
 		const data: { date: string; count: number }[] = []
 		const end = new Date()
 		const start = new Date(end)
-		start.setDate(start.getDate() - 400) // Go back 364 days to make it 365 total
+		start.setDate(start.getDate() - 365) // Go back 364 days to make it 365 total
 
 		for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
 			// Generate random activity count with higher probability of lower numbers
@@ -70,7 +71,7 @@ export default function ProfilePage() {
 							</div>
 							{/* Progress Bar  */}
 							<div className="flex items-center mt-2">
-								<div className="w-40 bg-disabled h-1 rounded-[3px] mr-2 relative">
+								<div className="w-[250px] bg-disabled h-1 rounded-[3px] mr-2 relative">
 									<motion.div
 										className="bg-progress/75 h-1 rounded-[3px]"
 										style={{
@@ -100,7 +101,8 @@ export default function ProfilePage() {
 				</div>
 				{/* Activity Graph */}
 				<div className="w-full max-w-4xl my-6 border border-surface-300 rounded-sm">
-					<ActivityGraph data={activityData} />
+					{/* <ActivityGraph data={activityData} /> */}
+					<HexbinChart />
 				</div>
 			</motion.div>
 		</>
