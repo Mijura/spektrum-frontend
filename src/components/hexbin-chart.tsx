@@ -63,7 +63,7 @@ const HexbinActivityChart: React.FC = () => {
 			.attr("d", (d) => `M${d.x},${d.y}${hexbin.hexagon()}`)
 			.style("fill", (d) => {
 				const avgIntensity = d3.mean(d, (p) => p.intensity) || 0
-				return avgIntensity === 0 ? "black" : color(avgIntensity) // Gray for zero-intensity hexagons
+				return avgIntensity === 0 ? "var(--surface-100)" : color(avgIntensity) // Gray for zero-intensity hexagons
 			})
 			.attr("stroke", "var(--surface-300)")
 			.attr("stroke-width", "2px")
