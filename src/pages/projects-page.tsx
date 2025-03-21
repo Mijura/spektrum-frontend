@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { Loader, Modal, ModalContent, ModalTrigger } from "@honeycomb-app/design"
+import { Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
-import Tooltip from "../shared/tooltip"
 
 export default function ProjectsPage() {
 	const [editingProject, setEditingProject] = useState<any>(null)

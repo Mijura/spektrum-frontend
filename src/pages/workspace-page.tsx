@@ -1,11 +1,10 @@
-import { Tabs, Tab, Button } from "@honeycomb-app/design"
+import { Tabs, Tab, Button, Tooltip } from "@honeycomb-app/design"
 import { v4 as uuidv4 } from "uuid"
 import ActivityRewards from "../components/activity-rewards"
 import ReloadIcon from "../shared/icons/reload-icon"
 import React, { useEffect } from "react"
 import { useProject } from "../hooks/use-project"
 import { deploy } from "../api/project"
-import Tooltip from "../shared/tooltip"
 
 export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
 
