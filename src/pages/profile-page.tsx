@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
-import ActivityGraph from "../components/activity-graph"
 import { useMemo } from "react"
 import HexbinActivityChart from "../components/hexbin-chart"
+import { ProgressBar } from "@honeycomb-app/design"
 
 export default function ProfilePage() {
 	// Generate simulated activity data for the last 365 days
@@ -69,20 +69,8 @@ export default function ProfilePage() {
 								<span className="text-sm text-base">•</span>
 								<span className="text-sm text-base">{user.progressToNextLevel * 10} / 1000 XP</span>
 							</div>
-							{/* Progress Bar  */}
-							<div className="flex items-center mt-2">
-								<div className="w-[250px] bg-disabled h-1 rounded-[3px] mr-2 relative">
-									<motion.div
-										className="bg-progress/75 h-1 rounded-[3px]"
-										style={{
-											width: `${user.progressToNextLevel}%`,
-										}}
-										initial={{ width: 0 }}
-										animate={{ width: `${user.progressToNextLevel}%` }}
-										transition={{ duration: 0.8 }}
-									/>
-								</div>
-							</div>
+
+							<ProgressBar progress={40} />
 						</div>
 					</div>
 

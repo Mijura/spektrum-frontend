@@ -1,4 +1,4 @@
-import { Button } from "@honeycomb-app/design"
+import { Button, ProgressBar } from "@honeycomb-app/design"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
 import { useNavigate } from "@tanstack/react-router"
@@ -40,20 +40,7 @@ export default function ActivityRewards() {
 				<h1 className="w-fit mt-4 text-sm text-base">Activity Rewards</h1>
 
 				<div className="my-3 text-sm text-clickable">Complete challenges to earn tokens</div>
-				{/* Progress Bar  */}
-				<div className="flex items-center mt-2">
-					<div className="w-full bg-disabled h-1 rounded-[3px] mr-2 relative">
-						<motion.div
-							className="bg-progress/75 h-1 rounded-[3px]"
-							style={{
-								width: `${user.progressToNextLevel}%`,
-							}}
-							initial={{ width: 0 }}
-							animate={{ width: `${user.progressToNextLevel}%` }}
-							transition={{ duration: 0.8 }}
-						/>
-					</div>
-				</div>
+				<ProgressBar progress={30} className="w-full" />
 				<div className="my-2 text-sm text-clickable">{user.progressToNextLevel}% done</div>
 				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckboxIcon />
