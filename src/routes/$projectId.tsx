@@ -47,5 +47,5 @@ function WorkspaceComponent() {
 		)
 	}, [])
 
-	return <WorkspacePage id={project.id} />
+	return <WorkspacePage />
 }
