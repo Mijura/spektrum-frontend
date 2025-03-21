@@ -6,7 +6,6 @@ import { useState } from "react"
 
 const sentences = [
 	"At JigJoy, we’re creating a space where anyone can design their own software development workflow and seamlessly connect it to our hexagonal ecosystem for execution.",
-	"Just like bees building honeycombs - the most efficient way to create something with lasting value.",
 	"We’re Miodrag Vilotijević and Miodrag Todorović, tech-savvy builders on a mission to make AI agents work for you - seamlessly, intelligently, and with full control. Welcome aboard! 🚀",
 ]
 
@@ -63,11 +62,8 @@ export default function WelcomePage() {
 				{/* First message */}
 				<div className="w-full text-base py-4">{staggeredText(sentences[0], 0)}</div>
 
-				{/* Second message with delay */}
-				<div className="w-full text-base py-4">{staggeredText(sentences[1], 7)}</div>
-
 				<div className="w-full text-base py-4">
-					{staggeredText(sentences[2], 12)} {/* Starts after first sentence */}
+					{staggeredText(sentences[1], 7)} {/* Starts after first sentence */}
 				</div>
 
 				{/* Animated Button */}
@@ -75,7 +71,7 @@ export default function WelcomePage() {
 					className="mt-4"
 					initial={{ opacity: 0, y: 10 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 20, duration: 1 }} // Appears after text
+					transition={{ delay: 12, duration: 1 }} // Appears after text
 				>
 					<Button className="animate-bounce" onClick={handleCreateNewProject}>
 						Start Building
