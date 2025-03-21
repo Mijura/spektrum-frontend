@@ -3,7 +3,6 @@ export default function PlusIcon() {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
-			viewBox="0 0 24 24"
 			width="8"
 			height="8"
 			strokeWidth={1.5}

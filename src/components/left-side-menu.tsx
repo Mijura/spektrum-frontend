@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import ProjectsIcon from "../shared/icons/projects-icon"
+import CubeIcon from "../shared/icons/cube-icon"
 import WorkspaceIcon from "../shared/icons/workspace-icon"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
@@ -33,7 +33,7 @@ const LeftSideMenu = () => {
 			<ul className="flex flex-col mt-[100px]">
 				{[
 					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/" },
-					{ name: "projects", icon: ProjectsIcon, label: "Projects", route: "/projects" },
+					{ name: "projects", icon: CubeIcon, label: "Projects", route: "/projects" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}

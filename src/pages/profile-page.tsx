@@ -1,44 +1,13 @@
 import { motion } from "framer-motion"
-import { useMemo } from "react"
 import HexbinActivityChart from "../components/hexbin-chart"
 import { ProgressBar } from "@honeycomb-app/design"
 
 export default function ProfilePage() {
-	// Generate simulated activity data for the last 365 days
-	const activityData = useMemo(() => {
-		const data: { date: string; count: number }[] = []
-		const end = new Date()
-		const start = new Date(end)
-		start.setDate(start.getDate() - 365) // Go back 364 days to make it 365 total
-
-		for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-			// Generate random activity count with higher probability of lower numbers
-			// and occasional spikes
-			const rand = Math.random()
-			let count = 0
-			if (rand > 0.3) {
-				// 70% chance of activity
-				if (rand > 0.9) {
-					// 10% chance of high activity
-					count = Math.floor(Math.random() * 15) + 10 // 10-25 blocks
-				} else {
-					count = Math.floor(Math.random() * 8) + 1 // 1-8 blocks
-				}
-			}
-
-			data.push({
-				date: d.toISOString().split("T")[0],
-				count,
-			})
-		}
-		return data
-	}, [])
-
 	const user = {
 		profileImage: "https://avatars.githubusercontent.com/u/110939072?v=4",
 		nickname: "Lotus",
 		dateJoined: "Joined on January 1, 2022",
-		credits: 4,
+		tokens: 4,
 		level: 5,
 		progressToNextLevel: 40, // as a percentage
 	}
@@ -74,7 +43,7 @@ export default function ProfilePage() {
 						</div>
 					</div>
 
-					{/* Right: Credits Widget */}
+					{/* Right: Token Widget */}
 					<div className="flex flex-col items-center md:items-end">
 						<span className="text-lg text-base">Tokens</span>
 						<motion.span
@@ -83,7 +52,7 @@ export default function ProfilePage() {
 							transition={{ type: "spring", stiffness: 200 }}
 							className="text-2xl font-bold text-wax"
 						>
-							{user.credits}
+							{user.tokens}
 						</motion.span>
 					</div>
 				</div>

@@ -1,8 +1,8 @@
-interface ProjectsIconProps {
+interface CubeIconProps {
 	color: string
 }
 
-export default function ProjectsIcon({ color }: ProjectsIconProps) {
+export default function CubeIcon({ color }: CubeIconProps) {
 	return (
 		<svg
 			width="32"

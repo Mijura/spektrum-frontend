@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { motion } from "framer-motion"
 
 interface ContributionDay {
@@ -10,9 +10,39 @@ interface ActivityGraphProps {
 	data: ContributionDay[]
 }
 
-const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
+const ActivityGraph: React.FC<ActivityGraphProps> = () => {
+	// Generate simulated activity data for the last 365 days
+	const activityData = useMemo(() => {
+		const data: { date: string; count: number }[] = []
+		const end = new Date()
+		const start = new Date(end)
+		start.setDate(start.getDate() - 365) // Go back 364 days to make it 365 total
+
+		for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+			// Generate random activity count with higher probability of lower numbers
+			// and occasional spikes
+			const rand = Math.random()
+			let count = 0
+			if (rand > 0.3) {
+				// 70% chance of activity
+				if (rand > 0.9) {
+					// 10% chance of high activity
+					count = Math.floor(Math.random() * 15) + 10 // 10-25 blocks
+				} else {
+					count = Math.floor(Math.random() * 8) + 1 // 1-8 blocks
+				}
+			}
+
+			data.push({
+				date: d.toISOString().split("T")[0],
+				count,
+			})
+		}
+		return data
+	}, [])
+
 	// Calculate the maximum contribution count to normalize the colors
-	const maxCount = Math.max(...data.map((day) => day.count))
+	const maxCount = Math.max(...activityData.map((day) => day.count))
 
 	// Function to determine the color intensity based on contribution count
 	const getColor = (count: number) => {
@@ -36,7 +66,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = ({ data }) => {
 	const weeks: ContributionDay[][] = []
 	let currentWeek: ContributionDay[] = []
 
-	data.forEach((day, index) => {
+	activityData.forEach((day, index) => {
 		currentWeek.push(day)
 		if ((index + 1) % 7 === 0) {
 			weeks.push(currentWeek)
