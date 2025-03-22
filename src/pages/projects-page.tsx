@@ -59,7 +59,9 @@ export default function ProjectsPage() {
 
 					<div className="flex justify-end grow">
 						<Tooltip message="Create new project" className="bg-surface-200">
-							<PlusIcon />
+							<div onClick={handleCreateNewProject}>
+								<PlusIcon />
+							</div>
 						</Tooltip>
 					</div>
 				</div>

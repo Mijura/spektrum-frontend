@@ -1,7 +1,6 @@
 export default function PlusIcon() {
 	return (
 		<svg
-			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			width="8"
 			height="8"
