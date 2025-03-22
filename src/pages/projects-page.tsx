@@ -49,7 +49,7 @@ export default function ProjectsPage() {
 
 	return loading ? (
 		<div className="w-full h-full flex items-center justify-center">
-			<Loader message="Project intialization" />
+			<Loader message="Project intialization" size="large" />
 		</div>
 	) : (
 		<div className="ml-20 px-4 pt-20">
