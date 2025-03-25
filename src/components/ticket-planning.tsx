@@ -3,8 +3,23 @@ import React from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import PlusIcon from "../shared/icons/plus-icon"
+import { useProject } from "../hooks/use-project"
+import { develop } from "../api/project"
 
 const TicketPlanning: React.FC = () => {
+	const project = useProject()
+
+	const implement = async (feature: string) => {
+		await develop(
+			{
+				projectId: project.id,
+				message: feature,
+			},
+			({}) => {},
+			({}) => {},
+			({}) => {},
+		)
+	}
 	return (
 		<div className="ml-4 mt-8 px-4 w-[300px]">
 			<div className="flex flex-row w-full h-fit mb-2">
@@ -18,16 +33,18 @@ const TicketPlanning: React.FC = () => {
 			</div>
 			<div className="border-b border-disabled w-full"></div>
 			<div className="w-full bg-surface-200 p-4 rounded-lg border border-disabled my-4 cursor-pointer hover:opacity-90">
-				<div className="flex flex-row text-clickable">Implement a login page</div>
+				<div className="flex flex-row text-clickable">Implement a note taking app</div>
 				<div className="mt-2 flex flex-row gap-2 w-full">
 					<Tooltip message="Change status">
 						<MoreOptionsIcon />
 					</Tooltip>
 
 					<div className="flex grow w-full justify-end">
-						<Tooltip message="Run execution">
-							<PlayIcon />
-						</Tooltip>
+						<div onClick={() => implement("Implement a note taking app")}>
+							<Tooltip message="Run execution">
+								<PlayIcon />
+							</Tooltip>
+						</div>
 					</div>
 				</div>
 			</div>
