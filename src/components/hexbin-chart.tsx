@@ -1,11 +1,16 @@
 import React, { useEffect, useRef } from "react"
 import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
+import { timeline } from "../api/activity"
 
 const HexbinActivityChart: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
 
+	const getTimeline = async () => {
+		await timeline()
+	}
 	useEffect(() => {
+		getTimeline()
 		if (!svgRef.current) return
 
 		const width = 1200
@@ -66,7 +71,7 @@ const HexbinActivityChart: React.FC = () => {
 				return avgIntensity === 0 ? "var(--surface-100)" : color(avgIntensity) // Gray for zero-intensity hexagons
 			})
 			.attr("stroke", "var(--surface-300)")
-			.attr("stroke-width", "2px")
+			.attr("strokeWidth", "2px")
 	}, [])
 
 	return <svg ref={svgRef} className="w-full" />
