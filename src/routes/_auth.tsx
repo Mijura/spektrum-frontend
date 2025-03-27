@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_auth")({
 
 function AuthLayout() {
 	return (
-		<div>
+		<>
 			<div className="h-fit w-full">
 				<Header />
 			</div>
@@ -18,6 +18,6 @@ function AuthLayout() {
 					<Outlet />
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }
