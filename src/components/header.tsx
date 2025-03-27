@@ -29,19 +29,8 @@ const Header = () => {
 			</div>
 
 			<div className="flex items-center gap-4 relative">
-				<button
-					className={`${page == "pricing" ? "text-secondary" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
-					onClick={() => switchToPage("pricing")}
-				>
-					<span className="material-icons">Buy tokens</span>
-				</button>
-
-				<Button onClick={() => switchToPage("/auth")} className="p-1 px-2 bg-primary hover:bg-hover-primary rounded-sm">
-					Login
-				</Button>
-
-				<Button onClick={() => switchToPage("/auth")} className="p-1 px-2 bg-secondary hover:bg-hover-secondary rounded-sm">
-					Register
+				<Button onClick={() => switchToPage("/auth")} className="py-1 px-2 bg-primary hover:bg-hover-primary rounded-sm">
+					Buy tokens
 				</Button>
 
 				<Popover position="bottom-end">

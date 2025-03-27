@@ -26,7 +26,7 @@ export default function AuthPage() {
 					Logo
 				</div>
 
-				<h1 className="text-3xl text-base font-bold mb-6">Welcome to JigJoy Playground</h1>
+				<h1 className="text-2xl text-base mb-6">Welcome to Honeycomb 🐝</h1>
 
 				<motion.input
 					type="email"
@@ -44,7 +44,7 @@ export default function AuthPage() {
 
 				<motion.button
 					className="
-            px-6 py-2
+            px-6 py-2 w-72
             bg-hover text-surface-100 font-semibold 
             rounded border border-hover
             hover:bg-hover
