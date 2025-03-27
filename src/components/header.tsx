@@ -29,7 +29,7 @@ const Header = () => {
 			</div>
 
 			<div className="flex items-center gap-4 relative">
-				<Button onClick={() => switchToPage("/auth")} className="py-1 px-2 bg-primary hover:bg-hover-primary rounded-sm">
+				<Button onClick={() => switchToPage("/pricing")} className="py-1 px-2 bg-primary hover:bg-hover-primary rounded-sm">
 					Buy tokens
 				</Button>
 
