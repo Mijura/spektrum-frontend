@@ -10,7 +10,7 @@ const buttonVariants = {
 	tap: { scale: 0.95 },
 }
 
-export default function Authorization() {
+export default function AuthPage() {
 	return (
 		<div className="relative h-full w-full overflow-hidden">
 			{/* Main Content Container */}

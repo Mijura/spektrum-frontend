@@ -22,7 +22,7 @@ const ProjectsLazyImport = createFileRoute('/projects')()
 const ProfileLazyImport = createFileRoute('/profile')()
 const PricingLazyImport = createFileRoute('/pricing')()
 const OnboardingLazyImport = createFileRoute('/onboarding')()
-const AuthorizationLazyImport = createFileRoute('/authorization')()
+const AuthLazyImport = createFileRoute('/auth')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
@@ -52,10 +52,10 @@ const OnboardingLazyRoute = OnboardingLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/onboarding.lazy').then((d) => d.Route))
 
-const AuthorizationLazyRoute = AuthorizationLazyImport.update({
-  path: '/authorization',
+const AuthLazyRoute = AuthLazyImport.update({
+  path: '/auth',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/authorization.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/auth.lazy').then((d) => d.Route))
 
 const ProjectIdRoute = ProjectIdImport.update({
   path: '/$projectId',
@@ -85,11 +85,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectIdImport
       parentRoute: typeof rootRoute
     }
-    '/authorization': {
-      id: '/authorization'
-      path: '/authorization'
-      fullPath: '/authorization'
-      preLoaderRoute: typeof AuthorizationLazyImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthLazyImport
       parentRoute: typeof rootRoute
     }
     '/onboarding': {
@@ -135,7 +135,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/$projectId': typeof ProjectIdRoute
-  '/authorization': typeof AuthorizationLazyRoute
+  '/auth': typeof AuthLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
@@ -146,7 +146,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/$projectId': typeof ProjectIdRoute
-  '/authorization': typeof AuthorizationLazyRoute
+  '/auth': typeof AuthLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
@@ -158,7 +158,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/$projectId': typeof ProjectIdRoute
-  '/authorization': typeof AuthorizationLazyRoute
+  '/auth': typeof AuthLazyRoute
   '/onboarding': typeof OnboardingLazyRoute
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
@@ -171,7 +171,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$projectId'
-    | '/authorization'
+    | '/auth'
     | '/onboarding'
     | '/pricing'
     | '/profile'
@@ -181,7 +181,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/$projectId'
-    | '/authorization'
+    | '/auth'
     | '/onboarding'
     | '/pricing'
     | '/profile'
@@ -191,7 +191,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$projectId'
-    | '/authorization'
+    | '/auth'
     | '/onboarding'
     | '/pricing'
     | '/profile'
@@ -203,7 +203,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   ProjectIdRoute: typeof ProjectIdRoute
-  AuthorizationLazyRoute: typeof AuthorizationLazyRoute
+  AuthLazyRoute: typeof AuthLazyRoute
   OnboardingLazyRoute: typeof OnboardingLazyRoute
   PricingLazyRoute: typeof PricingLazyRoute
   ProfileLazyRoute: typeof ProfileLazyRoute
@@ -214,7 +214,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   ProjectIdRoute: ProjectIdRoute,
-  AuthorizationLazyRoute: AuthorizationLazyRoute,
+  AuthLazyRoute: AuthLazyRoute,
   OnboardingLazyRoute: OnboardingLazyRoute,
   PricingLazyRoute: PricingLazyRoute,
   ProfileLazyRoute: ProfileLazyRoute,
@@ -236,7 +236,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/$projectId",
-        "/authorization",
+        "/auth",
         "/onboarding",
         "/pricing",
         "/profile",
@@ -250,8 +250,8 @@ export const routeTree = rootRoute
     "/$projectId": {
       "filePath": "$projectId.tsx"
     },
-    "/authorization": {
-      "filePath": "authorization.lazy.tsx"
+    "/auth": {
+      "filePath": "auth.lazy.tsx"
     },
     "/onboarding": {
       "filePath": "onboarding.lazy.tsx"

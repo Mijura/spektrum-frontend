@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router"
-import { Avatar, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
+import { Avatar, Button, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
 import { pageLoaded } from "../shared/reducers/page-reducer"
 import { useDispatch } from "react-redux"
 import { usePage } from "../hooks/use-page"
@@ -35,6 +35,14 @@ const Header = () => {
 				>
 					<span className="material-icons">Buy tokens</span>
 				</button>
+
+				<Button onClick={() => switchToPage("/auth")} className="p-1 px-2 bg-primary hover:bg-hover-primary rounded-sm">
+					Login
+				</Button>
+
+				<Button onClick={() => switchToPage("/auth")} className="p-1 px-2 bg-secondary hover:bg-hover-secondary rounded-sm">
+					Register
+				</Button>
 
 				<Popover position="bottom-end">
 					<PopoverTrigger>
