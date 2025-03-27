@@ -1,14 +1,5 @@
+import { Button } from "@honeycomb-app/design"
 import { motion } from "framer-motion"
-
-const containerVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: { opacity: 1, y: 0 },
-}
-
-const buttonVariants = {
-	hover: { scale: 1.05 },
-	tap: { scale: 0.95 },
-}
 
 export default function AuthPage() {
 	return (
@@ -16,46 +7,23 @@ export default function AuthPage() {
 			{/* Main Content Container */}
 			<motion.div
 				className="relative flex flex-col mt-40 items-center min-h-screen bg-transparent"
-				variants={containerVariants}
 				initial="hidden"
 				animate="visible"
 				transition={{ duration: 0.3 }}
 			>
-				{/* Replace this placeholder with your actual logo */}
-				<div className="w-20 h-20 mb-4 flex items-center justify-center bg-accent text-base font-bold rounded-full">
-					Logo
-				</div>
-
-				<h1 className="text-2xl text-base mb-6">Welcome to Honeycomb 🐝</h1>
+				<h1 className="text-2xl text-bold mb-6 text-base">Welcome to Honeycomb!</h1>
 
 				<motion.input
 					type="email"
 					placeholder="Email Address"
 					className="
-            mb-6 w-72 px-4 py-2
-            bg-surface-200 text-base
+            mb-6 w-71 px-4 py-2
+            bg-surface-100 text-base
             rounded outline-none
-            border border-hover
-            placeholder:text-hover placeholder:opacity-60
-            focus:ring-2 focus:ring-hover
           "
-					whileFocus={{ scale: 1.02 }}
 				/>
 
-				<motion.button
-					className="
-            px-6 py-2 w-72
-            bg-hover text-surface-100 font-semibold 
-            rounded border border-hover
-            hover:bg-hover
-            transition-colors duration-200
-          "
-					variants={buttonVariants}
-					whileHover="hover"
-					whileTap="tap"
-				>
-					Log in or Register
-				</motion.button>
+				<Button className="w-71 px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary">Login or Register</Button>
 			</motion.div>
 		</div>
 	)

@@ -7,7 +7,7 @@ export const Route = createRootRoute({
 })
 
 function RootRoute() {
-	const isAuthenticated = true
+	const isAuthenticated = false
 
 	return (
 		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full">
