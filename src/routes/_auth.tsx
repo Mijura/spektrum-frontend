@@ -1,8 +1,18 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router"
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import Header from "../components/header"
 import LeftSideMenu from "../components/left-side-menu"
+import { AuthContext } from "../auth"
 
 export const Route = createFileRoute("/_auth")({
+	beforeLoad: ({ context, location }) => {
+		let authContext = context as AuthContext
+		console.log(authContext)
+		if (!authContext.isAuthenticated) {
+			throw redirect({
+				to: "/",
+			})
+		}
+	},
 	component: AuthLayout,
 })
 

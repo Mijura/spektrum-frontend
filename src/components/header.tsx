@@ -3,6 +3,7 @@ import { Avatar, Button, Popover, PopoverContent, PopoverTrigger } from "@honeyc
 import { pageLoaded } from "../reducers/page-reducer"
 import { useDispatch } from "react-redux"
 import { usePage } from "../hooks/use-page"
+import { logout } from "../reducers/auth-reducer"
 
 const Header = () => {
 	const navigate = useNavigate()
@@ -21,6 +22,11 @@ const Header = () => {
 			subscriptionType: "pro",
 		},
 	]
+
+	const handleLogout = () => {
+		dispatch(logout())
+		navigate({ to: "/" })
+	}
 
 	return (
 		<header className="flex w-[100%] h-[50px] bg-surface-100 border-b border-outline text-white items-center justify-between shadow-md px-4">
@@ -49,7 +55,10 @@ const Header = () => {
 							>
 								My Profile
 							</li>
-							<li className="p-2 hover:bg-surface-100 cursor-pointer text-clickable hover:text-hover transition-colors">
+							<li
+								onClick={handleLogout}
+								className="p-2 hover:bg-surface-100 cursor-pointer text-clickable hover:text-hover transition-colors"
+							>
 								Log out
 							</li>
 						</ul>

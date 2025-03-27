@@ -3,13 +3,16 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginSuccess } from "../reducers/auth-reducer"
+import { useNavigate } from "@tanstack/react-router"
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("")
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const handleContinue = () => {
 		dispatch(loginSuccess({}))
+		navigate({ to: "/projects" })
 	}
 
 	return (
