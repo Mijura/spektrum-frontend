@@ -7,9 +7,9 @@ export const Route = createRootRoute({
 
 function RootRoute() {
 	return (
-		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full overflow-hidden">
+		<>
 			<Outlet />
 			<TanStackRouterDevtools position="bottom-right" initialIsOpen={false} />
-		</div>
+		</>
 	)
 }
