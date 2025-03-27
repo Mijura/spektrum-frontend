@@ -649,6 +649,14 @@
   resolved "https://registry.npmjs.org/@tanstack/history/-/history-1.99.13.tgz"
   integrity sha512-JMd7USmnp8zV8BRGIjALqzPxazvKtQ7PGXQC7n39HpbqdsmfV2ePCzieO84IvN+mwsTrXErpbjI4BfKCa+ZNCg==
 
+"@tanstack/react-router-devtools@^1.114.29":
+  version "1.114.29"
+  resolved "https://registry.npmjs.org/@tanstack/react-router-devtools/-/react-router-devtools-1.114.29.tgz#549ef9006cb07183db7787620ff626494caca3e7"
+  integrity sha512-T2yzpAkhSKzJt9Une8B37UahD5bmtzVHdhoQgj9/L/7FuxInppbMzKBHZM9VXg/WtWO53EVFba+Gi4A0npZ9iw==
+  dependencies:
+    "@tanstack/router-devtools-core" "^1.114.29"
+    solid-js "^1.9.5"
+
 "@tanstack/react-router@^1.92.11":
   version "1.111.6"
   resolved "https://registry.npmjs.org/@tanstack/react-router/-/react-router-1.111.6.tgz"
@@ -685,6 +693,14 @@
   dependencies:
     "@tanstack/history" "1.99.13"
     "@tanstack/store" "^0.7.0"
+
+"@tanstack/router-devtools-core@^1.114.29":
+  version "1.114.29"
+  resolved "https://registry.npmjs.org/@tanstack/router-devtools-core/-/router-devtools-core-1.114.29.tgz#5fc86188f9e72047f0dd7689aae375bb02dd29e9"
+  integrity sha512-QDtVcUGalFi9e5lFABOchGQI7gyxnk2z8cUET+DpZF8LWS0eJTv5+QWvLc7F7UHhz1MeFPbmIR2vQ4PDspWRfA==
+  dependencies:
+    clsx "^2.1.1"
+    goober "^2.1.16"
 
 "@tanstack/router-devtools@^1.92.11":
   version "1.111.6"
@@ -1536,7 +1552,7 @@ cross-spawn@^7.0.3, cross-spawn@^7.0.6:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-csstype@^3.0.2:
+csstype@^3.0.2, csstype@^3.1.0:
   version "3.1.3"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
@@ -3248,6 +3264,16 @@ send@0.19.0:
     range-parser "~1.2.1"
     statuses "2.0.1"
 
+seroval-plugins@^1.1.0:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/seroval-plugins/-/seroval-plugins-1.2.1.tgz#fa535e70ade8af553634b2b5c80d8a6fd8c2ff72"
+  integrity sha512-H5vs53+39+x4Udwp4J5rNZfgFuA+Lt+uU+09w1gYBVWomtAl98B+E9w7yC05Xc81/HgLvJdlyqJbU0fJCKCmdw==
+
+seroval@^1.1.0:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/seroval/-/seroval-1.2.1.tgz#fc671d63445923ab64f7abaf3967c83901382f40"
+  integrity sha512-yBxFFs3zmkvKNmR0pFSU//rIsYjuX418TnlDmc2weaq5XFDqDIV/NOMPBoLrbxjLH42p4UzRuXHryXh9dYcKcw==
+
 serve-index@^1.9.1:
   version "1.9.1"
   resolved "https://registry.npmjs.org/serve-index/-/serve-index-1.9.1.tgz"
@@ -3390,6 +3416,15 @@ sockjs@^0.3.24:
     faye-websocket "^0.11.3"
     uuid "^8.3.2"
     websocket-driver "^0.7.4"
+
+solid-js@^1.9.5:
+  version "1.9.5"
+  resolved "https://registry.npmjs.org/solid-js/-/solid-js-1.9.5.tgz#168ae067c27d3d437c868484d21751335ec16063"
+  integrity sha512-ogI3DaFcyn6UhYhrgcyRAMbu/buBJitYQASZz5WzfQVPP10RD2AbCoRZ517psnezrasyCbWzIxZ6kVqet768xw==
+  dependencies:
+    csstype "^3.1.0"
+    seroval "^1.1.0"
+    seroval-plugins "^1.1.0"
 
 source-map-js@^1.2.1:
   version "1.2.1"

@@ -1,32 +1,15 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router"
-import Header from "../components/header"
-import LeftSideMenu from "../components/left-side-menu"
-import { useAuth } from "../hooks/use-auth"
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 
 export const Route = createRootRoute({
 	component: RootRoute,
 })
 
 function RootRoute() {
-	const isAuthenticated = useAuth()
-
 	return (
-		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full">
-			{isAuthenticated ? (
-				<>
-					<div className="h-fit w-full">
-						<Header />
-					</div>
-					<div className="grow flex flex-row overflow-y-auto">
-						<LeftSideMenu />
-						<div className="grow pl-[72px] flex">
-							<Outlet />
-						</div>
-					</div>
-				</>
-			) : (
-				<Outlet />
-			)}
-		</div>
+		<>
+			<Outlet />
+			<TanStackRouterDevtools position="bottom-right" initialIsOpen={false} />
+		</>
 	)
 }
