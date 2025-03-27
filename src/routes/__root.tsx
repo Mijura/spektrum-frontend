@@ -1,13 +1,14 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router"
 import Header from "../components/header"
 import LeftSideMenu from "../components/left-side-menu"
+import { useAuth } from "../hooks/use-auth"
 
 export const Route = createRootRoute({
 	component: RootRoute,
 })
 
 function RootRoute() {
-	const isAuthenticated = false
+	const isAuthenticated = useAuth()
 
 	return (
 		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full">

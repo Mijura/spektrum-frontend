@@ -14,6 +14,7 @@ const rootDiv = ReactDOM.createRoot(root)
 
 const router = createRouter({
 	routeTree,
+	defaultPreload: "intent",
 })
 
 declare module "@tanstack/react-router" {

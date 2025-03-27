@@ -5,7 +5,7 @@ import WorkspaceIcon from "../shared/icons/workspace-icon"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
-import { pageLoaded } from "../shared/reducers/page-reducer"
+import { pageLoaded } from "../reducers/page-reducer"
 import { usePage } from "../hooks/use-page"
 
 const LeftSideMenu = () => {

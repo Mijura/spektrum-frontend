@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import Project, { ProjectState } from "../types/project"
+import Project, { ProjectState } from "../shared/types/project"
 
 let initialState: ProjectState = {
 	project: {},
