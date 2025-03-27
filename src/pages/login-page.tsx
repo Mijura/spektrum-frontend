@@ -13,7 +13,7 @@ export default function LoginPage() {
 	}
 
 	return (
-		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full overflow-hidden">
+		<div>
 			{/* Main Content Container */}
 			<motion.div
 				className="relative flex flex-col mt-40 items-center min-h-screen bg-transparent"
