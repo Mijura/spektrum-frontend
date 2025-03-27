@@ -21,7 +21,6 @@ const WelcomeLazyImport = createFileRoute('/welcome')()
 const ProjectsLazyImport = createFileRoute('/projects')()
 const ProfileLazyImport = createFileRoute('/profile')()
 const PricingLazyImport = createFileRoute('/pricing')()
-const OnboardingLazyImport = createFileRoute('/onboarding')()
 const AuthLazyImport = createFileRoute('/auth')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -46,11 +45,6 @@ const PricingLazyRoute = PricingLazyImport.update({
   path: '/pricing',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/pricing.lazy').then((d) => d.Route))
-
-const OnboardingLazyRoute = OnboardingLazyImport.update({
-  path: '/onboarding',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/onboarding.lazy').then((d) => d.Route))
 
 const AuthLazyRoute = AuthLazyImport.update({
   path: '/auth',
@@ -92,13 +86,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLazyImport
       parentRoute: typeof rootRoute
     }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingLazyImport
-      parentRoute: typeof rootRoute
-    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -136,7 +123,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/$projectId': typeof ProjectIdRoute
   '/auth': typeof AuthLazyRoute
-  '/onboarding': typeof OnboardingLazyRoute
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/projects': typeof ProjectsLazyRoute
@@ -147,7 +133,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/$projectId': typeof ProjectIdRoute
   '/auth': typeof AuthLazyRoute
-  '/onboarding': typeof OnboardingLazyRoute
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/projects': typeof ProjectsLazyRoute
@@ -159,7 +144,6 @@ export interface FileRoutesById {
   '/': typeof IndexLazyRoute
   '/$projectId': typeof ProjectIdRoute
   '/auth': typeof AuthLazyRoute
-  '/onboarding': typeof OnboardingLazyRoute
   '/pricing': typeof PricingLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/projects': typeof ProjectsLazyRoute
@@ -172,7 +156,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$projectId'
     | '/auth'
-    | '/onboarding'
     | '/pricing'
     | '/profile'
     | '/projects'
@@ -182,7 +165,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$projectId'
     | '/auth'
-    | '/onboarding'
     | '/pricing'
     | '/profile'
     | '/projects'
@@ -192,7 +174,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$projectId'
     | '/auth'
-    | '/onboarding'
     | '/pricing'
     | '/profile'
     | '/projects'
@@ -204,7 +185,6 @@ export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   ProjectIdRoute: typeof ProjectIdRoute
   AuthLazyRoute: typeof AuthLazyRoute
-  OnboardingLazyRoute: typeof OnboardingLazyRoute
   PricingLazyRoute: typeof PricingLazyRoute
   ProfileLazyRoute: typeof ProfileLazyRoute
   ProjectsLazyRoute: typeof ProjectsLazyRoute
@@ -215,7 +195,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   ProjectIdRoute: ProjectIdRoute,
   AuthLazyRoute: AuthLazyRoute,
-  OnboardingLazyRoute: OnboardingLazyRoute,
   PricingLazyRoute: PricingLazyRoute,
   ProfileLazyRoute: ProfileLazyRoute,
   ProjectsLazyRoute: ProjectsLazyRoute,
@@ -237,7 +216,6 @@ export const routeTree = rootRoute
         "/",
         "/$projectId",
         "/auth",
-        "/onboarding",
         "/pricing",
         "/profile",
         "/projects",
@@ -252,9 +230,6 @@ export const routeTree = rootRoute
     },
     "/auth": {
       "filePath": "auth.lazy.tsx"
-    },
-    "/onboarding": {
-      "filePath": "onboarding.lazy.tsx"
     },
     "/pricing": {
       "filePath": "pricing.lazy.tsx"
