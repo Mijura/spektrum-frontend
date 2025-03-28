@@ -2,11 +2,30 @@ import { createFileRoute, Outlet, redirect, useNavigate } from "@tanstack/react-
 import Header from "../components/header"
 import LeftSideMenu from "../components/left-side-menu"
 import { AuthContext } from "../auth"
-import { useAuth } from "../hooks/use-auth"
-import { useDispatch } from "react-redux"
+import { handleConfirmSignIn } from "../api/account-and-billing"
 
 export const Route = createFileRoute("/_auth")({
-	beforeLoad: ({ context, location }) => {
+	beforeLoad: async ({ search, context }) => {
+		const searchParams = new URLSearchParams(search)
+		const email = searchParams.get("email")
+		const token = searchParams.get("token")
+		let isAuthenticated = false
+		if (email && token) {
+			try {
+				const challengeResponse = await handleConfirmSignIn(email, token)
+				if (challengeResponse) {
+					isAuthenticated = true
+				}
+			} catch (error: any) {
+				switch (error.name) {
+					case "UserAlreadyAuthenticatedException":
+						isAuthenticated = true
+					default:
+						console.error(error)
+				}
+			}
+		}
+
 		let authContext = context as AuthContext
 		console.log(authContext)
 		if (!authContext.isAuthenticated) {
