@@ -1,19 +1,45 @@
 import { Button, Logo } from "@honeycomb-app/design"
-import { motion } from "framer-motion"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { loginSuccess } from "../reducers/auth-reducer"
+import { m, motion } from "framer-motion"
+import { useEffect, useState } from "react"
 import { useNavigate } from "@tanstack/react-router"
+import { isEmail } from "../shared/util"
+import { createSingInChallenge } from "../api/account-and-billing"
+import { getCurrentUser } from "aws-amplify/auth"
+
+const item = {
+	hidden: { opacity: 0 },
+	show: { opacity: 1 },
+}
 
 export default function LoginPage() {
+	const [message, setMessage] = useState("")
 	const [email, setEmail] = useState("")
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
 
-	const handleContinue = () => {
-		dispatch(loginSuccess({}))
-		navigate({ to: "/projects" })
+	const [color, setColor] = useState("text-secondary")
+
+	const handleContinue = async () => {
+		try {
+			if (!isEmail(email)) {
+				setColor("text-[red]")
+				setMessage("Please provide valid email address")
+			} else {
+				setColor("text-secondary")
+				setMessage("Log in link has been sent to provided email")
+				await createSingInChallenge({ email: email })
+			}
+		} catch (error: any) {
+			setMessage(error.message)
+		}
 	}
+
+	function resetFields() {
+		setEmail("")
+		setMessage("")
+	}
+
+	useEffect(() => {
+		resetFields()
+	}, [])
 
 	return (
 		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full overflow-hidden">
@@ -36,6 +62,12 @@ export default function LoginPage() {
 					className="mb-6 w-[320px] px-4 py-2 bg-surface-100 text-base placeholder:text-base placeholder:opacity-70 rounded-lg outline-none focus:ring-1 focus:ring-disabled"
 					onChange={(e) => setEmail(e.target.value)}
 				/>
+
+				{message && (
+					<m.div variants={item} className={`flex flex-col ${color}`}>
+						{message}
+					</m.div>
+				)}
 
 				<Button className="w-[320px] px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary" onClick={handleContinue}>
 					Continue to Honeycomb
