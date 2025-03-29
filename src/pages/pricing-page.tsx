@@ -24,7 +24,7 @@ export default function PricingPage() {
 	]
 
 	return (
-		<div className="bg-surface-100 w-full text-base flex flex-col items-center px-4 py-8 font-body">
+		<div className="w-full text-base flex flex-col items-center px-4 py-8 font-body">
 			{/* Page Heading */}
 			<motion.h1
 				initial={{ opacity: 0, y: -20 }}

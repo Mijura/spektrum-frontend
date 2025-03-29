@@ -4,7 +4,7 @@ import ReloadIcon from "../shared/icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"
 import { useProject } from "../hooks/use-project"
 
-export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
+export const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 const AppPreview: React.FC = () => {
 	const project = useProject()
@@ -30,7 +30,7 @@ const AppPreview: React.FC = () => {
 				<div className="m-2 rounded-full bg-surface-200 w-full px-4 text-base">/</div>
 			</div>
 			<div className="flex h-full">
-				<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_API}/${project.id}`} className="grow" />
+				<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_ENDPOINT}/${project.id}`} className="grow" />
 			</div>
 		</div>
 	)

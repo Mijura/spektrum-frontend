@@ -3,8 +3,11 @@ import { Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-a
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 import PlusIcon from "../shared/icons/plus-icon"
+import { projectUpdated } from "../reducers/project-reducer"
+import { useDispatch } from "react-redux"
 
 export default function ProjectsPage() {
+	const dispatch = useDispatch()
 	const [editingProject, setEditingProject] = useState<any>(null)
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
@@ -41,9 +44,10 @@ export default function ProjectsPage() {
 
 	const handleCreateNewProject = async () => {
 		setLoading(true)
-		const project = await createNewProject()
+		const project: any = await createNewProject()
+		dispatch(projectUpdated(project))
 		navigate({
-			to: `/${project.id}`,
+			to: `/workspace`,
 		})
 	}
 

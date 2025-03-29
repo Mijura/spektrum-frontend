@@ -5,7 +5,7 @@ import WorkspaceIcon from "../shared/icons/workspace-icon"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
-import { pageLoaded } from "../shared/reducers/page-reducer"
+import { pageLoaded } from "../reducers/page-reducer"
 import { usePage } from "../hooks/use-page"
 
 const LeftSideMenu = () => {
@@ -32,7 +32,7 @@ const LeftSideMenu = () => {
 		>
 			<ul className="flex flex-col mt-[100px]">
 				{[
-					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/" },
+					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/workspace" },
 					{ name: "projects", icon: CubeIcon, label: "Projects", route: "/projects" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li

@@ -3,9 +3,7 @@ export default interface Project {
 	name?: string
 	description?: string
 	imageUrl?: string
-	sourceCode?: any
 	creator?: any
-	chatHistory: any[]
 }
 
 export interface ProjectState {

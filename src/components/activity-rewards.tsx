@@ -2,9 +2,8 @@ import { Button, ProgressBar } from "@honeycomb-app/design"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
 import { useNavigate } from "@tanstack/react-router"
-import { pageLoaded } from "../shared/reducers/page-reducer"
+import { pageLoaded } from "../reducers/page-reducer"
 import { useDispatch } from "react-redux"
-import { motion } from "framer-motion"
 
 export default function ActivityRewards() {
 	const navigate = useNavigate()

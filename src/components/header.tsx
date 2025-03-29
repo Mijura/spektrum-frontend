@@ -1,8 +1,9 @@
 import { useNavigate } from "@tanstack/react-router"
-import { Avatar, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
-import { pageLoaded } from "../shared/reducers/page-reducer"
+import { Avatar, Button, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
+import { pageLoaded } from "../reducers/page-reducer"
 import { useDispatch } from "react-redux"
 import { usePage } from "../hooks/use-page"
+import { signOut } from "aws-amplify/auth"
 
 const Header = () => {
 	const navigate = useNavigate()
@@ -22,6 +23,11 @@ const Header = () => {
 		},
 	]
 
+	const handleLogout = async () => {
+		await signOut()
+		navigate({ to: "/" })
+	}
+
 	return (
 		<header className="flex w-[100%] h-[50px] bg-surface-100 border-b border-outline text-white items-center justify-between shadow-md px-4">
 			<div className="flex items-center gap-4">
@@ -29,12 +35,9 @@ const Header = () => {
 			</div>
 
 			<div className="flex items-center gap-4 relative">
-				<button
-					className={`${page == "pricing" ? "text-secondary" : "text-clickable"} flex items-center gap-2 hover:text-hover cursor-pointer`}
-					onClick={() => switchToPage("pricing")}
-				>
-					<span className="material-icons">Buy tokens</span>
-				</button>
+				<Button onClick={() => switchToPage("/pricing")} className="py-1 px-2 bg-primary hover:bg-hover-primary rounded-sm">
+					Buy tokens
+				</Button>
 
 				<Popover position="bottom-end">
 					<PopoverTrigger>
@@ -52,7 +55,10 @@ const Header = () => {
 							>
 								My Profile
 							</li>
-							<li className="p-2 hover:bg-surface-100 cursor-pointer text-clickable hover:text-hover transition-colors">
+							<li
+								onClick={handleLogout}
+								className="p-2 hover:bg-surface-100 cursor-pointer text-clickable hover:text-hover transition-colors"
+							>
 								Log out
 							</li>
 						</ul>
