@@ -30,7 +30,11 @@ jobs:
    - name: "Create env file"
      run: |
       touch .env
-      echo REACT_APP_API=${{secrets.REACT_APP_API}} >> .env
+      echo PROJECT_MANAGEMENT_ENDPOINT=${{secrets.PROJECT_MANAGEMENT_ENDPOINT}} >> .env
+      echo ACCOUNT_AND_BILLING_ENDPOINT=${{secrets.ACCOUNT_AND_BILLING_ENDPOINT}} >> .env
+      echo JIGJOY_ENDPOINT=${{secrets.JIGJOY_ENDPOINT}} >> .env
+      echo USER_POOL_ID=${{secrets.USER_POOL_ID}} >> .env
+      echo USER_POOL_WEB_CLIENT_ID=${{secrets.USER_POOL_WEB_CLIENT_ID}} >> .env
       cat .env
 
    - name: Dependency Installation
