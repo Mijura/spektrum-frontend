@@ -1,10 +1,8 @@
 import { Button, Logo } from "@honeycomb-app/design"
-import { m, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import { useNavigate } from "@tanstack/react-router"
 import { isEmail } from "../shared/util"
 import { createSingInChallenge } from "../api/account-and-billing"
-import { getCurrentUser } from "aws-amplify/auth"
 
 export default function LoginPage() {
 	const [message, setMessage] = useState("")
@@ -49,7 +47,7 @@ export default function LoginPage() {
 
 				<div className="text-base opacity-80 my-2 mb-6">Enter email to recieve magic link.</div>
 				<div className="my-6">
-					<Logo size="large" />
+					<Logo size="small" />
 				</div>
 				<motion.input
 					type="email"
