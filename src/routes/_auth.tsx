@@ -3,10 +3,10 @@ import Header from "../components/header"
 import LeftSideMenu from "../components/left-side-menu"
 import { handleConfirmSignIn } from "../api/account-and-billing"
 import { getCurrentUser } from "aws-amplify/auth"
+import { Loader } from "@honeycomb-app/design"
 
 export const Route = createFileRoute("/_auth")({
 	beforeLoad: async ({ search }) => {
-		console.log("beforeLoad")
 		const searchParams = new URLSearchParams(search)
 		const email = searchParams.get("email") as string | null
 		const token = searchParams.get("token") as string | null
@@ -27,7 +27,11 @@ export const Route = createFileRoute("/_auth")({
 			})
 		}
 	},
-	pendingComponent: () => <div>Loading...</div>,
+	pendingComponent: () => (
+		<div className="w-screen h-screen bg-surface-300 flex items-center justify-center">
+			<Loader size="large" />
+		</div>
+	),
 	component: AuthLayout,
 })
 
