@@ -1,6 +1,6 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 
-export const PROJECT_MANAGEMENT_API = process.env.REACT_APP_PROJECT_MANAGEMENT_API
+export const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 interface ChangeRequest {
 	projectId: string
@@ -15,7 +15,7 @@ export const develop = (
 	onDone: (data: any) => void,
 	onError: (error: any) => void,
 ) => {
-	const socket = io("http://localhost:3000")
+	const socket = io("http://localhost:3000") //TODO: fix this!
 
 	socket.on("connect", () => {
 		console.log("Connected to WebSocket")
@@ -53,7 +53,7 @@ export async function deploy(projectId: string): Promise<any> {
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/deploy`, options)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/deploy`, options)
 
 	return await res.json()
 }
@@ -63,12 +63,12 @@ export async function createNewProject(): Promise<any> {
 		method: "POST",
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}`, options)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}`, options)
 	return await res.json()
 }
 
 export async function fetchProject(id: string) {
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_API}/fetch/${id}`)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/fetch/${id}`)
 	if (res.status == 404) throw new ProjectNotFoundError()
 	return await res.json()
 }

@@ -3,12 +3,10 @@ import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
 import projectReducer from "../reducers/project-reducer"
 import pageReducer from "../reducers/page-reducer"
-import authReducer from "../reducers/auth-reducer"
 
 const rootReducer = combineReducers({
 	project: projectReducer,
 	page: pageReducer,
-	auth: authReducer,
 })
 
 const persistConfig = {

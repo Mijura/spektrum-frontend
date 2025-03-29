@@ -3,7 +3,7 @@ import { Avatar, Button, Popover, PopoverContent, PopoverTrigger } from "@honeyc
 import { pageLoaded } from "../reducers/page-reducer"
 import { useDispatch } from "react-redux"
 import { usePage } from "../hooks/use-page"
-import { logout } from "../reducers/auth-reducer"
+import { signOut } from "aws-amplify/auth"
 
 const Header = () => {
 	const navigate = useNavigate()
@@ -23,8 +23,8 @@ const Header = () => {
 		},
 	]
 
-	const handleLogout = () => {
-		dispatch(logout())
+	const handleLogout = async () => {
+		await signOut()
 		navigate({ to: "/" })
 	}
 

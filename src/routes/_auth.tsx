@@ -1,39 +1,33 @@
-import { createFileRoute, Outlet, redirect, useNavigate } from "@tanstack/react-router"
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import Header from "../components/header"
 import LeftSideMenu from "../components/left-side-menu"
-import { AuthContext } from "../auth"
 import { handleConfirmSignIn } from "../api/account-and-billing"
+import { getCurrentUser } from "aws-amplify/auth"
 
 export const Route = createFileRoute("/_auth")({
-	beforeLoad: async ({ search, context }) => {
+	beforeLoad: async ({ search }) => {
+		console.log("beforeLoad")
 		const searchParams = new URLSearchParams(search)
-		const email = searchParams.get("email")
-		const token = searchParams.get("token")
-		let isAuthenticated = false
-		if (email && token) {
+		const email = searchParams.get("email") as string | null
+		const token = searchParams.get("token") as string | null
+
+		if (email !== null && token !== null) {
 			try {
-				const challengeResponse = await handleConfirmSignIn(email, token)
-				if (challengeResponse) {
-					isAuthenticated = true
-				}
+				await handleConfirmSignIn(email, token)
 			} catch (error: any) {
-				switch (error.name) {
-					case "UserAlreadyAuthenticatedException":
-						isAuthenticated = true
-					default:
-						console.error(error)
-				}
+				console.error(error)
 			}
 		}
 
-		let authContext = context as AuthContext
-		console.log(authContext)
-		if (!authContext.isAuthenticated) {
+		try {
+			await getCurrentUser()
+		} catch (error: any) {
 			throw redirect({
 				to: "/",
 			})
 		}
 	},
+	pendingComponent: () => <div>Loading...</div>,
 	component: AuthLayout,
 })
 
