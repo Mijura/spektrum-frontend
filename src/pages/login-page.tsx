@@ -6,11 +6,6 @@ import { isEmail } from "../shared/util"
 import { createSingInChallenge } from "../api/account-and-billing"
 import { getCurrentUser } from "aws-amplify/auth"
 
-const item = {
-	hidden: { opacity: 0 },
-	show: { opacity: 1 },
-}
-
 export default function LoginPage() {
 	const [message, setMessage] = useState("")
 	const [email, setEmail] = useState("")
@@ -20,7 +15,7 @@ export default function LoginPage() {
 	const handleContinue = async () => {
 		try {
 			if (!isEmail(email)) {
-				setColor("text-[red]")
+				setColor("text-[#EF476F]")
 				setMessage("Please provide valid email address")
 			} else {
 				setColor("text-secondary")
@@ -63,15 +58,13 @@ export default function LoginPage() {
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 
-				{message && (
-					<m.div variants={item} className={`flex flex-col ${color}`}>
-						{message}
-					</m.div>
-				)}
+				{message && <div className={`flex flex-col ${color} mb-6`}>{message}</div>}
 
-				<Button className="w-[320px] px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary" onClick={handleContinue}>
-					Continue to Honeycomb
-				</Button>
+				{!message && (
+					<Button className="w-[320px] px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary" onClick={handleContinue}>
+						Continue to Honeycomb
+					</Button>
+				)}
 			</motion.div>
 		</div>
 	)
