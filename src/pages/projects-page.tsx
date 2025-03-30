@@ -1,11 +1,13 @@
 import { useState } from "react"
-import { Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
+import { Card, Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 import PlusIcon from "../shared/icons/plus-icon"
 import { projectUpdated } from "../reducers/project-reducer"
 import { useDispatch } from "react-redux"
 import { getCurrentUser } from "aws-amplify/auth"
+import MoreOptionsIcon from "../shared/icons/more-options-icon"
+import PlayIcon from "../shared/icons/play-icon"
 
 export default function ProjectsPage() {
 	const dispatch = useDispatch()
@@ -74,6 +76,36 @@ export default function ProjectsPage() {
 				<div className="border-b border-disabled w-full"></div>
 			</div>
 
+			<Card>
+				<div className="flex flex-row text-clickable">Implement a note taking app</div>
+				<div className="mt-2 flex flex-row gap-2 w-full">
+					<Tooltip message="Change status">
+						<MoreOptionsIcon />
+					</Tooltip>
+
+					<div className="flex grow w-full justify-end">
+						<div>
+							<Tooltip message="Run execution">
+								<PlayIcon />
+							</Tooltip>
+						</div>
+					</div>
+				</div>
+			</Card>
+			<Card>
+				<div className="flex flex-row text-clickable">Implement a register page</div>
+				<div className="mt-2 flex flex-row gap-2 w-full">
+					<Tooltip message="Change status">
+						<MoreOptionsIcon />
+					</Tooltip>
+
+					<div className="flex grow w-full justify-end">
+						<Tooltip message="Run execution">
+							<PlayIcon />
+						</Tooltip>
+					</div>
+				</div>
+			</Card>
 			<div className="flex flex-row w-[300px] h-fit">
 				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
 					<ModalTrigger>
