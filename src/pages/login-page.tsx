@@ -6,6 +6,7 @@ import { createSingInChallenge } from "../api/account-and-billing"
 
 export default function LoginPage() {
 	const [message, setMessage] = useState("")
+	const [isSubmited, setIsSubmited] = useState(false)
 	const [email, setEmail] = useState("")
 
 	const [color, setColor] = useState("text-secondary")
@@ -16,12 +17,15 @@ export default function LoginPage() {
 				setColor("text-[#EF476F]")
 				setMessage("Please provide valid email address")
 			} else {
+				setIsSubmited(true)
 				setColor("text-secondary")
-				setMessage("Log in link has been sent to provided email")
+				setMessage("We’ve sent a login link — please check your email.")
 				await createSingInChallenge({ email: email })
 			}
 		} catch (error: any) {
-			setMessage(error.message)
+			setIsSubmited(false)
+			setColor("text-[#EF476F]")
+			setMessage("Something went wrong, please try again later.")
 		}
 	}
 
@@ -58,7 +62,7 @@ export default function LoginPage() {
 
 				{message && <div className={`flex flex-col ${color} mb-6`}>{message}</div>}
 
-				{!message && (
+				{!isSubmited && (
 					<Button className="w-[320px] px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary" onClick={handleContinue}>
 						Continue to Honeycomb
 					</Button>
