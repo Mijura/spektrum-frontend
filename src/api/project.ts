@@ -78,3 +78,8 @@ export async function fetchProject(id: string) {
 	if (res.status == 404) throw new ProjectNotFoundError()
 	return await res.json()
 }
+
+export async function fetchAllProjects(owner: string) {
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/fetch-all/${owner}`)
+	return await res.json()
+}
