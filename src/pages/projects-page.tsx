@@ -9,7 +9,7 @@ import { getCurrentUser } from "aws-amplify/auth"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 
-export default function ProjectsPage() {
+export default function ProjectsPage({ projects }: { projects: any[] }) {
 	const dispatch = useDispatch()
 	const [editingProject, setEditingProject] = useState<any>(null)
 	const [name, setName] = useState("")
@@ -76,36 +76,13 @@ export default function ProjectsPage() {
 				<div className="border-b border-disabled w-full"></div>
 			</div>
 
-			<Card>
-				<div className="flex flex-row text-clickable">Implement a note taking app</div>
-				<div className="mt-2 flex flex-row gap-2 w-full">
-					<Tooltip message="Change status">
-						<MoreOptionsIcon />
-					</Tooltip>
+			{projects.map((project: any) => (
+				<Card>
+					<div className="flex flex-row text-base">{project.name}</div>
+					<div className="mt-2 flex flex-row gap-2 w-full text-sm text-clickable">{project.description}</div>
+				</Card>
+			))}
 
-					<div className="flex grow w-full justify-end">
-						<div>
-							<Tooltip message="Run execution">
-								<PlayIcon />
-							</Tooltip>
-						</div>
-					</div>
-				</div>
-			</Card>
-			<Card>
-				<div className="flex flex-row text-clickable">Implement a register page</div>
-				<div className="mt-2 flex flex-row gap-2 w-full">
-					<Tooltip message="Change status">
-						<MoreOptionsIcon />
-					</Tooltip>
-
-					<div className="flex grow w-full justify-end">
-						<Tooltip message="Run execution">
-							<PlayIcon />
-						</Tooltip>
-					</div>
-				</div>
-			</Card>
 			<div className="flex flex-row w-[300px] h-fit">
 				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
 					<ModalTrigger>
