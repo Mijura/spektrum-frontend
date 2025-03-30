@@ -6,7 +6,6 @@ import PlusIcon from "../shared/icons/plus-icon"
 import { projectOpened } from "../reducers/project-reducer"
 import { useDispatch } from "react-redux"
 import { getCurrentUser } from "aws-amplify/auth"
-import PlayIcon from "../shared/icons/play-icon"
 
 export default function ProjectsPage({ projects }: { projects: any[] }) {
 	const dispatch = useDispatch()

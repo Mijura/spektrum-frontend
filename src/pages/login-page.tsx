@@ -1,4 +1,4 @@
-import { Button, Logo } from "@honeycomb-app/design"
+import { Button, Input, Logo } from "@honeycomb-app/design"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { isEmail } from "../shared/util"
@@ -6,26 +6,31 @@ import { createSingInChallenge } from "../api/account-and-billing"
 
 export default function LoginPage() {
 	const [message, setMessage] = useState("")
-	const [isSubmited, setIsSubmited] = useState(false)
+	const [inProgress, setInProgress] = useState(false)
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
 	const [email, setEmail] = useState("")
 
 	const [color, setColor] = useState("text-secondary")
 
 	const handleContinue = async () => {
+		setMessage("")
+		setInProgress(true)
 		try {
 			if (!isEmail(email)) {
 				setColor("text-[#EF476F]")
 				setMessage("Please provide valid email address")
 			} else {
 				await createSingInChallenge({ email: email })
-				setIsSubmited(true)
+				setIsLoggedIn(true)
 				setColor("text-secondary")
 				setMessage("We’ve sent a login link — please check your email.")
 			}
 		} catch (error: any) {
-			setIsSubmited(false)
+			setIsLoggedIn(false)
 			setColor("text-[#EF476F]")
 			setMessage("Something went wrong, please try again later.")
+		} finally {
+			setInProgress(false)
 		}
 	}
 
@@ -53,8 +58,8 @@ export default function LoginPage() {
 				<div className="my-6">
 					<Logo size="small" />
 				</div>
-				<motion.input
-					type="email"
+
+				<Input
 					placeholder="Email Address"
 					className="mb-6 w-[320px] px-4 py-2 bg-surface-100 text-base placeholder:text-base placeholder:opacity-70 rounded-lg outline-none focus:ring-1 focus:ring-disabled"
 					onChange={(e) => setEmail(e.target.value)}
@@ -62,8 +67,12 @@ export default function LoginPage() {
 
 				{message && <div className={`flex flex-col ${color} mb-6`}>{message}</div>}
 
-				{!isSubmited && (
-					<Button className="w-[320px] px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary" onClick={handleContinue}>
+				{!isLoggedIn && (
+					<Button
+						disabled={inProgress}
+						className="w-[320px] px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary"
+						onClick={handleContinue}
+					>
 						Continue to Honeycomb
 					</Button>
 				)}

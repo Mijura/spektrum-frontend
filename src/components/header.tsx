@@ -39,7 +39,7 @@ const Header = () => {
 				<Popover position="bottom-end">
 					<PopoverTrigger>
 						<div className="flex flex-col">
-							<Avatar image={testProfile.image} />
+							<Avatar image={testProfile.image} alt="Profile" />
 						</div>
 					</PopoverTrigger>
 					<PopoverContent>
