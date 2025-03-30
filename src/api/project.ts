@@ -58,9 +58,15 @@ export async function deploy(projectId: string): Promise<any> {
 	return await res.json()
 }
 
-export async function createNewProject(): Promise<any> {
+export async function createNewProject(owner: string): Promise<any> {
 	const options = {
 		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			owner: owner,
+		}),
 	}
 
 	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}`, options)

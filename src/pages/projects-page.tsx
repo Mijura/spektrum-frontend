@@ -5,6 +5,7 @@ import { createNewProject } from "../api/project"
 import PlusIcon from "../shared/icons/plus-icon"
 import { projectUpdated } from "../reducers/project-reducer"
 import { useDispatch } from "react-redux"
+import { getCurrentUser } from "aws-amplify/auth"
 
 export default function ProjectsPage() {
 	const dispatch = useDispatch()
@@ -44,7 +45,8 @@ export default function ProjectsPage() {
 
 	const handleCreateNewProject = async () => {
 		setLoading(true)
-		const project: any = await createNewProject()
+		const user = await getCurrentUser()
+		const project: any = await createNewProject(user.username)
 		dispatch(projectUpdated(project))
 		navigate({
 			to: `/workspace`,
