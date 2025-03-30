@@ -1,4 +1,4 @@
-import { Tooltip } from "@honeycomb-app/design"
+import { Card, Tooltip } from "@honeycomb-app/design"
 import React from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
@@ -32,7 +32,7 @@ const TicketPlanning: React.FC = () => {
 				</div>
 			</div>
 			<div className="border-b border-disabled w-full"></div>
-			<div className="w-full bg-surface-200 p-4 rounded-lg border border-disabled my-4 cursor-pointer hover:opacity-90">
+			<Card>
 				<div className="flex flex-row text-clickable">Implement a note taking app</div>
 				<div className="mt-2 flex flex-row gap-2 w-full">
 					<Tooltip message="Change status">
@@ -47,21 +47,7 @@ const TicketPlanning: React.FC = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-			<div className="w-full bg-surface-200 p-4 rounded-lg border border-disabled my-4 cursor-pointer hover:opacity-90">
-				<div className="flex flex-row text-clickable">Implement a register page</div>
-				<div className="mt-2 flex flex-row gap-2 w-full">
-					<Tooltip message="Change status">
-						<MoreOptionsIcon />
-					</Tooltip>
-
-					<div className="flex grow w-full justify-end">
-						<Tooltip message="Run execution">
-							<PlayIcon />
-						</Tooltip>
-					</div>
-				</div>
-			</div>
+			</Card>
 		</div>
 	)
 }

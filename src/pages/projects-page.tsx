@@ -1,12 +1,15 @@
 import { useState } from "react"
-import { Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
+import { Card, Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 import PlusIcon from "../shared/icons/plus-icon"
 import { projectUpdated } from "../reducers/project-reducer"
 import { useDispatch } from "react-redux"
+import { getCurrentUser } from "aws-amplify/auth"
+import MoreOptionsIcon from "../shared/icons/more-options-icon"
+import PlayIcon from "../shared/icons/play-icon"
 
-export default function ProjectsPage() {
+export default function ProjectsPage({ projects }: { projects: any[] }) {
 	const dispatch = useDispatch()
 	const [editingProject, setEditingProject] = useState<any>(null)
 	const [name, setName] = useState("")
@@ -44,7 +47,8 @@ export default function ProjectsPage() {
 
 	const handleCreateNewProject = async () => {
 		setLoading(true)
-		const project: any = await createNewProject()
+		const user = await getCurrentUser()
+		const project: any = await createNewProject(user.username)
 		dispatch(projectUpdated(project))
 		navigate({
 			to: `/workspace`,
@@ -71,6 +75,13 @@ export default function ProjectsPage() {
 				</div>
 				<div className="border-b border-disabled w-full"></div>
 			</div>
+
+			{projects.map((project: any) => (
+				<Card>
+					<div className="flex flex-row text-base">{project.name}</div>
+					<div className="mt-2 flex flex-row gap-2 w-full text-sm text-clickable">{project.description}</div>
+				</Card>
+			))}
 
 			<div className="flex flex-row w-[300px] h-fit">
 				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>

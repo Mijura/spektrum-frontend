@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router"
 import { motion } from "framer-motion"
 import { createNewProject } from "../api/project"
 import { useState } from "react"
+import { getCurrentUser } from "aws-amplify/auth"
 
 const sentences = [
 	"At JigJoy, we’re creating a space where anyone can design their own software development workflow and seamlessly connect it to our hexagonal ecosystem for execution.",
@@ -41,7 +42,8 @@ export default function WelcomePage() {
 
 	const handleCreateNewProject = async () => {
 		setLoading(true)
-		const project = await createNewProject()
+		const user = await getCurrentUser()
+		const project: any = await createNewProject(user.username)
 		navigate({
 			to: `/${project.id}`,
 		})
