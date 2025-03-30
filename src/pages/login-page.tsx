@@ -17,10 +17,10 @@ export default function LoginPage() {
 				setColor("text-[#EF476F]")
 				setMessage("Please provide valid email address")
 			} else {
+				await createSingInChallenge({ email: email })
 				setIsSubmited(true)
 				setColor("text-secondary")
 				setMessage("We’ve sent a login link — please check your email.")
-				await createSingInChallenge({ email: email })
 			}
 		} catch (error: any) {
 			setIsSubmited(false)
