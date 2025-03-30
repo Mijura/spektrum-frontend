@@ -67,7 +67,7 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 		</div>
 	) : (
 		<div className="ml-20 px-4 pt-20">
-			<div className="mt-8 px-4 w-[300px]">
+			<div className="mt-8 px-4 w-[325px]">
 				<div className="flex flex-row w-full h-fit mb-2">
 					<h1 className="text-white text-sm w-fit flex items-center">Projects</h1>
 
@@ -81,7 +81,7 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 				</div>
 				<div className="border-b border-disabled w-full"></div>
 				{projects.map((project: any) => (
-					<Card onClick={() => handleOpenProject(project)} className="w-[300px]">
+					<Card onClick={() => handleOpenProject(project)} className="w-full">
 						<div className="flex flex-row text-base">{project.name}</div>
 						<div className="mt-2 flex flex-row gap-2 w-full text-sm text-clickable">{project.description}</div>
 					</Card>
