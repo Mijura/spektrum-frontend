@@ -862,14 +862,14 @@
 
 "@emotion/is-prop-valid@^1.3.1":
   version "1.3.1"
-  resolved "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-1.3.1.tgz#8d5cf1132f836d7adbe42cf0b49df7816fc88240"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.3.1.tgz#8d5cf1132f836d7adbe42cf0b49df7816fc88240"
   integrity sha512-/ACwoqx7XQi9knQs/G0qKvv5teDMhD7bXYns9N/wM8ah8iNb8jZ2uNO0YOgiq2o2poIvVtJS2YALasQuMSQ7Kw==
   dependencies:
     "@emotion/memoize" "^0.9.0"
 
 "@emotion/memoize@^0.9.0":
   version "0.9.0"
-  resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.9.0.tgz#745969d649977776b43fc7648c556aaa462b4102"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.9.0.tgz#745969d649977776b43fc7648c556aaa462b4102"
   integrity sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==
 
 "@esbuild/aix-ppc64@0.25.1":
@@ -997,10 +997,10 @@
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.25.1.tgz#7d79922cb2d88f9048f06393dbf62d2e4accb584"
   integrity sha512-Y1EQdcfwMSeQN/ujR5VayLOJ1BHaK+ssyk0AEzPjC+t1lITgsnccPqFjb6V+LsTp/9Iov4ysfjxLaGJ9RPtkVg==
 
-"@honeycomb-app/design@^0.0.29":
-  version "0.0.29"
-  resolved "https://npm.pkg.github.com/download/@honeycomb-app/design/0.0.29/c2083d582d9277bcbfa02926ae78597aedd286d1#c2083d582d9277bcbfa02926ae78597aedd286d1"
-  integrity sha512-aV8Bw8pdPibIlRz7qGelckO0ZTTqsNx5CDPgBW3hgeLNaMRfOaSWBCuaV3CXBaZRb2h4WJ+JGKAsmknVMiVbsg==
+"@honeycomb-app/design@^0.0.30":
+  version "0.0.30"
+  resolved "https://npm.pkg.github.com/download/@honeycomb-app/design/0.0.30/9437d549473c8d365836478aa5a081c7bc168787#9437d549473c8d365836478aa5a081c7bc168787"
+  integrity sha512-xQPfFE/T1Aan8jgVsZlYruLlwtT5sOvChmogD+y5qajrYk/Qa/uTlbzKOtbdP9AnwvU47fHjn6CKbOKF9Rsuzg==
   dependencies:
     "@emotion/is-prop-valid" "^1.3.1"
 

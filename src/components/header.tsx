@@ -2,12 +2,10 @@ import { useNavigate } from "@tanstack/react-router"
 import { Avatar, Button, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
 import { pageLoaded } from "../reducers/page-reducer"
 import { useDispatch } from "react-redux"
-import { usePage } from "../hooks/use-page"
 import { signOut } from "aws-amplify/auth"
 
 const Header = () => {
 	const navigate = useNavigate()
-	const page = usePage()
 	const dispatch = useDispatch()
 
 	const switchToPage = (page: string) => {
@@ -15,13 +13,9 @@ const Header = () => {
 		dispatch(pageLoaded(page))
 	}
 
-	const testData = [
-		{
-			profileImage: "https://avatars.githubusercontent.com/u/110939072?v=4",
-			username: "Lotus",
-			subscriptionType: "pro",
-		},
-	]
+	const testProfile = {
+		image: "https://avatars.githubusercontent.com/u/110939072?v=4",
+	}
 
 	const handleLogout = async () => {
 		await signOut()
@@ -45,9 +39,7 @@ const Header = () => {
 				<Popover position="bottom-end">
 					<PopoverTrigger>
 						<div className="flex flex-col">
-							{testData.map((user, index) => (
-								<Avatar key={index} profileImage={user.profileImage} username={user.username} />
-							))}
+							<Avatar image={testProfile.image} />
 						</div>
 					</PopoverTrigger>
 					<PopoverContent>
