@@ -17,7 +17,7 @@ import { Route as AuthWelcomeImport } from './routes/_auth.welcome'
 import { Route as AuthProjectsImport } from './routes/_auth.projects'
 import { Route as AuthProfileImport } from './routes/_auth.profile'
 import { Route as AuthPricingImport } from './routes/_auth.pricing'
-import { Route as AuthWorkspaceProjectIdImport } from './routes/_auth.workspace.$projectId'
+import { Route as AuthProjectIdImport } from './routes/_auth.$projectId'
 
 // Create/Update Routes
 
@@ -51,8 +51,8 @@ const AuthPricingRoute = AuthPricingImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
-const AuthWorkspaceProjectIdRoute = AuthWorkspaceProjectIdImport.update({
-  path: '/workspace/$projectId',
+const AuthProjectIdRoute = AuthProjectIdImport.update({
+  path: '/$projectId',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -73,6 +73,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
+    }
+    '/_auth/$projectId': {
+      id: '/_auth/$projectId'
+      path: '/$projectId'
+      fullPath: '/$projectId'
+      preLoaderRoute: typeof AuthProjectIdImport
+      parentRoute: typeof AuthImport
     }
     '/_auth/pricing': {
       id: '/_auth/pricing'
@@ -102,32 +109,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthWelcomeImport
       parentRoute: typeof AuthImport
     }
-    '/_auth/workspace/$projectId': {
-      id: '/_auth/workspace/$projectId'
-      path: '/workspace/$projectId'
-      fullPath: '/workspace/$projectId'
-      preLoaderRoute: typeof AuthWorkspaceProjectIdImport
-      parentRoute: typeof AuthImport
-    }
   }
 }
 
 // Create and export the route tree
 
 interface AuthRouteChildren {
+  AuthProjectIdRoute: typeof AuthProjectIdRoute
   AuthPricingRoute: typeof AuthPricingRoute
   AuthProfileRoute: typeof AuthProfileRoute
   AuthProjectsRoute: typeof AuthProjectsRoute
   AuthWelcomeRoute: typeof AuthWelcomeRoute
-  AuthWorkspaceProjectIdRoute: typeof AuthWorkspaceProjectIdRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthProjectIdRoute: AuthProjectIdRoute,
   AuthPricingRoute: AuthPricingRoute,
   AuthProfileRoute: AuthProfileRoute,
   AuthProjectsRoute: AuthProjectsRoute,
   AuthWelcomeRoute: AuthWelcomeRoute,
-  AuthWorkspaceProjectIdRoute: AuthWorkspaceProjectIdRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -135,32 +135,32 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
+  '/$projectId': typeof AuthProjectIdRoute
   '/pricing': typeof AuthPricingRoute
   '/profile': typeof AuthProfileRoute
   '/projects': typeof AuthProjectsRoute
   '/welcome': typeof AuthWelcomeRoute
-  '/workspace/$projectId': typeof AuthWorkspaceProjectIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
+  '/$projectId': typeof AuthProjectIdRoute
   '/pricing': typeof AuthPricingRoute
   '/profile': typeof AuthProfileRoute
   '/projects': typeof AuthProjectsRoute
   '/welcome': typeof AuthWelcomeRoute
-  '/workspace/$projectId': typeof AuthWorkspaceProjectIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
+  '/_auth/$projectId': typeof AuthProjectIdRoute
   '/_auth/pricing': typeof AuthPricingRoute
   '/_auth/profile': typeof AuthProfileRoute
   '/_auth/projects': typeof AuthProjectsRoute
   '/_auth/welcome': typeof AuthWelcomeRoute
-  '/_auth/workspace/$projectId': typeof AuthWorkspaceProjectIdRoute
 }
 
 export interface FileRouteTypes {
@@ -168,29 +168,29 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | ''
+    | '/$projectId'
     | '/pricing'
     | '/profile'
     | '/projects'
     | '/welcome'
-    | '/workspace/$projectId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | ''
+    | '/$projectId'
     | '/pricing'
     | '/profile'
     | '/projects'
     | '/welcome'
-    | '/workspace/$projectId'
   id:
     | '__root__'
     | '/'
     | '/_auth'
+    | '/_auth/$projectId'
     | '/_auth/pricing'
     | '/_auth/profile'
     | '/_auth/projects'
     | '/_auth/welcome'
-    | '/_auth/workspace/$projectId'
   fileRoutesById: FileRoutesById
 }
 
@@ -226,12 +226,16 @@ export const routeTree = rootRoute
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
+        "/_auth/$projectId",
         "/_auth/pricing",
         "/_auth/profile",
         "/_auth/projects",
-        "/_auth/welcome",
-        "/_auth/workspace/$projectId"
+        "/_auth/welcome"
       ]
+    },
+    "/_auth/$projectId": {
+      "filePath": "_auth.$projectId.tsx",
+      "parent": "/_auth"
     },
     "/_auth/pricing": {
       "filePath": "_auth.pricing.tsx",
@@ -247,10 +251,6 @@ export const routeTree = rootRoute
     },
     "/_auth/welcome": {
       "filePath": "_auth.welcome.tsx",
-      "parent": "/_auth"
-    },
-    "/_auth/workspace/$projectId": {
-      "filePath": "_auth.workspace.$projectId.tsx",
       "parent": "/_auth"
     }
   }
