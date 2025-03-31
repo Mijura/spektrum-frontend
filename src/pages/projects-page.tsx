@@ -47,16 +47,14 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 		setLoading(true)
 		const user = await getCurrentUser()
 		const project: any = await createNewProject(user.username)
-		dispatch(projectOpened(project))
 		navigate({
-			to: `/workspace`,
+			to: `/workspace/${project.id}`,
 		})
 	}
 
 	const handleOpenProject = (project: any) => {
-		dispatch(projectOpened(project))
 		navigate({
-			to: `/workspace`,
+			to: `/workspace/${project.id}`,
 		})
 	}
 

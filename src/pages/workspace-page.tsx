@@ -19,7 +19,7 @@ export default function WorkspacePage() {
 				<div className="flex flex-row w-full">
 					<Tabs>
 						<Tab key="Planning">
-							<TicketPlanning />
+							<TicketPlanning tickets={project.tickets} />
 						</Tab>
 						<Tab key="Preview" className="flex flex-col h-full">
 							<AppPreview />

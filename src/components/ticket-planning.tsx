@@ -6,11 +6,15 @@ import PlusIcon from "../shared/icons/plus-icon"
 import { useProject } from "../hooks/use-project"
 import { develop } from "../api/project"
 import { createNewTicket } from "../api/ticket"
+import { Ticket } from "../shared/types/ticket"
+import { ticketCreated } from "../reducers/project-reducer"
+import { useDispatch } from "react-redux"
 
-const TicketPlanning: React.FC = () => {
+const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 	const project = useProject()
+	const dispatch = useDispatch()
 
-	const [name, setName] = useState("")
+	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
 	const [modalOpened, setModalOpened] = useState(false)
 
@@ -27,7 +31,8 @@ const TicketPlanning: React.FC = () => {
 	}
 
 	const createTicket = async () => {
-		const ticket = await createNewTicket(project.id, name, description)
+		const ticket = await createNewTicket(project.id, title, description)
+		dispatch(ticketCreated(ticket))
 		setModalOpened(false)
 	}
 
@@ -46,22 +51,24 @@ const TicketPlanning: React.FC = () => {
 					</div>
 				</div>
 				<div className="border-b border-disabled w-full"></div>
-				<Card>
-					<div className="flex flex-row text-clickable">Implement a note taking app</div>
-					<div className="mt-2 flex flex-row gap-2 w-full">
-						<Tooltip message="Change status">
-							<MoreOptionsIcon />
-						</Tooltip>
+				{tickets.map((ticket) => (
+					<Card key={ticket.id}>
+						<div className="flex flex-row text-clickable">{ticket.title}</div>
+						<div className="mt-2 flex flex-row gap-2 w-full">
+							<Tooltip message="Change status">
+								<MoreOptionsIcon />
+							</Tooltip>
 
-						<div className="flex grow w-full justify-end">
-							<div onClick={() => implement("Implement a note taking app")}>
-								<Tooltip message="Run execution">
-									<PlayIcon />
-								</Tooltip>
+							<div className="flex grow w-full justify-end">
+								<div onClick={() => implement(ticket.title)}>
+									<Tooltip message="Run execution">
+										<PlayIcon />
+									</Tooltip>
+								</div>
 							</div>
 						</div>
-					</div>
-				</Card>
+					</Card>
+				))}
 			</div>
 
 			<div className="flex flex-row w-[300px] h-fit">
@@ -80,8 +87,8 @@ const TicketPlanning: React.FC = () => {
 						<div className="w-[600px] max-w-[90vw]">
 							<Input
 								placeholder="Ticket title"
-								value={name}
-								onChange={(e) => setName(e.target.value)}
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
 								className="mb-4 w-full"
 							/>
 							<Textarea

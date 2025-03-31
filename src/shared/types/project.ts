@@ -1,9 +1,11 @@
+import { Ticket } from "./ticket"
+
 export default interface Project {
 	id?: string
 	name?: string
 	description?: string
-	imageUrl?: string
-	creator?: any
+	owner?: any
+	tickets: Ticket[]
 }
 
 export interface ProjectState {

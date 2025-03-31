@@ -1,6 +1,6 @@
 const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
-export async function createNewTicket(projectId: string, name: string, description: string): Promise<any> {
+export async function createNewTicket(projectId: string, title: string, description: string): Promise<any> {
 	const options = {
 		method: "POST",
 		headers: {
@@ -8,7 +8,7 @@ export async function createNewTicket(projectId: string, name: string, descripti
 		},
 		body: JSON.stringify({
 			projectId: projectId,
-			name: name,
+			title: title,
 			description: description,
 		}),
 	}
