@@ -6,7 +6,6 @@ import PlusIcon from "../shared/icons/plus-icon"
 import { projectOpened } from "../reducers/project-reducer"
 import { useDispatch } from "react-redux"
 import { getCurrentUser } from "aws-amplify/auth"
-import PlayIcon from "../shared/icons/play-icon"
 
 export default function ProjectsPage({ projects }: { projects: any[] }) {
 	const dispatch = useDispatch()
@@ -48,16 +47,14 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 		setLoading(true)
 		const user = await getCurrentUser()
 		const project: any = await createNewProject(user.username)
-		dispatch(projectOpened(project))
 		navigate({
-			to: `/workspace`,
+			to: `/workspace/${project.id}`,
 		})
 	}
 
 	const handleOpenProject = (project: any) => {
-		dispatch(projectOpened(project))
 		navigate({
-			to: `/workspace`,
+			to: `/workspace/${project.id}`,
 		})
 	}
 
@@ -89,7 +86,7 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 			</div>
 
 			<div className="flex flex-row w-[300px] h-fit">
-				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
+				<Modal onOpenCallback={() => {}} isOpen={editingProject !== null} onCloseCallback={() => setEditingProject(null)}>
 					<ModalTrigger>
 						<div
 							style={{ display: "none" }}

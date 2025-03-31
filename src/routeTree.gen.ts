@@ -13,11 +13,11 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
-import { Route as AuthWorkspaceImport } from './routes/_auth.workspace'
 import { Route as AuthWelcomeImport } from './routes/_auth.welcome'
 import { Route as AuthProjectsImport } from './routes/_auth.projects'
 import { Route as AuthProfileImport } from './routes/_auth.profile'
 import { Route as AuthPricingImport } from './routes/_auth.pricing'
+import { Route as AuthWorkspaceProjectIdImport } from './routes/_auth.workspace.$projectId'
 
 // Create/Update Routes
 
@@ -29,11 +29,6 @@ const AuthRoute = AuthImport.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
-
-const AuthWorkspaceRoute = AuthWorkspaceImport.update({
-  path: '/workspace',
-  getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthWelcomeRoute = AuthWelcomeImport.update({
@@ -53,6 +48,11 @@ const AuthProfileRoute = AuthProfileImport.update({
 
 const AuthPricingRoute = AuthPricingImport.update({
   path: '/pricing',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthWorkspaceProjectIdRoute = AuthWorkspaceProjectIdImport.update({
+  path: '/workspace/$projectId',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -102,11 +102,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthWelcomeImport
       parentRoute: typeof AuthImport
     }
-    '/_auth/workspace': {
-      id: '/_auth/workspace'
-      path: '/workspace'
-      fullPath: '/workspace'
-      preLoaderRoute: typeof AuthWorkspaceImport
+    '/_auth/workspace/$projectId': {
+      id: '/_auth/workspace/$projectId'
+      path: '/workspace/$projectId'
+      fullPath: '/workspace/$projectId'
+      preLoaderRoute: typeof AuthWorkspaceProjectIdImport
       parentRoute: typeof AuthImport
     }
   }
@@ -119,7 +119,7 @@ interface AuthRouteChildren {
   AuthProfileRoute: typeof AuthProfileRoute
   AuthProjectsRoute: typeof AuthProjectsRoute
   AuthWelcomeRoute: typeof AuthWelcomeRoute
-  AuthWorkspaceRoute: typeof AuthWorkspaceRoute
+  AuthWorkspaceProjectIdRoute: typeof AuthWorkspaceProjectIdRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
@@ -127,7 +127,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthProfileRoute: AuthProfileRoute,
   AuthProjectsRoute: AuthProjectsRoute,
   AuthWelcomeRoute: AuthWelcomeRoute,
-  AuthWorkspaceRoute: AuthWorkspaceRoute,
+  AuthWorkspaceProjectIdRoute: AuthWorkspaceProjectIdRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -139,7 +139,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthProfileRoute
   '/projects': typeof AuthProjectsRoute
   '/welcome': typeof AuthWelcomeRoute
-  '/workspace': typeof AuthWorkspaceRoute
+  '/workspace/$projectId': typeof AuthWorkspaceProjectIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -149,7 +149,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthProfileRoute
   '/projects': typeof AuthProjectsRoute
   '/welcome': typeof AuthWelcomeRoute
-  '/workspace': typeof AuthWorkspaceRoute
+  '/workspace/$projectId': typeof AuthWorkspaceProjectIdRoute
 }
 
 export interface FileRoutesById {
@@ -160,7 +160,7 @@ export interface FileRoutesById {
   '/_auth/profile': typeof AuthProfileRoute
   '/_auth/projects': typeof AuthProjectsRoute
   '/_auth/welcome': typeof AuthWelcomeRoute
-  '/_auth/workspace': typeof AuthWorkspaceRoute
+  '/_auth/workspace/$projectId': typeof AuthWorkspaceProjectIdRoute
 }
 
 export interface FileRouteTypes {
@@ -172,7 +172,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/projects'
     | '/welcome'
-    | '/workspace'
+    | '/workspace/$projectId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -181,7 +181,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/projects'
     | '/welcome'
-    | '/workspace'
+    | '/workspace/$projectId'
   id:
     | '__root__'
     | '/'
@@ -190,7 +190,7 @@ export interface FileRouteTypes {
     | '/_auth/profile'
     | '/_auth/projects'
     | '/_auth/welcome'
-    | '/_auth/workspace'
+    | '/_auth/workspace/$projectId'
   fileRoutesById: FileRoutesById
 }
 
@@ -230,7 +230,7 @@ export const routeTree = rootRoute
         "/_auth/profile",
         "/_auth/projects",
         "/_auth/welcome",
-        "/_auth/workspace"
+        "/_auth/workspace/$projectId"
       ]
     },
     "/_auth/pricing": {
@@ -249,8 +249,8 @@ export const routeTree = rootRoute
       "filePath": "_auth.welcome.tsx",
       "parent": "/_auth"
     },
-    "/_auth/workspace": {
-      "filePath": "_auth.workspace.tsx",
+    "/_auth/workspace/$projectId": {
+      "filePath": "_auth.workspace.$projectId.tsx",
       "parent": "/_auth"
     }
   }
