@@ -29,12 +29,12 @@ const Header = () => {
 			</div>
 
 			<div className="flex items-center gap-4 relative">
-				<Button
+				<div
+					className="flex items-center gap-2 text-clickable cursor-pointer hover:text-base transition-colors"
 					onClick={() => switchToPage("/pricing")}
-					className="py-1 px-2 bg-secondary hover:bg-hover-secondary rounded-sm"
 				>
 					Buy tokens
-				</Button>
+				</div>
 
 				<Popover position="bottom-end">
 					<PopoverTrigger>
