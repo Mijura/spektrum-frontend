@@ -87,6 +87,7 @@ const TicketPlanning: React.FC = () => {
 									value={description}
 									onChange={(e) => setDescription(e.target.value)}
 									className="mb-4 w-full"
+									rows={4}
 								/>
 								<div className="flex justify-end gap-4">
 									<Button className="bg-secondary hover:bg-hover-secondary">Create ticket</Button>

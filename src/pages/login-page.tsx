@@ -1,4 +1,4 @@
-import { Button, Input, Logo } from "@honeycomb-app/design"
+import { Button, Input, Loader, Logo } from "@honeycomb-app/design"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { isEmail } from "../shared/util"
@@ -44,24 +44,24 @@ export default function LoginPage() {
 	}, [])
 
 	return (
-		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full overflow-hidden">
+		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full overflow-hidden items-center">
 			{/* Main Content Container */}
 			<motion.div
-				className="relative flex flex-col mt-40 items-center min-h-screen bg-transparent"
+				className="bg-surface-200 flex flex-col mt-40 items-center w-fit h-fit p-16 rounded-lg"
 				initial="hidden"
 				animate="visible"
 				transition={{ duration: 0.3 }}
 			>
 				<h1 className="text-2xl mb-2 text-base">Welcome!</h1>
 
-				<div className="text-base opacity-80 my-2 mb-6">Enter email to recieve magic link.</div>
-				<div className="my-6">
-					<Logo size="small" />
+				<div className="text-base opacity-80 mt-2">Enter email to recieve magic link.</div>
+				<div className="my-8">
+					<Loader size="small" message="Waiting for you to join the cool kids' club..." />
 				</div>
 
 				<Input
 					placeholder="Email Address"
-					className="mb-6 w-[320px] px-4 py-2 bg-surface-100 text-base placeholder:text-base placeholder:opacity-70 rounded-lg outline-none focus:ring-1 focus:ring-disabled"
+					className="mb-6 w-[320px] px-4 bg-surface-100 text-base placeholder:text-base placeholder:opacity-70 rounded-lg outline-none focus:ring-1 focus:ring-disabled"
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 
