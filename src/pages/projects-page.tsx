@@ -88,7 +88,7 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 			</div>
 
 			<div className="flex flex-row w-[300px] h-fit">
-				<Modal onOpenCallback={() => {}} onCloseCallback={() => setEditingProject(null)}>
+				<Modal onOpenCallback={() => {}} isOpen={editingProject !== null} onCloseCallback={() => setEditingProject(null)}>
 					<ModalTrigger>
 						<div
 							style={{ display: "none" }}

@@ -5,13 +5,14 @@ import PlayIcon from "../shared/icons/play-icon"
 import PlusIcon from "../shared/icons/plus-icon"
 import { useProject } from "../hooks/use-project"
 import { develop } from "../api/project"
+import { createNewTicket } from "../api/ticket"
 
 const TicketPlanning: React.FC = () => {
 	const project = useProject()
 
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
-	const [createTicket, setCreateTicket] = useState(false)
+	const [modalOpened, setModalOpened] = useState(false)
 
 	const implement = async (feature: string) => {
 		await develop(
@@ -24,6 +25,12 @@ const TicketPlanning: React.FC = () => {
 			({}) => {},
 		)
 	}
+
+	const createTicket = async () => {
+		const ticket = await createNewTicket(project.id, name, description)
+		setModalOpened(false)
+	}
+
 	return (
 		<>
 			<div className="ml-4 mt-8 px-4 w-[300px]">
@@ -31,7 +38,7 @@ const TicketPlanning: React.FC = () => {
 					<h1 className="ml-2 text-base text-sm w-fit flex items-center">Tickets</h1>
 
 					<div className="flex justify-end grow">
-						<div onClick={() => setCreateTicket(true)}>
+						<div onClick={() => setModalOpened(true)}>
 							<Tooltip message="Create new ticket">
 								<PlusIcon />
 							</Tooltip>
@@ -58,12 +65,12 @@ const TicketPlanning: React.FC = () => {
 			</div>
 
 			<div className="flex flex-row w-[300px] h-fit">
-				<Modal onOpenCallback={() => {}} onCloseCallback={() => setCreateTicket(false)}>
+				<Modal isOpen={modalOpened} onOpenCallback={() => {}} onCloseCallback={() => setModalOpened(false)}>
 					<ModalTrigger>
 						<div
 							style={{ display: "none" }}
 							ref={(el) => {
-								if (el && createTicket) {
+								if (el && modalOpened) {
 									el.click()
 								}
 							}}
@@ -71,28 +78,24 @@ const TicketPlanning: React.FC = () => {
 					</ModalTrigger>
 					<ModalContent title="New ticket">
 						<div className="w-[600px] max-w-[90vw]">
-							<form
-								onSubmit={(e) => {
-									e.preventDefault()
-								}}
-							>
-								<Input
-									placeholder="Ticket title"
-									value={name}
-									onChange={(e) => setName(e.target.value)}
-									className="mb-4 w-full"
-								/>
-								<Textarea
-									placeholder="Add description..."
-									value={description}
-									onChange={(e) => setDescription(e.target.value)}
-									className="mb-4 w-full"
-									rows={4}
-								/>
-								<div className="flex justify-end gap-4">
-									<Button className="bg-secondary hover:bg-hover-secondary">Create ticket</Button>
-								</div>
-							</form>
+							<Input
+								placeholder="Ticket title"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+								className="mb-4 w-full"
+							/>
+							<Textarea
+								placeholder="Add description..."
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+								className="mb-4 w-full"
+								rows={4}
+							/>
+							<div className="flex justify-end gap-4">
+								<Button className="bg-secondary hover:bg-hover-secondary" onClick={createTicket}>
+									Create ticket
+								</Button>
+							</div>
 						</div>
 					</ModalContent>
 				</Modal>

@@ -1,6 +1,6 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 
-export const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
+const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 interface ChangeRequest {
 	projectId: string
