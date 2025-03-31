@@ -997,10 +997,10 @@
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.25.1.tgz#7d79922cb2d88f9048f06393dbf62d2e4accb584"
   integrity sha512-Y1EQdcfwMSeQN/ujR5VayLOJ1BHaK+ssyk0AEzPjC+t1lITgsnccPqFjb6V+LsTp/9Iov4ysfjxLaGJ9RPtkVg==
 
-"@honeycomb-app/design@^0.0.45":
-  version "0.0.45"
-  resolved "https://npm.pkg.github.com/download/@honeycomb-app/design/0.0.45/75689146689d3f833b4991bde5eb0c1549912af6#75689146689d3f833b4991bde5eb0c1549912af6"
-  integrity sha512-CukqBQ9s44nCU4u4IkHiJqrtokqScZcP5n7NL5qjgPgokh3C10lmNuJdVrMjkhowkQZnyhn+PxN0phTbd3kchA==
+"@honeycomb-app/design@^0.0.46":
+  version "0.0.46"
+  resolved "https://npm.pkg.github.com/download/@honeycomb-app/design/0.0.46/c240835586e295ed1fc523a05102d19280c259c4#c240835586e295ed1fc523a05102d19280c259c4"
+  integrity sha512-HyWiD+/kLYWmcUeywxpXFm52Th2D0xv9tAt1FWWl+59imM8Sv07uTeGm4GuTS66S+NiZebGeO8YHxrGV75IRtQ==
   dependencies:
     "@emotion/is-prop-valid" "^1.3.1"
 

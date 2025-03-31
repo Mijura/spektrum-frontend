@@ -17,7 +17,7 @@ export default function LoginPage() {
 		setInProgress(true)
 		try {
 			if (!isEmail(email)) {
-				setColor("text-[#EF476F]")
+				setColor("text-danger")
 				setMessage("Please provide valid email address")
 			} else {
 				await createSingInChallenge({ email: email })
@@ -27,7 +27,7 @@ export default function LoginPage() {
 			}
 		} catch (error: any) {
 			setIsLoggedIn(false)
-			setColor("text-[#EF476F]")
+			setColor("text-danger")
 			setMessage("Something went wrong, please try again later.")
 		} finally {
 			setInProgress(false)
