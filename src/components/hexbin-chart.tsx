@@ -21,8 +21,6 @@ const HexbinActivityChart: React.FC = () => {
 
 		const hexRadius = d3.min([width / ((MapColumns + 0.5) * Math.sqrt(3)), height / ((MapRows + 1 / 3) * 1.5)]) ?? 0
 
-		console.log(hexRadius)
-
 		const totalHexagons = MapRows * MapColumns
 
 		// Generate hexagon positions with random activity intensity
