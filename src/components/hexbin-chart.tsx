@@ -1,16 +1,14 @@
 import React, { useEffect, useRef } from "react"
 import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
-import { timeline } from "../api/activity"
 
 const HexbinActivityChart: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
 
-	const getTimeline = async () => {
-		await timeline()
-	}
 	useEffect(() => {
-		getTimeline()
+		//getTimeline()
+
+		//console.log(`heatmapData`, heatmapData)
 		if (!svgRef.current) return
 
 		const width = 1200
