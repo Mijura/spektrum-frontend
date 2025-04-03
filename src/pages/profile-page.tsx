@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
-import HexbinActivityChart from "../components/hexbin-chart"
 import { ProgressBar } from "@honeycomb-app/design"
+import HoneycombActivityChart from "../components/honeycomb-chart"
 
 export default function ProfilePage() {
 	const user = {
@@ -21,7 +21,7 @@ export default function ProfilePage() {
 				className={`w-full bg-surface-100 p-6 flex flex-col items-center pt-20`}
 			>
 				{/* Top Section: Profile Info + Credits */}
-				<div className="w-full max-w-[1224px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-surface-300">
+				<div className="w-full max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-surface-300">
 					{/* Left: Profile Image & Basic Info */}
 					<div className="flex items-center mb-4 md:mb-0">
 						<img
@@ -57,9 +57,9 @@ export default function ProfilePage() {
 					</div>
 				</div>
 				{/* Activity Graph */}
-				<div className="w-full max-w-[1224px] p-2 h-fit my-6 border border-surface-300 rounded-sm">
+				<div className="w-full max-w-[1275px] p-2 h-fit my-6 border border-surface-300 rounded-sm pb-5">
 					{/* <ActivityGraph data={activityData} /> */}
-					<HexbinActivityChart />
+					<HoneycombActivityChart />
 				</div>
 			</motion.div>
 		</>
