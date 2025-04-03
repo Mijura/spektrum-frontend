@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from "react"
 import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
+import { useHeatmap } from "@honeycomb-app/jigjoy-react-sdk"
 
 const HexbinActivityChart: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
 
+	const { heatmapData } = useHeatmap({ gameId: "unicorn-game" })
 	useEffect(() => {
-		//getTimeline()
+		console.log(`heatmapData`, heatmapData)
+	}, [heatmapData])
 
-		//console.log(`heatmapData`, heatmapData)
+	useEffect(() => {
 		if (!svgRef.current) return
 
 		const width = 1200

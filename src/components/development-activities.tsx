@@ -1,7 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import TimelineIcon from "../shared/icons/timeline-icon"
+import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
 
 const DevelopmentActivities: React.FC = () => {
+	const { timelineData } = useTimeline({ gameId: "unicorn-game" })
+
+	useEffect(() => {
+		console.log(`timelineData`, timelineData)
+	}, [timelineData])
+
 	return (
 		<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md h-full">
 			<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base text-sm mb-4">Development Activities</div>

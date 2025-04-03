@@ -5,17 +5,9 @@ import TicketPlanning from "../components/ticket-planning"
 import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
 import DevelopmentActivities from "../components/development-activities"
-import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
-import { useEffect } from "react"
 
 export default function WorkspacePage() {
 	const project = useProject()
-
-	const { timelineData } = useTimeline({ gameId: "unicorn-game" })
-
-	useEffect(() => {
-		console.log(`timelineData`, timelineData)
-	}, [timelineData])
 
 	return (
 		project && (

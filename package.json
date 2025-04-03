@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"@honeycomb-app/design": "^0.0.46",
-		"@honeycomb-app/jigjoy-react-sdk": "^0.0.5",
+		"@honeycomb-app/jigjoy-react-sdk": "^0.0.6",
 		"@reduxjs/toolkit": "^2.5.0",
 		"@tanstack/react-router": "^1.92.11",
 		"@tanstack/react-router-devtools": "^1.114.29",
