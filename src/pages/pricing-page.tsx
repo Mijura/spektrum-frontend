@@ -1,5 +1,11 @@
 import { motion } from "framer-motion"
 import { Button, Card } from "@honeycomb-app/design"
+import { useEffect, useState } from "react"
+import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
+
+const PADDLE_TOKEN_PRICE_ID = process.env.PADDLE_TOKEN_PRICE_ID || ""
+const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
+const PADDLE_TOKEN = process.env.PADDLE_TOKEN || ""
 
 export default function PricingPage() {
 	const pricingPlans = [
@@ -23,6 +29,27 @@ export default function PricingPage() {
 		},
 	]
 
+	// Create a local state to store Paddle instance
+	const [paddle, setPaddle] = useState<Paddle>()
+
+	// Download and initialize Paddle instance from CDN
+	useEffect(() => {
+		initializePaddle({ environment: PADDLE_ENVIRONMENT, token: PADDLE_TOKEN }).then(
+			(paddleInstance: Paddle | undefined) => {
+				if (paddleInstance) {
+					setPaddle(paddleInstance)
+				}
+			},
+		)
+	}, [])
+
+	// Callback to open a checkout
+	const openCheckout = () => {
+		paddle?.Checkout.open({
+			items: [{ priceId: PADDLE_TOKEN_PRICE_ID, quantity: 20 }],
+		})
+	}
+
 	return (
 		<div className="w-full text-base flex flex-col items-center px-4 py-8 font-body">
 			{/* Page Heading */}
@@ -45,7 +72,9 @@ export default function PricingPage() {
 								<p className="text-secondary text-2xl mb-1">{plan.price}</p>
 								<p className="text-base mb-4 text-center">{plan.description}</p>
 							</div>
-							<Button className="bg-primary hover:bg-hover-primary">{plan.cta}</Button>
+							<Button className="bg-primary hover:bg-hover-primary" onClick={openCheckout}>
+								{plan.cta}
+							</Button>
 						</div>
 					</Card>
 				))}

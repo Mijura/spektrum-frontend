@@ -1507,6 +1507,11 @@
     "@module-federation/runtime" "0.11.1"
     "@module-federation/sdk" "0.11.1"
 
+"@paddle/paddle-js@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@paddle/paddle-js/-/paddle-js-1.4.0.tgz#27e9def6259739342bc6ced188cf979c235df492"
+  integrity sha512-pX6Yx+RswB1rHMuYl8RKcAAVZhVJ6nd5f8w8l4kVM63pM3HNeQ5/Xuk4sK/X9P5fUE2dmN0mTti7+gZ8cZtqvg==
+
 "@polka/url@^1.0.0-next.24":
   version "1.0.0-next.28"
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.28.tgz#d45e01c4a56f143ee69c54dd6b12eade9e270a73"
