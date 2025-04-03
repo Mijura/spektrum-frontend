@@ -6,15 +6,16 @@ import { useHeatmap } from "@honeycomb-app/jigjoy-react-sdk"
 
 const HoneycombActivityChart: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
+	const legendRef = useRef<SVGSVGElement>(null)
+	const width = 1200
+	const height = 350
 	const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; intensity: number } | null>(null)
 
 	const { heatmapData } = useHeatmap({ gameId: "honeycomb", timeRange: { start: "2025-01-01", end: "2025-12-31" } })
 
 	useEffect(() => {
-		if (!svgRef.current || !heatmapData || heatmapData.length === 0) return
+		if (!svgRef.current || !legendRef.current || !heatmapData || heatmapData.length === 0) return
 
-		const width = 1200
-		const height = 350
 		const margin = { top: 20, left: 40 }
 
 		const MapColumns = 53,
@@ -126,12 +127,60 @@ const HoneycombActivityChart: React.FC = () => {
 			.on("mouseout", function () {
 				setTooltip(null)
 			})
+
+		// Add legend
+		const legendWidth = 150
+		const legendHeight = 60
+		const legendSvg = d3.select(legendRef.current)
+		legendSvg.selectAll("*").remove()
+
+		const legendHexRadius = 8
+		const legendData = [0, 1, 2, 3, 4] // Intensity levels
+		const legendSpacing = legendWidth / (legendData.length + 1)
+
+		// Create legend group
+		const legend = legendSvg.append("g").attr("transform", `translate(${width - legendWidth}, ${legendHeight / 2})`)
+
+		// Add hexagons to legend
+		legend
+			.selectAll(".legend-hexagon")
+			.data(legendData)
+			.enter()
+			.append("path")
+			.attr("class", "legend-hexagon")
+			.attr("d", d3Hexbin().radius(legendHexRadius).hexagon())
+			.attr("transform", (d, i) => `translate(${(i + 1) * legendSpacing}, 0)`)
+			.style("fill", (d) => {
+				return d === 0 ? "var(--surface-100)" : color(1 - d / 4)
+			})
+			.attr("stroke", "var(--disabled)")
+			.attr("stroke-width", "1px")
+
+		// Add legend text
+		legend
+			.append("text")
+			.attr("x", 0)
+			.attr("y", 5)
+			.attr("text-anchor", "end")
+			.attr("fill", "var(--base)")
+			.attr("font-size", "12px")
+			.text("Low")
+
+		legend
+			.append("text")
+			.attr("x", legendWidth)
+			.attr("y", 5)
+			.attr("text-anchor", "start")
+			.attr("fill", "var(--base)")
+			.attr("font-size", "12px")
+			.text("High")
 	}, [heatmapData])
 
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
-			<div className="mx-auto overflow-x-auto" style={{ width: `1250px`, height: `175px` }}>
-				<svg ref={svgRef} className="w-full h-full" />
+			<div className="mx-auto overflow-x-auto h-fit" style={{ width: `1250px` }}>
+				<svg ref={svgRef} className="w-full" style={{ height: height / 2 }} />
+				<svg ref={legendRef} className="w-full" style={{ height: "60px" }} />
 			</div>
 
 			{tooltip &&
