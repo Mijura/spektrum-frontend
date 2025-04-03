@@ -1,20 +1,29 @@
-import { useState } from "react"
-import { Card, Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
+import { useEffect, useState } from "react"
+import { Button, Card, Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 import PlusIcon from "../shared/icons/plus-icon"
-import { projectOpened } from "../reducers/project-reducer"
-import { useDispatch } from "react-redux"
 import { getCurrentUser } from "aws-amplify/auth"
+import ArchiveIcon from "../shared/icons/archive-icon"
+import { archiveProject } from "../api/project"
+import { useRouter } from "@tanstack/react-router"
 
-export default function ProjectsPage({ projects }: { projects: any[] }) {
-	const dispatch = useDispatch()
+export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay: any[] }) {
+	const navigate = useNavigate()
+	const router = useRouter()
+
+	const [projects, setProjects] = useState<any[]>([])
 	const [editingProject, setEditingProject] = useState<any>(null)
+	const [projectToArchive, setProjectToArchive] = useState<any>(null)
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
 	const [imageUrl, setImageUrl] = useState("")
 	const [loading, setLoading] = useState(false)
-	const navigate = useNavigate()
+	const [archiveModalOpened, setArchiveModalOpened] = useState(false)
+
+	useEffect(() => {
+		setProjects(projectsToDisplay)
+	}, [projectsToDisplay])
 
 	const handleEdit = (project: any) => {
 		console.log(project)
@@ -22,11 +31,6 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 		setName(project.name)
 		setDescription(project.description)
 		setImageUrl(project.imageUrl)
-	}
-
-	const handleDelete = (projectId: string) => {
-		// TODO: Implement delete functionality
-		console.log("Delete project:", projectId)
 	}
 
 	const handleSave = () => {
@@ -58,6 +62,13 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 		})
 	}
 
+	function handleArchiveProject(): void {
+		setArchiveModalOpened(false)
+		archiveProject(projectToArchive.id)
+		setProjects(projects.filter((project) => project.id !== projectToArchive.id))
+		router.invalidate()
+	}
+
 	return loading ? (
 		<div className="w-full h-full flex items-center justify-center">
 			<Loader message="Project intialization" size="large" />
@@ -78,11 +89,47 @@ export default function ProjectsPage({ projects }: { projects: any[] }) {
 				</div>
 				<div className="border-b border-disabled w-full"></div>
 				{projects.map((project: any) => (
-					<Card onClick={() => handleOpenProject(project)} className="w-full">
+					<Card onClick={() => handleOpenProject(project)} className="w-full" key={project.id}>
 						<div className="flex flex-row text-base">{project.name}</div>
 						<div className="mt-2 flex flex-row gap-2 w-full text-sm text-clickable">{project.description}</div>
+						<div className="flex justify-end grow">
+							<div
+								onClick={(e) => {
+									e.stopPropagation()
+									setProjectToArchive(project)
+									setArchiveModalOpened(true)
+								}}
+							>
+								<Tooltip message={"Archive project"}>
+									<ArchiveIcon />
+								</Tooltip>
+							</div>
+						</div>
 					</Card>
 				))}
+			</div>
+
+			<div className="flex flex-row w-[450px] h-fit">
+				<Modal isOpen={archiveModalOpened} onCloseCallback={() => setArchiveModalOpened(false)}>
+					<ModalContent title="Archive project">
+						<div className="flex flex-row gap-2">Are you sure you want to archive this project?</div>
+						<p className="text-sm text-clickable py-2 italic">Your project activity will remain visible.</p>
+						<div className="flex justify-end gap-4 pt-4">
+							<Button
+								className="bg-surface-100 hover:bg-surface-100/40 cursor-pointer text-clickable rounded-sm"
+								onClick={() => setArchiveModalOpened(false)}
+							>
+								Cancel
+							</Button>
+							<Button
+								className="bg-danger text-black hover:bg-danger/80 cursor-pointer text-sm rounded-sm"
+								onClick={() => handleArchiveProject()}
+							>
+								Archive
+							</Button>
+						</div>
+					</ModalContent>
+				</Modal>
 			</div>
 
 			<div className="flex flex-row w-[300px] h-fit">
