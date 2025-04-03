@@ -40,7 +40,7 @@ rootDiv.render(
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<HoneycombUIProvider theme="dark">
-					<JigJoyProvider playerId="mijura">
+					<JigJoyProvider>
 						<RouterProvider router={router} />
 					</JigJoyProvider>
 				</HoneycombUIProvider>
