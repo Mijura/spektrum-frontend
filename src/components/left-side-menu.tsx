@@ -5,14 +5,14 @@ import WorkspaceIcon from "../shared/icons/workspace-icon"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
-import { pageLoaded } from "../reducers/page-reducer"
-import { usePage } from "../hooks/use-page"
+import { pageLoaded } from "../reducers/active-page-reducer"
+import { useActivePage } from "../hooks/use-active-page"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
 	const [hoveredOption, setHoveredOption] = useState("")
 
-	const page = usePage()
+	const activePage = useActivePage()
 
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const LeftSideMenu = () => {
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
-						className={`${page === name ? "bg-surface-200" : ""} flex cursor-pointer hover:bg-surface-200 rounded-lg p-1`}
+						className={`${activePage === name ? "bg-surface-200" : ""} flex cursor-pointer hover:bg-surface-200 rounded-lg p-1`}
 						onMouseEnter={() => setHoveredOption(name)}
 						onMouseLeave={() => setHoveredOption("")}
 						onClick={() => handleOptionClick(name, route)}
@@ -47,7 +47,9 @@ const LeftSideMenu = () => {
 						}}
 					>
 						<div className="py-2 w-[72px] flex justify-center items-center">
-							<Icon color={page === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} />
+							<Icon
+								color={activePage === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"}
+							/>
 						</div>
 						<AnimatePresence>
 							{menuExpanded && (
@@ -56,7 +58,7 @@ const LeftSideMenu = () => {
 									animate={{ x: 0, opacity: 1 }}
 									exit={{ x: -10, width: 0, opacity: 0 }}
 									transition={{ duration: 0.25, ease: "easeInOut" }}
-									className={`${page === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} mr-8 truncate flex items-center`}
+									className={`${activePage === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} mr-8 truncate flex items-center`}
 								>
 									{label}
 								</motion.span>

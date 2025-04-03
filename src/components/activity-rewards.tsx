@@ -2,7 +2,7 @@ import { Button, ProgressBar } from "@honeycomb-app/design"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
 import { useNavigate } from "@tanstack/react-router"
-import { pageLoaded } from "../reducers/page-reducer"
+import { pageLoaded } from "../reducers/active-page-reducer"
 import { useDispatch } from "react-redux"
 
 export default function ActivityRewards() {
@@ -19,8 +19,8 @@ export default function ActivityRewards() {
 	}
 
 	const switchToPricing = () => {
-		navigate({ to: "/pricing" })
 		dispatch(pageLoaded("pricing"))
+		navigate({ to: "/pricing" })
 	}
 
 	return (
