@@ -40,7 +40,7 @@ const HoneycombActivityChart: React.FC = () => {
 		const points: { x: number; y: number; intensity: number; date: string }[] = []
 		for (let i = 0; i < MapRows; i++) {
 			for (let j = 0; j < MapColumns; j++) {
-				let x = hexRadius * j * Math.sqrt(3) + hexRadius + margin.left
+				let x = hexRadius * j * Math.sqrt(3) + hexRadius + margin.left + 3
 				if (i % 2 === 1) x += (hexRadius * Math.sqrt(3)) / 2
 				let y = hexRadius * i * 1.5 + hexRadius + margin.top
 				let index = j * MapRows + i
@@ -88,8 +88,8 @@ const HoneycombActivityChart: React.FC = () => {
 			.data(months)
 			.enter()
 			.append("text")
-			.attr("x", (_, i) => (i * width) / months.length + 3 * hexRadius)
-			.attr("y", margin.top) // Adjust the y position above hexagons
+			.attr("x", (_, i) => (i * width) / months.length + 3 * hexRadius + 3)
+			.attr("y", margin.top - 2) // Adjust the y position above hexagons
 			.attr("text-anchor", "middle")
 			.attr("fill", "var(--base)") // ✅ Fixed
 			.attr("font-size", "12px")
