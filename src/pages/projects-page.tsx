@@ -7,9 +7,11 @@ import { getCurrentUser } from "aws-amplify/auth"
 import ArchiveIcon from "../shared/icons/archive-icon"
 import { archiveProject } from "../api/project"
 import { useRouter } from "@tanstack/react-router"
-
+import { pageLoaded } from "../reducers/active-page-reducer"
+import { useDispatch } from "react-redux"
 export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay: any[] }) {
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
 	const router = useRouter()
 
 	const [projects, setProjects] = useState<any[]>([])
@@ -51,12 +53,14 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 		setLoading(true)
 		const user = await getCurrentUser()
 		const project: any = await createNewProject(user.username)
+		dispatch(pageLoaded("workspace"))
 		navigate({
 			to: `/${project.id}`,
 		})
 	}
 
 	const handleOpenProject = (project: any) => {
+		dispatch(pageLoaded("workspace"))
 		navigate({
 			to: `/${project.id}`,
 		})

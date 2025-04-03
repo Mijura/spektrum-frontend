@@ -1,16 +1,18 @@
 import { useNavigate } from "@tanstack/react-router"
-import { Avatar, Button, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
-import { pageLoaded } from "../reducers/page-reducer"
+import { Avatar, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
+import { pageLoaded } from "../reducers/active-page-reducer"
 import { useDispatch } from "react-redux"
 import { signOut } from "aws-amplify/auth"
+import { useActivePage } from "../hooks/use-active-page"
 
 const Header = () => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const activePage = useActivePage()
 
 	const switchToPage = (page: string) => {
-		navigate({ to: `/${page}` })
 		dispatch(pageLoaded(page))
+		navigate({ to: `/${page}` })
 	}
 
 	const testProfile = {
@@ -30,8 +32,8 @@ const Header = () => {
 
 			<div className="flex items-center gap-4 relative">
 				<div
-					className="flex items-center gap-2 text-clickable cursor-pointer hover:text-base transition-colors"
-					onClick={() => switchToPage("/pricing")}
+					className={`flex items-center gap-2 ${activePage === "pricing" ? "text-secondary" : "text-clickable"} cursor-pointer hover:text-base transition-colors`}
+					onClick={() => switchToPage("pricing")}
 				>
 					Buy tokens
 				</div>

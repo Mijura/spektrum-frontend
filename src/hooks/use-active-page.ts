@@ -5,4 +5,4 @@ export type RootState = ReturnType<typeof store.getState>
 
 export const useAppSelector = useSelector.withTypes<RootState>()
 
-export const usePage = () => useAppSelector((state: any) => state.page.selected)
+export const useActivePage = () => useAppSelector((state: any) => state.activePage.loaded)
