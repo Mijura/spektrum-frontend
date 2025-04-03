@@ -58,6 +58,22 @@ export async function deploy(projectId: string): Promise<any> {
 	return await res.json()
 }
 
+export async function archiveProject(projectId: string): Promise<any> {
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			projectId: projectId,
+		}),
+	}
+
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/archive`, options)
+
+	return await res.json()
+}
+
 export async function createNewProject(owner: string): Promise<any> {
 	const options = {
 		method: "POST",

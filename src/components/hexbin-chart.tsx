@@ -7,7 +7,7 @@ const HexbinActivityChart: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
 	const tooltipRef = useRef<HTMLDivElement>(null)
 
-	const { heatmapData } = useHeatmap({ gameId: "unicorn-game" })
+	const { heatmapData } = useHeatmap({ gameId: "honeycomb" })
 
 	useEffect(() => {
 		if (!svgRef.current || !heatmapData) return

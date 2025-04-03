@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import ProjectsPage from "../pages/projects-page"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
+
 export const Route = createFileRoute("/_auth/projects")({
 	loader: async () => {
 		try {
@@ -17,5 +18,5 @@ export const Route = createFileRoute("/_auth/projects")({
 function Projects() {
 	const projects = Route.useLoaderData()
 
-	return <ProjectsPage projects={projects} />
+	return projects ? <ProjectsPage projectsToDisplay={projects} /> : <></>
 }

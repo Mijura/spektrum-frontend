@@ -3,7 +3,7 @@ import TimelineIcon from "../shared/icons/timeline-icon"
 import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
 
 const DevelopmentActivities: React.FC = () => {
-	const { timelineData } = useTimeline({ gameId: "unicorn-game" })
+	const { timelineData } = useTimeline({ gameId: "honeycomb" })
 
 	useEffect(() => {
 		console.log(`timelineData`, timelineData)
