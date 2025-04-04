@@ -13,7 +13,7 @@ const TOKEN_PRICE = 0.2 // $0.20 per token
 const MIN_PURCHASE = 10 // $10 minimum purchase
 const MIN_TOKENS = 50 // Minimum tokens (50 executions)
 const MAX_TOKENS = 1000 // Maximum tokens (1000 executions)
-const TOKENS_PER_EXECUTION = 1.5 // Average tokens per execution
+const TOKENS_PER_EXECUTION = 2 // Average tokens per execution
 
 export default function PricingPage() {
 	const [tokenAmount, setTokenAmount] = useState(MIN_TOKENS)

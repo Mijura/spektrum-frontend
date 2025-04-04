@@ -61,7 +61,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 
 							<div className="flex grow w-full justify-end">
 								<div onClick={() => implement(ticket.title)}>
-									<Tooltip message="Run execution">
+									<Tooltip message="Run workflow">
 										<PlayIcon />
 									</Tooltip>
 								</div>

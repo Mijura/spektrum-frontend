@@ -58,7 +58,7 @@ export default function ActivityRewards() {
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full text-clickable">
 					<CheckboxIcon />
-					<div className="text-sm">Run ticket execution</div>
+					<div className="text-sm">Create ticket & run workflow</div>
 					<div className="grow items-end text-xs">2 tokens</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full text-clickable">

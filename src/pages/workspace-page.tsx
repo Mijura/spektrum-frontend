@@ -21,7 +21,7 @@ export default function WorkspacePage() {
 						<Tab key="Planning">
 							<TicketPlanning tickets={project.tickets} />
 						</Tab>
-						<Tab key="Preview" className="flex flex-col h-full">
+						<Tab key="Output" className="flex flex-col h-full">
 							<AppPreview />
 						</Tab>
 						<Tab key="Production">

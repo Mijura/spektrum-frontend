@@ -4,15 +4,18 @@ import { pageLoaded } from "../reducers/active-page-reducer"
 import { useDispatch } from "react-redux"
 import { signOut } from "aws-amplify/auth"
 import { useActivePage } from "../hooks/use-active-page"
+import { useState } from "react"
 
 const Header = () => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false)
 	const activePage = useActivePage()
 
 	const switchToPage = (page: string) => {
 		dispatch(pageLoaded(page))
 		navigate({ to: `/${page}` })
+		setIsAccountMenuOpen(false)
 	}
 
 	const testProfile = {
@@ -22,6 +25,7 @@ const Header = () => {
 	const handleLogout = async () => {
 		await signOut()
 		navigate({ to: "/" })
+		setIsAccountMenuOpen(false)
 	}
 
 	return (
@@ -38,14 +42,14 @@ const Header = () => {
 					Buy tokens
 				</div>
 
-				<Popover position="bottom-end">
+				<Popover position="bottom-end" isOpen={isAccountMenuOpen}>
 					<PopoverTrigger>
 						<div className="flex flex-col">
 							<Avatar image={testProfile.image} alt="Profile" />
 						</div>
 					</PopoverTrigger>
 					<PopoverContent>
-						<ul className="flex flex-col w-[150px] text-end">
+						<ul className="flex flex-col w-[150px] h-fit text-end">
 							<li
 								onClick={() => switchToPage("profile")}
 								className="p-2 hover:bg-surface-100 cursor-pointer text-clickable hover:text-hover transition-colors"
