@@ -3,6 +3,8 @@ import { Button, Card } from "@honeycomb-app/design"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
+import { getCurrentUser } from "aws-amplify/auth"
+import { useNavigate } from "@tanstack/react-router"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -18,7 +20,7 @@ const TOKENS_PER_EXECUTION = 2 // Average tokens per execution
 export default function PricingPage() {
 	const [tokenAmount, setTokenAmount] = useState(MIN_TOKENS)
 	const [paddle, setPaddle] = useState<Paddle>()
-
+	const navigate = useNavigate()
 	// Calculate derived values
 	const totalPrice = (tokenAmount * TOKEN_PRICE).toFixed(2)
 	const estimatedExecutions = Math.floor(tokenAmount / TOKENS_PER_EXECUTION)
@@ -35,14 +37,28 @@ export default function PricingPage() {
 	}, [])
 
 	// Callback to open a checkout
-	const openCheckout = () => {
+	const openCheckout = async () => {
+		const user = await getCurrentUser()
+		const email = user?.signInDetails?.loginId
+
+		if (!email) {
+			navigate({ to: "/" })
+			return
+		}
+
 		paddle?.Checkout.open({
 			items: [{ priceId: JIGJOY_TOKEN_PRICE_ID, quantity: tokenAmount }],
+			customer: {
+				email: email,
+			},
+			customData: {
+				email: email,
+			},
 		})
 	}
 
 	return (
-		<div className="w-full text-base flex flex-col items-center px-4 py-8 font-body">
+		<div className="w-full text-base flex flex-col items-center px-4 py-4 2xl:py-8 font-body">
 			{/* Page Heading */}
 			<motion.h1
 				initial={{ opacity: 0, y: -20 }}
@@ -58,14 +74,14 @@ export default function PricingPage() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5, delay: 0.2 }}
-				className="text-center mt-8 mb-12"
+				className="text-center mt-4 2xl:mt-8 mb-8 2xl:mb-12"
 			>
 				<p>
 					JigJoy uses AI agents to help you build software. Our token-based model ensures you only pay for what you use.
 				</p>
 			</motion.div>
 
-			<div className="md:w-1/2 w-full flex">
+			<div className="w-full md:w-3/4 2xl:w-1/2 flex">
 				<div className="flex flex-col md:flex-row gap-4 w-full justify-center">
 					{/* How It Works Card */}
 					<div className="flex flex-col w-full md:w-[60%]">
