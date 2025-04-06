@@ -58,74 +58,41 @@ export default function PricingPage() {
 	}
 
 	return (
-		<div className="w-full text-secondary flex flex-col items-center px-4 py-4 2xl:py-8 font-body">
-			{/* Page Heading */}
-			<motion.h1
-				initial={{ opacity: 0, y: -20 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-				className="text-2xl md:text-3xl font-bold my-8"
-			>
-				Pay-As-You-Go Pricing
-			</motion.h1>
-
-			{/* Description */}
-			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ duration: 0.5, delay: 0.2 }}
-				className="text-center mt-4 2xl:mt-8 mb-8 2xl:mb-12 text-secondary-100"
-			>
-				Honeycomb workflows consume tokens based on complexity. We offer flexible pricing, so you only pay for what you use.
-			</motion.div>
-
-			<div className="w-full md:w-3/4 2xl:w-1/2 flex">
-				<div className="flex flex-col md:flex-row gap-4 w-full justify-center">
+		<div className="w-full text-secondary flex flex-col items-center justify-center lg:justify-start lg:mt-20 px-4 py-4 2xl:py-8 font-body">
+			<div className="w-full md:w-3/4 2xl:w-1/2 flex h-fit">
+				<div className="flex flex-col md:flex-row gap-4 w-full justify-center items-center">
 					{/* How It Works Card */}
-					<div className="flex flex-col w-full md:w-[60%]">
+					<div className="flex flex-col w-full md:w-[60%] h-fit">
+						{/* Page Heading */}
+						<motion.h1
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.5 }}
+							className="text-2xl font-bold mt-16 mx-8 mb-4 text-highlight-200"
+						>
+							Pay-As-You-Go
+						</motion.h1>
+
+						{/* Description */}
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.5, delay: 0.2 }}
+							className="m-8 text-secondary-100"
+						>
+							No subscriptions. No waste. Just flexible, usage-based pricing.
+						</motion.div>
+
 						<Card className="h-fit p-8 cursor-default opacity-100 hover:opacity-100 text-sm my-2">
 							<div className="flex flex-col h-full">
 								<div className="space-y-6">
 									<div className="flex items-start gap-4">
 										<CheckmarkIcon color="text-highlight" />
 										<div>
-											<div className="text-highlight font-semibold p-0.5">Buy Tokens</div>
-											<div className="mt-2 text-secondary-100">Purchase tokens depending on your development needs.</div>
-										</div>
-									</div>
-									<div className="flex items-start gap-4">
-										<CheckmarkIcon color="text-highlight" />
-										<div>
-											<div className="text-highlight font-semibold p-0.5">Choose workflow and execute</div>
-											<div className="mt-2 text-secondary-100">
-												Token usage per workflow depends on the number of AI agents and the complexity of your request.
+											<div className="text-highlight font-semibold p-0.5">Token Consumption</div>
+											<div className="mt-2 text-secondary-100 italic">
+												Honeycomb workflows consume tokens based on the number of AI agents in workflow and request complexity.
 											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</Card>
-						<Card className="h-fit p-8 cursor-default opacity-100 hover:opacity-100 text-sm my-2">
-							<div className="flex flex-col h-full w-full">
-								<div className="space-y-6">
-									<div className="flex flex-row items-start gap-3">
-										<div className="h-full flex">
-											<CheckmarkIcon color="text-highlight" />
-										</div>
-										<div className="flex flex-col gap-2">
-											<div className="text-highlight font-semibold p-0.5">Execution Cost</div>
-											<div className="text-secondary-100">
-												A single execution typically requires 1 to 2 tokens, costing approximately $0.20 per execution.
-											</div>
-										</div>
-									</div>
-									<div className="flex flex-row items-start gap-3">
-										<div className="h-full flex">
-											<CheckmarkIcon color="text-highlight" />
-										</div>
-										<div className="flex flex-col gap-2">
-											<div className="text-highlight font-semibold p-0.5">Minimum purchase</div>
-											<div className="text-secondary-100">$10 for approximately 50 workflow executions.</div>
 										</div>
 									</div>
 								</div>
@@ -133,7 +100,7 @@ export default function PricingPage() {
 						</Card>
 					</div>
 
-					<div className="w-full md:w-[40%] grow flex">
+					<div className="w-full md:w-[40%] grow flex h-full">
 						{/* Token Purchase Card */}
 						<Card className="w-full p-8 cursor-default my-2 grow">
 							<div className="flex flex-col items-center space-y-8">
@@ -154,10 +121,12 @@ export default function PricingPage() {
 								</div>
 
 								<div className="text-center space-y-2">
-									<p className="text-lg">
-										Estimated Ticket Executions: <span className="font-semibold">{estimatedExecutions}</span>
+									<p className="text-sm text-secondary-100">
+										Estimated Workflow Executions: <span className="">{estimatedExecutions}</span>
 									</p>
-									<p className="text-sm text-secondary-100">* Based on average of {TOKENS_PER_EXECUTION} tokens per execution</p>
+									<p className="text-sm text-secondary-100 italic mt-4">
+										* Based on average of {TOKENS_PER_EXECUTION} tokens per execution
+									</p>
 								</div>
 
 								<Button size="lg" className="bg-secondary text-primary hover:bg-gray-300/80" onClick={openCheckout}>
