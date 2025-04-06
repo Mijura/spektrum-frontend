@@ -1,13 +1,13 @@
 export default function ArchiveIcon() {
 	return (
 		<svg
-			width={18}
-			height={18}
+			width={20}
+			height={20}
 			fill="none"
 			viewBox="0 0 24 24"
-			stroke-width="1"
+			stroke-width="1.5"
 			stroke="currentColor"
-			className="text-danger flex items-center justify-center"
+			className="text-[#7f1734] font-semibold flex items-center justify-center"
 		>
 			<path
 				stroke-linecap="round"

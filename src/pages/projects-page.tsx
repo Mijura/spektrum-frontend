@@ -81,7 +81,7 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 		<div className="ml-20 px-4 pt-20">
 			<div className="mt-8 px-4 w-[325px]">
 				<div className="flex flex-row w-full h-fit mb-2">
-					<h1 className="text-white text-sm w-fit flex items-center">Projects</h1>
+					<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Projects</h1>
 
 					<div className="flex justify-end grow">
 						<Tooltip message="Create new project" className="bg-primary-100">
@@ -95,7 +95,7 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 				{projects.map((project: any) => (
 					<Card onClick={() => handleOpenProject(project)} className="w-full my-4 cursor-pointer" key={project.id}>
 						<div className="flex flex-row text-secondary">{project.name}</div>
-						<div className="mt-2 flex flex-row gap-2 w-full text-sm text-secondary-100">{project.description}</div>
+						<div className="mt-2 flex flex-row gap-2 w-full text-xs italic text-secondary-100">{project.description}</div>
 						<div className="flex justify-end grow">
 							<div
 								onClick={(e) => {

@@ -76,7 +76,7 @@ export default function PricingPage() {
 				transition={{ duration: 0.5, delay: 0.2 }}
 				className="text-center mt-4 2xl:mt-8 mb-8 2xl:mb-12 text-secondary-100"
 			>
-				JigJoy uses AI agents to help you build software. Our token-based model ensures you only pay for what you use.
+				Honeycomb workflows consume tokens based on complexity. We offer flexible pricing, so you only pay for what you use.
 			</motion.div>
 
 			<div className="w-full md:w-3/4 2xl:w-1/2 flex">
@@ -90,14 +90,16 @@ export default function PricingPage() {
 										<CheckmarkIcon color="text-highlight" />
 										<div>
 											<div className="text-highlight font-semibold p-0.5">Buy Tokens</div>
-											<div className="mt-2">Purchase tokens depending on your development needs.</div>
+											<div className="mt-2 text-secondary-100">Purchase tokens depending on your development needs.</div>
 										</div>
 									</div>
 									<div className="flex items-start gap-4">
 										<CheckmarkIcon color="text-highlight" />
 										<div>
-											<div className="text-highlight font-semibold p-0.5">Execute Workflows</div>
-											<div className="mt-2">Choose workflow and execute. Workflows consumes tokens based on complexity.</div>
+											<div className="text-highlight font-semibold p-0.5">Choose workflow and execute</div>
+											<div className="mt-2 text-secondary-100">
+												Token usage per workflow depends on the number of AI agents and the complexity of your request.
+											</div>
 										</div>
 									</div>
 								</div>
