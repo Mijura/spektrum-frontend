@@ -28,15 +28,15 @@ export default function ActivityRewards() {
 			<div className="flex flex-col bg-primary p-4 shadow-md text-white h-full">
 				<div className="flex flex-row gap-3 w-full">
 					<div className="w-fit">
-						<Button onClick={switchToPricing} size="sm">
+						<Button variant="secondary" onClick={switchToPricing} size="sm">
 							Buy tokens
 						</Button>
 					</div>
 					<div className="text-secondary-100 grow flex flex-row justify-end">
-						Balance:&nbsp;<span className="text-wax font-bold">4 tokens</span>
+						Balance:&nbsp;<span className="text-highlight font-bold">4 tokens</span>
 					</div>
 				</div>
-				<h1 className="w-fit mt-4 text-sm text-secondary">Activity Rewards</h1>
+				<h1 className="w-fit mt-4 text-sm text-highlight">Activity Rewards</h1>
 
 				<div className="my-3 text-sm text-secondary-100">Complete challenges to earn tokens</div>
 				<ProgressBar progress={30} className="w-full" />
@@ -48,13 +48,13 @@ export default function ActivityRewards() {
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full text-secondary-100">
 					<CheckmarkIcon />
-					<div className="text-sm text-disabled line-through">Meet the team</div>
-					<div className="grow items-end text-xs text-wax">2 tokens earned</div>
+					<div className="text-sm text-secondary-200 line-through">Meet the team</div>
+					<div className="grow items-end text-xs text-secondary-100">2 tokens earned</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full ">
 					<CheckmarkIcon />
-					<div className="text-sm text-disabled line-through">Create a project</div>
-					<div className="text-wax grow items-end text-xs">2 tokens earned</div>
+					<div className="text-sm text-secondary-200 line-through">Create a project</div>
+					<div className="grow items-end text-xs text-secondary-100">2 tokens earned</div>
 				</div>
 				<div className="flex flex-row gap-2 items-center w-full text-secondary-100">
 					<CheckboxIcon />

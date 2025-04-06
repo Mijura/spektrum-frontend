@@ -77,7 +77,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("y", (_, i) => i * (hexRadius * 3) + height / weekdays.length / 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
-			.attr("fill", "var(--base)") // ✅ Fixed
+			.attr("fill", "var(--secondary)") // ✅ Fixed
 			.attr("font-size", "12px")
 			.text((d) => d)
 
@@ -91,7 +91,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("x", (_, i) => (i * width) / months.length + 3 * hexRadius + 3)
 			.attr("y", margin.top - 2) // Adjust the y position above hexagons
 			.attr("text-anchor", "middle")
-			.attr("fill", "var(--base)") // ✅ Fixed
+			.attr("fill", "var(--secondary)") // ✅ Fixed
 			.attr("font-size", "12px")
 			.text((d) => d)
 
@@ -153,7 +153,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.style("fill", (d) => {
 				return d === 0 ? "var(--primary)" : color(1 - d / 4)
 			})
-			.attr("stroke", "var(--disabled)")
+			.attr("stroke", "var(--secondary-200)")
 			.attr("stroke-width", "1px")
 
 		// Add legend text
@@ -186,7 +186,7 @@ const HoneycombActivityChart: React.FC = () => {
 			{tooltip &&
 				createPortal(
 					<div
-						className="fixed bg-black text-white text-sm px-2 py-1 rounded pointer-events-none shadow-md"
+						className="fixed bg-black text-secondary-100 text-sm px-2 py-1 rounded pointer-events-none shadow-md"
 						style={{
 							top: tooltip.y,
 							left: tooltip.x,

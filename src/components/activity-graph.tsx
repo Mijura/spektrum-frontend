@@ -79,7 +79,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = () => {
 	}
 
 	return (
-		<div className="w-full bg-primary-100 p-6 rounded-lg border border-disabled">
+		<div className="w-full bg-primary-100 p-6 rounded-lg border border-secondary-200">
 			<h3 className="text-xl font-semibold text-secondary mb-2">Workflow Executions</h3>
 			<div className="w-full overflow-x-auto p-2">
 				<div className="flex gap-[3px] min-w-fit justify-start">

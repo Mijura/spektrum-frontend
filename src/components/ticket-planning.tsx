@@ -40,7 +40,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 		<>
 			<div className="ml-4 mt-8 px-4 w-[300px]">
 				<div className="flex flex-row w-full h-fit mb-2">
-					<h1 className="ml-2 text-secondary text-sm w-fit flex items-center">Tickets</h1>
+					<h1 className="ml-2 text-secondary-100 font-semibold text-sm w-fit flex items-center">Tickets</h1>
 
 					<div className="flex justify-end grow">
 						<div onClick={() => setModalOpened(true)}>
@@ -50,16 +50,16 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 						</div>
 					</div>
 				</div>
-				<div className="border-b border-disabled w-full"></div>
+				<div className="border-b border-secondary-200 w-full"></div>
 				{tickets.map((ticket) => (
-					<Card key={ticket.id}>
+					<Card key={ticket.id} className="my-4">
 						<div className="flex flex-row text-secondary-100">{ticket.title}</div>
 						<div className="mt-2 flex flex-row gap-2 w-full">
 							<Tooltip message="Change status">
 								<MoreOptionsIcon />
 							</Tooltip>
 
-							<div className="flex grow w-full justify-end">
+							<div className="flex grow w-full justify-end cursor-pointer">
 								<div onClick={() => implement(ticket.title)}>
 									<Tooltip message="Run workflow">
 										<PlayIcon />

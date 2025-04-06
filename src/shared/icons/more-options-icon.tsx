@@ -5,7 +5,7 @@ export default function MoreOptionsIcon() {
 			viewBox="0 0 24 24"
 			strokeWidth="1.5"
 			stroke="currentColor"
-			className="size-6 border border-disabled rounded-md text-secondary hover:opacity-75"
+			className="size-6 border border-secondary-200 rounded-md text-secondary hover:opacity-75"
 		>
 			<path
 				strokeLinecap="round"
