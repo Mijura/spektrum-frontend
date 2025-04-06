@@ -106,9 +106,9 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("d", (d) => `M${d.x},${d.y}${hexbin.hexagon()}`)
 			.style("fill", (d) => {
 				const avgIntensity = d3.mean(d, (p) => p.intensity) || 0
-				return avgIntensity === 0 ? "var(--surface-100)" : color(avgIntensity)
+				return avgIntensity === 0 ? "var(--primary)" : color(avgIntensity)
 			})
-			.attr("stroke", "var(--surface-300)")
+			.attr("stroke", "var(--primary-200)")
 			.attr("strokeWidth", "2px")
 			.on("mouseover", function (event, d) {
 				const avgIntensity = d3.mean(d, (p) => p.intensity) || 0
@@ -151,7 +151,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("d", d3Hexbin().radius(legendHexRadius).hexagon())
 			.attr("transform", (d, i) => `translate(${(i + 1) * legendSpacing}, 0)`)
 			.style("fill", (d) => {
-				return d === 0 ? "var(--surface-100)" : color(1 - d / 4)
+				return d === 0 ? "var(--primary)" : color(1 - d / 4)
 			})
 			.attr("stroke", "var(--disabled)")
 			.attr("stroke-width", "1px")

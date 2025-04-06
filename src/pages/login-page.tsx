@@ -44,24 +44,24 @@ export default function LoginPage() {
 	}, [])
 
 	return (
-		<div className="flex flex-col bg-surface-300 h-screen min-h-screen max-h-screen w-full overflow-hidden items-center">
+		<div className="flex flex-col bg-primary-200 h-screen min-h-screen max-h-screen w-full overflow-hidden items-center">
 			{/* Main Content Container */}
 			<motion.div
-				className="bg-surface-200 flex flex-col mt-40 items-center w-fit h-fit p-16 rounded-lg"
+				className="bg-primary-100 flex flex-col mt-40 items-center w-fit h-fit p-16 rounded-lg"
 				initial="hidden"
 				animate="visible"
 				transition={{ duration: 0.3 }}
 			>
-				<h1 className="text-2xl mb-2 text-base">Welcome!</h1>
+				<h1 className="text-2xl mb-2 text-secondary">Welcome!</h1>
 
-				<div className="text-base opacity-80 mt-2">Enter email to recieve magic link.</div>
+				<div className="text-secondary opacity-80 mt-2">Enter email to recieve magic link.</div>
 				<div className="my-8">
 					<Loader size="small" message="Waiting for you to join the cool kids' club..." />
 				</div>
 
 				<Input
 					placeholder="Email Address"
-					className="mb-6 w-[320px] text-clickable"
+					className="mb-4 w-[320px] text-secondary-100"
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 

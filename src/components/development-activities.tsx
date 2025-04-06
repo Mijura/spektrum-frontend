@@ -10,8 +10,8 @@ const DevelopmentActivities: React.FC = () => {
 	}, [timelineData])
 
 	return (
-		<div className="flex flex-col bg-surface-100 mt-3 p-4 shadow-md h-full">
-			<div className="flex flex-row gap-3 w-full bg-surface-100 mt-2 text-base text-sm mb-4">Workflow Executions</div>
+		<div className="flex flex-col bg-primary mt-3 p-4 shadow-md h-full">
+			<div className="flex flex-row gap-3 w-full bg-primary mt-2 text-secondary text-sm mb-4">Workflow Executions</div>
 
 			<div className="flex flex-row gap-3 items-center">
 				<TimelineIcon />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Button, Card, Loader, Modal, ModalContent, ModalTrigger, Tooltip } from "@honeycomb-app/design"
+import { Button, Card, Loader, Modal, ModalContent, Tooltip } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 import PlusIcon from "../shared/icons/plus-icon"
@@ -84,18 +84,18 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 					<h1 className="text-white text-sm w-fit flex items-center">Projects</h1>
 
 					<div className="flex justify-end grow">
-						<Tooltip message="Create new project" className="bg-surface-200">
+						<Tooltip message="Create new project" className="bg-primary-100">
 							<div onClick={handleCreateNewProject}>
 								<PlusIcon />
 							</div>
 						</Tooltip>
 					</div>
 				</div>
-				<div className="border-b border-outline w-full my-2"></div>
+				<div className="border-b border-secondary-200 w-full my-2"></div>
 				{projects.map((project: any) => (
 					<Card onClick={() => handleOpenProject(project)} className="w-full my-4 cursor-pointer" key={project.id}>
-						<div className="flex flex-row text-base">{project.name}</div>
-						<div className="mt-2 flex flex-row gap-2 w-full text-sm text-clickable">{project.description}</div>
+						<div className="flex flex-row text-secondary">{project.name}</div>
+						<div className="mt-2 flex flex-row gap-2 w-full text-sm text-secondary-100">{project.description}</div>
 						<div className="flex justify-end grow">
 							<div
 								onClick={(e) => {
@@ -113,90 +113,18 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 				))}
 			</div>
 
-			<div className="flex flex-row w-[450px] h-fit">
+			<div className="flex flex-row h-fit">
 				<Modal isOpen={archiveModalOpened} onCloseCallback={() => setArchiveModalOpened(false)}>
 					<ModalContent title="Archive project">
 						<div className="flex flex-row gap-2">Are you sure you want to archive this project?</div>
-						<p className="text-sm text-clickable py-2 italic">Your project activity will remain visible.</p>
-						<div className="flex justify-end gap-4 pt-4">
-							<Button
-								className="bg-surface-100 hover:bg-surface-100/80 cursor-pointer text-clickable rounded-sm"
-								onClick={() => setArchiveModalOpened(false)}
-							>
+						<p className="text-sm text-secondary-100 py-2 italic">Your project activity will remain visible.</p>
+						<div className="flex justify-end gap-2 pt-4">
+							<Button variant="secondary" onClick={() => setArchiveModalOpened(false)}>
 								Cancel
 							</Button>
-							<Button
-								className="bg-danger text-black hover:bg-danger/80 cursor-pointer text-sm rounded-sm"
-								onClick={() => handleArchiveProject()}
-							>
+							<Button variant="danger" onClick={() => handleArchiveProject()}>
 								Archive
 							</Button>
-						</div>
-					</ModalContent>
-				</Modal>
-			</div>
-
-			<div className="flex flex-row w-[300px] h-fit">
-				<Modal onOpenCallback={() => {}} isOpen={editingProject !== null} onCloseCallback={() => setEditingProject(null)}>
-					<ModalTrigger>
-						<div
-							style={{ display: "none" }}
-							ref={(el) => {
-								if (el && editingProject) {
-									el.click()
-								}
-							}}
-						/>
-					</ModalTrigger>
-					<ModalContent>
-						<div className="bg-surface-200 p-8 rounded-lg w-[600px] max-w-[90vw]">
-							<h2 className="text-2xl font-bold mb-4 text-clickable">Edit project</h2>
-							<form
-								onSubmit={(e) => {
-									e.preventDefault()
-									handleSave()
-								}}
-							>
-								<div className="mb-4">
-									<label className="block text-sm font-medium text-base mb-2">Name</label>
-									<input
-										type="text"
-										value={name}
-										onChange={(e) => setName(e.target.value)}
-										className="w-full p-2 rounded bg-surface-300 text-white border border-surface4"
-									/>
-								</div>
-								<div className="mb-4">
-									<label className="block text-sm font-medium text-base mb-2">Description</label>
-									<textarea
-										value={description}
-										onChange={(e) => setDescription(e.target.value)}
-										className="w-full p-2 rounded bg-surface-300 text-white border border-surface4"
-										rows={3}
-									/>
-								</div>
-								<div className="mb-6">
-									<label className="block text-sm font-medium text-base mb-2">Image URL</label>
-									<input
-										type="text"
-										value={imageUrl}
-										onChange={(e) => setImageUrl(e.target.value)}
-										className="w-full p-2 rounded bg-surface-300 text-white border border-surface4"
-									/>
-								</div>
-								<div className="flex justify-end gap-4">
-									<button
-										type="button"
-										onClick={() => setEditingProject(null)}
-										className="px-4 py-2 rounded bg-surface-300 text-white hover:bg-surface4"
-									>
-										Cancel
-									</button>
-									<button type="submit" className="px-4 py-2 rounded bg-clickable text-surface-100 hover:bg-hover">
-										Save
-									</button>
-								</div>
-							</form>
 						</div>
 					</ModalContent>
 				</Modal>

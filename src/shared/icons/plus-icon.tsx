@@ -6,7 +6,7 @@ export default function PlusIcon() {
 			height="8"
 			strokeWidth={1.5}
 			stroke="currentColor"
-			className="size-6 cursor-pointer text-clickable hover:text-base"
+			className="size-6 cursor-pointer text-secondary-100 hover:text-secondary"
 		>
 			<path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 		</svg>

@@ -46,7 +46,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = () => {
 
 	// Function to determine the color intensity based on contribution count
 	const getColor = (count: number) => {
-		if (count === 0) return "bg-surface-200"
+		if (count === 0) return "bg-primary-100"
 		const intensity = Math.ceil((count / maxCount) * 4)
 		switch (intensity) {
 			case 1:
@@ -58,7 +58,7 @@ const ActivityGraph: React.FC<ActivityGraphProps> = () => {
 			case 4:
 				return "bg-primary"
 			default:
-				return "bg-surface-200"
+				return "bg-primary-100"
 		}
 	}
 
@@ -79,8 +79,8 @@ const ActivityGraph: React.FC<ActivityGraphProps> = () => {
 	}
 
 	return (
-		<div className="w-full bg-surface-200 p-6 rounded-lg border border-disabled">
-			<h3 className="text-xl font-semibold text-base mb-2">Workflow Executions</h3>
+		<div className="w-full bg-primary-100 p-6 rounded-lg border border-disabled">
+			<h3 className="text-xl font-semibold text-secondary mb-2">Workflow Executions</h3>
 			<div className="w-full overflow-x-auto p-2">
 				<div className="flex gap-[3px] min-w-fit justify-start">
 					{weeks.map((week, weekIndex) => (
@@ -99,10 +99,10 @@ const ActivityGraph: React.FC<ActivityGraphProps> = () => {
 					))}
 				</div>
 			</div>
-			<div className="flex items-center gap-2 mt-4 text-sm text-base">
+			<div className="flex items-center gap-2 mt-4 text-sm text-secondary">
 				<span>Less</span>
 				<div className="flex gap-[3px]">
-					<div className="w-[10px] h-[10px] rounded-[2px] bg-surface-200" />
+					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary-100" />
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary/25" />
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary/50" />
 					<div className="w-[10px] h-[10px] rounded-[2px] bg-primary/75" />

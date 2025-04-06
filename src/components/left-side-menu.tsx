@@ -28,7 +28,7 @@ const LeftSideMenu = () => {
 		<motion.div
 			onHoverStart={() => setMenuExpanded(true)}
 			onHoverEnd={() => setMenuExpanded(false)}
-			className="border-r border-r-outline h-full bg-surface-100 flex flex-col shadow-lg fixed top-0 left-0 z-20 text-base"
+			className="border-r border-r-secondary-200 h-full bg-primary flex flex-col shadow-lg fixed top-0 left-0 z-20 text-secondary"
 		>
 			<ul className="flex flex-col mt-[100px]">
 				{[
@@ -37,7 +37,7 @@ const LeftSideMenu = () => {
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
-						className={`${activePage === name ? "bg-surface-200" : ""} flex cursor-pointer hover:bg-surface-200 rounded-lg p-1`}
+						className={`${activePage === name ? "bg-primary-100" : ""} flex cursor-pointer hover:bg-primary-100 rounded-lg p-1`}
 						onMouseEnter={() => setHoveredOption(name)}
 						onMouseLeave={() => setHoveredOption("")}
 						onClick={() => handleOptionClick(name, route)}
@@ -48,7 +48,9 @@ const LeftSideMenu = () => {
 					>
 						<div className="py-2 w-[72px] flex justify-center items-center">
 							<Icon
-								color={activePage === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"}
+								color={
+									activePage === name ? "text-highlight" : hoveredOption === name ? "text-highlight-200" : "text-secondary-100"
+								}
 							/>
 						</div>
 						<AnimatePresence>
@@ -58,7 +60,7 @@ const LeftSideMenu = () => {
 									animate={{ x: 0, opacity: 1 }}
 									exit={{ x: -10, width: 0, opacity: 0 }}
 									transition={{ duration: 0.25, ease: "easeInOut" }}
-									className={`${activePage === name ? "text-secondary" : hoveredOption === name ? "text-hover" : "text-clickable"} mr-8 truncate flex items-center`}
+									className={`${activePage === name ? "text-highlight" : hoveredOption === name ? "text-highlight-200" : "text-secondary-100"} mr-8 truncate flex items-center`}
 								>
 									{label}
 								</motion.span>
@@ -70,8 +72,8 @@ const LeftSideMenu = () => {
 			<div className="mt-auto mb-4 flex justify-center">
 				<div
 					className={`${
-						hoveredOption === "discord" ? "bg-surface-200" : ""
-					} flex cursor-pointer hover:bg-surface-200 rounded-lg p-1`}
+						hoveredOption === "discord" ? "bg-primary-100" : ""
+					} flex cursor-pointer hover:bg-primary-100 rounded-lg p-1`}
 					onMouseEnter={() => setHoveredOption("discord")}
 					onMouseLeave={() => setHoveredOption("")}
 					onClick={() => window.open("https://discord.gg/2pjggCfaea", "_blank")}
@@ -81,7 +83,7 @@ const LeftSideMenu = () => {
 					}}
 				>
 					<div className="py-2 w-[72px] flex justify-center items-center">
-						<DiscordIcon color={hoveredOption === "discord" ? "text-hover" : "text-clickable"} />
+						<DiscordIcon color={hoveredOption === "discord" ? "text-hover" : "text-secondary-100"} />
 					</div>
 					<AnimatePresence>
 						{menuExpanded && (

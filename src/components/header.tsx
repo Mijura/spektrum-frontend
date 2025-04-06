@@ -29,14 +29,14 @@ const Header = () => {
 	}
 
 	return (
-		<header className="flex w-[100%] h-[50px] bg-surface-100 border-b border-outline text-white items-center justify-between shadow-md px-4">
+		<header className="flex w-[100%] h-[50px] bg-primary border-b border-secondary-200 text-white items-center justify-between shadow-md px-4">
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>
 			</div>
 
 			<div className="flex items-center gap-4 relative">
 				<div
-					className={`flex items-center gap-2 ${activePage === "pricing" ? "text-secondary" : "text-clickable"} cursor-pointer hover:text-base transition-colors`}
+					className={`flex items-center gap-2 ${activePage === "pricing" ? "text-secondary" : "text-secondary-100"} cursor-pointer hover:text-secondary transition-colors`}
 					onClick={() => switchToPage("pricing")}
 				>
 					Buy tokens
@@ -52,13 +52,13 @@ const Header = () => {
 						<ul className="flex flex-col w-[150px] h-fit text-end">
 							<li
 								onClick={() => switchToPage("profile")}
-								className="p-2 hover:bg-surface-100 cursor-pointer text-clickable hover:text-hover transition-colors"
+								className="p-2 hover:bg-primary cursor-pointer text-secondary-100 hover:text-hover transition-colors"
 							>
 								My Profile
 							</li>
 							<li
 								onClick={handleLogout}
-								className="p-2 hover:bg-surface-100 cursor-pointer text-clickable hover:text-hover transition-colors"
+								className="p-2 hover:bg-primary cursor-pointer text-secondary-100 hover:text-hover transition-colors"
 							>
 								Log out
 							</li>

@@ -40,7 +40,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 		<>
 			<div className="ml-4 mt-8 px-4 w-[300px]">
 				<div className="flex flex-row w-full h-fit mb-2">
-					<h1 className="ml-2 text-base text-sm w-fit flex items-center">Tickets</h1>
+					<h1 className="ml-2 text-secondary text-sm w-fit flex items-center">Tickets</h1>
 
 					<div className="flex justify-end grow">
 						<div onClick={() => setModalOpened(true)}>
@@ -53,7 +53,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 				<div className="border-b border-disabled w-full"></div>
 				{tickets.map((ticket) => (
 					<Card key={ticket.id}>
-						<div className="flex flex-row text-clickable">{ticket.title}</div>
+						<div className="flex flex-row text-secondary-100">{ticket.title}</div>
 						<div className="mt-2 flex flex-row gap-2 w-full">
 							<Tooltip message="Change status">
 								<MoreOptionsIcon />
@@ -83,26 +83,24 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 							}}
 						/>
 					</ModalTrigger>
-					<ModalContent title="New ticket">
-						<div className="w-[600px] max-w-[90vw]">
-							<Input
-								placeholder="Ticket title"
-								value={title}
-								onChange={(e) => setTitle(e.target.value)}
-								className="mb-4 w-full"
-							/>
-							<Textarea
-								placeholder="Add description..."
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-								className="mb-4 w-full"
-								rows={4}
-							/>
-							<div className="flex justify-end gap-4">
-								<Button className="bg-secondary hover:bg-hover-secondary" onClick={createTicket}>
-									Create ticket
-								</Button>
-							</div>
+					<ModalContent title="New ticket" className="w-[600px] max-w-[90vw]">
+						<Input
+							placeholder="Ticket title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							className="mb-4 w-full"
+						/>
+						<Textarea
+							placeholder="Add description..."
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+							className="mb-4 w-full"
+							rows={4}
+						/>
+						<div className="flex justify-end gap-4">
+							<Button variant="secondary" onClick={createTicket}>
+								Create ticket
+							</Button>
 						</div>
 					</ModalContent>
 				</Modal>

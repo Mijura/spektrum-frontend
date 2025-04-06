@@ -58,13 +58,13 @@ export default function PricingPage() {
 	}
 
 	return (
-		<div className="w-full text-base flex flex-col items-center px-4 py-4 2xl:py-8 font-body">
+		<div className="w-full text-secondary flex flex-col items-center px-4 py-4 2xl:py-8 font-body">
 			{/* Page Heading */}
 			<motion.h1
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
-				className="text-2xl md:text-3xl font-bold text-gray-300 my-8"
+				className="text-2xl md:text-3xl font-bold my-8"
 			>
 				Pay-As-You-Go Pricing
 			</motion.h1>
@@ -74,11 +74,9 @@ export default function PricingPage() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5, delay: 0.2 }}
-				className="text-center mt-4 2xl:mt-8 mb-8 2xl:mb-12"
+				className="text-center mt-4 2xl:mt-8 mb-8 2xl:mb-12 text-secondary-100"
 			>
-				<p>
-					JigJoy uses AI agents to help you build software. Our token-based model ensures you only pay for what you use.
-				</p>
+				JigJoy uses AI agents to help you build software. Our token-based model ensures you only pay for what you use.
 			</motion.div>
 
 			<div className="w-full md:w-3/4 2xl:w-1/2 flex">
@@ -89,16 +87,16 @@ export default function PricingPage() {
 							<div className="flex flex-col h-full">
 								<div className="space-y-6">
 									<div className="flex items-start gap-4">
-										<CheckmarkIcon color="text-secondary" />
+										<CheckmarkIcon color="text-highlight" />
 										<div>
-											<div className="text-secondary font-semibold p-0.5">Buy Tokens</div>
+											<div className="text-highlight font-semibold p-0.5">Buy Tokens</div>
 											<div className="mt-2">Purchase tokens depending on your development needs.</div>
 										</div>
 									</div>
 									<div className="flex items-start gap-4">
-										<CheckmarkIcon color="text-secondary" />
+										<CheckmarkIcon color="text-highlight" />
 										<div>
-											<div className="text-secondary font-semibold p-0.5">Execute Workflows</div>
+											<div className="text-highlight font-semibold p-0.5">Execute Workflows</div>
 											<div className="mt-2">Choose workflow and execute. Workflows consumes tokens based on complexity.</div>
 										</div>
 									</div>
@@ -110,22 +108,22 @@ export default function PricingPage() {
 								<div className="space-y-6">
 									<div className="flex flex-row items-start gap-3">
 										<div className="h-full flex">
-											<CheckmarkIcon color="text-secondary" />
+											<CheckmarkIcon color="text-highlight" />
 										</div>
 										<div className="flex flex-col gap-2">
-											<div className="text-secondary font-semibold p-0.5">Execution Cost</div>
-											<div className="text-clickable">
+											<div className="text-highlight font-semibold p-0.5">Execution Cost</div>
+											<div className="text-secondary-100">
 												A single execution typically requires 1 to 2 tokens, costing approximately $0.20 per execution.
 											</div>
 										</div>
 									</div>
 									<div className="flex flex-row items-start gap-3">
 										<div className="h-full flex">
-											<CheckmarkIcon color="text-secondary" />
+											<CheckmarkIcon color="text-highlight" />
 										</div>
 										<div className="flex flex-col gap-2">
-											<div className="text-secondary font-semibold p-0.5">Minimum purchase</div>
-											<div className="">$10 for approximately 50 workflow executions.</div>
+											<div className="text-highlight font-semibold p-0.5">Minimum purchase</div>
+											<div className="text-secondary-100">$10 for approximately 50 workflow executions.</div>
 										</div>
 									</div>
 								</div>
@@ -149,7 +147,7 @@ export default function PricingPage() {
 										step="10"
 										value={tokenAmount}
 										onChange={(e) => setTokenAmount(Number(e.target.value))}
-										className="w-full h-4 my-6 bg-secondary/20 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:hover:scale-110 [&::-moz-range-thumb]:h-8 [&::-moz-range-thumb]:w-8 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:transition-all [&::-moz-range-thumb]:hover:scale-110"
+										className="w-full h-4 my-6 bg-secondary/20 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-highlight [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:hover:scale-110 [&::-moz-range-thumb]:h-8 [&::-moz-range-thumb]:w-8 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-highlight [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:transition-all [&::-moz-range-thumb]:hover:scale-110"
 									/>
 								</div>
 
@@ -157,10 +155,10 @@ export default function PricingPage() {
 									<p className="text-lg">
 										Estimated Ticket Executions: <span className="font-semibold">{estimatedExecutions}</span>
 									</p>
-									<p className="text-sm text-clickable">* Based on average of {TOKENS_PER_EXECUTION} tokens per execution</p>
+									<p className="text-sm text-secondary-100">* Based on average of {TOKENS_PER_EXECUTION} tokens per execution</p>
 								</div>
 
-								<Button className="px-4 py-2 bg-base text-surface-100 hover:bg-gray-300/80" onClick={openCheckout}>
+								<Button size="lg" className="bg-secondary text-primary hover:bg-gray-300/80" onClick={openCheckout}>
 									Continue to Checkout
 								</Button>
 							</div>

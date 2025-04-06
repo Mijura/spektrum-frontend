@@ -18,10 +18,10 @@ export default function ProfilePage() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5 }}
-				className={`w-full bg-surface-100 p-6 flex flex-col items-center pt-20`}
+				className={`w-full bg-primary p-6 flex flex-col items-center pt-20`}
 			>
 				{/* Top Section: Profile Info + Credits */}
-				<div className="w-full max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-surface-300">
+				<div className="w-full max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-primary-200">
 					{/* Left: Profile Image & Basic Info */}
 					<div className="flex items-center mb-4 md:mb-0">
 						<img
@@ -30,13 +30,13 @@ export default function ProfilePage() {
 							className="w-20 h-20 rounded-full mr-4 object-cover border-2 border-base"
 						/>
 						<div className="flex flex-col">
-							<span className="text-xl font-semibold text-base">{user.nickname}</span>
-							<span className="text-base">{user.dateJoined}</span>
+							<span className="text-xl font-semibold text-secondary">{user.nickname}</span>
+							<span className="text-secondary">{user.dateJoined}</span>
 							{/* Level and XP */}
 							<div className="flex items-center gap-2 mt-1">
-								<span className="text-sm text-base">Level {user.level}</span>
-								<span className="text-sm text-base">•</span>
-								<span className="text-sm text-base">{user.progressToNextLevel * 10} / 1000 XP</span>
+								<span className="text-sm text-secondary">Level {user.level}</span>
+								<span className="text-sm text-secondary">•</span>
+								<span className="text-sm text-secondary">{user.progressToNextLevel * 10} / 1000 XP</span>
 							</div>
 
 							<ProgressBar progress={40} />
@@ -45,7 +45,7 @@ export default function ProfilePage() {
 
 					{/* Right: Token Widget */}
 					<div className="flex flex-col items-center md:items-end">
-						<span className="text-lg text-base">Tokens</span>
+						<span className="text-lg text-secondary">Tokens</span>
 						<motion.span
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
@@ -57,7 +57,7 @@ export default function ProfilePage() {
 					</div>
 				</div>
 				{/* Activity Graph */}
-				<div className="w-full max-w-[1275px] p-2 h-fit my-6 border border-surface-300 rounded-sm pb-5">
+				<div className="w-full max-w-[1275px] p-2 h-fit my-6 border border-primary-200 rounded-sm pb-5">
 					{/* <ActivityGraph data={activityData} /> */}
 					<HoneycombActivityChart />
 				</div>

@@ -6,7 +6,7 @@ export default function CheckboxIcon() {
 			viewBox="0 0 24 24"
 			strokeWidth="1"
 			stroke="currentColor"
-			className="text-base flex items-center justify-center"
+			className="text-secondary flex items-center justify-center"
 		>
 			<path
 				strokeLinecap="round"
