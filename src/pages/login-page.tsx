@@ -61,18 +61,14 @@ export default function LoginPage() {
 
 				<Input
 					placeholder="Email Address"
-					className="mb-6 w-[320px] px-4 bg-surface-100 text-base placeholder:text-base placeholder:opacity-70 rounded-lg outline-none focus:ring-1 focus:ring-disabled"
+					className="mb-6 w-[320px] text-clickable"
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 
 				{message && <div className={`flex flex-col ${color} mb-6`}>{message}</div>}
 
 				{!isLoggedIn && (
-					<Button
-						disabled={inProgress}
-						className="w-[320px] px-4 py-2 font-bold bg-secondary hover:bg-hover-secondary"
-						onClick={handleContinue}
-					>
+					<Button disabled={inProgress} className="w-[320px]" size="lg" onClick={handleContinue}>
 						Continue to Honeycomb
 					</Button>
 				)}

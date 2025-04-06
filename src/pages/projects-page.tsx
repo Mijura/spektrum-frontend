@@ -91,9 +91,9 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 						</Tooltip>
 					</div>
 				</div>
-				<div className="border-b border-disabled w-full"></div>
+				<div className="border-b border-outline w-full my-2"></div>
 				{projects.map((project: any) => (
-					<Card onClick={() => handleOpenProject(project)} className="w-full" key={project.id}>
+					<Card onClick={() => handleOpenProject(project)} className="w-full my-4 cursor-pointer" key={project.id}>
 						<div className="flex flex-row text-base">{project.name}</div>
 						<div className="mt-2 flex flex-row gap-2 w-full text-sm text-clickable">{project.description}</div>
 						<div className="flex justify-end grow">
@@ -120,7 +120,7 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 						<p className="text-sm text-clickable py-2 italic">Your project activity will remain visible.</p>
 						<div className="flex justify-end gap-4 pt-4">
 							<Button
-								className="bg-surface-100 hover:bg-surface-100/40 cursor-pointer text-clickable rounded-sm"
+								className="bg-surface-100 hover:bg-surface-100/80 cursor-pointer text-clickable rounded-sm"
 								onClick={() => setArchiveModalOpened(false)}
 							>
 								Cancel

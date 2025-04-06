@@ -64,7 +64,7 @@ export default function PricingPage() {
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
-				className="text-2xl md:text-3xl font-bold text-base my-8"
+				className="text-2xl md:text-3xl font-bold text-gray-300 my-8"
 			>
 				Pay-As-You-Go Pricing
 			</motion.h1>
@@ -110,19 +110,21 @@ export default function PricingPage() {
 								<div className="space-y-6">
 									<div className="flex flex-row items-start gap-3">
 										<div className="h-full flex">
-											<CheckmarkIcon color="text-primary" />
+											<CheckmarkIcon color="text-secondary" />
 										</div>
 										<div className="flex flex-col gap-2">
-											<div className="text-primary font-semibold p-0.5">Execution Cost</div>
-											<div>A single execution typically requires 1 to 2 tokens, costing approximately $0.20 per execution.</div>
+											<div className="text-secondary font-semibold p-0.5">Execution Cost</div>
+											<div className="text-clickable">
+												A single execution typically requires 1 to 2 tokens, costing approximately $0.20 per execution.
+											</div>
 										</div>
 									</div>
 									<div className="flex flex-row items-start gap-3">
 										<div className="h-full flex">
-											<CheckmarkIcon color="text-primary" />
+											<CheckmarkIcon color="text-secondary" />
 										</div>
 										<div className="flex flex-col gap-2">
-											<div className="text-primary font-semibold p-0.5">Minimum purchase</div>
+											<div className="text-secondary font-semibold p-0.5">Minimum purchase</div>
 											<div className="">$10 for approximately 50 workflow executions.</div>
 										</div>
 									</div>
@@ -158,7 +160,7 @@ export default function PricingPage() {
 									<p className="text-sm text-clickable">* Based on average of {TOKENS_PER_EXECUTION} tokens per execution</p>
 								</div>
 
-								<Button className="bg-secondary hover:bg-hover-secondary py-2 px-4" onClick={openCheckout}>
+								<Button className="px-4 py-2 bg-base text-surface-100 hover:bg-gray-300/80" onClick={openCheckout}>
 									Continue to Checkout
 								</Button>
 							</div>
