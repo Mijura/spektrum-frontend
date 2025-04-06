@@ -99,14 +99,12 @@ export default function PricingPage() {
 							</div>
 						</Card>
 					</div>
-
 					<div className="w-full md:w-[40%] grow flex h-full">
 						{/* Token Purchase Card */}
 						<Card className="w-full p-8 cursor-default my-2 grow">
 							<div className="flex flex-col items-center space-y-8">
 								<div className="w-full">
-									<div className="flex justify-between mb-2">
-										<span className="text-lg font-semibold">Tokens: {tokenAmount}</span>
+									<div className="flex justify-end mb-2">
 										<span className="text-lg font-semibold">${totalPrice}</span>
 									</div>
 									<input
@@ -121,11 +119,11 @@ export default function PricingPage() {
 								</div>
 
 								<div className="text-center space-y-2">
-									<p className="text-sm text-secondary-100">
+									<p className="text-sm font-semibold text-secondary">
 										Estimated Workflow Executions: <span className="">{estimatedExecutions}</span>
 									</p>
-									<p className="text-sm text-secondary-100 italic mt-4">
-										* Based on average of {TOKENS_PER_EXECUTION} tokens per execution
+									<p className="text-xs text-secondary-100 italic mt-4">
+										* Estimates are based on the average token usage per workflow execution.
 									</p>
 								</div>
 
@@ -136,6 +134,12 @@ export default function PricingPage() {
 						</Card>
 					</div>
 				</div>
+			</div>
+			<div className="py-1 bg-progress text-primary-100 gap-2 flex flex-row items-center fixed bottom-0 w-full justify-center">
+				<div>You can earn JigJoy tokens and use them to run workflows.</div>
+				<Button size="sm" variant="primary">
+					Discover how
+				</Button>
 			</div>
 		</div>
 	)

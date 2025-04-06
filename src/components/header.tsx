@@ -36,10 +36,10 @@ const Header = () => {
 
 			<div className="flex items-center gap-4 relative">
 				<div
-					className={`flex items-center gap-2 ${activePage === "pricing" ? "text-highlight" : "text-secondary-100"} cursor-pointer hover:text-secondary transition-colors`}
+					className={`flex items-center px-2 gap-2 ${activePage === "pricing" ? "text-highlight" : "text-secondary-100"} cursor-pointer hover:text-secondary transition-colors`}
 					onClick={() => switchToPage("pricing")}
 				>
-					Buy tokens
+					Pricing
 				</div>
 
 				<Popover position="bottom-end" isOpen={isAccountMenuOpen}>
