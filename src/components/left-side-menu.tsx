@@ -83,7 +83,7 @@ const LeftSideMenu = () => {
 					}}
 				>
 					<div className="py-2 w-[72px] flex justify-center items-center">
-						<DiscordIcon color={hoveredOption === "discord" ? "text-hover" : "text-secondary-100"} />
+						<DiscordIcon color={hoveredOption === "discord" ? "text-highlight-200" : "text-secondary-100"} />
 					</div>
 					<AnimatePresence>
 						{menuExpanded && (
@@ -92,7 +92,7 @@ const LeftSideMenu = () => {
 								animate={{ x: 0, opacity: 1 }}
 								exit={{ x: -10, width: 0, opacity: 0 }}
 								transition={{ duration: 0.25, ease: "easeInOut" }}
-								className="mr-8 truncate flex items-center"
+								className="mr-8 flex items-center hover:text-highlight-200"
 							>
 								Join Community
 							</motion.span>
