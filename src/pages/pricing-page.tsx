@@ -58,11 +58,11 @@ export default function PricingPage() {
 	}
 
 	return (
-		<div className="w-full text-secondary flex flex-col items-center justify-center lg:justify-start lg:mt-20 px-4 py-4 2xl:py-8 font-body">
+		<div className="w-full text-secondary flex flex-col items-center mt-20 px-4 py-4 2xl:py-8 font-body">
 			<div className="w-full md:w-3/4 2xl:w-1/2 flex h-fit">
-				<div className="flex flex-col md:flex-row gap-4 w-full justify-center items-center">
+				<div className="flex flex-col lg:flex-row gap-4 w-full justify-center items-center">
 					{/* How It Works Card */}
-					<div className="flex flex-col w-full md:w-[60%] h-fit">
+					<div className="flex flex-col w-full lg:w-[60%] h-fit">
 						{/* Page Heading */}
 						<motion.h1
 							initial={{ opacity: 0, y: -20 }}
@@ -99,7 +99,7 @@ export default function PricingPage() {
 							</div>
 						</Card>
 					</div>
-					<div className="w-full md:w-[40%] grow flex h-full">
+					<div className="w-full lg:w-[40%] grow flex h-full">
 						{/* Token Purchase Card */}
 						<Card className="w-full p-8 cursor-default my-2 grow">
 							<div className="flex flex-col items-center space-y-8">

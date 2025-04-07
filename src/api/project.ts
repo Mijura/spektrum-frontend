@@ -19,7 +19,8 @@ export const develop = (
 
 	socket.on("connect", () => {
 		console.log("Connected to WebSocket")
-		socket.emit("develop", {
+		socket.emit("run", {
+			workflowId: "code-generation",
 			projectId: changeRequest.projectId,
 			message: changeRequest.message,
 		})
