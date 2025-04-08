@@ -52,7 +52,7 @@ export default function LoginPage() {
 				animate="visible"
 				transition={{ duration: 0.3 }}
 			>
-				<h1 className="text-2xl mb-2 text-secondary">Welcome!</h1>
+				<h1 className="text-2xl mb-2 font-semibold text-highlight-200">Welcome!</h1>
 
 				<div className="text-secondary opacity-80 mt-2">Enter email to recieve magic link.</div>
 				<div className="my-8">
