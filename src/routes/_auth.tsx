@@ -30,8 +30,8 @@ export const Route = createFileRoute("/_auth")({
 		}
 	},
 	pendingComponent: () => (
-		<div className="w-screen h-screen bg-primary-200 flex items-center justify-center">
-			<Loader size="medium" />
+		<div className="w-screen h-screen bg-primary flex items-center justify-center">
+			<Loader size="medium" message="Loading page..." />
 		</div>
 	),
 	component: AuthLayout,

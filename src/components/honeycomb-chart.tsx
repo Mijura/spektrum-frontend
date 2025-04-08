@@ -3,6 +3,7 @@ import { createPortal } from "react-dom"
 import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
 import { useHeatmap } from "@honeycomb-app/jigjoy-react-sdk"
+import { Loader } from "@honeycomb-app/design"
 
 const HoneycombActivityChart: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
@@ -178,9 +179,17 @@ const HoneycombActivityChart: React.FC = () => {
 
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
-			<div className="mx-auto overflow-x-auto h-fit" style={{ width: `1250px` }}>
-				<svg ref={svgRef} className="w-full" style={{ height: height / 2 }} />
-				<svg ref={legendRef} className="w-full" style={{ height: "60px" }} />
+			<div className="mx-auto overflow-x-auto h-fit overflow-y-hidden" style={{ width: `1250px` }}>
+				{heatmapData ? (
+					<>
+						<svg ref={svgRef} className="w-full" style={{ height: height / 2 }} />
+						<svg ref={legendRef} className="w-full" style={{ height: "60px" }} />
+					</>
+				) : (
+					<div className="flex justify-center items-center">
+						<Loader size="small" message="Loading activity data..." />
+					</div>
+				)}
 			</div>
 
 			{tooltip &&
