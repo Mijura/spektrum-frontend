@@ -13,7 +13,7 @@ export default function ProfilePage() {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.5 }}
-					className={`w-full bg-primary p-6 flex flex-col items-center pt-20`}
+					className={`w-full bg-surface p-6 flex flex-col items-center pt-20`}
 				>
 					{/* Top Section: Profile Info + Credits */}
 					<div className="w-full max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-primary-200">

@@ -12,7 +12,7 @@ const Deployment: React.FC = () => {
 	}
 
 	return (
-		<Button className="h-fit m-4 w-fit bg-primary hover:bg-hover-primary" onClick={handleDeploy}>
+		<Button className="h-fit m-4 w-fit bg-surface hover:bg-hover-primary" onClick={handleDeploy}>
 			Deploy to Production
 		</Button>
 	)

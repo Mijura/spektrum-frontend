@@ -29,7 +29,7 @@ const Header = () => {
 	}
 
 	return (
-		<header className="flex w-[100%] h-[50px] bg-primary border-b border-secondary-200 text-white items-center justify-between shadow-md px-4">
+		<header className="flex w-[100%] h-[50px] bg-surface border-b border-secondary-200 text-white items-center justify-between shadow-md px-4">
 			<div className="flex items-center gap-4">
 				<div className="text-xl font-bold cursor-pointer">Logo</div>
 			</div>
@@ -52,13 +52,13 @@ const Header = () => {
 						<ul className="flex flex-col w-[150px] h-fit text-end">
 							<li
 								onClick={() => switchToPage("profile")}
-								className="p-2 hover:bg-primary cursor-pointer text-secondary-100 hover:text-hover transition-colors"
+								className="p-2 hover:bg-surface cursor-pointer text-secondary-100 hover:text-hover transition-colors"
 							>
 								My Profile
 							</li>
 							<li
 								onClick={handleLogout}
-								className="p-2 hover:bg-primary cursor-pointer text-secondary-100 hover:text-hover transition-colors"
+								className="p-2 hover:bg-surface cursor-pointer text-secondary-100 hover:text-hover transition-colors"
 							>
 								Log out
 							</li>

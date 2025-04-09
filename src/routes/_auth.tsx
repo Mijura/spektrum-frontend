@@ -30,7 +30,7 @@ export const Route = createFileRoute("/_auth")({
 		}
 	},
 	pendingComponent: () => (
-		<div className="w-screen h-screen bg-primary flex items-center justify-center">
+		<div className="w-screen h-screen bg-surface flex items-center justify-center">
 			<Loader size="medium" message="Loading page..." />
 		</div>
 	),
@@ -50,7 +50,7 @@ function AuthLayout() {
 	}, [])
 
 	return (
-		<div className="flex flex-col bg-primary-200 h-screen min-h-screen max-h-screen w-full overflow-hidden">
+		<div className="flex flex-col bg-surface-light h-screen min-h-screen max-h-screen w-full overflow-hidden">
 			<div className="h-fit w-full">
 				<Header />
 			</div>

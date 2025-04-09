@@ -20,7 +20,7 @@ export default function ActivityRewards() {
 	return (
 		profile && (
 			<div className="flex flex-col font-body h-fit">
-				<div className="flex flex-col bg-primary p-4 shadow-md text-white h-full">
+				<div className="flex flex-col bg-surface p-4 shadow-md text-white h-full">
 					<div className="flex flex-row gap-3 w-full">
 						<div className="w-fit">
 							<Button variant="secondary" onClick={switchToPricing} size="sm">

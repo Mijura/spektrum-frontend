@@ -58,9 +58,9 @@ export default function WelcomePage() {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 3 }}
-			className={`h-full w-full bg-primary flex flex-col items-center justify-center`}
+			className={`h-full w-full bg-surface flex flex-col items-center justify-center`}
 		>
-			<div className="w-full max-w-3xl items-start justify-between bg-primary-100 rounded-md shadow p-4 border border-secondary-200 flex flex-wrap">
+			<div className="w-full max-w-3xl items-start justify-between bg-surface-muted rounded-md shadow p-4 border border-secondary-200 flex flex-wrap">
 				{/* First message */}
 				<div className="w-full text-secondary py-4">{staggeredText(sentences[0], 0)}</div>
 
