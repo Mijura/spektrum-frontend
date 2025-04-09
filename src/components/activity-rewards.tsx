@@ -28,7 +28,7 @@ export default function ActivityRewards() {
 							</Button>
 						</div>
 						<div className="text-secondary-100 grow flex flex-row justify-end">
-							Balance:&nbsp;<span className="text-highlight font-bold">4 tokens</span>
+							Balance:&nbsp;<span className="text-highlight font-bold">{profile.tokens} tokens</span>
 						</div>
 					</div>
 					<h1 className="w-fit mt-4 text-sm text-highlight">Activity Rewards</h1>

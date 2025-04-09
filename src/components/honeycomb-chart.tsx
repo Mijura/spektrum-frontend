@@ -163,7 +163,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("x", 0)
 			.attr("y", 5)
 			.attr("text-anchor", "end")
-			.attr("fill", "var(--base)")
+			.attr("fill", "var(--secondary-200)")
 			.attr("font-size", "12px")
 			.text("Low")
 
@@ -172,7 +172,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("x", legendWidth)
 			.attr("y", 5)
 			.attr("text-anchor", "start")
-			.attr("fill", "var(--base)")
+			.attr("fill", "var(--secondary-200)")
 			.attr("font-size", "12px")
 			.text("High")
 	}, [heatmapData])

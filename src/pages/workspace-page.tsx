@@ -4,7 +4,7 @@ import { useProject } from "../hooks/use-project"
 import TicketPlanning from "../components/ticket-planning"
 import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
-import DevelopmentActivities from "../components/development-activities"
+import WorkflowExecutionsTimeline from "../components/workflow-executions"
 
 export default function WorkspacePage() {
 	const project = useProject()
@@ -14,7 +14,7 @@ export default function WorkspacePage() {
 			<div key={project.id} className="grow flex flex-row p-2 pl-4 gap-3">
 				<div className="w-[450px] flex flex-col h-full overflow-y-hidden rounded-[2px]">
 					<ActivityRewards />
-					<DevelopmentActivities />
+					<WorkflowExecutionsTimeline />
 				</div>
 				<div className="flex flex-row w-full">
 					<Tabs>

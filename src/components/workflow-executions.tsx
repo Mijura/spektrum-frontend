@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import TimelineIcon from "../shared/icons/timeline-icon"
 import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
 
-const DevelopmentActivities: React.FC = () => {
+const WorkflowExecutionsTimeline: React.FC = () => {
 	const { timelineData } = useTimeline({ gameId: "honeycomb" })
 
 	useEffect(() => {
@@ -54,4 +54,4 @@ const DevelopmentActivities: React.FC = () => {
 	)
 }
 
-export default DevelopmentActivities
+export default WorkflowExecutionsTimeline

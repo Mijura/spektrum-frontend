@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
 	profile: {
 		email: "miodrag@jigjoy.io",
-		tokensRemaining: 4,
+		tokens: 4,
 		image: "https://avatars.githubusercontent.com/u/110939072?v=4",
 		progressToNextLevel: 40,
 	},
@@ -15,10 +15,10 @@ const profileSlice = createSlice({
 	reducers: {
 		setProfile(state, action) {
 			state.profile.email = action.payload.email
-			state.profile.tokensRemaining = action.payload.tokensRemaining
+			state.profile.tokens = action.payload.tokens
 		},
 		updateTokens(state, action) {
-			state.profile.tokensRemaining = action.payload.tokensRemaining
+			state.profile.tokens = action.payload.tokens
 		},
 	},
 })
