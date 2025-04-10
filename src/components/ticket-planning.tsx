@@ -4,11 +4,13 @@ import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import PlusIcon from "../shared/icons/plus-icon"
 import { useProject } from "../hooks/use-project"
-import { develop } from "../api/project"
+import { runWorkflow } from "../api/project"
 import { createNewTicket } from "../api/ticket"
-import { Ticket } from "../shared/types/ticket"
+import { Ticket } from "../types/ticket"
 import { ticketCreated } from "../reducers/project-reducer"
 import { useDispatch } from "react-redux"
+import { v4 as uuidv4 } from "uuid"
+import { WorkflowId, WorkflowStatus } from "../types/workflow-execution"
 
 const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 	const project = useProject()
@@ -18,12 +20,17 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 	const [description, setDescription] = useState("")
 	const [modalOpened, setModalOpened] = useState(false)
 
-	const implement = async (feature: string) => {
-		await develop(
-			{
-				projectId: project.id,
-				message: feature,
-			},
+	const handleRunWorkflow = async (ticketId: string) => {
+		const workflowExecution = {
+			id: uuidv4(),
+			workflowId: WorkflowId.CodeGeneration,
+			status: WorkflowStatus.Running,
+			projectId: project.id,
+			ticketId: ticketId,
+		}
+
+		await runWorkflow(
+			workflowExecution,
 			({}) => {},
 			({}) => {},
 			({}) => {},
@@ -60,7 +67,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 							</Tooltip>
 
 							<div className="flex grow w-full justify-end cursor-pointer">
-								<div onClick={() => implement(ticket.title)}>
+								<div onClick={() => handleRunWorkflow(ticket.id)}>
 									<Tooltip message="Run workflow">
 										<PlayIcon />
 									</Tooltip>

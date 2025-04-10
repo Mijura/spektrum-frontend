@@ -1,16 +1,11 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
+import { io } from "socket.io-client"
+import { WorfklowExecution } from "../types/workflow-execution"
 
 const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
-interface ChangeRequest {
-	projectId: string
-	message: string
-}
-
-import { io } from "socket.io-client"
-
-export const develop = (
-	changeRequest: ChangeRequest,
+export const runWorkflow = (
+	workflowExecution: WorfklowExecution,
 	onUpdate: (data: any) => void,
 	onDone: (data: any) => void,
 	onError: (error: any) => void,
@@ -19,11 +14,7 @@ export const develop = (
 
 	socket.on("connect", () => {
 		console.log("Connected to WebSocket")
-		socket.emit("run", {
-			workflowId: "code-generation",
-			projectId: changeRequest.projectId,
-			message: changeRequest.message,
-		})
+		socket.emit("run", workflowExecution)
 	})
 
 	socket.on("update", (data) => {
