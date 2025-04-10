@@ -6,7 +6,7 @@
 @layer utilities {
 	.custom-scrollbar {
 		scrollbar-width: thin; /* Firefox */
-		scrollbar-color: #94a3b8 #f1f5f9; /* Firefox */
+		scrollbar-color: var(--primary-200) var(--primary); /* Firefox */
 
 		&::-webkit-scrollbar-thumb {
 			background-color: var(--primary-100); /* slate-600 */

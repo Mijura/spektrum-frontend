@@ -7,7 +7,7 @@ export default function ArchiveIcon() {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="text-[#7f1734] font-semibold flex items-center justify-center"
+			className="text-danger font-semibold flex items-center justify-center"
 		>
 			<path
 				stroke-linecap="round"
