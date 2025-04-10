@@ -30,7 +30,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 	}
 
 	return (
-		<div className="flex flex-col bg-surface mt-3 shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar">
+		<div className="flex flex-col bg-surface mt-3 shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4">
 			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-highlight text-sm">Workflow Executions</div>
 
 			{timelineData &&

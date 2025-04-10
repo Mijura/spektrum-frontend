@@ -45,8 +45,8 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 
 	return (
 		<>
-			<div className="ml-4 mt-8 px-4 w-[300px] h-0 grow">
-				<div className="flex flex-row w-full h-full mb-2">
+			<div className="ml-4 py-8 px-4 w-1/3 h-[calc(100dvh-10rem)]">
+				<div className="flex flex-row w-full mb-2">
 					<h1 className="ml-2 text-secondary-100 font-semibold text-sm w-fit flex items-center">Tickets</h1>
 
 					<div className="flex justify-end grow">
@@ -58,24 +58,26 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 					</div>
 				</div>
 				<div className="border-b border-secondary-200 w-full"></div>
-				{tickets.map((ticket) => (
-					<Card key={ticket.id} className="my-4">
-						<div className="flex flex-row text-secondary-100">{ticket.title}</div>
-						<div className="mt-2 flex flex-row gap-2 w-full">
-							<Tooltip message="Change status">
-								<MoreOptionsIcon />
-							</Tooltip>
+				<div className="pb-4">
+					{tickets.map((ticket) => (
+						<Card key={ticket.id} className="my-4">
+							<div className="flex flex-row text-secondary-100 text-sm">{ticket.title}</div>
+							<div className="mt-2 flex flex-row gap-2 w-full">
+								<Tooltip message="Change status">
+									<MoreOptionsIcon />
+								</Tooltip>
 
-							<div className="flex grow w-full justify-end cursor-pointer">
-								<div onClick={() => handleRunWorkflow(ticket.id)}>
-									<Tooltip message="Run workflow">
-										<PlayIcon />
-									</Tooltip>
+								<div className="flex grow w-full justify-end cursor-pointer">
+									<div onClick={() => handleRunWorkflow(ticket.id)}>
+										<Tooltip message="Run workflow">
+											<PlayIcon />
+										</Tooltip>
+									</div>
 								</div>
 							</div>
-						</div>
-					</Card>
-				))}
+						</Card>
+					))}
+				</div>
 			</div>
 
 			<div className="flex flex-row w-[300px] h-fit">
