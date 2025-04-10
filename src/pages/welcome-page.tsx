@@ -50,8 +50,8 @@ export default function WelcomePage() {
 	}
 
 	return loading ? (
-		<div className="w-full h-full flex items-center justify-center">
-			<Loader message="Project intialization" />
+		<div className="bg-surface w-full h-full flex items-center justify-center">
+			<Loader size="small" message="Project initialization" />
 		</div>
 	) : (
 		<motion.div

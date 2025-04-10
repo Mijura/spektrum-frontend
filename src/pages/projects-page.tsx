@@ -74,8 +74,8 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 	}
 
 	return loading ? (
-		<div className="w-full h-full flex items-center justify-center">
-			<Loader message="Project intialization" size="large" />
+		<div className="bg-surface w-full h-full flex items-center justify-center">
+			<Loader message="Project initialization" size="small" />
 		</div>
 	) : (
 		<div className="ml-20 px-4 pt-20">
