@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import TimelineIcon from "../shared/icons/timeline-icon"
 import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
-import { Card, Tooltip } from "@honeycomb-app/design"
+import { Card, Loader, Tooltip } from "@honeycomb-app/design"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
 import FailedIcon from "../shared/icons/failed-icon"
@@ -33,7 +33,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 		<div className="flex flex-col bg-surface mt-3 shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4">
 			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-highlight text-sm">Workflow Executions</div>
 
-			{timelineData &&
+			{timelineData ? (
 				timelineData.map((execution: any) => (
 					<>
 						<div className="flex flex-col items-center px-3 text-sm">
@@ -42,7 +42,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 							>
 								<div className="flex flex-row w-full">
 									<div className="pl-2 grow">
-										<div className="px-2 py-1 h-fit w-fit text-xs text-secondary-100 ">
+										<div className="px-2 py-1 h-fit w-fit text-sm text-secondary-100 ">
 											Implement landing page displaying random copy
 										</div>
 
@@ -66,7 +66,12 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 							</Card>
 						</div>
 					</>
-				))}
+				))
+			) : (
+				<div className="flex flex-col items-center px-3 text-sm justify-center h-full">
+					<Loader size="small" message="Loading executions" />
+				</div>
+			)}
 		</div>
 	)
 }
