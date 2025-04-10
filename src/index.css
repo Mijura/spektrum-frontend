@@ -4,6 +4,38 @@
 @import "tailwindcss";
 
 @layer utilities {
+	.custom-scrollbar {
+		scrollbar-width: thin; /* Firefox */
+		scrollbar-color: #94a3b8 #f1f5f9; /* Firefox */
+
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--primary-100); /* slate-600 */
+		}
+		scrollbar-color: var(--primary-100) var(--primary); /* dark thumb / track */
+
+		&::-webkit-scrollbar {
+			width: 8px;
+			height: 8px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: #f1f5f9; /* light track */
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: #94a3b8; /* slate-400 */
+			border-radius: 0.5rem;
+			border: 2px solid #f1f5f9;
+		}
+	}
+
+	.custom-scrollbar-thin {
+		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
 	.hexagon {
 		--b: 1px; /* Border thickness */
 		--size: 20px; /* Hexagon size */

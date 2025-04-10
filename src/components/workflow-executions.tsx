@@ -30,7 +30,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 	}
 
 	return (
-		<div className="flex flex-col bg-surface mt-3 shadow-md h-full gap-4">
+		<div className="flex flex-col bg-surface mt-3 shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar">
 			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-highlight text-sm">Workflow Executions</div>
 
 			{timelineData &&
@@ -38,24 +38,20 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 					<>
 						<div className="flex flex-col items-center px-3 text-sm">
 							<Card
-								className={`mx-4 p-1 rounded-md grow items-center flex flex-col w-full ${execution.data.buildStatus === "success" ? "border-l-progress" : "border-l-danger"} border-l-4`}
+								className={`p-1 rounded-md grow items-center flex flex-col w-full ${execution.data.buildStatus === "success" ? "border-l-progress" : "border-l-danger"} border-l-4`}
 							>
 								<div className="flex flex-row w-full">
-									<div className="h-full flex items-center justify-center px-2">
-										{execution.data.buildStatus === "success" ? (
-											<SuccessIcon />
-										) : (
-											<Tooltip message="Failed" className="cursor-pointer">
-												<FailedIcon />
-											</Tooltip>
-										)}
-									</div>
-
 									<div className="pl-2 grow">
-										<div className="p-1 h-fit w-full text-secondary-100">{execution.data.workflowId}</div>
+										<div className="px-2 py-1 h-fit w-fit text-xs text-secondary-100 ">
+											Implement landing page displaying random copy
+										</div>
 
-										<div className="p-1 mt-2 h-fit w-full text-secondary-100 flex items-end gap-2">
-											<div className="text-secondary-100 text-sm flex h-fit gap-1">
+										<div className="bg-surface px-2 py-1 rounded-sm h-fit w-fit text-xs text-secondary-100 ">
+											{execution.data.workflowId}
+										</div>
+
+										<div className="p-1 h-fit w-full text-secondary-100 flex items-end gap-2">
+											<div className="text-secondary-100 text-xs items-center flex h-fit gap-1">
 												<WatchIcon />
 												{formatTimestamp(execution.timestamp)}
 											</div>

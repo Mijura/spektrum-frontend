@@ -45,8 +45,8 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 
 	return (
 		<>
-			<div className="ml-4 mt-8 px-4 w-[300px]">
-				<div className="flex flex-row w-full h-fit mb-2">
+			<div className="ml-4 mt-8 px-4 w-[300px] h-0 grow">
+				<div className="flex flex-row w-full h-full mb-2">
 					<h1 className="ml-2 text-secondary-100 font-semibold text-sm w-fit flex items-center">Tickets</h1>
 
 					<div className="flex justify-end grow">
