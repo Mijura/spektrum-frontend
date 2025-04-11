@@ -22,7 +22,7 @@ export default function ActivityRewards() {
 						<ChevronContent>
 							<>
 								<div className="mb-3 text-sm text-secondary-100">Complete challenges to earn tokens</div>
-								<ProgressBar progress={30} className="w-full" />
+								<ProgressBar progress={30} className="" />
 								<div className="my-2 text-sm text-secondary-100">{profile.progressToNextLevel}% done</div>
 								<div className="flex flex-row gap-2 items-center w-full text-secondary-100">
 									<CheckboxIcon />

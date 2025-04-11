@@ -12,10 +12,6 @@ export default function WorkspacePage() {
 	return (
 		project && (
 			<div key={project.id} className="grow flex flex-row p-2 pl-4 gap-3">
-				<div className="w-[400px] flex flex-col rounded-[2px]">
-					<ActivityRewards />
-					<WorkflowExecutionsTimeline />
-				</div>
 				<Tabs>
 					<Tab key="Planning" className="h-full overflow-y-auto custom-scrollbar">
 						<TicketPlanning tickets={project.tickets} />
@@ -27,6 +23,10 @@ export default function WorkspacePage() {
 						<Deployment />
 					</Tab>
 				</Tabs>
+				<div className="w-[325px] flex flex-col rounded-[2px] mt-9">
+					<ActivityRewards />
+					<WorkflowExecutionsTimeline />
+				</div>
 			</div>
 		)
 	)

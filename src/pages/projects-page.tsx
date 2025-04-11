@@ -78,10 +78,10 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 			<Loader message="Project initialization" size="small" />
 		</div>
 	) : (
-		<div className="ml-20 px-4 pt-20">
-			<div className="mt-8 px-4 w-[325px]">
+		<div className="ml-20 px-4 pt-4">
+			<div className="px-4 w-[325px]">
 				<div className="flex flex-row w-full h-fit mb-2">
-					<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Projects</h1>
+					<h1 className="text-highlight font-semibold w-fit flex items-center">Projects</h1>
 
 					<div className="flex justify-end grow">
 						<Tooltip message="Create new project" className="bg-surface-muted">
