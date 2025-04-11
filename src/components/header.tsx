@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router"
-import { Avatar, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
+import { Avatar, Button, Popover, PopoverContent, PopoverTrigger } from "@honeycomb-app/design"
 import { pageLoaded } from "../reducers/active-page-reducer"
 import { useDispatch } from "react-redux"
 import { signOut } from "aws-amplify/auth"
@@ -35,11 +35,10 @@ const Header = () => {
 			</div>
 
 			<div className="flex items-center gap-4 relative">
-				<div
-					className={`flex items-center px-2 gap-2 ${activePage === "pricing" ? "text-highlight" : "text-secondary-100"} cursor-pointer hover:text-secondary transition-colors`}
-					onClick={() => switchToPage("pricing")}
-				>
-					Pricing
+				<div className="w-fit">
+					<Button variant="secondary" size="sm" onClick={() => switchToPage("pricing")}>
+						Buy tokens
+					</Button>
 				</div>
 
 				<Popover position="bottom-end" isOpen={isAccountMenuOpen}>

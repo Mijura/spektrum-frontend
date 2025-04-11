@@ -1,8 +1,6 @@
 import React, { useEffect } from "react"
 import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
 import { Card, Loader, Tooltip, Chip } from "@honeycomb-app/design"
-import FailedIcon from "../shared/icons/failed-icon"
-import SuccessIcon from "../shared/icons/success-icon"
 import CheckOutputIcon from "../shared/icons/check-output-icon"
 import WatchIcon from "../shared/icons/watch-icon"
 
@@ -39,8 +37,10 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 							>
 								<div className="flex flex-row w-full">
 									<div className="pl-2 grow">
-										<div className="px-2 py-1 h-fit w-fit text-sm text-secondary-100 ">
-											Implement landing page displaying random copy
+										<div className="flex flex-row gap-1 items-center">
+											<div className="px-2 py-1 h-fit w-fit text-sm text-secondary-100 ">
+												Implement landing page displaying random copy
+											</div>
 										</div>
 
 										<Chip label={execution.data.workflowId} />
@@ -50,7 +50,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 												<WatchIcon />
 												{formatTimestamp(execution.timestamp)}
 											</div>
-											<div className="cursor-pointer grow flex justify-end" onClick={() => {}}>
+											<div className="cursor-pointer grow flex justify-end gap-1" onClick={() => {}}>
 												<Tooltip message="Check Output">
 													<CheckOutputIcon />
 												</Tooltip>
