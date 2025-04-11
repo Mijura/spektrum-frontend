@@ -1,9 +1,6 @@
 import React, { useEffect } from "react"
-import TimelineIcon from "../shared/icons/timeline-icon"
 import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
-import { Card, Loader, Tooltip } from "@honeycomb-app/design"
-import CheckboxIcon from "../shared/icons/checkbox-icon"
-import CheckmarkIcon from "../shared/icons/checkmark-icon"
+import { Card, Loader, Tooltip, Chip } from "@honeycomb-app/design"
 import FailedIcon from "../shared/icons/failed-icon"
 import SuccessIcon from "../shared/icons/success-icon"
 import CheckOutputIcon from "../shared/icons/check-output-icon"
@@ -46,9 +43,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 											Implement landing page displaying random copy
 										</div>
 
-										<div className="bg-surface px-2 py-1 rounded-sm h-fit w-fit text-xs text-secondary-100 ">
-											{execution.data.workflowId}
-										</div>
+										<Chip label={execution.data.workflowId} />
 
 										<div className="p-1 h-fit w-full text-secondary-100 flex items-end gap-2">
 											<div className="text-secondary-100 text-xs items-center flex h-fit gap-1">
