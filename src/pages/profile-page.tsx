@@ -13,19 +13,27 @@ export default function ProfilePage() {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.5 }}
-					className={`w-full bg-surface p-6 flex flex-col items-center pt-4`}
+					className={`w-full bg-surface px-6 pt-2 flex flex-col items-center`}
 				>
 					{/* Top Section: Profile Info + Credits */}
-					<div className="w-full max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow p-6 border border-primary-200">
+					<div className="w-full max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow py-6">
 						{/* Left: Profile Image & Basic Info */}
-						<div className="flex items-center mb-4 md:mb-0">
+
+						<div className="flex items-center mb-4 md:mb-0 h-fit">
 							<img
 								src={profile.image}
 								alt="Profile"
-								className="w-20 h-20 rounded-full mr-4 object-cover border-2 border-secondary-200"
+								className="w-20 h-20 mr-4 rounded-full object-cover border-2 border-secondary-200"
 							/>
-							<div className="flex flex-col">
-								<span className="text-xl font-semibold text-secondary-100">{profile.email}</span>
+							<div className="flex flex-col h-fit">
+								<motion.h1
+									initial={{ opacity: 0, y: -20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5 }}
+									className="items-start w-full text-highlight-100"
+								>
+									{profile.email}
+								</motion.h1>
 								{/* Level and XP */}
 								<div className="flex items-center gap-2 mt-1">
 									<span className="text-sm text-secondary-100">Level {profile.level}</span>
@@ -44,7 +52,7 @@ export default function ProfilePage() {
 								initial={{ scale: 0 }}
 								animate={{ scale: 1 }}
 								transition={{ type: "spring", stiffness: 200 }}
-								className="text-2xl font-bold text-highlight"
+								className="text-4xl font-bold text-highlight"
 							>
 								{profile.tokens}
 							</motion.span>

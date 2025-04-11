@@ -105,7 +105,7 @@ const LeftSideMenu = () => {
 								transition={{ duration: 0.25, ease: "easeInOut" }}
 								className="mr-8 flex items-center hover:text-highlight-200"
 							>
-								Join Community
+								Community
 							</motion.span>
 						)}
 					</AnimatePresence>

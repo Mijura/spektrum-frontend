@@ -5,18 +5,12 @@
 
 @layer utilities {
 	.custom-scrollbar {
-		scrollbar-width: thin; /* Firefox */
 		scrollbar-color: var(--primary-200) var(--primary); /* Firefox */
 
 		&::-webkit-scrollbar-thumb {
 			background-color: var(--primary-100); /* slate-600 */
 		}
 		scrollbar-color: var(--primary-100) var(--primary); /* dark thumb / track */
-
-		&::-webkit-scrollbar {
-			width: 8px;
-			height: 8px;
-		}
 
 		&::-webkit-scrollbar-track {
 			background: #f1f5f9; /* light track */
