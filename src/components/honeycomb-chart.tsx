@@ -37,6 +37,8 @@ const HoneycombActivityChart: React.FC = () => {
 			currentMonth.setMonth(currentMonth.getMonth() + 1)
 		}
 
+		let maxIntensity = 0
+
 		// Generate hexbin points
 		const points: { x: number; y: number; intensity: number; date: string }[] = []
 		for (let i = 0; i < MapRows; i++) {
@@ -47,6 +49,7 @@ const HoneycombActivityChart: React.FC = () => {
 				let index = j * MapRows + i
 				if (index >= heatmapData.length) break
 				let intensity = heatmapData[index]?.count ?? 0
+				if (intensity > maxIntensity) maxIntensity = intensity
 				let date = heatmapData[index]?.date ?? "Unknown"
 				points.push({ x, y, intensity, date })
 			}
@@ -60,7 +63,7 @@ const HoneycombActivityChart: React.FC = () => {
 		const hexData = hexbin(points)
 
 		const color = d3
-			.scaleSequential(d3.interpolateLab("#FFD700", "#8B4513")) // Honey gradient
+			.scaleSequential(d3.interpolateLab("#b3b3ff", "#404080")) // Honey gradient
 			.domain([0, d3.max(hexData, (d) => d3.mean(d, (p) => p.intensity) || 0) || 0])
 
 		const svg = d3.select(svgRef.current)
@@ -78,7 +81,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("y", (_, i) => i * (hexRadius * 3) + height / weekdays.length / 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
-			.attr("fill", "var(--secondary)") // ✅ Fixed
+			.attr("fill", "var(--secondary)")
 			.attr("font-size", "12px")
 			.text((d) => d)
 
@@ -92,7 +95,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("x", (_, i) => (i * width) / months.length + 3 * hexRadius + 3)
 			.attr("y", margin.top - 2) // Adjust the y position above hexagons
 			.attr("text-anchor", "middle")
-			.attr("fill", "var(--secondary)") // ✅ Fixed
+			.attr("fill", "var(--secondary)")
 			.attr("font-size", "12px")
 			.text((d) => d)
 
@@ -142,6 +145,8 @@ const HoneycombActivityChart: React.FC = () => {
 		// Create legend group
 		const legend = legendSvg.append("g").attr("transform", `translate(${width - legendWidth}, ${legendHeight / 2})`)
 
+		console.log(maxIntensity)
+
 		// Add hexagons to legend
 		legend
 			.selectAll(".legend-hexagon")
@@ -151,8 +156,9 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("class", "legend-hexagon")
 			.attr("d", d3Hexbin().radius(legendHexRadius).hexagon())
 			.attr("transform", (d, i) => `translate(${(i + 1) * legendSpacing}, 0)`)
-			.style("fill", (d) => {
-				return d === 0 ? "var(--primary)" : color(1 - d / 4)
+			.style("fill", (d, i) => {
+				console.log(d, i)
+				return d === 0 ? "var(--primary)" : color((maxIntensity * d) / legendData.length)
 			})
 			.attr("stroke", "var(--secondary-200)")
 			.attr("stroke-width", "1px")
@@ -163,7 +169,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("x", 0)
 			.attr("y", 5)
 			.attr("text-anchor", "end")
-			.attr("fill", "var(--secondary-200)")
+			.attr("fill", "var(--secondary-100)")
 			.attr("font-size", "12px")
 			.text("Low")
 
@@ -172,7 +178,7 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("x", legendWidth)
 			.attr("y", 5)
 			.attr("text-anchor", "start")
-			.attr("fill", "var(--secondary-200)")
+			.attr("fill", "var(--secondary-100)")
 			.attr("font-size", "12px")
 			.text("High")
 	}, [heatmapData])
