@@ -11,7 +11,7 @@
 		"format": "prettier --write \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
-		"@honeycomb-app/design": "^0.0.87",
+		"@honeycomb-app/design": "^0.0.89",
 		"@honeycomb-app/jigjoy-react-sdk": "^0.0.6",
 		"@paddle/paddle-js": "^1.4.0",
 		"@reduxjs/toolkit": "^2.5.0",
@@ -30,7 +30,7 @@
 		"@rspack/cli": "^1.2.2",
 		"@rspack/core": "^1.2.2",
 		"@tailwindcss/postcss": "^4.0.0",
-		"@tanstack/react-router-devtools": "^1.115.2",
+		"@tanstack/react-router-devtools": "^1.115.3",
 		"@tanstack/router-cli": "^1.92.11",
 		"@tanstack/router-devtools": "^1.92.11",
 		"@tanstack/router-plugin": "^1.92.11",

@@ -36,11 +36,9 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 								className={`p-1 rounded-md grow items-center flex flex-col w-full ${execution.data.buildStatus === "success" ? "border-l-progress" : "border-l-danger"} border-l-4`}
 							>
 								<div className="flex flex-row w-full">
-									<div className="pl-2 grow">
-										<div className="flex flex-row gap-1 items-center">
-											<div className="px-2 py-1 h-fit w-fit text-sm text-secondary-100 ">
-												Implement landing page displaying random copy
-											</div>
+									<div className="pl-2 grow w-0">
+										<div className="gap-1 items-center">
+											<p className="px-2 py-1 text-secondary-100 truncate w-full">{execution.data.ticketTitle}</p>
 										</div>
 
 										<Chip label={execution.data.workflowId} />
