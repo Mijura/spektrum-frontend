@@ -45,19 +45,21 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 
 	return (
 		<>
-			<div className="py-8 px-4 w-full max-w-[325px] h-[calc(100dvh-10rem)]">
-				<div className="flex flex-row w-full mb-2">
-					<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Tickets</h1>
+			<div className="px-4 w-full max-w-[325px] h-full">
+				<div className="border-b border-t border-secondary-200">
+					<div className="flex flex-row w-full h-[50px] items-center">
+						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Tickets</h1>
 
-					<div className="flex justify-end grow">
-						<div onClick={() => setModalOpened(true)}>
-							<Tooltip message="Create new ticket">
-								<PlusIcon />
-							</Tooltip>
+						<div className="flex justify-end grow">
+							<div onClick={() => setModalOpened(true)}>
+								<Tooltip message="Create new ticket">
+									<PlusIcon />
+								</Tooltip>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div className="border-b border-secondary-200 w-full" />
+
 				<div className="pb-4">
 					{tickets.map((ticket) => (
 						<Card key={ticket.id} className="my-4 flex flex-col">
