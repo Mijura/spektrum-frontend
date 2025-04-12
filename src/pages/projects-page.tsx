@@ -79,8 +79,8 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 		</div>
 	) : (
 		<div className="w-full flex flex-row bg-surface pl-4">
-			<div className="h-full w-fit bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
-				<div className="py-8 px-4 w-full max-w-[325px] h-[calc(100dvh-10rem)]">
+			<div className="h-[100dvh] overflow-y-auto custom-scrollbar w-fit bg-surface border border-primary-200 rounded-sm">
+				<div className="py-8 px-4 w-full max-w-[325px] ">
 					<div className="flex flex-row w-full mb-2">
 						<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Projects</h1>
 
@@ -92,8 +92,7 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 							</Tooltip>
 						</div>
 					</div>
-					<div className="border-b border-secondary-200 w-full my-2"></div>
-					<div className="flex flex-col gap-4 h-full pb-4">
+					<div className="flex flex-col gap-4 h-full py-4">
 						{projects.map((project: any) => (
 							<Card onClick={() => handleOpenProject(project)} className="w-full cursor-pointer" key={project.id}>
 								<div className="text-highlight-200 text-sm">{project.name}</div>
