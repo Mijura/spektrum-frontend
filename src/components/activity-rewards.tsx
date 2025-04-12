@@ -8,9 +8,9 @@ export default function ActivityRewards() {
 
 	return (
 		profile && (
-			<div className="flex flex-col font-body h-fit border-[1px] border-primary-200 rounded-sm">
+			<div className="flex flex-col font-body h-fit rounded-sm">
 				<div className="flex flex-col bg-surface h-full ">
-					<Chevron defaultExpanded={true}>
+					<Chevron defaultExpanded={true} className="w-[325px] border border-primary-200">
 						<ChevronTrigger>
 							<div className="flex flex-row w-full">
 								<h1 className="w-fit text-sm text-secondary-100 flex flex-row gap-1 items-center">Activity Rewards</h1>
