@@ -13,13 +13,13 @@ export default function ProfilePage() {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.5 }}
-					className={`w-full bg-surface px-6 pt-2 flex flex-col items-center`}
+					className={`w-full bg-surface pt-16 px-6 flex flex-col items-center`}
 				>
 					{/* Top Section: Profile Info + Credits */}
-					<div className="w-full max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-sm shadow py-6">
+					<div className="w-full bg-surface p-8 max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-md shadow py-6">
 						{/* Left: Profile Image & Basic Info */}
 
-						<div className="flex items-center mb-4 md:mb-0 h-fit">
+						<div className="flex items-center h-fit">
 							<img
 								src={profile.image}
 								alt="Profile"
@@ -59,7 +59,7 @@ export default function ProfilePage() {
 						</div>
 					</div>
 					{/* Activity Graph */}
-					<div className="w-full max-w-[1275px] p-2 h-fit my-6 border border-primary-200 rounded-sm pb-5">
+					<div className="w-full bg-surface max-w-[1275px] px-2 h-fit border border-primary-200 rounded-sm">
 						{/* <ActivityGraph data={activityData} /> */}
 						<HoneycombActivityChart />
 					</div>

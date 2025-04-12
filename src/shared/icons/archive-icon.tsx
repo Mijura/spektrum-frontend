@@ -5,9 +5,9 @@ export default function ArchiveIcon() {
 			height={20}
 			fill="none"
 			viewBox="0 0 24 24"
-			stroke-width="1.5"
+			stroke-width="1"
 			stroke="currentColor"
-			className="text-danger font-semibold flex items-center justify-center"
+			className="text-[#EF476F] font-semibold flex items-center justify-center"
 		>
 			<path
 				stroke-linecap="round"

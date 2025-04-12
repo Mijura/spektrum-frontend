@@ -78,57 +78,62 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 			<Loader message="Project initialization" size="small" />
 		</div>
 	) : (
-		<div className="ml-20 px-4 pt-4">
-			<div className="px-4 w-[325px]">
-				<div className="flex flex-row w-full h-fit mb-2">
-					<h1 className="text-highlight font-semibold w-fit flex items-center">Projects</h1>
+		<div className="w-full flex flex-row bg-surface pl-4">
+			<div className="h-full w-fit bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
+				<div className="py-8 px-4 w-full max-w-[325px] h-[calc(100dvh-10rem)]">
+					<div className="flex flex-row w-full mb-2">
+						<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Projects</h1>
 
-					<div className="flex justify-end grow">
-						<Tooltip message="Create new project" className="bg-surface-muted">
-							<div onClick={handleCreateNewProject}>
-								<PlusIcon />
-							</div>
-						</Tooltip>
+						<div className="flex justify-end grow">
+							<Tooltip message="Create new project" className="bg-surface-muted">
+								<div onClick={handleCreateNewProject}>
+									<PlusIcon />
+								</div>
+							</Tooltip>
+						</div>
+					</div>
+					<div className="border-b border-secondary-200 w-full my-2"></div>
+					<div className="flex flex-col gap-4 h-full pb-4">
+						{projects.map((project: any) => (
+							<Card onClick={() => handleOpenProject(project)} className="w-full cursor-pointer" key={project.id}>
+								<div className="text-highlight-200 text-sm">{project.name}</div>
+								<div className="mt-2 w-full text-xs italic text-secondary-100 line-clamp-2">{project.description}</div>
+								<div className="flex justify-end grow">
+									<div
+										onClick={(e) => {
+											e.stopPropagation()
+											setProjectToArchive(project)
+											setArchiveModalOpened(true)
+										}}
+									>
+										<Tooltip message={"Archive project"}>
+											<ArchiveIcon />
+										</Tooltip>
+									</div>
+								</div>
+							</Card>
+						))}
+					</div>
+
+					<div className="flex flex-row h-fit">
+						<Modal isOpen={archiveModalOpened} onCloseCallback={() => setArchiveModalOpened(false)}>
+							<ModalContent title="Archive project">
+								<div className="flex flex-row gap-2">Are you sure you want to archive this project?</div>
+								<p className="text-sm text-secondary-100 py-2 italic">Your project activity will remain visible.</p>
+								<div className="flex justify-end gap-2 pt-4">
+									<Button variant="secondary" onClick={() => setArchiveModalOpened(false)}>
+										Cancel
+									</Button>
+									<Button variant="danger" onClick={() => handleArchiveProject()}>
+										Archive
+									</Button>
+								</div>
+							</ModalContent>
+						</Modal>
 					</div>
 				</div>
-				<div className="border-b border-secondary-200 w-full my-2"></div>
-				{projects.map((project: any) => (
-					<Card onClick={() => handleOpenProject(project)} className="w-full my-4 cursor-pointer" key={project.id}>
-						<div className="flex flex-row text-secondary">{project.name}</div>
-						<div className="mt-2 flex flex-row gap-2 w-full text-xs italic text-secondary-100">{project.description}</div>
-						<div className="flex justify-end grow">
-							<div
-								onClick={(e) => {
-									e.stopPropagation()
-									setProjectToArchive(project)
-									setArchiveModalOpened(true)
-								}}
-							>
-								<Tooltip message={"Archive project"}>
-									<ArchiveIcon />
-								</Tooltip>
-							</div>
-						</div>
-					</Card>
-				))}
 			</div>
-
-			<div className="flex flex-row h-fit">
-				<Modal isOpen={archiveModalOpened} onCloseCallback={() => setArchiveModalOpened(false)}>
-					<ModalContent title="Archive project">
-						<div className="flex flex-row gap-2">Are you sure you want to archive this project?</div>
-						<p className="text-sm text-secondary-100 py-2 italic">Your project activity will remain visible.</p>
-						<div className="flex justify-end gap-2 pt-4">
-							<Button variant="secondary" onClick={() => setArchiveModalOpened(false)}>
-								Cancel
-							</Button>
-							<Button variant="danger" onClick={() => handleArchiveProject()}>
-								Archive
-							</Button>
-						</div>
-					</ModalContent>
-				</Modal>
-			</div>
+			<div className="grow bg-[#1a1a1a]"></div>
 		</div>
 	)
 }

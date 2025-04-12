@@ -1,12 +1,11 @@
 export default function PlusIcon() {
 	return (
 		<svg
-			strokeWidth={0.1}
+			fill="none"
 			viewBox="0 0 24 24"
-			width="1em"
-			height="1em"
+			strokeWidth="0.02"
 			stroke="currentColor"
-			className="size-5 cursor-pointer text-highlight hover:text-secondary"
+			className="size-5 text-secondary-100 cursor-pointer hover:opacity-75"
 		>
 			<g className="edit-outline">
 				<g fill="currentColor" fillRule="evenodd" className="Vector" clipRule="evenodd">

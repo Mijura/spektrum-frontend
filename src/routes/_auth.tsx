@@ -53,7 +53,7 @@ function AuthLayout() {
 		<div className="flex flex-col bg-surface-light h-screen min-h-screen max-h-screen w-full overflow-hidden">
 			<div className="grow flex flex-row">
 				<LeftSideMenu />
-				<div className="grow pl-[72px] mt-2 flex">
+				<div className="grow pl-[60px] flex">
 					<Outlet />
 				</div>
 			</div>

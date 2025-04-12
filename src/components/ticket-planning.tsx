@@ -45,9 +45,9 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 
 	return (
 		<>
-			<div className="ml-4 py-8 px-4 w-1/3 max-w-[400px] h-[calc(100dvh-10rem)]">
+			<div className="py-8 px-4 w-full max-w-[325px] h-[calc(100dvh-10rem)]">
 				<div className="flex flex-row w-full mb-2">
-					<h1 className="text-highlight font-semibold w-fit flex items-center">Tickets</h1>
+					<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Tickets</h1>
 
 					<div className="flex justify-end grow">
 						<div onClick={() => setModalOpened(true)}>
@@ -60,8 +60,8 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 				<div className="border-b border-secondary-200 w-full" />
 				<div className="pb-4">
 					{tickets.map((ticket) => (
-						<Card key={ticket.id} className="my-4">
-							<div className="flex flex-row text-secondary-100 text-sm">{ticket.title}</div>
+						<Card key={ticket.id} className="my-4 flex flex-col">
+							<div className="text-secondary-100 text-sm line-clamp-2 w-full">{ticket.title}</div>
 							<div className="mt-2 flex flex-row gap-2 w-full">
 								<Tooltip message="Change status">
 									<MoreOptionsIcon />
