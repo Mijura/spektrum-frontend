@@ -10,6 +10,7 @@ import { useActivePage } from "../hooks/use-active-page"
 import ProfileIcon from "../shared/icons/profile-icon"
 import LogoutIcon from "../shared/icons/logout-icon"
 import { signOut } from "aws-amplify/auth"
+import PricingIcon from "../shared/icons/pricing-icon"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
@@ -45,6 +46,7 @@ const LeftSideMenu = () => {
 					{ name: "profile", icon: ProfileIcon, label: "Profile", route: "/profile" },
 					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/workspace" },
 					{ name: "projects", icon: CubeIcon, label: "Projects", route: "/projects" },
+					{ name: "pricing", icon: PricingIcon, label: "Pricing", route: "/pricing" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}

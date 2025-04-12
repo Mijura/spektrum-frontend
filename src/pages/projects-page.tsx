@@ -85,7 +85,7 @@ export default function ProjectsPage({ projectsToDisplay }: { projectsToDisplay:
 						<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Projects</h1>
 
 						<div className="flex justify-end grow">
-							<Tooltip message="Create new project" className="bg-surface-muted">
+							<Tooltip message="Create new project">
 								<div onClick={handleCreateNewProject}>
 									<PlusIcon />
 								</div>

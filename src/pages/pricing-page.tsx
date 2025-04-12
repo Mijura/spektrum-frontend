@@ -57,9 +57,9 @@ export default function PricingPage() {
 	}
 
 	return (
-		<div className="w-full text-secondary flex flex-col items-center mt-20 px-4 py-4 2xl:py-8 font-body">
+		<div className="w-full bg-[#1a1a1a] text-secondary flex flex-col items-center px-4 py-20 font-body">
 			<div className="w-full md:w-3/4 2xl:w-1/2 flex h-fit">
-				<div className="flex flex-col lg:flex-row gap-4 w-full justify-center items-center">
+				<div className="flex flex-col lg:flex-row gap-6 w-full justify-center items-center">
 					{/* How It Works Card */}
 					<div className="flex flex-col w-full lg:w-[60%] h-fit">
 						{/* Page Heading */}

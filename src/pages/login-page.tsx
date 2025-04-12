@@ -44,10 +44,10 @@ export default function LoginPage() {
 	}, [])
 
 	return (
-		<div className="flex flex-col bg-surface-light h-screen min-h-screen max-h-screen w-full overflow-hidden items-center justify-center">
+		<div className="flex flex-col bg-surface h-screen min-h-screen max-h-screen w-full overflow-hidden items-center justify-center">
 			{/* Main Content Container */}
 			<motion.div
-				className="bg-surface-muted flex flex-col items-center w-fit h-fit p-16 rounded-lg"
+				className="bg-[#1a1a1a] flex flex-col items-center w-fit h-fit p-16 rounded-md"
 				initial="hidden"
 				animate="visible"
 				transition={{ duration: 0.3 }}
