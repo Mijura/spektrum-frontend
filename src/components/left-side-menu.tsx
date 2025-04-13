@@ -5,34 +5,30 @@ import WorkspaceIcon from "../shared/icons/workspace-icon"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
-import { pageLoaded } from "../reducers/active-page-reducer"
-import { useActivePage } from "../hooks/use-active-page"
+import { pageNavigated } from "../reducers/navigation-reducer"
 import ProfileIcon from "../shared/icons/profile-icon"
 import LogoutIcon from "../shared/icons/logout-icon"
 import { signOut } from "aws-amplify/auth"
 import PricingIcon from "../shared/icons/pricing-icon"
+import { useLoadedPage } from "../hooks/store"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
 	const [hoveredOption, setHoveredOption] = useState("")
-	const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false)
 
-	const activePage = useActivePage()
+	const loadedPage = useLoadedPage()
 
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
-	const handleOptionClick = (option: string, route: string) => {
-		dispatch(pageLoaded(option))
-		if (route) {
-			navigate({ to: route })
-		}
+	const handlePageOpen = (option: string, route: string) => {
+		dispatch(pageNavigated(option))
+		navigate({ to: route })
 	}
 
 	const handleLogout = async () => {
 		await signOut()
 		navigate({ to: "/" })
-		setIsAccountMenuOpen(false)
 	}
 
 	return (
@@ -50,10 +46,10 @@ const LeftSideMenu = () => {
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
-						className={`${activePage === name ? "bg-surface-muted" : ""} flex cursor-pointer hover:bg-surface-muted rounded-lg p-1`}
+						className={`${loadedPage === name ? "bg-surface-muted" : ""} flex cursor-pointer hover:bg-surface-muted rounded-lg p-1`}
 						onMouseEnter={() => setHoveredOption(name)}
 						onMouseLeave={() => setHoveredOption("")}
-						onClick={() => handleOptionClick(name, route)}
+						onClick={() => handlePageOpen(name, route)}
 						style={{
 							filter: hoveredOption && hoveredOption !== name ? "blur(2px)" : "none",
 							transition: "filter 0.25s ease",
@@ -62,7 +58,7 @@ const LeftSideMenu = () => {
 						<div className="py-2 w-[72px] flex justify-center items-center">
 							<Icon
 								color={
-									activePage === name ? "text-highlight" : hoveredOption === name ? "text-highlight-200" : "text-secondary-100"
+									loadedPage === name ? "text-highlight" : hoveredOption === name ? "text-highlight-200" : "text-secondary-100"
 								}
 							/>
 						</div>
@@ -73,7 +69,7 @@ const LeftSideMenu = () => {
 									animate={{ x: 0, opacity: 1 }}
 									exit={{ x: -10, width: 0, opacity: 0 }}
 									transition={{ duration: 0.25, ease: "easeInOut" }}
-									className={`${activePage === name ? "text-highlight" : hoveredOption === name ? "text-highlight-200" : "text-secondary-100"} mr-8 truncate flex items-center`}
+									className={`${loadedPage === name ? "text-highlight" : hoveredOption === name ? "text-highlight-200" : "text-secondary-100"} mr-8 truncate flex items-center`}
 								>
 									{label}
 								</motion.span>

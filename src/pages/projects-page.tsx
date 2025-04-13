@@ -6,10 +6,10 @@ import PlusIcon from "../shared/icons/plus-icon"
 import { getCurrentUser } from "aws-amplify/auth"
 import ArchiveIcon from "../shared/icons/archive-icon"
 import { archiveProject } from "../api/project"
-import { pageLoaded } from "../reducers/active-page-reducer"
 import { useDispatch } from "react-redux"
-import { useProjects } from "../hooks/use-projects"
 import { projectAdded, projectDeleted } from "../reducers/projects-reducer"
+import { useProjects } from "../hooks/store"
+import { pageNavigated } from "../reducers/navigation-reducer"
 export default function ProjectsPage() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
@@ -51,7 +51,7 @@ export default function ProjectsPage() {
 		const user = await getCurrentUser()
 		const project: any = await createNewProject(user.username)
 		dispatch(projectAdded(project))
-		dispatch(pageLoaded("workspace"))
+		dispatch(pageNavigated("workspace"))
 
 		navigate({
 			to: `/${project.id}`,
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
 	}
 
 	const handleOpenProject = (project: any) => {
-		dispatch(pageLoaded("workspace"))
+		dispatch(pageNavigated("workspace"))
 		navigate({
 			to: `/${project.id}`,
 		})

@@ -3,17 +3,16 @@ import React, { useState } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import PlusIcon from "../shared/icons/plus-icon"
-import { useProject } from "../hooks/use-project"
 import { runWorkflow } from "../api/project"
 import { createNewTicket } from "../api/ticket"
 import { Ticket } from "../types/ticket"
-import { ticketCreated } from "../reducers/project-reducer"
+import { ticketSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { WorkflowId, WorkflowStatus } from "../types/workflow-execution"
-
+import { useSelectedProject } from "../hooks/store"
 const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
-	const project = useProject()
+	const selectedProject = useSelectedProject()
 	const dispatch = useDispatch()
 
 	const [title, setTitle] = useState("")
@@ -25,7 +24,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 			id: uuidv4(),
 			workflowId: WorkflowId.CodeGeneration,
 			status: WorkflowStatus.Running,
-			projectId: project.id,
+			projectId: selectedProject.id,
 			ticketId: ticketId,
 		}
 
@@ -38,8 +37,8 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 	}
 
 	const createTicket = async () => {
-		const ticket = await createNewTicket(project.id, title, description)
-		dispatch(ticketCreated(ticket))
+		const ticket = await createNewTicket(selectedProject.id, title, description)
+		dispatch(ticketSelected(ticket))
 		setModalOpened(false)
 	}
 

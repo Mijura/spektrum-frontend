@@ -1,14 +1,13 @@
 import { Button } from "@honeycomb-app/design"
 import React from "react"
 import { deploy } from "../api/project"
-import { useProject } from "../hooks/use-project"
+import { useSelectedProject } from "../hooks/store"
 
 const Deployment: React.FC = () => {
-	const project = useProject()
+	const selectedProject = useSelectedProject()
 
 	const handleDeploy = async () => {
-		const result = await deploy(project.id)
-		console.log(result)
+		await deploy(selectedProject.id)
 	}
 
 	return (

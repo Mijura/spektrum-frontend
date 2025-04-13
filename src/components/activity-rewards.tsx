@@ -1,7 +1,7 @@
 import { Chevron, ChevronContent, ChevronTrigger, ProgressBar } from "@honeycomb-app/design"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
-import { useProfile } from "../hooks/use-profile"
+import { useProfile } from "../hooks/store"
 
 export default function ActivityRewards() {
 	const profile = useProfile()

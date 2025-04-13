@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { ProgressBar } from "@honeycomb-app/design"
 import HoneycombActivityChart from "../components/honeycomb-chart"
-import { useProfile } from "../hooks/use-profile"
+import { useProfile } from "../hooks/store"
 
 export default function ProfilePage() {
 	const profile = useProfile()

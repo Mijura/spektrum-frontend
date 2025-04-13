@@ -8,10 +8,6 @@ export default interface Project {
 	tickets: Ticket[]
 }
 
-export interface ProjectState {
-	project: Project
-}
-
 export interface ProjectsState {
 	projects: Project[]
 }

@@ -1,7 +1,7 @@
-import { useProject } from "../hooks/use-project"
+import { useSelectedTicket } from "../hooks/store"
 
 export default function TicketOverview() {
-	const project = useProject()
+	const ticket = useSelectedTicket()
 
 	return <div className="p-4"></div>
 }
