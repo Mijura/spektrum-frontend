@@ -29,9 +29,12 @@ export const workspaceSlice = createSlice({
 		ticketSelected: (state, action: PayloadAction<Ticket>) => {
 			state.selectedTicket = action.payload
 		},
+		ticketUpdated: (state, action: PayloadAction<Ticket>) => {
+			state.selectedTicket = action.payload
+		},
 	},
 })
 
-export const { projectSelected, ticketCreated, ticketSelected } = workspaceSlice.actions
+export const { projectSelected, ticketCreated, ticketSelected, ticketUpdated } = workspaceSlice.actions
 
 export default workspaceSlice.reducer
