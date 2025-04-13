@@ -1,7 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, useRouter } from "@tanstack/react-router"
 import ProjectsPage from "../pages/projects-page"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
+import { projectsLoaded } from "../reducers/projects-reducer"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 
 export const Route = createFileRoute("/_auth/projects")({
 	loader: async () => {
@@ -18,5 +21,13 @@ export const Route = createFileRoute("/_auth/projects")({
 function Projects() {
 	const projects = Route.useLoaderData()
 
-	return projects ? <ProjectsPage projectsToDisplay={projects} /> : <></>
+	const dispatch = useDispatch()
+	const router = useRouter()
+
+	useEffect(() => {
+		dispatch(projectsLoaded(projects))
+		router.invalidate()
+	}, [projects])
+
+	return projects && <ProjectsPage />
 }

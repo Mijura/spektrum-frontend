@@ -4,11 +4,12 @@ import { persistStore, persistReducer } from "redux-persist"
 import projectReducer from "../reducers/project-reducer"
 import activePageReducer from "../reducers/active-page-reducer"
 import profileReducer from "../reducers/profile-reducer"
-
+import projectsReducer from "../reducers/projects-reducer"
 const rootReducer = combineReducers({
 	project: projectReducer,
 	activePage: activePageReducer,
 	profile: profileReducer,
+	projects: projectsReducer,
 })
 
 const persistConfig = {
