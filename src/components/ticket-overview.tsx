@@ -60,11 +60,10 @@ export default function TicketOverview() {
 					{/*
 					<div>Activities</div>
 					*/}
-					<textarea
-						className="bg-surface-muted mt-20 border border-secondary-200 rounded-sm text-sm w-full resize-none h-auto overflow-hidden"
-						value={description}
-						placeholder="Leave a comment..."
-						onChange={(e) => increaseTextareaHeight(e.target)}
+					<div
+						className="bg-surface-muted mt-20 border border-secondary-200 rounded-sm text-sm w-full resize-none min-h-20 h-auto overflow-hidden "
+						contentEditable
+						//onChange={(e) => increaseTextareaHeight(e.target)}
 					/>
 				</div>
 			</div>
