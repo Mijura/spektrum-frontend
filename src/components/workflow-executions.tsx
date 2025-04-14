@@ -35,7 +35,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 					<>
 						<div className="flex flex-col items-center px-3 text-sm">
 							<Card
-								className={`p-1 rounded-md grow items-center flex flex-col w-full ${execution.data.buildStatus === "success" ? "border-l-progress" : "border-l-danger"}`}
+								className={`cursor-default p-1 rounded-md grow items-center flex flex-col w-full ${execution.data.buildStatus === "success" ? "border-l-[#869B73]" : "border-l-danger border-l-4"}`}
 							>
 								<div className="flex flex-row w-full">
 									<div className="pl-1 grow w-0">

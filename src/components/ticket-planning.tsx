@@ -63,7 +63,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 						<Card
 							key={ticket.id}
 							onClick={() => dispatch(ticketSelected(ticket))}
-							className={`my-2 p-3 flex flex-col ${selectedTicket?.id === ticket.id ? "border-highlight border-1" : ""}`}
+							className={`hover:bg-surface-muted/75 cursor-default my-2 p-3 flex flex-col ${selectedTicket?.id === ticket.id ? "border-highlight border-1" : ""}`}
 						>
 							<div className="text-secondary-100 text-sm line-clamp-2 w-full">{ticket.title}</div>
 							<div className="mt-2 flex flex-row gap-2 w-full">
@@ -71,7 +71,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 									<MoreOptionsIcon />
 								</Tooltip>
 
-								<div className="flex grow w-full justify-end cursor-pointer">
+								<div className="flex grow w-full justify-end">
 									<div onClick={() => handleRunWorkflow(ticket.id)}>
 										<Tooltip message="Run workflow">
 											<PlayIcon />
