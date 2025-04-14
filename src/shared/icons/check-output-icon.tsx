@@ -3,7 +3,7 @@ export default function CheckOutputIcon() {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
-			className="size-5 text-highlight hover:opacity-75"
+			className="size-5 hover:opacity-75"
 			viewBox="0 0 24 24"
 			stroke="currentColor"
 		>

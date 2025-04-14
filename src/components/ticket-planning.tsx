@@ -10,13 +10,14 @@ import { ticketSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { WorkflowId, WorkflowStatus } from "../types/workflow-execution"
-import { useSelectedProject } from "../hooks/store"
+import { useSelectedProject, useSelectedTicket } from "../hooks/store"
 const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 	const selectedProject = useSelectedProject()
 	const dispatch = useDispatch()
 
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
+	const selectedTicket = useSelectedTicket()
 	const [modalOpened, setModalOpened] = useState(false)
 
 	const handleRunWorkflow = async (ticketId: string) => {
@@ -59,7 +60,11 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 
 				<div className="pb-4">
 					{tickets.map((ticket) => (
-						<Card key={ticket.id} className="my-4 flex flex-col">
+						<Card
+							key={ticket.id}
+							onClick={() => dispatch(ticketSelected(ticket))}
+							className={`my-2 p-3 flex flex-col ${selectedTicket?.id === ticket.id ? "border-highlight border-1" : ""}`}
+						>
 							<div className="text-secondary-100 text-sm line-clamp-2 w-full">{ticket.title}</div>
 							<div className="mt-2 flex flex-row gap-2 w-full">
 								<Tooltip message="Change status">

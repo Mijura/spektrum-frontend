@@ -74,16 +74,6 @@ export default function TicketOverview() {
 		}
 	}
 
-	const handleBlur = () => {
-		const sel = window.getSelection()
-		if (sel?.rangeCount) {
-			sel.removeAllRanges() // remove lingering selection
-		}
-
-		// Just to be sure, remove focus programmatically
-		editableRef.current?.blur()
-	}
-
 	return (
 		ticket && (
 			<div className="text-secondary-100 flex grow justify-center">
@@ -119,8 +109,8 @@ export default function TicketOverview() {
 							ref={editableRef}
 						/>
 						<div className="w-full bottom-2 right-2 bg-surface-light h-fit p-1.5">
-							<div className="flex items-end justify-end">
-								<PlayIcon />
+							<div className="flex items-end justify-end mx-1">
+								<PlayIcon color="text-highlight" />
 							</div>
 						</div>
 					</div>
