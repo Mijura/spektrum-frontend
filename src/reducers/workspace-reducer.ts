@@ -26,7 +26,7 @@ export const workspaceSlice = createSlice({
 			state.selectedProject.tickets.push(action.payload)
 			state.selectedTicket = action.payload
 		},
-		ticketSelected: (state, action: PayloadAction<Ticket>) => {
+		ticketSelected: (state, action: PayloadAction<Ticket | null>) => {
 			state.selectedTicket = action.payload
 		},
 		ticketUpdated: (state, action: PayloadAction<Ticket>) => {
