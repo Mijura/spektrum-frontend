@@ -42,6 +42,11 @@ export default function TicketOverview() {
 		}
 	}, [ticket])
 
+	const handleRunWorkflow = () => {
+		console.log(ticket)
+		console.log("run workflow")
+	}
+
 	return (
 		ticket && (
 			<div className="text-secondary-100 flex grow justify-center">
@@ -62,18 +67,18 @@ export default function TicketOverview() {
 					>
 						<SmartFooter className="text-xs bg-surface italic">*Ticket description</SmartFooter>
 					</SmartInput>
-					<div>Activities</div>
+					<div className="text-progress mt-2">Activities</div>
 
 					<WorkerLoader />
 					<WorkerIcon />
 					<SmartInput
-						className="bg-[#1a1a1a] focus:ring-0 rounded-sm text-sm w-full resize-none h-auto "
+						className="focus:ring-0 rounded-sm text-sm w-full resize-none h-auto "
 						value={comment}
 						onChange={setComment}
 						placeholder="Comment to re-run workflow…"
 					>
 						<SmartFooter>
-							<div className="flex items-end justify-end mx-1">
+							<div className="flex items-end justify-end mx-1" onClick={handleRunWorkflow}>
 								<Tooltip message="Re-run workflow">
 									<PlayIcon color="text-highlight" />
 								</Tooltip>
