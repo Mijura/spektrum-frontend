@@ -1,4 +1,4 @@
-import { Input, Textarea, Tooltip } from "@honeycomb-app/design"
+import { Button, Input, SmartFooter, SmartInput, Textarea, Tooltip } from "@honeycomb-app/design"
 import { useSelectedTicket } from "../hooks/store"
 import { useLayoutEffect, useRef, useState } from "react"
 import { updateTicket } from "../api/ticket"
@@ -40,7 +40,6 @@ export default function TicketOverview() {
 	const increaseTextareaHeight = (element: HTMLTextAreaElement | HTMLInputElement | null) => {
 		console.log(element)
 		if (element) {
-			//element.style.height = "auto"
 			element.style.height = `${element.scrollHeight}px`
 		}
 	}
@@ -69,6 +68,21 @@ export default function TicketOverview() {
 
 					<WorkerLoader />
 					<WorkerIcon />
+					<SmartInput
+						className="bg-[#1a1a1a] focus:ring-0 rounded-sm text-sm w-full resize-none h-auto "
+						value={comment}
+						onChange={setComment}
+						placeholder={commentPlaceholder}
+						type="textarea"
+					>
+						<SmartFooter>
+							<div className="flex items-end justify-end mx-1">
+								<Tooltip message="Re-run workflow">
+									<PlayIcon color="text-highlight" />
+								</Tooltip>
+							</div>
+						</SmartFooter>
+					</SmartInput>
 				</div>
 			</div>
 		)
