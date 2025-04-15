@@ -15,18 +15,18 @@ export default function TicketOverview() {
 	const [description, setDescription] = useState("")
 	const [comment, setComment] = useState("")
 
-	const handleTitleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		setTitle(e.target.value)
-		const newTicket = { ...ticket, title: e.target.value }
+	const handleTitleChange = async (newTitle: string) => {
+		setTitle(newTitle)
+		const newTicket = { ...ticket, title: newTitle }
 		dispatch(ticketUpdated(newTicket))
 		await updateTicket(newTicket)
 	}
 
-	const handleDescriptionChange = async (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setDescription(e.target.value)
-		const newTicket = { ...ticket, description: e.target.value }
+	const handleDescriptionChange = async (newDescription: string) => {
+		setDescription(newDescription)
+		const newTicket = { ...ticket, description: newDescription }
 		dispatch(ticketUpdated(newTicket))
-		await updateTicket({ ...ticket, description: e.target.value })
+		await updateTicket({ ...ticket, description: newDescription })
 	}
 
 	useEffect(() => {
@@ -50,17 +50,18 @@ export default function TicketOverview() {
 						className="bg-[#1a1a1a] border-none w-full min-h-10 text-xl p-0"
 						value={title}
 						placeholder="Add title..."
-						type="text"
 						onChange={setTitle}
+						onBlur={handleTitleChange}
 					/>
 					<SmartInput
-						className="bg-[#1a1a1a] border-none text-sm w-full p-0"
+						className="bg-[#1a1a1a] w-full "
 						value={description}
 						placeholder="Add description..."
-						type="textarea"
+						onBlur={handleDescriptionChange}
 						onChange={setDescription}
-					/>
-					<div className="w-full border-t border-secondary-200"></div>
+					>
+						<SmartFooter className="text-xs bg-surface italic">*Ticket description</SmartFooter>
+					</SmartInput>
 					<div>Activities</div>
 
 					<WorkerLoader />
@@ -70,7 +71,6 @@ export default function TicketOverview() {
 						value={comment}
 						onChange={setComment}
 						placeholder="Comment to re-run workflow…"
-						type="textarea"
 					>
 						<SmartFooter>
 							<div className="flex items-end justify-end mx-1">
