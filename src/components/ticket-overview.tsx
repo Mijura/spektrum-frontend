@@ -1,21 +1,22 @@
-import { Input, Textarea } from "@honeycomb-app/design"
+import { Input, Textarea, Tooltip } from "@honeycomb-app/design"
 import { useSelectedTicket } from "../hooks/store"
 import { useLayoutEffect, useRef, useState } from "react"
 import { updateTicket } from "../api/ticket"
 import { useDispatch } from "react-redux"
 import { ticketUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
+import { WorkerIcon } from "../shared/icons/worker-icon"
+import { WorkerLoader } from "../shared/icons/worker-loader"
 
 export default function TicketOverview() {
 	const dispatch = useDispatch()
 	const ticket = useSelectedTicket()
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
-	const [comment, setComment] = useState("")
 	const descriptionRef = useRef<HTMLTextAreaElement>(null)
-	const editableRef = useRef<HTMLDivElement>(null)
-	const [isEmpty, setIsEmpty] = useState(true)
-	const placeholder = "Comment to re-run workflow…"
+
+	const [comment, setComment] = useState("")
+	const commentPlaceholder = "Comment to re-run workflow…"
 
 	const handleTitleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value)
@@ -36,41 +37,11 @@ export default function TicketOverview() {
 		setDescription(ticket.description)
 	}, [ticket])
 
-	const placeCursorAtStart = () => {
-		const el = editableRef.current
-		if (!el) return
-
-		const range = document.createRange()
-		const sel = window.getSelection()
-
-		range.setStart(el, 0)
-		range.collapse(true)
-
-		sel?.removeAllRanges()
-		sel?.addRange(range)
-	}
-
-	const handleInput = () => {
-		const text = editableRef.current?.innerText ?? ""
-		setIsEmpty(text.trim() === "")
-	}
-
 	const increaseTextareaHeight = (element: HTMLTextAreaElement | HTMLInputElement | null) => {
 		console.log(element)
 		if (element) {
 			//element.style.height = "auto"
 			element.style.height = `${element.scrollHeight}px`
-		}
-	}
-
-	const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (!editableRef.current) return
-		editableRef.current?.blur()
-		// Only hijack if it's empty and we're simulating placeholder
-		if (isEmpty) {
-			e.preventDefault() // Prevent default cursor placement
-			editableRef.current.focus()
-			placeCursorAtStart()
 		}
 	}
 
@@ -88,32 +59,16 @@ export default function TicketOverview() {
 						ref={descriptionRef}
 					/>
 					<div className="w-full border-t border-secondary-200"></div>
-					{/*
 					<div>Activities</div>
-					*/}
-					<div
-						className="relative outline-none bg-surface-muted border 
-							border-secondary-200 rounded"
-					>
-						{isEmpty && <span className="absolute top-2 left-2 text-secondary/70 pointer-events-none">{placeholder}</span>}
-						<p
-							className={`rounded-sm text-sm w-full p-2
-							resize-none min-h-20 h-auto overflow-hidden whitespace-pre-wrap 
-							focus:outline-none 
-							${isEmpty ? "" : "text-secondary"}`}
-							contentEditable
-							suppressContentEditableWarning
-							onMouseDown={handleMouseDown}
-							onInput={handleInput}
-							onChange={(e: React.ChangeEvent<HTMLDivElement>) => setComment(e.target.innerText)}
-							ref={editableRef}
-						/>
-						<div className="w-full bottom-2 right-2 bg-surface-light h-fit p-1.5">
-							<div className="flex items-end justify-end mx-1">
-								<PlayIcon color="text-highlight" />
-							</div>
-						</div>
+
+					<div className="flex items-end justify-end mx-1">
+						<Tooltip message="Re-run workflow">
+							<PlayIcon color="text-highlight" />
+						</Tooltip>
 					</div>
+
+					<WorkerLoader />
+					<WorkerIcon />
 				</div>
 			</div>
 		)
