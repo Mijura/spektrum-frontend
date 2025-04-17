@@ -6,7 +6,7 @@ import { ticketSelected, ticketUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
 import { WorkerIcon } from "../shared/icons/worker-icon"
 import { WorkerLoader } from "../shared/icons/worker-loader"
-import { updateTicketTitle } from "../api/ticket"
+import { updateTicketDescription, updateTicketTitle } from "../api/ticket"
 
 export default function TicketOverview() {
 	const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export default function TicketOverview() {
 		setDescription(newDescription)
 		const newTicket = { ...ticket, description: newDescription }
 		dispatch(ticketUpdated(newTicket))
-		await updateTicketTitle({ ...ticket, description: newDescription })
+		await updateTicketDescription({ ...ticket, description: newDescription })
 	}
 
 	useEffect(() => {

@@ -32,6 +32,19 @@ export async function updateTicketTitle(ticket: Ticket) {
 	return await res.json()
 }
 
+export async function updateTicketDescription(ticket: Ticket) {
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(ticket),
+	}
+
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/description`, options)
+	return await res.json()
+}
+
 export async function fetchAllTickets(projectId: string) {
 	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/fetch-all/${projectId}`)
 	return await res.json()
