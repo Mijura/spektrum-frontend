@@ -1,12 +1,12 @@
-import { Button, Input, SmartFooter, SmartInput, Textarea, Tooltip } from "@honeycomb-app/design"
+import { SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
 import { useSelectedTicket } from "../hooks/store"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
-import { updateTicket } from "../api/ticket"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { ticketSelected, ticketUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
 import { WorkerIcon } from "../shared/icons/worker-icon"
 import { WorkerLoader } from "../shared/icons/worker-loader"
+import { updateTicketTitle } from "../api/ticket"
 
 export default function TicketOverview() {
 	const dispatch = useDispatch()
@@ -19,14 +19,14 @@ export default function TicketOverview() {
 		setTitle(newTitle)
 		const newTicket = { ...ticket, title: newTitle }
 		dispatch(ticketUpdated(newTicket))
-		await updateTicket(newTicket)
+		await updateTicketTitle(newTicket)
 	}
 
 	const handleDescriptionChange = async (newDescription: string) => {
 		setDescription(newDescription)
 		const newTicket = { ...ticket, description: newDescription }
 		dispatch(ticketUpdated(newTicket))
-		await updateTicket({ ...ticket, description: newDescription })
+		await updateTicketTitle({ ...ticket, description: newDescription })
 	}
 
 	useEffect(() => {

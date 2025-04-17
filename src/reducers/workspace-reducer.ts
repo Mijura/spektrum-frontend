@@ -31,6 +31,9 @@ export const workspaceSlice = createSlice({
 		},
 		ticketUpdated: (state, action: PayloadAction<Ticket>) => {
 			state.selectedTicket = action.payload
+			state.selectedProject.tickets = state.selectedProject.tickets.map((ticket) =>
+				ticket.id === action.payload.id ? action.payload : ticket,
+			)
 		},
 	},
 })
