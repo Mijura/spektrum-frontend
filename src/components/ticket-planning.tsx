@@ -6,7 +6,7 @@ import PlusIcon from "../shared/icons/plus-icon"
 import { runWorkflow } from "../api/project"
 import { createNewTicket } from "../api/ticket"
 import { Ticket } from "../types/ticket"
-import { ticketSelected } from "../reducers/workspace-reducer"
+import { ticketCreated, ticketSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { WorkflowId, WorkflowStatus } from "../types/workflow-execution"
@@ -39,7 +39,7 @@ const TicketPlanning: React.FC<{ tickets: Ticket[] }> = ({ tickets }) => {
 
 	const createTicket = async () => {
 		const ticket = await createNewTicket(selectedProject.id, title, description)
-		dispatch(ticketSelected(ticket))
+		dispatch(ticketCreated(ticket))
 		setModalOpened(false)
 	}
 
