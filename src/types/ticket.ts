@@ -7,7 +7,7 @@ export default interface Project {
 }
 
 export interface Initiator {
-	type: "WORKER" | "USER"
+	type: "AI_WORKER" | "USER"
 	name: string
 }
 
@@ -18,23 +18,29 @@ abstract class Activity {
 	abstract initiator: Initiator
 }
 
-export interface TicketEditActivity extends Activity {
+export interface TicketEditing extends Activity {
 	type: "TICKET_EDIT"
 	field: "title" | "description" | "status"
 	oldValue: string
 	newValue: string
 }
 
-export interface WorkflowActivity extends Activity {
+export interface WorkflowExecution extends Activity {
 	type: "WORKFLOW"
 	workflowName: string
 	status: "STARTED" | "COMPLETED" | "FAILED"
 	result?: any
 }
 
-export interface CommentActivity extends Activity {
+export interface Comment extends Activity {
+	id: string
+	created: string
+	initiator: Initiator
+	ticketId: string
 	type: "COMMENT"
-	comment: string
+	data: {
+		content: string
+	}
 }
 
 export interface Ticket {
