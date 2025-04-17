@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
+import { createFileRoute, Outlet, redirect, useRouter } from "@tanstack/react-router"
 import LeftSideMenu from "../components/left-side-menu"
 import { handleConfirmSignIn } from "../api/account-and-billing"
 import { getCurrentUser } from "aws-amplify/auth"

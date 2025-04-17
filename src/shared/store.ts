@@ -4,12 +4,10 @@ import { persistStore, persistReducer } from "redux-persist"
 import workspaceReducer from "../reducers/workspace-reducer"
 import navigationReducer from "../reducers/navigation-reducer"
 import profileReducer from "../reducers/profile-reducer"
-import projectsReducer from "../reducers/projects-reducer"
 const rootReducer = combineReducers({
 	workspace: workspaceReducer,
 	navigation: navigationReducer,
 	profile: profileReducer,
-	projects: projectsReducer,
 })
 
 const persistConfig = {

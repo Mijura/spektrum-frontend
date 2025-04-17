@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button, Card, Loader, Modal, ModalContent, Tooltip } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
@@ -7,50 +7,28 @@ import { getCurrentUser } from "aws-amplify/auth"
 import ArchiveIcon from "../shared/icons/archive-icon"
 import { archiveProject } from "../api/project"
 import { useDispatch } from "react-redux"
-import { projectAdded, projectDeleted } from "../reducers/projects-reducer"
-import { useProjects } from "../hooks/store"
 import { pageNavigated } from "../reducers/navigation-reducer"
-export default function ProjectsPage() {
+export default function ProjectsPage({ loadedProjects }: { loadedProjects: any }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
-	const [editingProject, setEditingProject] = useState<any>(null)
 	const [projectToArchive, setProjectToArchive] = useState<any>(null)
-	const [name, setName] = useState("")
-	const [description, setDescription] = useState("")
-	const [imageUrl, setImageUrl] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [archiveModalOpened, setArchiveModalOpened] = useState(false)
+	const [projects, setProjects] = useState<any>([])
 
-	const projects = useProjects()
-
-	const handleEdit = (project: any) => {
-		console.log(project)
-		setEditingProject(project)
-		setName(project.name)
-		setDescription(project.description)
-		setImageUrl(project.imageUrl)
-	}
-
-	const handleSave = () => {
-		if (!editingProject) return
-
-		const updatedproject = {
-			...editingProject,
-			name,
-			description,
-			imageUrl,
+	useEffect(() => {
+		if (loadedProjects) {
+			setProjects(loadedProjects)
 		}
-		// TODO: Implement save functionality
-		console.log("Save project:", updatedproject)
-		setEditingProject(null)
-	}
+	}, [loadedProjects])
 
 	const handleCreateNewProject = async () => {
 		setLoading(true)
 		const user = await getCurrentUser()
 		const project: any = await createNewProject(user.username)
-		dispatch(projectAdded(project))
+
+		setProjects([...projects, project])
 		dispatch(pageNavigated("workspace"))
 
 		navigate({
@@ -67,7 +45,7 @@ export default function ProjectsPage() {
 
 	async function handleArchiveProject(): Promise<void> {
 		await archiveProject(projectToArchive.id)
-		dispatch(projectDeleted(projectToArchive))
+		setProjects(projects.filter((project: any) => project.id !== projectToArchive.id))
 		setProjectToArchive(null)
 		setArchiveModalOpened(false)
 	}

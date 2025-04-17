@@ -5,8 +5,9 @@ import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
 import WorkflowExecutionsTimeline from "../components/workflow-executions"
 import TicketOverview from "../components/ticket-overview"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelectedProject } from "../hooks/store"
+import { useRouter } from "@tanstack/react-router"
 
 type TabType = "overview" | "output" | "deployment"
 
