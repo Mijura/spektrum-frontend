@@ -16,6 +16,7 @@ export default function TicketOverview() {
 	const [comment, setComment] = useState("")
 
 	const handleTitleChange = async (newTitle: string) => {
+		if (newTitle === ticket.title) return
 		setTitle(newTitle)
 		const newTicket = { ...ticket, title: newTitle }
 		dispatch(ticketUpdated(newTicket))
@@ -23,6 +24,7 @@ export default function TicketOverview() {
 	}
 
 	const handleDescriptionChange = async (newDescription: string) => {
+		if (newDescription === ticket.description) return
 		setDescription(newDescription)
 		const newTicket = { ...ticket, description: newDescription }
 		dispatch(ticketUpdated(newTicket))
