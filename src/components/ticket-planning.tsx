@@ -1,5 +1,5 @@
 import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@honeycomb-app/design"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import PlusIcon from "../shared/icons/plus-icon"
@@ -45,7 +45,7 @@ const TicketPlanning: React.FC = () => {
 	return (
 		selectedProject && (
 			<>
-				<div className="px-4 w-full max-w-[325px] h-[calc(100dvh-50px)]">
+				<div className="px-4 w-full min-w-[325px] max-w-[325px] h-[calc(100dvh-50px)]">
 					<div className="flex flex-row w-full py-4 items-center">
 						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Tickets</h1>
 

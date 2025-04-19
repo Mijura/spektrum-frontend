@@ -7,6 +7,8 @@ import PlayIcon from "../shared/icons/play-icon"
 import { WorkerIcon } from "../shared/icons/worker-icon"
 import { WorkerLoader } from "../shared/icons/worker-loader"
 import { updateTicketDescription, updateTicketTitle } from "../api/ticket"
+import TimelineIcon from "../shared/icons/timeline-icon"
+import { formatTimestamp } from "../shared/util"
 
 export default function TicketOverview() {
 	const dispatch = useDispatch()
@@ -68,8 +70,33 @@ export default function TicketOverview() {
 					</SmartInput>
 					<div className="text-progress mt-2">Activities</div>
 
-					<WorkerLoader />
-					<WorkerIcon />
+					<div className="mb-5">
+						{ticket.activities.map((activity: any, index: number) => {
+							return (
+								<div key={activity.id}>
+									<div className="flex flex-row gap-x-3 items-center px-1 text-sm">
+										<TimelineIcon />
+										<div>{activity.metadata.message}</div>
+										<div className="text-xs italic">{formatTimestamp(activity.occurredAt)}</div>
+									</div>
+
+									{index !== ticket.activities.length - 1 && (
+										<div>
+											<div className="flex justify-center w-[24px]">
+												<div className="border-l justify-between"></div>
+												<div className="h-fit flex w-fit justify-center">
+													<div className="h-[12px] rounded-sm w-full"></div>
+												</div>
+											</div>
+										</div>
+									)}
+								</div>
+							)
+						})}
+					</div>
+
+					{/* <WorkerLoader />
+					<WorkerIcon /> */}
 					<SmartInput
 						className="focus:ring-0 rounded-sm text-sm w-full resize-none h-auto "
 						value={comment}
