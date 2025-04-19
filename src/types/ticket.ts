@@ -51,5 +51,4 @@ export interface Ticket {
 	status: "TODO" | "IN_PROGRESS" | "DONE"
 	created: string
 	updated: string
-	activities: Activity[]
 }

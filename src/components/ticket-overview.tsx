@@ -44,10 +44,7 @@ export default function TicketOverview() {
 		}
 	}, [ticket])
 
-	const handleRunWorkflow = () => {
-		console.log(ticket)
-		console.log("run workflow")
-	}
+	const handleRunWorkflow = () => {}
 
 	return (
 		ticket && (

@@ -9,10 +9,6 @@ import FailedIcon from "../shared/icons/failed-icon"
 const WorkflowExecutionsTimeline: React.FC = () => {
 	const { timelineData } = useTimeline({ gameId: "honeycomb" })
 
-	useEffect(() => {
-		console.log(`timelineData`, timelineData)
-	}, [timelineData])
-
 	function formatTimestamp(timestamp: string, options = { timeZone: undefined }) {
 		const date = new Date(timestamp)
 
@@ -31,8 +27,8 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-secondary-100 text-sm">Workflow Executions</div>
 
 			{timelineData ? (
-				timelineData.map((execution: any) => (
-					<>
+				timelineData.map((execution: any, index: number) => (
+					<div key={index}>
 						<div className="flex flex-col items-center px-3 text-sm">
 							<Card
 								className={`cursor-default p-1 rounded-md grow items-center flex flex-col w-full border-l-4 ${execution.data.buildStatus === "success" ? "border-l-[#869B73]" : "border-l-danger"}`}
@@ -62,7 +58,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 								</div>
 							</Card>
 						</div>
-					</>
+					</div>
 				))
 			) : (
 				<div className="flex flex-col items-center px-3 text-sm justify-center h-full">

@@ -1,6 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import Project from "../types/project"
 import { Ticket } from "../types/ticket"
+
+export interface Project {
+	id?: string
+	name?: string
+	description?: string
+	owner?: any
+	tickets: Ticket[]
+}
 
 export interface WorkspaceState {
 	selectedProject: Project

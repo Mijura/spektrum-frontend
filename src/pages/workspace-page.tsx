@@ -1,13 +1,11 @@
-import { Tabs, Tab, Button } from "@honeycomb-app/design"
 import ActivityRewards from "../components/activity-rewards"
 import TicketPlanning from "../components/ticket-planning"
 import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
 import WorkflowExecutionsTimeline from "../components/workflow-executions"
 import TicketOverview from "../components/ticket-overview"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelectedProject } from "../hooks/store"
-import { useRouter } from "@tanstack/react-router"
 
 type TabType = "overview" | "output" | "deployment"
 
@@ -89,7 +87,7 @@ export default function WorkspacePage() {
 						{activeTab === "overview" && (
 							<div className="flex flex-row overflow-y-auto custom-scrollbar">
 								<div className="h-full w-fit bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
-									<TicketPlanning tickets={selectedProject.tickets} />
+									<TicketPlanning />
 								</div>
 								<TicketOverview />
 							</div>

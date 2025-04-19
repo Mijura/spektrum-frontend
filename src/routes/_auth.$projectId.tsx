@@ -11,7 +11,6 @@ import { projectSelected } from "../reducers/workspace-reducer"
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
 		const [project, tickets] = await Promise.all([fetchProject(projectId), fetchAllTickets(projectId)])
-
 		return { project, tickets }
 	},
 	errorComponent: PostError,
@@ -38,7 +37,7 @@ function WorkspaceComponent() {
 				tickets: data.tickets,
 			}),
 		)
-	}, [data])
+	}, [])
 
 	return <WorkspacePage />
 }
