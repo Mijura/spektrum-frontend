@@ -21,16 +21,16 @@ export default function TicketOverview() {
 		if (newTitle === ticket.title) return
 		setTitle(newTitle)
 		const newTicket = { ...ticket, title: newTitle }
-		dispatch(ticketUpdated(newTicket))
-		await updateTicketTitle(newTicket)
+		const updatedTicket = await updateTicketTitle(newTicket)
+		dispatch(ticketUpdated(updatedTicket))
 	}
 
 	const handleDescriptionChange = async (newDescription: string) => {
 		if (newDescription === ticket.description) return
 		setDescription(newDescription)
 		const newTicket = { ...ticket, description: newDescription }
-		dispatch(ticketUpdated(newTicket))
-		await updateTicketDescription({ ...ticket, description: newDescription })
+		const updatedTicket = await updateTicketDescription(newTicket)
+		dispatch(ticketUpdated(updatedTicket))
 	}
 
 	useEffect(() => {
