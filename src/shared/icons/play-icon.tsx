@@ -1,11 +1,11 @@
-export default function PlayIcon() {
+export default function PlayIcon({ color = "text-secondary-100" }: { color?: string }) {
 	return (
 		<svg
 			fill="none"
 			viewBox="0 0 24 24"
 			strokeWidth="1.5"
 			stroke="currentColor"
-			className="size-5 text-highlight hover:opacity-75"
+			className={`size-5 ${color} hover:opacity-75 flex items-center justify-center`}
 		>
 			<path
 				strokeLinecap="round"

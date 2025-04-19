@@ -145,8 +145,6 @@ const HoneycombActivityChart: React.FC = () => {
 		// Create legend group
 		const legend = legendSvg.append("g").attr("transform", `translate(${width - legendWidth}, ${legendHeight / 2})`)
 
-		console.log(maxIntensity)
-
 		// Add hexagons to legend
 		legend
 			.selectAll(".legend-hexagon")
@@ -157,7 +155,6 @@ const HoneycombActivityChart: React.FC = () => {
 			.attr("d", d3Hexbin().radius(legendHexRadius).hexagon())
 			.attr("transform", (d, i) => `translate(${(i + 1) * legendSpacing}, 0)`)
 			.style("fill", (d, i) => {
-				console.log(d, i)
 				return d === 0 ? "var(--primary)" : color((maxIntensity * d) / legendData.length)
 			})
 			.attr("stroke", "var(--secondary-200)")

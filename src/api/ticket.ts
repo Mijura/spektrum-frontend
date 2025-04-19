@@ -1,3 +1,5 @@
+import { Ticket } from "../types/ticket"
+
 const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 export async function createNewTicket(projectId: string, title: string, description: string): Promise<any> {
@@ -14,6 +16,32 @@ export async function createNewTicket(projectId: string, title: string, descript
 	}
 
 	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket`, options)
+	return await res.json()
+}
+
+export async function updateTicketTitle(ticket: Ticket) {
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(ticket),
+	}
+
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/title`, options)
+	return await res.json()
+}
+
+export async function updateTicketDescription(ticket: Ticket) {
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(ticket),
+	}
+
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/description`, options)
 	return await res.json()
 }
 

@@ -1,10 +1,8 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router"
+import { createFileRoute } from "@tanstack/react-router"
 import ProjectsPage from "../pages/projects-page"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
-import { projectsLoaded } from "../reducers/projects-reducer"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { Loader } from "@honeycomb-app/design"
 
 export const Route = createFileRoute("/_auth/projects")({
 	loader: async () => {
@@ -12,22 +10,20 @@ export const Route = createFileRoute("/_auth/projects")({
 			const user = await getCurrentUser()
 			return await fetchAllProjects(user.userId)
 		} catch (error: any) {
-			console.log(error)
+			console.error(error)
 		}
 	},
-	component: Projects,
+	component: () => {
+		const data = Route.useLoaderData()
+		return <ProjectsPage loadedProjects={data} />
+	},
+	pendingComponent: () => {
+		return (
+			<div className="w-screen h-screen bg-surface flex items-center justify-center">
+				<Loader size="small" message="Loading projects..." />
+			</div>
+		)
+	},
+	shouldReload: true,
+	gcTime: 0,
 })
-
-function Projects() {
-	const projects = Route.useLoaderData()
-
-	const dispatch = useDispatch()
-	const router = useRouter()
-
-	useEffect(() => {
-		dispatch(projectsLoaded(projects))
-		router.invalidate()
-	}, [projects])
-
-	return projects && <ProjectsPage />
-}

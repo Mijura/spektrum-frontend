@@ -1,21 +1,19 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
-import projectReducer from "../reducers/project-reducer"
-import activePageReducer from "../reducers/active-page-reducer"
+import workspaceReducer from "../reducers/workspace-reducer"
+import navigationReducer from "../reducers/navigation-reducer"
 import profileReducer from "../reducers/profile-reducer"
-import projectsReducer from "../reducers/projects-reducer"
 const rootReducer = combineReducers({
-	project: projectReducer,
-	activePage: activePageReducer,
+	workspace: workspaceReducer,
+	navigation: navigationReducer,
 	profile: profileReducer,
-	projects: projectsReducer,
 })
 
 const persistConfig = {
 	key: "root",
 	storage: storage,
-	whitelist: ["project", "activePage", "profile"],
+	whitelist: ["workspace", "navigation", "profile", "projects"],
 }
 
 const persistedReducer = persistReducer<ReturnType<typeof rootReducer>>(persistConfig, rootReducer)

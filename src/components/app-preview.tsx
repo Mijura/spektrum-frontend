@@ -2,12 +2,12 @@ import { Tooltip } from "@honeycomb-app/design"
 import React, { useEffect } from "react"
 import ReloadIcon from "../shared/icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"
-import { useProject } from "../hooks/use-project"
+import { useSelectedProject } from "../hooks/store"
 
 export const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 const AppPreview: React.FC = () => {
-	const project = useProject()
+	const selectedProject = useSelectedProject()
 
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
 
@@ -17,7 +17,7 @@ const AppPreview: React.FC = () => {
 
 	useEffect(() => {
 		reloadPage()
-	}, [project.sourceCode])
+	}, [selectedProject.sourceCode])
 
 	return (
 		<div className="flex flex-col h-full">
@@ -30,7 +30,7 @@ const AppPreview: React.FC = () => {
 				<div className="m-2 rounded-full bg-surface-muted w-full px-4 text-secondary">/</div>
 			</div>
 			<div className="flex h-full">
-				<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_ENDPOINT}/${project.id}`} className="grow" />
+				<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_ENDPOINT}/${selectedProject.id}`} className="grow" />
 			</div>
 		</div>
 	)

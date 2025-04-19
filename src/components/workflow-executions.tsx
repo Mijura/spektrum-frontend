@@ -5,37 +5,21 @@ import CheckOutputIcon from "../shared/icons/check-output-icon"
 import WatchIcon from "../shared/icons/watch-icon"
 import SuccessIcon from "../shared/icons/success-icon"
 import FailedIcon from "../shared/icons/failed-icon"
+import { formatTimestamp } from "../shared/util"
 
 const WorkflowExecutionsTimeline: React.FC = () => {
 	const { timelineData } = useTimeline({ gameId: "honeycomb" })
-
-	useEffect(() => {
-		console.log(`timelineData`, timelineData)
-	}, [timelineData])
-
-	function formatTimestamp(timestamp: string, options = { timeZone: undefined }) {
-		const date = new Date(timestamp)
-
-		return date.toLocaleString("en-US", {
-			month: "short",
-			day: "numeric",
-			hour: "numeric",
-			minute: "2-digit",
-			hour12: true,
-			timeZone: options.timeZone, // Pass 'UTC' if you want UTC time
-		})
-	}
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">
 			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-secondary-100 text-sm">Workflow Executions</div>
 
 			{timelineData ? (
-				timelineData.map((execution: any) => (
-					<>
+				timelineData.map((execution: any, index: number) => (
+					<div key={index}>
 						<div className="flex flex-col items-center px-3 text-sm">
 							<Card
-								className={`p-1 rounded-md grow items-center flex flex-col w-full ${execution.data.buildStatus === "success" ? "border-l-progress" : "border-l-danger"}`}
+								className={`cursor-default p-1 rounded-md grow items-center flex flex-col w-full border-l-4 ${execution.data.buildStatus === "success" ? "border-l-[#869B73]" : "border-l-danger"}`}
 							>
 								<div className="flex flex-row w-full">
 									<div className="pl-1 grow w-0">
@@ -62,7 +46,7 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 								</div>
 							</Card>
 						</div>
-					</>
+					</div>
 				))
 			) : (
 				<div className="flex flex-col items-center px-3 text-sm justify-center h-full">

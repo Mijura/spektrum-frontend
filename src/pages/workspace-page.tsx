@@ -1,17 +1,16 @@
-import { Tabs, Tab, Button } from "@honeycomb-app/design"
 import ActivityRewards from "../components/activity-rewards"
-import { useProject } from "../hooks/use-project"
 import TicketPlanning from "../components/ticket-planning"
 import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
 import WorkflowExecutionsTimeline from "../components/workflow-executions"
 import TicketOverview from "../components/ticket-overview"
 import { useState } from "react"
+import { useSelectedProject } from "../hooks/store"
 
 type TabType = "overview" | "output" | "deployment"
 
 export default function WorkspacePage() {
-	const project = useProject()
+	const selectedProject = useSelectedProject()
 	const [activeTab, setActiveTab] = useState<TabType>("overview")
 
 	const getButtonClassName = (tab: TabType) => {
@@ -23,8 +22,8 @@ export default function WorkspacePage() {
 	}
 
 	return (
-		project && (
-			<div key={project.id} className="w-full flex flex-col pl-4 bg-[#1a1a1a]">
+		selectedProject && (
+			<div key={selectedProject.id} className="w-full flex flex-col pl-4 bg-[#1a1a1a]">
 				<div className="h-fit bg-surface w-full flex items-center justify-center border-b border-secondary-200">
 					<div className="w-fit">
 						<div className="px-4 w-fit min-h-[50px] h-[50px] justify-center items-center text-secondary-100 gap-3 flex flex-row">
@@ -88,7 +87,7 @@ export default function WorkspacePage() {
 						{activeTab === "overview" && (
 							<div className="flex flex-row overflow-y-auto custom-scrollbar">
 								<div className="h-full w-fit bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
-									<TicketPlanning tickets={project.tickets} />
+									<TicketPlanning />
 								</div>
 								<TicketOverview />
 							</div>
