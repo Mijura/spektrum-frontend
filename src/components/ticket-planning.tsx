@@ -5,7 +5,7 @@ import PlayIcon from "../shared/icons/play-icon"
 import PlusIcon from "../shared/icons/plus-icon"
 import { runWorkflow } from "../api/project"
 import { createNewTicket } from "../api/ticket"
-import { ticketCreated, ticketSelected } from "../reducers/workspace-reducer"
+import { ticketCreated, ticketSelected, ticketUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { WorkflowId, WorkflowStatus } from "../types/workflow-execution"
@@ -30,7 +30,10 @@ const TicketPlanning: React.FC = () => {
 
 		await runWorkflow(
 			workflowExecution,
-			({}) => {},
+			({ ticket }) => {
+				console.log("Ticket updated:", ticket)
+				dispatch(ticketUpdated(ticket))
+			},
 			({}) => {},
 			({}) => {},
 		)

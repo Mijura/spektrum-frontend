@@ -1,4 +1,4 @@
-import { SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
+import { Chip, SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
 import { useSelectedTicket } from "../hooks/store"
 import { useEffect, useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
@@ -73,24 +73,40 @@ export default function TicketOverview() {
 					<div className="mb-5">
 						{ticket.activities.map((activity: any, index: number) => {
 							return (
-								<div key={activity.id}>
-									<div className="flex flex-row gap-x-3 items-center px-1 text-sm">
-										<TimelineIcon />
-										<div>{activity.metadata.message}</div>
-										<div className="text-xs italic">{formatTimestamp(activity.occurredAt)}</div>
-									</div>
-
-									{index !== ticket.activities.length - 1 && (
-										<div>
-											<div className="flex justify-center w-[24px]">
-												<div className="border-l justify-between"></div>
-												<div className="h-fit flex w-fit justify-center">
-													<div className="h-[12px] rounded-sm w-full"></div>
+								<>
+									{activity.type === "Commented" ? (
+										<div key={activity.id}>
+											<div className="flex flex-row gap-x-3 items-center px-1 py-3 text-sm">
+												<TimelineIcon />
+												<div className="italic bg-surface-muted rounded-sm p-2">
+													<Chip label={activity.userId} /> &nbsp;
+													{ticket.comments.find((comment: any) => comment.id === activity.metadata.commentId).text}
 												</div>
 											</div>
 										</div>
+									) : (
+										<div key={activity.id}>
+											<div className="flex flex-row gap-x-3 items-center px-1 text-sm">
+												<TimelineIcon />
+												<div>
+													{activity.metadata.message}
+													&nbsp;&nbsp;<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
+												</div>
+											</div>
+
+											{index !== ticket.activities.length - 1 && (
+												<div>
+													<div className="flex justify-center w-[24px]">
+														<div className="border-l justify-between"></div>
+														<div className="h-fit flex w-fit justify-center">
+															<div className="h-[12px] rounded-sm w-full"></div>
+														</div>
+													</div>
+												</div>
+											)}
+										</div>
 									)}
-								</div>
+								</>
 							)
 						})}
 					</div>

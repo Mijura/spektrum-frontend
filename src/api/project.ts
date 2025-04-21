@@ -13,17 +13,15 @@ export const runWorkflow = (
 	const socket = io("http://localhost:3000") //TODO: fix this!
 
 	socket.on("connect", () => {
-		console.log("Connected to WebSocket")
 		socket.emit("run", workflowExecution)
 	})
 
 	socket.on("update", (data) => {
 		console.log("Received update:", data)
-		onUpdate(data)
+		onUpdate({ ticket: data.ticket })
 	})
 
 	socket.on("done", (data) => {
-		console.log("Development complete!", data)
 		onDone(data)
 		socket.disconnect()
 	})
