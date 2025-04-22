@@ -75,35 +75,31 @@ export default function TicketOverview() {
 							return (
 								<>
 									{activity.type === "Commented" ? (
-										<div key={activity.id}>
-											<div className="flex flex-row gap-x-3 items-center px-1 py-3 text-sm">
-												<TimelineIcon />
-												<div className="italic bg-surface-muted rounded-sm p-2">
-													<Chip label={activity.userId} /> &nbsp;
-													{ticket.comments.find((comment: any) => comment.id === activity.metadata.commentId).text}
+										<div key={activity.id} className="w-full flex items-end justify-end">
+											<div className="flex flex-row items-center p-2 text-sm">
+												<div className="italic bg-surface-light rounded-sm p-2 w-full">
+													<div className="flex flex-row gap-x-2 items-center">
+														<Chip label={activity.userId} className="bg-surface text-highlight-200" />
+														<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
+													</div>
+													<div className="p-2">
+														{ticket.comments.find((comment: any) => comment.id === activity.metadata.commentId).text}
+													</div>
 												</div>
 											</div>
 										</div>
 									) : (
-										<div key={activity.id}>
-											<div className="flex flex-row gap-x-3 items-center px-1 text-sm">
-												<TimelineIcon />
-												<div>
-													{activity.metadata.message}
-													&nbsp;&nbsp;<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
+										<div key={activity.id} className="flex w-full p-2 items-center gap-y-4">
+											<TimelineIcon />
+											<div className="flex flex-col gap-x-3 text-sm p-2 rounded-sm">
+												<div className="flex flex-row gap-x-2 items-center">
+													<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
+												</div>
+
+												<div className="text-xs italic">
+													{activity.userId} {activity.metadata.message}
 												</div>
 											</div>
-
-											{index !== ticket.activities.length - 1 && (
-												<div>
-													<div className="flex justify-center w-[24px]">
-														<div className="border-l justify-between"></div>
-														<div className="h-fit flex w-fit justify-center">
-															<div className="h-[12px] rounded-sm w-full"></div>
-														</div>
-													</div>
-												</div>
-											)}
 										</div>
 									)}
 								</>
