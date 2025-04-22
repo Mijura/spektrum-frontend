@@ -32,11 +32,13 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 										</div>
 
 										<div className="p-1 h-fit w-full text-secondary-100 flex items-end gap-2">
-											<div className="cursor-pointer grow flex gap-1" onClick={() => {}}>
-												<Tooltip message="Check output">
-													<CheckOutputIcon />
-												</Tooltip>
-											</div>
+											{execution.status === "success" && (
+												<div className="cursor-pointer grow flex gap-1" onClick={() => {}}>
+													<Tooltip message="Check output">
+														<CheckOutputIcon />
+													</Tooltip>
+												</div>
+											)}
 											<div className="text-secondary-100 text-xs items-center justify-end flex h-fit gap-1">
 												<WatchIcon />
 												{formatTimestamp(execution.timestamp)}
