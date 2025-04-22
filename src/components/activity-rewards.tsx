@@ -9,8 +9,13 @@ export default function ActivityRewards() {
 	return (
 		profile && (
 			<div className="flex flex-col font-body h-fit rounded-sm">
-				<div className="flex flex-col bg-surface h-full ">
-					<Chevron defaultExpanded={true} className="w-[325px] border border-primary-200">
+				<div className="flex flex-col bg-surface h-full w-[325px] border border-primary-200">
+					<div className="flex flex-row w-full p-3">
+						<div className="grow text-secondary-100 text-sm flex flex-row justify-end">
+							Balance:&nbsp;<span className="text-highlight font-bold">{profile.tokens} tokens</span>
+						</div>
+					</div>
+					{/* <Chevron defaultExpanded={true} className="w-[325px] border border-primary-200">
 						<ChevronTrigger>
 							<div className="flex flex-row w-full">
 								<h1 className="w-fit text-sm text-secondary-100 flex flex-row gap-1 items-center">Activity Rewards</h1>
@@ -51,7 +56,7 @@ export default function ActivityRewards() {
 								</div>
 							</>
 						</ChevronContent>
-					</Chevron>
+					</Chevron> */}
 				</div>
 			</div>
 		)
