@@ -70,35 +70,37 @@ export default function TicketOverview() {
 					</SmartInput>
 					<div className="text-progress mt-2">Activities</div>
 
-					<div className="mb-5">
+					<div className="mb-2 2xl:mb-5">
 						{ticket.activities.map((activity: any, index: number) => {
 							return (
 								<>
 									{activity.type === "Commented" ? (
 										<div key={activity.id} className="w-full flex items-end justify-end">
-											<div className="flex flex-row items-center p-2 text-sm">
-												<div className="italic bg-surface-light rounded-sm p-2 w-full">
+											<div className="flex flex-row items-center p-1 2xl:p-2 text-sm">
+												<div className="italic bg-surface-light rounded-sm p-1 2xl:p-2 w-full">
 													<div className="flex flex-row gap-x-2 items-center">
 														<Chip label={activity.userId} className="bg-surface text-highlight-200" />
 														<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
 													</div>
-													<div className="p-2">
+													<div className="p-1 2xl:p-2">
 														{ticket.comments.find((comment: any) => comment.id === activity.metadata.commentId).text}
 													</div>
 												</div>
 											</div>
 										</div>
 									) : (
-										<div key={activity.id} className="flex w-full p-2 items-center gap-y-4">
-											<TimelineIcon />
+										<div key={activity.id} className="flex w-full items-center 2xl:gap-y-4 h-fit">
+											<div className="w-fit h-fit">
+												<TimelineIcon />
+											</div>
 											<div className="flex flex-col gap-x-3 text-sm p-2 rounded-sm">
 												<div className="flex flex-row gap-x-2 items-center">
-													<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
+													<span className="text-xs italic">
+														{formatTimestamp(activity.occurredAt)} - {activity.userId} {activity.metadata.message}
+													</span>
 												</div>
 
-												<div className="text-xs italic">
-													{activity.userId} {activity.metadata.message}
-												</div>
+												<div className="text-xs italic"></div>
 											</div>
 										</div>
 									)}
