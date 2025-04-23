@@ -2,7 +2,7 @@ import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Toolt
 import React, { useState } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
-import PlusIcon from "../shared/icons/plus-icon"
+import CreateIcon from "../shared/icons/create-icon"
 import { runWorkflow } from "../api/project"
 import { createNewTicket } from "../api/ticket"
 import { ticketCreated, ticketSelected, ticketUpdated } from "../reducers/workspace-reducer"
@@ -55,7 +55,7 @@ const TicketPlanning: React.FC = () => {
 						<div className="flex justify-end grow">
 							<div onClick={() => setModalOpened(true)}>
 								<Tooltip message="Create new ticket">
-									<PlusIcon />
+									<CreateIcon />
 								</Tooltip>
 							</div>
 						</div>

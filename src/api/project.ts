@@ -79,6 +79,23 @@ export async function createNewProject(owner: string): Promise<any> {
 	return await res.json()
 }
 
+export async function updateProjectDetails(id: string, name: string, description: string): Promise<any> {
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			id: id,
+			name: name,
+			description: description,
+		}),
+	}
+
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}`, options)
+	return await res.json()
+}
+
 export async function fetchProject(id: string) {
 	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/fetch/${id}`)
 	if (res.status == 404) throw new ProjectNotFoundError()
