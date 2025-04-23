@@ -6,18 +6,19 @@ import { ticketSelected, ticketUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
 import { WorkerIcon } from "../shared/icons/worker-icon"
 import { WorkerLoader } from "../shared/icons/worker-loader"
-import { updateTicketDescription, updateTicketTitle } from "../api/ticket"
+import { leaveComment, updateTicketDescription, updateTicketTitle } from "../api/ticket"
 import { formatTimestamp } from "../shared/util"
 import { motion, AnimatePresence } from "framer-motion"
 import CreateIcon from "../shared/icons/create-icon"
 import EditIcon from "../shared/icons/edit-icon"
+import { getCurrentUser } from "aws-amplify/auth"
 
 export default function TicketOverview() {
 	const dispatch = useDispatch()
 	const ticket = useSelectedTicket()
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
-	const [comment, setComment] = useState("")
+	const [commentText, setCommentText] = useState("")
 
 	const handleTitleChange = async (newTitle: string) => {
 		if (newTitle === ticket.title) return
@@ -48,7 +49,14 @@ export default function TicketOverview() {
 		}
 	}, [ticket])
 
-	const handleRunWorkflow = () => {}
+	const handleLeaveComment = async (): Promise<void> => {
+		const user = await getCurrentUser()
+		const authorId = user.signInDetails?.loginId ?? "You"
+		if (commentText.length === 0) return
+		const updatedTicket = await leaveComment(ticket.id, authorId, commentText)
+		dispatch(ticketUpdated(updatedTicket))
+		setCommentText("")
+	}
 
 	return (
 		ticket && (
@@ -128,12 +136,12 @@ export default function TicketOverview() {
 					<div className="pb-10">
 						<SmartInput
 							className="focus:ring-0 rounded-sm text-sm w-full resize-none h-auto"
-							value={comment}
-							onChange={setComment}
+							value={commentText}
+							onChange={setCommentText}
 							placeholder="Comment to re-run workflow…"
 						>
 							<SmartFooter>
-								<div className="flex items-end justify-end mx-1" onClick={handleRunWorkflow}>
+								<div className="flex items-end justify-end mx-1" onClick={handleLeaveComment}>
 									<Tooltip message="Re-run workflow">
 										<PlayIcon color="text-highlight" />
 									</Tooltip>
