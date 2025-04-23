@@ -11,7 +11,7 @@
 		"format": "prettier --write \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
-		"@honeycomb-app/design": "^0.0.99",
+		"@honeycomb-app/design": "^0.0.103",
 		"@honeycomb-app/jigjoy-react-sdk": "^0.0.6",
 		"@paddle/paddle-js": "^1.4.0",
 		"@reduxjs/toolkit": "^2.5.0",

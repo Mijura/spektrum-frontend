@@ -45,6 +45,23 @@ export async function updateTicketDescription(ticket: Ticket) {
 	return await res.json()
 }
 
+export async function leaveComment(ticketId: string, authorId: string, commentText: string) {
+	const options = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			ticketId: ticketId,
+			authorId: authorId,
+			commentText: commentText,
+		}),
+	}
+
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/comment`, options)
+	return await res.json()
+}
+
 export async function fetchAllTickets(projectId: string) {
 	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/fetch-all/${projectId}`)
 	return await res.json()
