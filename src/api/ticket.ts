@@ -58,7 +58,7 @@ export async function leaveComment(ticketId: string, authorId: string, commentTe
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/comment`, options)
+	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/ticket/add-comment-and-run-workflow`, options)
 	return await res.json()
 }
 

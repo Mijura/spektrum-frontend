@@ -75,9 +75,7 @@ export default function TicketOverview() {
 						placeholder="Add description..."
 						onBlur={handleDescriptionChange}
 						onChange={setDescription}
-					>
-						<SmartFooter className="text-xs bg-surface italic">*Ticket description</SmartFooter>
-					</SmartInput>
+					></SmartInput>
 					<div className="text-progress mt-2">Activities</div>
 
 					<div className="mb-2 2xl:mb-5">
