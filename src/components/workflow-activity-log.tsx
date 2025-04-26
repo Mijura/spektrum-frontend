@@ -1,18 +1,16 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useTimeline } from "@honeycomb-app/jigjoy-react-sdk"
 import { Card, Loader, Tooltip, Chip } from "@honeycomb-app/design"
 import CheckOutputIcon from "../shared/icons/check-output-icon"
 import WatchIcon from "../shared/icons/watch-icon"
-import SuccessIcon from "../shared/icons/success-icon"
-import FailedIcon from "../shared/icons/failed-icon"
 import { formatTimestamp } from "../shared/util"
 
-const WorkflowExecutionsTimeline: React.FC = () => {
+const WorkflowActivityLog: React.FC = () => {
 	const { timelineData } = useTimeline({ gameId: "honeycomb" })
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">
-			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-secondary-100 text-sm">Workflow Executions</div>
+			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-secondary-100 text-sm">Workflow Activity Log</div>
 
 			{timelineData ? (
 				timelineData.map((execution: any, index: number) => (
@@ -59,4 +57,4 @@ const WorkflowExecutionsTimeline: React.FC = () => {
 	)
 }
 
-export default WorkflowExecutionsTimeline
+export default WorkflowActivityLog

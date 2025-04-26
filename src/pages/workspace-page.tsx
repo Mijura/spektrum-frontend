@@ -2,7 +2,7 @@ import ActivityRewards from "../components/activity-rewards"
 import TicketPlanning from "../components/ticket-planning"
 import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
-import WorkflowExecutionsTimeline from "../components/workflow-executions"
+import WorkflowActivityLog from "../components/workflow-activity-log"
 import TicketOverview from "../components/ticket-overview"
 import { useState } from "react"
 import { useSelectedProject } from "../hooks/store"
@@ -98,7 +98,7 @@ export default function WorkspacePage() {
 
 					<div className="w-[325px] flex flex-col rounded-[2px]">
 						<ActivityRewards />
-						<WorkflowExecutionsTimeline />
+						<WorkflowActivityLog />
 					</div>
 				</div>
 			</div>
