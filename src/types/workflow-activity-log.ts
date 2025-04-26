@@ -5,10 +5,10 @@ export enum WorkflowStatus {
 }
 
 export enum WorkflowId {
-	CodeGeneration = "code-generation",
+	Prototyping = "prototyping",
 }
 
-export interface WorfklowExecution {
+export interface WorfklowActivityLog {
 	id: string
 	projectId: string
 	ticketId: string

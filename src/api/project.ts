@@ -1,11 +1,11 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 import { io } from "socket.io-client"
-import { WorfklowExecution } from "../types/workflow-execution"
+import { WorfklowActivityLog } from "../types/workflow-activity-log"
 
 const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 export const runWorkflow = (
-	workflowExecution: WorfklowExecution,
+	workflowActivityLog: WorfklowActivityLog,
 	onUpdate: (data: any) => void,
 	onDone: (data: any) => void,
 	onError: (error: any) => void,
@@ -13,7 +13,7 @@ export const runWorkflow = (
 	const socket = io("http://localhost:3000") //TODO: fix this!
 
 	socket.on("connect", () => {
-		socket.emit("run", workflowExecution)
+		socket.emit("run", workflowActivityLog)
 	})
 
 	socket.on("update", (data) => {

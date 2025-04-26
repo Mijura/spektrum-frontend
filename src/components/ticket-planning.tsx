@@ -8,7 +8,7 @@ import { createNewTicket } from "../api/ticket"
 import { ticketCreated, ticketSelected, ticketUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
-import { WorkflowId, WorkflowStatus } from "../types/workflow-execution"
+import { WorkflowId, WorkflowStatus } from "../types/workflow-activity-log"
 import { useSelectedProject, useSelectedTicket } from "../hooks/store"
 const TicketPlanning: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -22,7 +22,7 @@ const TicketPlanning: React.FC = () => {
 	const handleRunWorkflow = async (ticketId: string) => {
 		const workflowExecution = {
 			id: uuidv4(),
-			workflowId: WorkflowId.CodeGeneration,
+			workflowId: WorkflowId.Prototyping,
 			status: WorkflowStatus.Running,
 			projectId: selectedProject.id,
 			ticketId: ticketId,
