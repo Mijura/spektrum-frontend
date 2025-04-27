@@ -1,24 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Ticket } from "../types/ticket"
+import { Issue } from "../types/issue"
 
 export interface Project {
 	id?: string
 	name?: string
 	description?: string
 	owner?: any
-	tickets: Ticket[]
+	issues: Issue[]
 }
 
 export interface WorkspaceState {
 	selectedProject: Project
-	selectedTicket: Ticket | null
+	selectedIssue: Issue | null
 }
 
 let initialState: WorkspaceState = {
 	selectedProject: {
-		tickets: [],
+		issues: [],
 	},
-	selectedTicket: null,
+	selectedIssue: null,
 }
 
 export const workspaceSlice = createSlice({
@@ -29,22 +29,22 @@ export const workspaceSlice = createSlice({
 		projectSelected: (state, action: PayloadAction<Project>) => {
 			state.selectedProject = action.payload
 		},
-		ticketCreated: (state, action: PayloadAction<Ticket>) => {
-			state.selectedProject.tickets.push(action.payload)
-			state.selectedTicket = action.payload
+		issueCreated: (state, action: PayloadAction<Issue>) => {
+			state.selectedProject.issues.push(action.payload)
+			state.selectedIssue = action.payload
 		},
-		ticketSelected: (state, action: PayloadAction<Ticket | null>) => {
-			state.selectedTicket = action.payload
+		issueSelected: (state, action: PayloadAction<Issue | null>) => {
+			state.selectedIssue = action.payload
 		},
-		ticketUpdated: (state, action: PayloadAction<Ticket>) => {
-			state.selectedTicket = action.payload
-			state.selectedProject.tickets = state.selectedProject.tickets.map((ticket) =>
-				ticket.id === action.payload.id ? action.payload : ticket,
+		issueUpdated: (state, action: PayloadAction<Issue>) => {
+			state.selectedIssue = action.payload
+			state.selectedProject.issues = state.selectedProject.issues.map((issue) =>
+				issue.id === action.payload.id ? action.payload : issue,
 			)
 		},
 	},
 })
 
-export const { projectSelected, ticketCreated, ticketSelected, ticketUpdated } = workspaceSlice.actions
+export const { projectSelected, issueCreated, issueSelected, issueUpdated } = workspaceSlice.actions
 
 export default workspaceSlice.reducer

@@ -22,7 +22,7 @@ const WorkflowActivityLog: React.FC = () => {
 								<div className="flex flex-row w-full">
 									<div className="pl-1 grow w-0">
 										<div className="gap-1 items-center flex flex-row">
-											<p className="p-1 text-secondary-100 truncate w-full">{execution.data.ticketTitle}</p>
+											<p className="p-1 text-secondary-100 truncate w-full">{execution.data.issueTitle}</p>
 										</div>
 
 										<div className="py-1 flex flex-row gap-1 text-secondary-100">

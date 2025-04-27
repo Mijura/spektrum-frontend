@@ -1,9 +1,18 @@
+export interface Issue {
+	id: string
+	title: string
+	description: string
+	projectId: string
+	status: "TODO" | "IN_PROGRESS" | "DONE"
+	created: string
+	updated: string
+}
 export default interface Project {
 	id?: string
 	name?: string
 	description?: string
 	owner?: any
-	tickets?: Ticket[]
+	issues?: Issue[]
 }
 
 export interface Initiator {
@@ -18,8 +27,8 @@ abstract class Activity {
 	abstract initiator: Initiator
 }
 
-export interface TicketEditing extends Activity {
-	type: "TICKET_EDIT"
+export interface IssueEditing extends Activity {
+	type: "ISSUE_EDITED"
 	field: "title" | "description" | "status"
 	oldValue: string
 	newValue: string
@@ -36,19 +45,9 @@ export interface Comment extends Activity {
 	id: string
 	created: string
 	initiator: Initiator
-	ticketId: string
+	issueId: string
 	type: "COMMENT"
 	data: {
 		content: string
 	}
-}
-
-export interface Ticket {
-	id: string
-	title: string
-	description: string
-	projectId: string
-	status: "TODO" | "IN_PROGRESS" | "DONE"
-	created: string
-	updated: string
 }

@@ -18,7 +18,7 @@ export const runWorkflow = (
 
 	socket.on("update", (data) => {
 		console.log("Received update:", data)
-		onUpdate({ ticket: data.ticket })
+		onUpdate({ issue: data.issue })
 	})
 
 	socket.on("done", (data) => {

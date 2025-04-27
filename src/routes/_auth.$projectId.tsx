@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import WorkspacePage from "../pages/workspace-page"
-import { fetchAllTickets } from "../api/ticket"
+import { fetchAllIssues } from "../api/issue"
 import { fetchProject } from "../api/project"
 import { Loader } from "@honeycomb-app/design"
 import { PostError } from "../shared/errors/post-error"
@@ -10,8 +10,8 @@ import { projectSelected } from "../reducers/workspace-reducer"
 
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
-		const [project, tickets] = await Promise.all([fetchProject(projectId), fetchAllTickets(projectId)])
-		return { project, tickets }
+		const [project, issues] = await Promise.all([fetchProject(projectId), fetchAllIssues(projectId)])
+		return { project, issues }
 	},
 	errorComponent: PostError,
 	pendingComponent: PendingComponent,
@@ -34,7 +34,7 @@ function WorkspaceComponent() {
 		dispatch(
 			projectSelected({
 				...data.project,
-				tickets: data.tickets,
+				issues: data.issues,
 			}),
 		)
 	}, [])

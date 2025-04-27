@@ -11,7 +11,7 @@ export enum WorkflowId {
 export interface WorfklowActivityLog {
 	id: string
 	projectId: string
-	ticketId: string
+	issueId: string
 	status: WorkflowStatus
 	workflowId: WorkflowId
 }
