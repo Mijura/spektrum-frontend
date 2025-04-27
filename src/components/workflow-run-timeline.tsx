@@ -5,12 +5,12 @@ import CheckOutputIcon from "../shared/icons/check-output-icon"
 import WatchIcon from "../shared/icons/watch-icon"
 import { formatTimestamp } from "../shared/util"
 
-const WorkflowActivityLog: React.FC = () => {
+const WorkflowRunTimeline: React.FC = () => {
 	const { timelineData } = useTimeline({ gameId: "honeycomb" })
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">
-			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-secondary-100 text-sm">Workflow Activity Log</div>
+			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-secondary-100 text-sm">Workflow Run Timeline</div>
 
 			{timelineData ? (
 				timelineData.map((execution: any, index: number) => (
@@ -57,4 +57,4 @@ const WorkflowActivityLog: React.FC = () => {
 	)
 }
 
-export default WorkflowActivityLog
+export default WorkflowRunTimeline

@@ -21,7 +21,7 @@ const Planning: React.FC = () => {
 	const [modalOpened, setModalOpened] = useState(false)
 
 	const handleRunWorkflow = async (issueId: string) => {
-		const workflowExecution = {
+		const workflow = {
 			id: uuidv4(),
 			workflowId: WorkflowId.Prototyping,
 			status: WorkflowStatus.Running,
@@ -30,7 +30,7 @@ const Planning: React.FC = () => {
 		}
 
 		await runWorkflow(
-			workflowExecution,
+			workflow,
 			({ issue }) => {
 				console.log("Issue updated:", issue)
 				dispatch(issueUpdated(issue))

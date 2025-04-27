@@ -8,7 +8,7 @@ export enum WorkflowId {
 	Prototyping = "prototyping",
 }
 
-export interface WorfklowActivityLog {
+export interface WorfklowRun {
 	id: string
 	projectId: string
 	issueId: string
