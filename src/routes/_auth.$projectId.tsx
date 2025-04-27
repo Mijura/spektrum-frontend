@@ -5,7 +5,7 @@ import { fetchProject } from "../api/project"
 import { Loader } from "@honeycomb-app/design"
 import { PostError } from "../shared/errors/post-error"
 import { useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { projectSelected } from "../reducers/workspace-reducer"
 
 export const Route: any = createFileRoute("/_auth/$projectId")({
@@ -16,6 +16,8 @@ export const Route: any = createFileRoute("/_auth/$projectId")({
 	errorComponent: PostError,
 	pendingComponent: PendingComponent,
 	component: WorkspaceComponent,
+	shouldReload: true,
+	gcTime: 0,
 })
 
 function PendingComponent() {
@@ -29,15 +31,19 @@ function PendingComponent() {
 function WorkspaceComponent() {
 	const data = Route.useLoaderData()
 	const dispatch = useDispatch()
+	const [isLoaded, setIsLoaded] = useState(false)
 
 	useEffect(() => {
-		dispatch(
-			projectSelected({
-				...data.project,
-				issues: data.issues,
-			}),
-		)
-	}, [])
+		if (data) {
+			dispatch(
+				projectSelected({
+					...data.project,
+					issues: data.issues,
+				}),
+			)
+			setIsLoaded(true)
+		}
+	}, [data])
 
-	return <WorkspacePage />
+	return isLoaded ? <WorkspacePage /> : <PendingComponent />
 }
