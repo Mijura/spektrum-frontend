@@ -8,7 +8,7 @@ import { createIssue } from "../api/issue"
 import { issueUpdated, issueCreated, issueSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
-import { WorkflowId, WorkflowStatus } from "../types/workflow-activity-log"
+import { WorkflowId, WorkflowStatus } from "../types/workflow-run"
 import { useSelectedProject, useSelectedIssue } from "../hooks/store"
 
 const Planning: React.FC = () => {
