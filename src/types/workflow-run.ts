@@ -1,6 +1,6 @@
 export enum WorkflowStatus {
 	Running = "Running",
-	Done = "Done",
+	Successed = "Successed",
 	Failed = "Failed",
 }
 
@@ -8,10 +8,11 @@ export enum WorkflowId {
 	Prototyping = "prototyping",
 }
 
-export interface WorfklowRun {
+export interface WorkflowRun {
 	id: string
 	projectId: string
 	issueId: string
 	status: WorkflowStatus
 	workflowId: WorkflowId
+	occuredAt?: string
 }

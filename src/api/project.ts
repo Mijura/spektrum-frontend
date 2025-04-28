@@ -1,10 +1,10 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 import { io } from "socket.io-client"
-import { WorfklowRun } from "../types/workflow-run"
+import { WorkflowRun } from "../types/workflow-run"
 const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 export const runWorkflow = (
-	workflowRun: WorfklowRun,
+	workflowRun: WorkflowRun,
 	onUpdate: (data: any) => void,
 	onDone: (data: any) => void,
 	onError: (error: any) => void,

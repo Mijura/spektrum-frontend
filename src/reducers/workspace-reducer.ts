@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Issue } from "../types/issue"
-
+import { WorkflowRun } from "../types/workflow-run"
 export interface Project {
 	id?: string
 	name?: string
 	description?: string
 	owner?: any
 	issues: Issue[]
+	workflowRuns: WorkflowRun[]
 }
 
 export interface WorkspaceState {
@@ -17,6 +18,7 @@ export interface WorkspaceState {
 let initialState: WorkspaceState = {
 	selectedProject: {
 		issues: [],
+		workflowRuns: [],
 	},
 	selectedIssue: null,
 }
