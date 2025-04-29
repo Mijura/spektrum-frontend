@@ -6,17 +6,13 @@ import { Loader } from "@honeycomb-app/design"
 import { PostError } from "../shared/errors/post-error"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
-import { projectSelected } from "../reducers/workspace-reducer"
-import { fetchWorkflowRunTimeline } from "../api/activities"
+import { issueSelected, projectSelected } from "../reducers/workspace-reducer"
+import { useSelectedProject } from "../hooks/store"
 
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
-		const [project, issues, workflowRuns] = await Promise.all([
-			fetchProject(projectId),
-			fetchAllIssues(projectId),
-			fetchWorkflowRunTimeline(projectId),
-		])
-		return { project, issues, workflowRuns }
+		const [project, issues] = await Promise.all([fetchProject(projectId), fetchAllIssues(projectId)])
+		return { project, issues }
 	},
 	errorComponent: PostError,
 	pendingComponent: PendingComponent,
@@ -36,15 +32,21 @@ function PendingComponent() {
 function WorkspaceComponent() {
 	const data = Route.useLoaderData()
 	const dispatch = useDispatch()
+	const selectedProject = useSelectedProject()
 	const [isLoaded, setIsLoaded] = useState(false)
 
 	useEffect(() => {
-		if (data) {
+		if (selectedProject) {
+			// reset issue if project has changed
+			if (selectedProject.id !== data.project.id) {
+				dispatch(issueSelected(null))
+			}
+
+			// update project
 			dispatch(
 				projectSelected({
 					...data.project,
 					issues: data.issues,
-					workflowRuns: data.workflowRuns,
 				}),
 			)
 			setIsLoaded(true)

@@ -36,12 +36,6 @@ export default function IssueOverview() {
 		dispatch(issueUpdated(updatedIssue))
 	}
 
-	useEffect(() => {
-		return () => {
-			dispatch(issueSelected(null))
-		}
-	}, [])
-
 	useLayoutEffect(() => {
 		if (issue) {
 			setTitle(issue.title)

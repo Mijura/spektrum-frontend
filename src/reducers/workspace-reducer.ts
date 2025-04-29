@@ -7,20 +7,20 @@ export interface Project {
 	description?: string
 	owner?: any
 	issues: Issue[]
-	workflowRuns: WorkflowRunData[]
 }
 
 export interface WorkspaceState {
 	selectedProject: Project
 	selectedIssue: Issue | null
+	workflowRunTimeline: WorkflowRunData[]
 }
 
 let initialState: WorkspaceState = {
 	selectedProject: {
 		issues: [],
-		workflowRuns: [],
 	},
 	selectedIssue: null,
+	workflowRunTimeline: [],
 }
 
 export const workspaceSlice = createSlice({
@@ -44,9 +44,13 @@ export const workspaceSlice = createSlice({
 				issue.id === action.payload.id ? action.payload : issue,
 			)
 		},
+		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunData[]>) => {
+			state.workflowRunTimeline = action.payload
+		},
 	},
 })
 
-export const { projectSelected, issueCreated, issueSelected, issueUpdated } = workspaceSlice.actions
+export const { projectSelected, issueCreated, issueSelected, issueUpdated, workflowRunTimelineUpdated } =
+	workspaceSlice.actions
 
 export default workspaceSlice.reducer
