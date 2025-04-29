@@ -1,9 +1,15 @@
+export enum IssueStatus {
+	TODO = "Todo",
+	IN_PROGRESS = "In Progress",
+	DONE = "Done",
+}
+
 export interface Issue {
 	id: string
 	title: string
 	description: string
 	projectId: string
-	status: "TODO" | "IN_PROGRESS" | "DONE"
+	status: IssueStatus
 	created: string
 	updated: string
 }

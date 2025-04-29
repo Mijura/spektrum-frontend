@@ -10,7 +10,7 @@ const WorkflowRun: React.FC<{ runInfo: WorkflowRunData }> = ({ runInfo }) => {
 
 	const getBorder = (status: WorkflowStatus) => {
 		switch (status) {
-			case WorkflowStatus.SUCCESSED:
+			case WorkflowStatus.SUCCEEDED:
 				return "border-l-[#869B73]"
 			case WorkflowStatus.FAILED:
 				return "border-l-danger"
@@ -39,7 +39,7 @@ const WorkflowRun: React.FC<{ runInfo: WorkflowRunData }> = ({ runInfo }) => {
 					</div>
 
 					<div className="p-1 h-fit w-full text-secondary-100 flex items-end gap-2">
-						{runInfo.metadata?.status === WorkflowStatus.SUCCESSED && (
+						{runInfo.metadata?.status === WorkflowStatus.SUCCEEDED && (
 							<div className="cursor-pointer grow flex gap-1" onClick={() => {}}>
 								<Tooltip message="Check output">
 									<CheckOutputIcon />

@@ -1,7 +1,7 @@
 export enum WorkflowStatus {
-	RUNNING = "RUNNING",
-	SUCCESSED = "SUCCESSED",
-	FAILED = "FAILED",
+	RUNNING = "Running",
+	SUCCEEDED = "Succeeded",
+	FAILED = "Failed",
 }
 
 export enum WorkflowId {
