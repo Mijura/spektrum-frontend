@@ -30,6 +30,20 @@
 		}
 	}
 
+	@keyframes borderPulse {
+		0%,
+		100% {
+			border-left-color: var(--highlight);
+		}
+		50% {
+			border-left-color: var(--primary-200);
+		}
+	}
+
+	.animate-borderPulse {
+		animation: borderPulse 2s ease-in-out infinite;
+	}
+
 	.hexagon {
 		--b: 1px; /* Border thickness */
 		--size: 20px; /* Hexagon size */
