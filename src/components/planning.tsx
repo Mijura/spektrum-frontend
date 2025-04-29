@@ -5,7 +5,7 @@ import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
 import { runWorkflow } from "../api/project"
 import { createIssue } from "../api/issue"
-import { issueUpdated, issueCreated, issueSelected, activityAppeared } from "../reducers/workspace-reducer"
+import { issueUpdated, issueCreated, issueSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { WorkflowId } from "../types/workflow-run"
@@ -30,9 +30,8 @@ const Planning: React.FC = () => {
 
 		await runWorkflow(
 			workflow,
-			({ issue, activity }) => {
+			({ issue }) => {
 				dispatch(issueUpdated(issue))
-				dispatch(activityAppeared(activity))
 			},
 			({}) => {},
 			({}) => {},

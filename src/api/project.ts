@@ -1,6 +1,5 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 import { io } from "socket.io-client"
-import { WorkflowRunData } from "../types/workflow-run"
 const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
 
 export const runWorkflow = (
@@ -16,7 +15,7 @@ export const runWorkflow = (
 	})
 
 	socket.on("update", (data) => {
-		onUpdate({ issue: data.issue, activity: data.activity })
+		onUpdate({ issue: data.issue })
 	})
 
 	socket.on("done", (data) => {

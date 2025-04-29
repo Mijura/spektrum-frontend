@@ -1,8 +1,8 @@
 import { Chip, SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
-import { useIssueActivities, useSelectedIssue } from "../hooks/store"
+import { useSelectedIssue } from "../hooks/store"
 import { useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { issueActivitiesUpdated, issueSelected, issueUpdated } from "../reducers/workspace-reducer"
+import { issueUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
 import { WorkerIcon } from "../shared/icons/worker-icon"
 import { WorkerLoader } from "../shared/icons/worker-loader"
@@ -12,13 +12,10 @@ import { motion, AnimatePresence } from "framer-motion"
 import CreateIcon from "../shared/icons/create-icon"
 import EditIcon from "../shared/icons/edit-icon"
 import { getCurrentUser } from "aws-amplify/auth"
-import { fetchIssueActivities } from "../api/activities"
 
 export default function IssueOverview() {
 	const dispatch = useDispatch()
 	const issue = useSelectedIssue()
-	const issueActivities = useIssueActivities()
-	const [isLoading, setIsLoading] = useState(false)
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
 	const [commentText, setCommentText] = useState("")
@@ -39,18 +36,10 @@ export default function IssueOverview() {
 		dispatch(issueUpdated(updatedIssue))
 	}
 
-	const fetchActivities = async (issueId: string) => {
-		setIsLoading(true)
-		const activities = await fetchIssueActivities(issueId)
-		dispatch(issueActivitiesUpdated(activities))
-		setIsLoading(false)
-	}
-
 	useLayoutEffect(() => {
 		if (issue) {
 			setTitle(issue.title)
 			setDescription(issue.description)
-			fetchActivities(issue.id)
 		}
 	}, [issue])
 
@@ -83,82 +72,76 @@ export default function IssueOverview() {
 					></SmartInput>
 					<div className="text-progress mt-2">Issue Activities</div>
 
-					{!isLoading && (
-						<AnimatePresence>
-							<div className="mb-2 2xl:mb-5">
-								{issueActivities &&
-									issueActivities.map((activity: any, index: number) => {
-										return (
-											<AnimatePresence>
-												<motion.div
-													key={activity.id}
-													initial={{ opacity: 0, y: 10 }}
-													animate={{ opacity: 1, y: 0 }}
-													transition={{
-														duration: 0.3,
-														delay: index * 0.1,
-														ease: "easeOut",
-													}}
-												>
-													{activity.type === "Commented" ? (
-														<div className="w-full flex">
-															<div className="w-full flex flex-row items-center p-1 2xl:p-2 text-sm">
-																<motion.div
-																	className="italic bg-surface-light rounded-sm p-1 2xl:p-2 w-full"
-																	transition={{ duration: 0.2 }}
-																>
-																	<div className="flex flex-row gap-x-2 items-center">
-																		<Chip label={activity.userId} className="bg-surface text-highlight-200" />
-																		<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
-																	</div>
-																	<div className="p-1 2xl:p-2">
-																		{issue.comments.find((comment: any) => comment.id === activity.metadata.commentId).text}
-																	</div>
-																</motion.div>
-															</div>
-														</div>
-													) : (
-														<div className="flex w-full items-center 2xl:gap-y-4 h-fit">
-															<div className="w-fit h-fit mx-1">
-																{activity.type === "IssueCreated" ? <CreateIcon /> : <EditIcon />}
-															</div>
-															<motion.div className="flex flex-col gap-x-3 text-sm p-2 rounded-sm" transition={{ duration: 0.2 }}>
-																<div className="flex flex-row gap-x-1 items-center">
-																	<span className="text-xs italic">
-																		<span className="text-secondary mr-2">{formatTimestamp(activity.occurredAt)}</span>
-																		{activity.metadata.message}
-																	</span>
+					<AnimatePresence>
+						<div className="mb-2 2xl:mb-5">
+							{issue &&
+								issue.activities.map((activity: any, index: number) => {
+									return (
+										<AnimatePresence>
+											<motion.div
+												key={activity.id}
+												initial={{ opacity: 0, y: 10 }}
+												animate={{ opacity: 1, y: 0 }}
+												transition={{
+													duration: 0.3,
+													delay: index * 0.1,
+													ease: "easeOut",
+												}}
+											>
+												{activity.type === "CommentLeft" ? (
+													<div className="w-full flex">
+														<div className="w-full flex flex-row items-center p-1 2xl:p-2 text-sm">
+															<motion.div
+																className="italic bg-surface-light rounded-sm p-1 2xl:p-2 w-full"
+																transition={{ duration: 0.2 }}
+															>
+																<div className="flex flex-row gap-x-2 items-center">
+																	<Chip label={activity.userId} className="bg-surface text-highlight-200" />
+																	<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
 																</div>
-																<div className="text-xs italic"></div>
+																<div className="p-1 2xl:p-2">{activity.metadata.commentText}</div>
 															</motion.div>
 														</div>
-													)}
-												</motion.div>
-											</AnimatePresence>
-										)
-									})}
-							</div>
+													</div>
+												) : (
+													<div className="flex w-full items-center 2xl:gap-y-4 h-fit">
+														<div className="w-fit h-fit mx-1">{activity.type === "IssueCreated" ? <CreateIcon /> : <EditIcon />}</div>
+														<motion.div className="flex flex-col gap-x-3 text-sm p-2 rounded-sm" transition={{ duration: 0.2 }}>
+															<div className="flex flex-row gap-x-1 items-center">
+																<span className="text-xs italic">
+																	<span className="text-secondary mr-2">{formatTimestamp(activity.occurredAt)}</span>
+																	{activity.metadata.message}
+																</span>
+															</div>
+															<div className="text-xs italic"></div>
+														</motion.div>
+													</div>
+												)}
+											</motion.div>
+										</AnimatePresence>
+									)
+								})}
+						</div>
 
-							{/* <WorkerLoader />
+						{/* <WorkerLoader />
 					<WorkerIcon /> */}
-							<div className="pb-10">
-								<SmartInput
-									className="focus:ring-0 rounded-sm text-sm w-full resize-none h-auto"
-									value={commentText}
-									onChange={setCommentText}
-									placeholder="Comment to re-run workflow…"
-								>
-									<SmartFooter>
-										<div className="flex items-end justify-end mx-1" onClick={handleLeaveComment}>
-											<Tooltip message="Re-run workflow">
-												<PlayIcon color="text-highlight" />
-											</Tooltip>
-										</div>
-									</SmartFooter>
-								</SmartInput>
-							</div>
-						</AnimatePresence>
-					)}
+						<div className="pb-10">
+							<SmartInput
+								className="focus:ring-0 rounded-sm text-sm w-full resize-none h-auto"
+								value={commentText}
+								onChange={setCommentText}
+								placeholder="Comment to re-run workflow…"
+							>
+								<SmartFooter>
+									<div className="flex items-end justify-end mx-1" onClick={handleLeaveComment}>
+										<Tooltip message="Re-run workflow">
+											<PlayIcon color="text-highlight" />
+										</Tooltip>
+									</div>
+								</SmartFooter>
+							</SmartInput>
+						</div>
+					</AnimatePresence>
 				</div>
 			</div>
 		)

@@ -14,7 +14,6 @@ export interface WorkspaceState {
 	selectedProject: Project
 	selectedIssue: Issue | null
 	workflowRunTimeline: WorkflowRunData[]
-	issuesActivities: ActivityData[]
 }
 
 let initialState: WorkspaceState = {
@@ -23,7 +22,6 @@ let initialState: WorkspaceState = {
 	},
 	selectedIssue: null,
 	workflowRunTimeline: [],
-	issuesActivities: [],
 }
 
 export const workspaceSlice = createSlice({
@@ -50,30 +48,10 @@ export const workspaceSlice = createSlice({
 		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunData[]>) => {
 			state.workflowRunTimeline = action.payload
 		},
-		issueActivitiesUpdated: (state, action: PayloadAction<ActivityData[]>) => {
-			state.issuesActivities = action.payload
-		},
-		activityAppeared: (state, action: PayloadAction<ActivityData>) => {
-			const existingActivity = state.issuesActivities.find((activity) => activity.id === action.payload.id)
-			if (!existingActivity) {
-				state.issuesActivities.push(action.payload)
-			} else {
-				state.issuesActivities = state.issuesActivities.map((activity) =>
-					activity.id === action.payload.id ? action.payload : activity,
-				)
-			}
-		},
 	},
 })
 
-export const {
-	projectSelected,
-	issueCreated,
-	issueSelected,
-	issueUpdated,
-	workflowRunTimelineUpdated,
-	issueActivitiesUpdated,
-	activityAppeared,
-} = workspaceSlice.actions
+export const { projectSelected, issueCreated, issueSelected, issueUpdated, workflowRunTimelineUpdated } =
+	workspaceSlice.actions
 
 export default workspaceSlice.reducer
