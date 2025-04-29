@@ -1,6 +1,6 @@
-import { Chip, Loader, SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
+import { Chip, SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
 import { useIssueActivities, useSelectedIssue } from "../hooks/store"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { issueActivitiesUpdated, issueSelected, issueUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
@@ -83,61 +83,60 @@ export default function IssueOverview() {
 					></SmartInput>
 					<div className="text-progress mt-2">Issue Activities</div>
 
-					{isLoading ? (
-						<div className="flex justify-center ">
-							<Loader size="small" message="Loading activities..." />
-						</div>
-					) : (
+					{!isLoading && (
 						<AnimatePresence>
 							<div className="mb-2 2xl:mb-5">
-								{issueActivities.map((activity: any, index: number) => {
-									return (
-										<AnimatePresence>
-											<motion.div
-												key={activity.id}
-												initial={{ opacity: 0, y: 10 }}
-												animate={{ opacity: 1, y: 0 }}
-												transition={{
-													duration: 0.3,
-													delay: index * 0.1,
-													ease: "easeOut",
-												}}
-											>
-												{activity.type === "Commented" ? (
-													<div className="w-full flex">
-														<div className="w-full flex flex-row items-center p-1 2xl:p-2 text-sm">
-															<motion.div
-																className="italic bg-surface-light rounded-sm p-1 2xl:p-2 w-full"
-																transition={{ duration: 0.2 }}
-															>
-																<div className="flex flex-row gap-x-2 items-center">
-																	<Chip label={activity.userId} className="bg-surface text-highlight-200" />
-																	<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
+								{issueActivities &&
+									issueActivities.map((activity: any, index: number) => {
+										return (
+											<AnimatePresence>
+												<motion.div
+													key={activity.id}
+													initial={{ opacity: 0, y: 10 }}
+													animate={{ opacity: 1, y: 0 }}
+													transition={{
+														duration: 0.3,
+														delay: index * 0.1,
+														ease: "easeOut",
+													}}
+												>
+													{activity.type === "Commented" ? (
+														<div className="w-full flex">
+															<div className="w-full flex flex-row items-center p-1 2xl:p-2 text-sm">
+																<motion.div
+																	className="italic bg-surface-light rounded-sm p-1 2xl:p-2 w-full"
+																	transition={{ duration: 0.2 }}
+																>
+																	<div className="flex flex-row gap-x-2 items-center">
+																		<Chip label={activity.userId} className="bg-surface text-highlight-200" />
+																		<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
+																	</div>
+																	<div className="p-1 2xl:p-2">
+																		{issue.comments.find((comment: any) => comment.id === activity.metadata.commentId).text}
+																	</div>
+																</motion.div>
+															</div>
+														</div>
+													) : (
+														<div className="flex w-full items-center 2xl:gap-y-4 h-fit">
+															<div className="w-fit h-fit mx-1">
+																{activity.type === "IssueCreated" ? <CreateIcon /> : <EditIcon />}
+															</div>
+															<motion.div className="flex flex-col gap-x-3 text-sm p-2 rounded-sm" transition={{ duration: 0.2 }}>
+																<div className="flex flex-row gap-x-1 items-center">
+																	<span className="text-xs italic">
+																		<span className="text-secondary mr-2">{formatTimestamp(activity.occurredAt)}</span>
+																		{activity.metadata.message}
+																	</span>
 																</div>
-																<div className="p-1 2xl:p-2">
-																	{issue.comments.find((comment: any) => comment.id === activity.metadata.commentId).text}
-																</div>
+																<div className="text-xs italic"></div>
 															</motion.div>
 														</div>
-													</div>
-												) : (
-													<div className="flex w-full items-center 2xl:gap-y-4 h-fit">
-														<div className="w-fit h-fit mx-1">{activity.type === "IssueCreated" ? <CreateIcon /> : <EditIcon />}</div>
-														<motion.div className="flex flex-col gap-x-3 text-sm p-2 rounded-sm" transition={{ duration: 0.2 }}>
-															<div className="flex flex-row gap-x-1 items-center">
-																<span className="text-xs italic">
-																	<span className="text-secondary mr-2">{formatTimestamp(activity.occurredAt)}</span>
-																	{activity.metadata.message}
-																</span>
-															</div>
-															<div className="text-xs italic"></div>
-														</motion.div>
-													</div>
-												)}
-											</motion.div>
-										</AnimatePresence>
-									)
-								})}
+													)}
+												</motion.div>
+											</AnimatePresence>
+										)
+									})}
 							</div>
 
 							{/* <WorkerLoader />
