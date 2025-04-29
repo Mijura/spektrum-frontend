@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Issue } from "../types/issue"
-import { WorkflowRun } from "../types/workflow-run"
+import { WorkflowRunData } from "../types/workflow-run"
 export interface Project {
 	id?: string
 	name?: string
 	description?: string
 	owner?: any
 	issues: Issue[]
-	workflowRuns: WorkflowRun[]
+	workflowRuns: WorkflowRunData[]
 }
 
 export interface WorkspaceState {

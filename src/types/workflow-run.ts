@@ -1,18 +1,23 @@
 export enum WorkflowStatus {
-	Running = "Running",
-	Successed = "Successed",
-	Failed = "Failed",
+	RUNNING = "Running",
+	SUCCESSED = "Successed",
+	FAILED = "Failed",
 }
 
 export enum WorkflowId {
-	Prototyping = "prototyping",
+	Prototyping = "Prototyping",
 }
 
-export interface WorkflowRun {
+export type WorkflowRunData = {
 	id: string
 	projectId: string
 	issueId: string
-	status: WorkflowStatus
-	workflowId: WorkflowId
-	occuredAt?: string
+	occurredAt: string
+	metadata: {
+		message: string
+		phase: string
+		status: WorkflowStatus
+		workflowId: WorkflowId
+		title: string
+	}
 }
