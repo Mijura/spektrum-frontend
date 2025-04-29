@@ -9,3 +9,10 @@ export async function fetchWorkflowRunTimeline(projectId: string, page: number =
 	const res: any = await fetch(url)
 	return await res.json()
 }
+
+export async function fetchIssueActivities(issueId: string) {
+	const url = new URL(`${PROJECT_MANAGEMENT_ENDPOINT}/activities/issue/${issueId}`)
+
+	const res: any = await fetch(url)
+	return await res.json()
+}
