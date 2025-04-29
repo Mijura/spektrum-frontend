@@ -5,7 +5,7 @@ import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
 import { runWorkflow } from "../api/project"
 import { createIssue } from "../api/issue"
-import { issueUpdated, issueCreated, issueSelected } from "../reducers/workspace-reducer"
+import { issueUpdated, issueCreated, issueSelected, activityAppeared } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { WorkflowId } from "../types/workflow-run"
@@ -30,9 +30,9 @@ const Planning: React.FC = () => {
 
 		await runWorkflow(
 			workflow,
-			({ issue }) => {
-				console.log("Issue updated:", issue)
+			({ issue, activity }) => {
 				dispatch(issueUpdated(issue))
+				dispatch(activityAppeared(activity))
 			},
 			({}) => {},
 			({}) => {},
@@ -40,9 +40,15 @@ const Planning: React.FC = () => {
 	}
 
 	const handleCreateIssue = async () => {
-		const issue = await createIssue(selectedProject.id, title, description)
-		dispatch(issueCreated(issue))
 		setModalOpened(false)
+		const createdIssue = await createIssue(selectedProject.id, title, description)
+		dispatch(issueCreated(createdIssue))
+		return createdIssue
+	}
+
+	const handleCreateIssueAndRunWorkflow = async () => {
+		const issue = await handleCreateIssue()
+		await handleRunWorkflow(issue.id)
 	}
 
 	return (
@@ -114,9 +120,12 @@ const Planning: React.FC = () => {
 								className="mb-4 w-full"
 								rows={4}
 							/>
-							<div className="flex justify-end gap-4">
-								<Button variant="secondary" onClick={handleCreateIssue}>
-									Create issue
+							<div className="flex justify-end gap-2">
+								<Button size="sm" variant="primary" onClick={handleCreateIssue}>
+									Save for later
+								</Button>
+								<Button size="sm" variant="secondary" onClick={handleCreateIssueAndRunWorkflow}>
+									Create & run workflow
 								</Button>
 							</div>
 						</ModalContent>

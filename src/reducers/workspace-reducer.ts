@@ -53,6 +53,16 @@ export const workspaceSlice = createSlice({
 		issueActivitiesUpdated: (state, action: PayloadAction<ActivityData[]>) => {
 			state.issuesActivities = action.payload
 		},
+		activityAppeared: (state, action: PayloadAction<ActivityData>) => {
+			const existingActivity = state.issuesActivities.find((activity) => activity.id === action.payload.id)
+			if (!existingActivity) {
+				state.issuesActivities.push(action.payload)
+			} else {
+				state.issuesActivities = state.issuesActivities.map((activity) =>
+					activity.id === action.payload.id ? action.payload : activity,
+				)
+			}
+		},
 	},
 })
 
@@ -63,6 +73,7 @@ export const {
 	issueUpdated,
 	workflowRunTimelineUpdated,
 	issueActivitiesUpdated,
+	activityAppeared,
 } = workspaceSlice.actions
 
 export default workspaceSlice.reducer

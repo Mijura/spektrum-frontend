@@ -9,7 +9,6 @@ const WorkflowRun: React.FC<{ runInfo: WorkflowRunData }> = ({ runInfo }) => {
 	const [borderStyle, setBorderStyle] = useState("border-l-highlight")
 
 	const getBorder = (status: WorkflowStatus) => {
-		console.log(status)
 		switch (status) {
 			case WorkflowStatus.SUCCESSED:
 				return "border-l-[#869B73]"
@@ -24,7 +23,6 @@ const WorkflowRun: React.FC<{ runInfo: WorkflowRunData }> = ({ runInfo }) => {
 
 	useEffect(() => {
 		const border = getBorder(runInfo.metadata.status)
-		console.log(border)
 		setBorderStyle(border)
 	}, [runInfo])
 
