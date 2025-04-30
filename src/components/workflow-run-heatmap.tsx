@@ -5,7 +5,7 @@ import { hexbin as d3Hexbin } from "d3-hexbin"
 import { useHeatmap } from "@honeycomb-app/jigjoy-react-sdk"
 import { Loader } from "@honeycomb-app/design"
 
-const HoneycombActivityChart: React.FC = () => {
+const WorkflowRunHeatmap: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
 	const legendRef = useRef<SVGSVGElement>(null)
 	const width = 1200
@@ -216,4 +216,4 @@ const HoneycombActivityChart: React.FC = () => {
 	)
 }
 
-export default HoneycombActivityChart
+export default WorkflowRunHeatmap

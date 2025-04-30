@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { ProgressBar } from "@honeycomb-app/design"
-import HoneycombActivityChart from "../components/honeycomb-chart"
 import { useProfile } from "../hooks/store"
+import WorkflowRunHeatmap from "../components/workflow-run-heatmap"
 
 export default function ProfilePage() {
 	const profile = useProfile()
@@ -60,8 +60,7 @@ export default function ProfilePage() {
 					</div>
 					{/* Activity Graph */}
 					<div className="w-full bg-surface max-w-[1275px] px-2 h-fit border border-primary-200 rounded-sm">
-						{/* <ActivityGraph data={activityData} /> */}
-						<HoneycombActivityChart />
+						<WorkflowRunHeatmap />
 					</div>
 				</motion.div>
 			</>

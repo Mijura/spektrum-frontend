@@ -3,13 +3,11 @@ import React, { useState } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
-import { runWorkflow } from "../api/project"
 import { createIssue } from "../api/issue"
-import { issueUpdated, issueCreated, issueSelected } from "../reducers/workspace-reducer"
+import { issueCreated, issueSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { v4 as uuidv4 } from "uuid"
-import { WorkflowId } from "../types/workflow-run"
 import { useSelectedProject, useSelectedIssue } from "../hooks/store"
+import { runPrototypingWorkflow } from "../api/workflow-run"
 
 const Planning: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -21,21 +19,7 @@ const Planning: React.FC = () => {
 	const [modalOpened, setModalOpened] = useState(false)
 
 	const handleRunWorkflow = async (issueId: string) => {
-		const workflow = {
-			id: uuidv4(),
-			workflowId: WorkflowId.Prototyping,
-			projectId: selectedProject.id,
-			issueId: issueId,
-		}
-
-		await runWorkflow(
-			workflow,
-			({ issue }) => {
-				dispatch(issueUpdated(issue))
-			},
-			({}) => {},
-			({}) => {},
-		)
+		await runPrototypingWorkflow(issueId)
 	}
 
 	const handleCreateIssue = async () => {

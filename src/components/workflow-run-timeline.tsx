@@ -4,7 +4,7 @@ import { useWorkflowRunTimeline, useSelectedProject } from "../hooks/store"
 import { WorkflowRunData } from "../types/workflow-run"
 import WorkflowRun from "./workflow-run"
 import { Loader } from "@honeycomb-app/design"
-import { fetchWorkflowRunTimeline } from "../api/activities"
+import { fetchWorkflowRunTimeline } from "../api/workflow-run"
 import { workflowRunTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 const WorkflowRunTimeline: React.FC = () => {

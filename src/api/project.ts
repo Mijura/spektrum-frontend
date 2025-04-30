@@ -1,33 +1,6 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
-import { io } from "socket.io-client"
+
 const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
-
-export const runWorkflow = (
-	workflowRun: any,
-	onUpdate: (data: any) => void,
-	onDone: (data: any) => void,
-	onError: (error: any) => void,
-) => {
-	const socket = io("http://localhost:3000") //TODO: fix this!
-
-	socket.on("connect", () => {
-		socket.emit("run", workflowRun)
-	})
-
-	socket.on("update", (data) => {
-		onUpdate({ issue: data.issue })
-	})
-
-	socket.on("done", (data) => {
-		onDone(data)
-		socket.disconnect()
-	})
-
-	socket.on("error", (error) => {
-		onError(error)
-		console.error("WebSocket Error:", error)
-	})
-}
 
 export async function deploy(projectId: string): Promise<any> {
 	const options = {
