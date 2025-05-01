@@ -7,7 +7,7 @@ type UseActivityListenerProps = {
 }
 
 // TODO: Rename endpoint name to something more descriptive
-const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
+const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
 export const useActivityListener = ({ issue }: UseActivityListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
@@ -23,7 +23,7 @@ export const useActivityListener = ({ issue }: UseActivityListenerProps) => {
 	useEffect(() => {
 		if (!issue) return
 
-		const socket = io(PROJECT_MANAGEMENT_ENDPOINT)
+		const socket = io(HONEYCOMB_ENDPOINT)
 
 		socket.on("connect", () => {
 			socket.emit("subscribe", issue.id)

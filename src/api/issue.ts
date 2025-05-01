@@ -1,6 +1,6 @@
 import { Issue } from "../types/issue"
 
-const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
+const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
 export async function createIssue(projectId: string, title: string, description: string): Promise<any> {
 	const options = {
@@ -15,7 +15,7 @@ export async function createIssue(projectId: string, title: string, description:
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/issue`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/issue`, options)
 	return await res.json()
 }
 
@@ -28,7 +28,7 @@ export async function updateIssueTitle(issue: Issue) {
 		body: JSON.stringify(issue),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/issue/title`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/issue/title`, options)
 	return await res.json()
 }
 
@@ -41,7 +41,7 @@ export async function updateIssueDescription(issue: Issue) {
 		body: JSON.stringify(issue),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/issue/description`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/issue/description`, options)
 	return await res.json()
 }
 
@@ -58,11 +58,11 @@ export async function leaveComment(issueId: string, authorId: string, commentTex
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/issue/add-comment-and-run-workflow`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/issue/add-comment-and-run-workflow`, options)
 	return await res.json()
 }
 
 export async function fetchAllIssues(projectId: string) {
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/issue/fetch-all/${projectId}`)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/issue/fetch-all/${projectId}`)
 	return await res.json()
 }

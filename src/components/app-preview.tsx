@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid"
 import { useSelectedProject } from "../hooks/store"
 import { AnimatePresence, motion } from "framer-motion"
 
-export const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
+export const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
 const AppPreview: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -41,7 +41,7 @@ const AppPreview: React.FC = () => {
 						<div className="m-2 rounded-full bg-surface-muted w-full px-4 text-secondary">/</div>
 					</div>
 					<div className="flex h-full">
-						<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_ENDPOINT}/${selectedProject.id}`} className="grow" />
+						<iframe key={iframeKey} src={`${HONEYCOMB_ENDPOINT}/${selectedProject.id}`} className="grow" />
 					</div>
 				</div>
 			</motion.div>
