@@ -31,7 +31,7 @@ export const useActivityListener = ({ issue }: UseActivityListenerProps) => {
 
 		socketRef.current = socket
 
-		socket.on("update", onUpdate)
+		socket.on("issue:update", onUpdate)
 		socket.on("done", onDone)
 
 		return () => {
