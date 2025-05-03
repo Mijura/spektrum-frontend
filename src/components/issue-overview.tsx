@@ -12,7 +12,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import CreateIcon from "../shared/icons/create-icon"
 import EditIcon from "../shared/icons/edit-icon"
 import { getCurrentUser } from "aws-amplify/auth"
-import { useActivityListener } from "../hooks/activity-listener"
 
 export default function IssueOverview() {
 	const dispatch = useDispatch()
@@ -20,8 +19,6 @@ export default function IssueOverview() {
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
 	const [commentText, setCommentText] = useState("")
-
-	useActivityListener({ issue })
 
 	const handleTitleChange = async (newTitle: string) => {
 		if (newTitle === issue.title) return

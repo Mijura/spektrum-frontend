@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { issueSelected, projectSelected } from "../reducers/workspace-reducer"
 import { useSelectedProject } from "../hooks/store"
-
+import { useActivityListener } from "../hooks/activity-listener"
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
 		const [project, issues] = await Promise.all([fetchProject(projectId), fetchAllIssues(projectId)])
@@ -34,6 +34,8 @@ function WorkspaceComponent() {
 	const dispatch = useDispatch()
 	const selectedProject = useSelectedProject()
 	const [isLoaded, setIsLoaded] = useState(false)
+
+	useActivityListener({ projectId: data.project.id })
 
 	useEffect(() => {
 		if (selectedProject) {

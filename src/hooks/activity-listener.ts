@@ -1,15 +1,14 @@
 import { useEffect, useRef } from "react"
 import { io, Socket } from "socket.io-client"
-import { Issue } from "../types/issue"
 
 type UseActivityListenerProps = {
-	issue: Issue
+	projectId: string
 }
 
 // TODO: Rename endpoint name to something more descriptive
 const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
-export const useActivityListener = ({ issue }: UseActivityListenerProps) => {
+export const useActivityListener = ({ projectId }: UseActivityListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
 
 	const onUpdate = (data: any) => {
@@ -21,12 +20,12 @@ export const useActivityListener = ({ issue }: UseActivityListenerProps) => {
 	}
 
 	useEffect(() => {
-		if (!issue) return
+		if (!projectId) return
 
 		const socket = io(HONEYCOMB_ENDPOINT)
 
 		socket.on("connect", () => {
-			socket.emit("subscribe", issue.id)
+			socket.emit("subscribe", projectId)
 		})
 
 		socketRef.current = socket
@@ -39,5 +38,5 @@ export const useActivityListener = ({ issue }: UseActivityListenerProps) => {
 			if (onDone) socket.off("done", onDone)
 			socket.disconnect()
 		}
-	}, [issue])
+	}, [projectId])
 }
