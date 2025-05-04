@@ -3,46 +3,35 @@ import React, { useState } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
-import { runWorkflow } from "../api/project"
-import { createNewTicket } from "../api/ticket"
-import { ticketCreated, ticketSelected, ticketUpdated } from "../reducers/workspace-reducer"
+import { createIssue } from "../api/issue"
+import { issueCreated, issueSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { v4 as uuidv4 } from "uuid"
-import { WorkflowId, WorkflowStatus } from "../types/workflow-execution"
-import { useSelectedProject, useSelectedTicket } from "../hooks/store"
-const TicketPlanning: React.FC = () => {
+import { useSelectedProject, useSelectedIssue } from "../hooks/store"
+import { runPrototypingWorkflow } from "../api/workflow-run"
+
+const Planning: React.FC = () => {
 	const selectedProject = useSelectedProject()
 	const dispatch = useDispatch()
 
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
-	const selectedTicket = useSelectedTicket()
+	const selectedIssue = useSelectedIssue()
 	const [modalOpened, setModalOpened] = useState(false)
 
-	const handleRunWorkflow = async (ticketId: string) => {
-		const workflowExecution = {
-			id: uuidv4(),
-			workflowId: WorkflowId.CodeGeneration,
-			status: WorkflowStatus.Running,
-			projectId: selectedProject.id,
-			ticketId: ticketId,
-		}
-
-		await runWorkflow(
-			workflowExecution,
-			({ ticket }) => {
-				console.log("Ticket updated:", ticket)
-				dispatch(ticketUpdated(ticket))
-			},
-			({}) => {},
-			({}) => {},
-		)
+	const handleRunWorkflow = async (issueId: string) => {
+		await runPrototypingWorkflow(issueId)
 	}
 
-	const createTicket = async () => {
-		const ticket = await createNewTicket(selectedProject.id, title, description)
-		dispatch(ticketCreated(ticket))
+	const handleCreateIssue = async () => {
 		setModalOpened(false)
+		const createdIssue = await createIssue(selectedProject.id, title, description)
+		dispatch(issueCreated(createdIssue))
+		return createdIssue
+	}
+
+	const handleCreateIssueAndRunWorkflow = async () => {
+		const issue = await handleCreateIssue()
+		await handleRunWorkflow(issue.id)
 	}
 
 	return (
@@ -50,11 +39,11 @@ const TicketPlanning: React.FC = () => {
 			<>
 				<div className="px-4 w-full min-w-[325px] max-w-[325px] h-[calc(100dvh-50px)]">
 					<div className="flex flex-row w-full py-4 items-center">
-						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Tickets</h1>
+						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Issues</h1>
 
 						<div className="flex justify-end grow">
 							<div onClick={() => setModalOpened(true)}>
-								<Tooltip message="Create new ticket">
+								<Tooltip message="Create new issue">
 									<CreateIcon />
 								</Tooltip>
 							</div>
@@ -62,21 +51,21 @@ const TicketPlanning: React.FC = () => {
 					</div>
 
 					<div className="pb-4">
-						{selectedProject.tickets &&
-							selectedProject.tickets.map((ticket: any) => (
+						{selectedProject.issues &&
+							selectedProject.issues.map((issue: any) => (
 								<Card
-									key={ticket.id}
-									onClick={() => dispatch(ticketSelected(ticket))}
-									className={`hover:bg-surface-muted/75 cursor-default my-2 p-3 flex flex-col ${selectedTicket?.id === ticket.id ? "border-highlight border-1" : ""}`}
+									key={issue.id}
+									onClick={() => dispatch(issueSelected(issue))}
+									className={`hover:bg-surface-muted/75 cursor-default my-2 p-3 flex flex-col ${selectedIssue?.id === issue.id ? "border-highlight border-1" : ""}`}
 								>
-									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{ticket.title}</div>
+									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{issue.title}</div>
 									<div className="mt-2 flex flex-row gap-2 w-full">
 										<Tooltip message="Change status">
 											<MoreOptionsIcon />
 										</Tooltip>
 
 										<div className="flex grow w-full justify-end">
-											<div onClick={() => handleRunWorkflow(ticket.id)}>
+											<div onClick={() => handleRunWorkflow(issue.id)}>
 												<Tooltip message="Run workflow">
 													<PlayIcon />
 												</Tooltip>
@@ -100,9 +89,9 @@ const TicketPlanning: React.FC = () => {
 								}}
 							/>
 						</ModalTrigger>
-						<ModalContent title="New ticket" className="w-[600px] max-w-[90vw]">
+						<ModalContent title="New issue" className="w-[600px] max-w-[90vw]">
 							<Input
-								placeholder="Ticket title"
+								placeholder="Issue title"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 								className="mb-4 w-full"
@@ -114,9 +103,12 @@ const TicketPlanning: React.FC = () => {
 								className="mb-4 w-full"
 								rows={4}
 							/>
-							<div className="flex justify-end gap-4">
-								<Button variant="secondary" onClick={createTicket}>
-									Create ticket
+							<div className="flex justify-end gap-2">
+								<Button size="sm" variant="primary" onClick={handleCreateIssue}>
+									Save for later
+								</Button>
+								<Button size="sm" variant="secondary" onClick={handleCreateIssueAndRunWorkflow}>
+									Create & run workflow
 								</Button>
 							</div>
 						</ModalContent>
@@ -127,4 +119,4 @@ const TicketPlanning: React.FC = () => {
 	)
 }
 
-export default TicketPlanning
+export default Planning

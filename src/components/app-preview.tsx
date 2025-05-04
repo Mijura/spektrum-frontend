@@ -3,8 +3,9 @@ import React, { useEffect } from "react"
 import ReloadIcon from "../shared/icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"
 import { useSelectedProject } from "../hooks/store"
+import { AnimatePresence, motion } from "framer-motion"
 
-export const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
+export const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
 const AppPreview: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -20,19 +21,31 @@ const AppPreview: React.FC = () => {
 	}, [selectedProject.sourceCode])
 
 	return (
-		<div className="flex flex-col h-full">
-			<div className="h-[40px] flex flew-row bg-surface rounded-tr-lg">
-				<Tooltip message="Reload page">
-					<div onClick={reloadPage}>
-						<ReloadIcon color="ml-4 h-[40px] items-center text-secondary-100 hover:text-secondary cursor-pointer" />
+		<AnimatePresence>
+			<motion.div
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{
+					duration: 0.3,
+					ease: "easeOut",
+				}}
+				className="flex flex-col h-full"
+			>
+				<div className="flex flex-col h-full">
+					<div className="h-[40px] flex flew-row bg-surface rounded-tr-lg">
+						<Tooltip message="Reload page">
+							<div onClick={reloadPage}>
+								<ReloadIcon color="ml-4 h-[40px] items-center text-secondary-100 hover:text-secondary cursor-pointer" />
+							</div>
+						</Tooltip>
+						<div className="m-2 rounded-full bg-surface-muted w-full px-4 text-secondary">/</div>
 					</div>
-				</Tooltip>
-				<div className="m-2 rounded-full bg-surface-muted w-full px-4 text-secondary">/</div>
-			</div>
-			<div className="flex h-full">
-				<iframe key={iframeKey} src={`${PROJECT_MANAGEMENT_ENDPOINT}/${selectedProject.id}`} className="grow" />
-			</div>
-		</div>
+					<div className="flex h-full">
+						<iframe key={iframeKey} src={`${HONEYCOMB_ENDPOINT}/${selectedProject.id}`} className="grow" />
+					</div>
+				</div>
+			</motion.div>
+		</AnimatePresence>
 	)
 }
 

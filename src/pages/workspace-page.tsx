@@ -1,9 +1,9 @@
 import ActivityRewards from "../components/activity-rewards"
-import TicketPlanning from "../components/ticket-planning"
+import Planning from "../components/planning"
 import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
-import WorkflowExecutionsTimeline from "../components/workflow-executions"
-import TicketOverview from "../components/ticket-overview"
+import WorkflowRunTimeline from "../components/workflow-run-timeline"
+import IssueOverview from "../components/issue-overview"
 import { useState } from "react"
 import { useSelectedProject } from "../hooks/store"
 
@@ -87,9 +87,9 @@ export default function WorkspacePage() {
 						{activeTab === "overview" && (
 							<div className="flex flex-row overflow-y-auto custom-scrollbar">
 								<div className="h-full w-fit bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
-									<TicketPlanning />
+									<Planning />
 								</div>
-								<TicketOverview />
+								<IssueOverview />
 							</div>
 						)}
 						{activeTab === "output" && <AppPreview />}
@@ -98,7 +98,7 @@ export default function WorkspacePage() {
 
 					<div className="w-[325px] flex flex-col rounded-[2px]">
 						<ActivityRewards />
-						<WorkflowExecutionsTimeline />
+						<WorkflowRunTimeline />
 					</div>
 				</div>
 			</div>

@@ -1,21 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router"
 import WorkspacePage from "../pages/workspace-page"
-import { fetchAllTickets } from "../api/ticket"
+import { fetchAllIssues } from "../api/issue"
 import { fetchProject } from "../api/project"
 import { Loader } from "@honeycomb-app/design"
 import { PostError } from "../shared/errors/post-error"
 import { useDispatch } from "react-redux"
-import { useEffect } from "react"
-import { projectSelected } from "../reducers/workspace-reducer"
-
+import { useEffect, useState } from "react"
+import { issueSelected, projectSelected } from "../reducers/workspace-reducer"
+import { useSelectedProject } from "../hooks/store"
+import { useActivityListener } from "../hooks/activity-listener"
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
-		const [project, tickets] = await Promise.all([fetchProject(projectId), fetchAllTickets(projectId)])
-		return { project, tickets }
+		const [project, issues] = await Promise.all([fetchProject(projectId), fetchAllIssues(projectId)])
+		return { project, issues }
 	},
 	errorComponent: PostError,
 	pendingComponent: PendingComponent,
 	component: WorkspaceComponent,
+	shouldReload: true,
+	gcTime: 0,
 })
 
 function PendingComponent() {
@@ -29,15 +32,28 @@ function PendingComponent() {
 function WorkspaceComponent() {
 	const data = Route.useLoaderData()
 	const dispatch = useDispatch()
+	const selectedProject = useSelectedProject()
+	const [isLoaded, setIsLoaded] = useState(false)
+
+	useActivityListener({ projectId: data.project.id })
 
 	useEffect(() => {
-		dispatch(
-			projectSelected({
-				...data.project,
-				tickets: data.tickets,
-			}),
-		)
-	}, [])
+		if (selectedProject) {
+			// reset issue if project has changed
+			if (selectedProject.id !== data.project.id) {
+				dispatch(issueSelected(null))
+			}
 
-	return <WorkspacePage />
+			// update project
+			dispatch(
+				projectSelected({
+					...data.project,
+					issues: data.issues,
+				}),
+			)
+			setIsLoaded(true)
+		}
+	}, [data])
+
+	return isLoaded ? <WorkspacePage /> : <PendingComponent />
 }

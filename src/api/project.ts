@@ -1,36 +1,6 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
-import { io } from "socket.io-client"
-import { WorfklowExecution } from "../types/workflow-execution"
 
-const PROJECT_MANAGEMENT_ENDPOINT = process.env.PROJECT_MANAGEMENT_ENDPOINT
-
-export const runWorkflow = (
-	workflowExecution: WorfklowExecution,
-	onUpdate: (data: any) => void,
-	onDone: (data: any) => void,
-	onError: (error: any) => void,
-) => {
-	const socket = io("http://localhost:3000") //TODO: fix this!
-
-	socket.on("connect", () => {
-		socket.emit("run", workflowExecution)
-	})
-
-	socket.on("update", (data) => {
-		console.log("Received update:", data)
-		onUpdate({ ticket: data.ticket })
-	})
-
-	socket.on("done", (data) => {
-		onDone(data)
-		socket.disconnect()
-	})
-
-	socket.on("error", (error) => {
-		onError(error)
-		console.error("WebSocket Error:", error)
-	})
-}
+const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
 export async function deploy(projectId: string): Promise<any> {
 	const options = {
@@ -43,7 +13,7 @@ export async function deploy(projectId: string): Promise<any> {
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/deploy`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/deploy`, options)
 
 	return await res.json()
 }
@@ -59,7 +29,7 @@ export async function archiveProject(projectId: string): Promise<any> {
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/archive`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/archive`, options)
 
 	return await res.json()
 }
@@ -75,7 +45,7 @@ export async function createNewProject(owner: string): Promise<any> {
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}`, options)
 	return await res.json()
 }
 
@@ -92,17 +62,17 @@ export async function updateProjectDetails(id: string, name: string, description
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}`, options)
 	return await res.json()
 }
 
 export async function fetchProject(id: string) {
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/fetch/${id}`)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/fetch/${id}`)
 	if (res.status == 404) throw new ProjectNotFoundError()
 	return await res.json()
 }
 
 export async function fetchAllProjects(owner: string) {
-	const res: any = await fetch(`${PROJECT_MANAGEMENT_ENDPOINT}/fetch-all/${owner}`)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/fetch-all/${owner}`)
 	return await res.json()
 }

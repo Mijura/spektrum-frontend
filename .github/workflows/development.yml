@@ -30,7 +30,7 @@ jobs:
    - name: "Create env file"
      run: |
       touch .env
-      echo PROJECT_MANAGEMENT_ENDPOINT=${{secrets.PROJECT_MANAGEMENT_ENDPOINT}} >> .env
+      echo HONEYCOMB_ENDPOINT=${{secrets.HONEYCOMB_ENDPOINT}} >> .env
       echo ACCOUNT_AND_BILLING_ENDPOINT=${{secrets.ACCOUNT_AND_BILLING_ENDPOINT}} >> .env
       echo JIGJOY_ENDPOINT=${{secrets.JIGJOY_ENDPOINT}} >> .env
       echo USER_POOL_ID=${{secrets.USER_POOL_ID}} >> .env
