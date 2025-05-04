@@ -16,12 +16,7 @@ export const useActivityListener = ({ projectId }: UseActivityListenerProps) => 
 	const dispatch = useDispatch()
 
 	const onUpdate = (issue: Issue) => {
-		console.log("update", issue)
 		dispatch(issueUpdated(issue))
-	}
-
-	const onDone = (data: any) => {
-		console.log("done", data)
 	}
 
 	useEffect(() => {
@@ -36,11 +31,9 @@ export const useActivityListener = ({ projectId }: UseActivityListenerProps) => 
 		socketRef.current = socket
 
 		socket.on("issue:update", onUpdate)
-		socket.on("done", onDone)
 
 		return () => {
 			if (onUpdate) socket.off("update", onUpdate)
-			if (onDone) socket.off("done", onDone)
 			socket.disconnect()
 		}
 	}, [projectId])

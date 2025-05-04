@@ -40,7 +40,6 @@ export const workspaceSlice = createSlice({
 			state.selectedIssue = action.payload
 		},
 		issueUpdated: (state, action: PayloadAction<Issue>) => {
-			console.log("issueUpdated", action.payload)
 			if (state.selectedIssue?.id === action.payload.id) {
 				state.selectedIssue = action.payload
 			}
