@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react"
+import { useDispatch } from "react-redux"
 import { io, Socket } from "socket.io-client"
+import { issueUpdated } from "../reducers/workspace-reducer"
+import { Issue } from "../types/issue"
 
 type UseActivityListenerProps = {
 	projectId: string
@@ -10,9 +13,11 @@ const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
 export const useActivityListener = ({ projectId }: UseActivityListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
+	const dispatch = useDispatch()
 
-	const onUpdate = (data: any) => {
-		console.log("update", data)
+	const onUpdate = (issue: Issue) => {
+		console.log("update", issue)
+		dispatch(issueUpdated(issue))
 	}
 
 	const onDone = (data: any) => {

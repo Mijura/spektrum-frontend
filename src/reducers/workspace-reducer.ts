@@ -40,7 +40,10 @@ export const workspaceSlice = createSlice({
 			state.selectedIssue = action.payload
 		},
 		issueUpdated: (state, action: PayloadAction<Issue>) => {
-			state.selectedIssue = action.payload
+			console.log("issueUpdated", action.payload)
+			if (state.selectedIssue?.id === action.payload.id) {
+				state.selectedIssue = action.payload
+			}
 			state.selectedProject.issues = state.selectedProject.issues.map((issue) =>
 				issue.id === action.payload.id ? action.payload : issue,
 			)

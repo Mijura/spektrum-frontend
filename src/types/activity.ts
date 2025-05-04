@@ -29,6 +29,18 @@ export enum WorkflowRunStatus {
 	FAILED = "Failed",
 }
 
+export type StartedWorkMetadata = {
+	message: string
+	workerId: string
+	phase: string
+}
+
+export type FinishedWorkMetadata = {
+	message: string
+	workerId: string
+	phase: string
+}
+
 export type WorkflowRunMetadata = {
 	workflowId: string
 	status: WorkflowRunStatus
@@ -43,6 +55,8 @@ export type ActivityMetadata =
 	| TitleUpdatedMetadata
 	| DescriptionUpdatedMetadata
 	| IssueCreatedMetadata
+	| StartedWorkMetadata
+	| FinishedWorkMetadata
 	| WorkflowRunMetadata
 
 export enum ActivityType {
@@ -51,6 +65,8 @@ export enum ActivityType {
 	TITLE_UPDATED = "TitleUpdated",
 	DESCRIPTION_UPDATED = "DescriptionUpdated",
 	WORKFLOW_RUN = "WorkflowRun",
+	STARTED_WORK = "StartedWork",
+	FINISHED_WORK = "FinishedWork",
 }
 
 export type PaginationData = {
