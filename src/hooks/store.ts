@@ -11,3 +11,4 @@ export const useLoadedPage = () => useAppSelector((state: any) => state.navigati
 export const useSelectedIssue = () => useAppSelector((state: any) => state.workspace.selectedIssue)
 export const useSelectedProject = () => useAppSelector((state: any) => state.workspace.selectedProject)
 export const useWorkflowRunTimeline = () => useAppSelector((state: any) => state.workspace.workflowRunTimeline)
+export const useProjectInitialization = () => useAppSelector((state: any) => state.workspace.projectInitialization)

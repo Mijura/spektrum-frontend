@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react"
-import {
-	Button,
-	Card,
-	Input,
-	Loader,
-	Modal,
-	ModalContent,
-	ModalTrigger,
-	Textarea,
-	Tooltip,
-} from "@honeycomb-app/design"
+import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@honeycomb-app/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject, updateProjectDetails } from "../api/project"
 import CreateIcon from "../shared/icons/create-icon"
@@ -20,12 +10,13 @@ import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import EditIcon from "../shared/icons/edit-icon"
 import Project from "../types/issue"
+import { projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
+
 export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	const [selectedProject, selectProject] = useState<any>(null)
-	const [loading, setLoading] = useState(false)
 	const [archiveModalOpened, setArchiveModalOpened] = useState(false)
 	const [projects, setProjects] = useState<any>([])
 
@@ -40,21 +31,22 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 	}, [loadedProjects])
 
 	const handleCreateNewProject = async () => {
-		setLoading(true)
+		dispatch(projectInitalizationRequested())
 		const user = await getCurrentUser()
 		const project: any = await createNewProject(user.username)
 
 		setProjects([...projects, project])
 		dispatch(pageNavigated("workspace"))
-
-		navigate({
+		await navigate({
 			to: `/${project.id}`,
 		})
+
+		dispatch(projectInitalizationCompleted())
 	}
 
-	const handleOpenProject = (project: any) => {
+	const handleOpenProject = async (project: any) => {
 		dispatch(pageNavigated("workspace"))
-		navigate({
+		await navigate({
 			to: `/${project.id}`,
 		})
 	}
@@ -85,15 +77,11 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 		setDescription(null)
 	}
 
-	return loading ? (
-		<div className="bg-surface w-full h-full flex items-center justify-center">
-			<Loader message="Project initialization" size="small" />
-		</div>
-	) : (
+	return (
 		projects && (
 			<div className="w-full flex flex-row bg-surface pl-4">
 				<div className="h-[100dvh] overflow-y-auto custom-scrollbar w-fit bg-surface border border-primary-200 rounded-sm">
-					<div className="py-8 px-4 w-full min-w-[300px] max-w-[300px] 2xl:min-w-[325px] 2xl:max-w-[325px] ">
+					<div className="py-8 px-4 w-full min-w-[300px] max-w-[300px] 2xl:min-w-[325px] 2xl:max-w-[325px]">
 						<div className="flex flex-row w-full mb-2">
 							<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Projects</h1>
 

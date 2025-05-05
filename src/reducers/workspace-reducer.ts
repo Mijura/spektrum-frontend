@@ -14,6 +14,7 @@ export interface WorkspaceState {
 	selectedProject: Project
 	selectedIssue: Issue | null
 	workflowRunTimeline: WorkflowRunDetails[]
+	projectInitialization: boolean
 }
 
 let initialState: WorkspaceState = {
@@ -22,6 +23,7 @@ let initialState: WorkspaceState = {
 	},
 	selectedIssue: null,
 	workflowRunTimeline: [],
+	projectInitialization: false,
 }
 
 export const workspaceSlice = createSlice({
@@ -50,10 +52,23 @@ export const workspaceSlice = createSlice({
 		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunDetails[]>) => {
 			state.workflowRunTimeline = action.payload
 		},
+		projectInitalizationRequested: (state) => {
+			state.projectInitialization = true
+		},
+		projectInitalizationCompleted: (state) => {
+			state.projectInitialization = false
+		},
 	},
 })
 
-export const { projectSelected, issueCreated, issueSelected, issueUpdated, workflowRunTimelineUpdated } =
-	workspaceSlice.actions
+export const {
+	projectSelected,
+	issueCreated,
+	issueSelected,
+	issueUpdated,
+	workflowRunTimelineUpdated,
+	projectInitalizationRequested,
+	projectInitalizationCompleted,
+} = workspaceSlice.actions
 
 export default workspaceSlice.reducer

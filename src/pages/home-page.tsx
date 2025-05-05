@@ -1,16 +1,20 @@
 import { motion } from "framer-motion"
-import { ProgressBar } from "@honeycomb-app/design"
-import { useProfile } from "../hooks/store"
+import { Loader, ProgressBar } from "@honeycomb-app/design"
+import { useProfile, useProjectInitialization } from "../hooks/store"
 import WorkflowRunHeatmap from "../components/workflow-run-heatmap"
 import Project from "../types/issue"
 import ProjectsOverview from "../components/projects-overview"
 import WorkflowRunTimeline from "../components/workflow-run-timeline"
-import ActivityRewards from "../components/activity-rewards"
 
 export default function HomePage({ loadedProjects }: { loadedProjects: Project[] }) {
 	const profile = useProfile()
+	const projectInitialization = useProjectInitialization()
 
-	return (
+	return projectInitialization ? (
+		<div className="bg-surface w-full h-full flex items-center justify-center">
+			<Loader message="Project initialization" size="small" />
+		</div>
+	) : (
 		<div className="flex flex-row overflow-x-auto w-full">
 			<div className="w-fit">
 				<ProjectsOverview loadedProjects={loadedProjects} />
