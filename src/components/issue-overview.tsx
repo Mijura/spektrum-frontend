@@ -51,7 +51,7 @@ export default function IssueOverview() {
 	return (
 		issue && (
 			<div className="text-secondary-100 flex h-[calc(100vh-50px)] grow justify-center overflow-y-auto">
-				<div className="flex flex-col max-w-full w-[500px] 2xl:w-[700px] mt-20 gap-4">
+				<div className="flex flex-col max-w-full w-[500px] 2xl:w-[700px] mt-20 gap-8">
 					<SmartInput
 						className="bg-[#1a1a1a] border-none w-full min-h-10 mb-2 text-xl p-0"
 						value={title}
@@ -66,7 +66,7 @@ export default function IssueOverview() {
 						onBlur={handleDescriptionChange}
 						onChange={setDescription}
 					></SmartInput>
-					<div className="text-progress mt-2">Activities</div>
+					<div className="text-progress">Activities</div>
 
 					<AnimatePresence>
 						<div className="mb-2 2xl:mb-5">
