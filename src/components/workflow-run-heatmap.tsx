@@ -182,7 +182,7 @@ const WorkflowRunHeatmap: React.FC = () => {
 
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
-			<div className="mx-auto overflow-x-auto h-fit overflow-y-hidden" style={{ width: `1250px` }}>
+			<div className="w-full mx-auto overflow-x-auto h-fit overflow-y-hidden">
 				{heatmapData ? (
 					<>
 						<svg ref={svgRef} className="w-full" style={{ height: height / 2 }} />

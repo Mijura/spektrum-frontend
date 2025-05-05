@@ -11,17 +11,17 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 	const profile = useProfile()
 
 	return (
-		<div className="flex flex-row w-full">
+		<div className="flex flex-row overflow-x-auto w-full">
 			<div className="w-fit">
 				<ProjectsOverview loadedProjects={loadedProjects} />
 			</div>
-			{profile && (
-				<div className="grow">
+			<div className="grow">
+				{profile && (
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.5 }}
-						className={`w-full bg-[#1a1a1a]  pt-16 px-6 flex flex-col items-center`}
+						className={`w-full bg-[#1a1a1a] pt-16 px-3 flex flex-col items-center`}
 					>
 						{/* Top Section: Profile Info + Credits */}
 						<div className="w-full p-8 max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-md shadow py-6">
@@ -67,12 +67,12 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 							</div>
 						</div>
 						{/* Activity Graph */}
-						<div className="w-full bg-surface max-w-[1275px] px-2 h-fit border border-primary-200 rounded-sm">
+						<div className="w-full bg-surface px-2 h-fit border border-primary-200 rounded-sm">
 							<WorkflowRunHeatmap />
 						</div>
 					</motion.div>
-				</div>
-			)}
+				)}
+			</div>
 			<div className="w-[325px] flex flex-col rounded-[2px]">
 				<ActivityRewards />
 				<WorkflowRunTimeline />
