@@ -19,7 +19,8 @@ import { archiveProject } from "../api/project"
 import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import EditIcon from "../shared/icons/edit-icon"
-export default function ProjectsPage({ loadedProjects }: { loadedProjects: any }) {
+import Project from "../types/issue"
+export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 

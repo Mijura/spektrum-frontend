@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router"
-import ProjectsPage from "../pages/projects-page"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
 import { Loader } from "@honeycomb-app/design"
+import HomePage from "../pages/home-page"
 
-export const Route = createFileRoute("/_auth/projects")({
+export const Route = createFileRoute("/_auth/home")({
 	loader: async () => {
 		try {
 			const user = await getCurrentUser()
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/_auth/projects")({
 	},
 	component: () => {
 		const data = Route.useLoaderData()
-		return <ProjectsPage loadedProjects={data} />
+		return <HomePage loadedProjects={data} />
 	},
 	pendingComponent: () => {
 		return (
