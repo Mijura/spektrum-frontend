@@ -14,9 +14,8 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthWelcomeImport } from './routes/_auth.welcome'
-import { Route as AuthProjectsImport } from './routes/_auth.projects'
-import { Route as AuthProfileImport } from './routes/_auth.profile'
 import { Route as AuthPricingImport } from './routes/_auth.pricing'
+import { Route as AuthHomeImport } from './routes/_auth.home'
 import { Route as AuthProjectIdImport } from './routes/_auth.$projectId'
 
 // Create/Update Routes
@@ -36,18 +35,13 @@ const AuthWelcomeRoute = AuthWelcomeImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
-const AuthProjectsRoute = AuthProjectsImport.update({
-  path: '/projects',
-  getParentRoute: () => AuthRoute,
-} as any)
-
-const AuthProfileRoute = AuthProfileImport.update({
-  path: '/profile',
-  getParentRoute: () => AuthRoute,
-} as any)
-
 const AuthPricingRoute = AuthPricingImport.update({
   path: '/pricing',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthHomeRoute = AuthHomeImport.update({
+  path: '/home',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -81,25 +75,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthProjectIdImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/home': {
+      id: '/_auth/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof AuthHomeImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/pricing': {
       id: '/_auth/pricing'
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof AuthPricingImport
-      parentRoute: typeof AuthImport
-    }
-    '/_auth/profile': {
-      id: '/_auth/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof AuthProfileImport
-      parentRoute: typeof AuthImport
-    }
-    '/_auth/projects': {
-      id: '/_auth/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof AuthProjectsImport
       parentRoute: typeof AuthImport
     }
     '/_auth/welcome': {
@@ -116,17 +103,15 @@ declare module '@tanstack/react-router' {
 
 interface AuthRouteChildren {
   AuthProjectIdRoute: typeof AuthProjectIdRoute
+  AuthHomeRoute: typeof AuthHomeRoute
   AuthPricingRoute: typeof AuthPricingRoute
-  AuthProfileRoute: typeof AuthProfileRoute
-  AuthProjectsRoute: typeof AuthProjectsRoute
   AuthWelcomeRoute: typeof AuthWelcomeRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthProjectIdRoute: AuthProjectIdRoute,
+  AuthHomeRoute: AuthHomeRoute,
   AuthPricingRoute: AuthPricingRoute,
-  AuthProfileRoute: AuthProfileRoute,
-  AuthProjectsRoute: AuthProjectsRoute,
   AuthWelcomeRoute: AuthWelcomeRoute,
 }
 
@@ -136,9 +121,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/$projectId': typeof AuthProjectIdRoute
+  '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
-  '/profile': typeof AuthProfileRoute
-  '/projects': typeof AuthProjectsRoute
   '/welcome': typeof AuthWelcomeRoute
 }
 
@@ -146,9 +130,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/$projectId': typeof AuthProjectIdRoute
+  '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
-  '/profile': typeof AuthProfileRoute
-  '/projects': typeof AuthProjectsRoute
   '/welcome': typeof AuthWelcomeRoute
 }
 
@@ -157,39 +140,23 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_auth/$projectId': typeof AuthProjectIdRoute
+  '/_auth/home': typeof AuthHomeRoute
   '/_auth/pricing': typeof AuthPricingRoute
-  '/_auth/profile': typeof AuthProfileRoute
-  '/_auth/projects': typeof AuthProjectsRoute
   '/_auth/welcome': typeof AuthWelcomeRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | ''
-    | '/$projectId'
-    | '/pricing'
-    | '/profile'
-    | '/projects'
-    | '/welcome'
+  fullPaths: '/' | '' | '/$projectId' | '/home' | '/pricing' | '/welcome'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | ''
-    | '/$projectId'
-    | '/pricing'
-    | '/profile'
-    | '/projects'
-    | '/welcome'
+  to: '/' | '' | '/$projectId' | '/home' | '/pricing' | '/welcome'
   id:
     | '__root__'
     | '/'
     | '/_auth'
     | '/_auth/$projectId'
+    | '/_auth/home'
     | '/_auth/pricing'
-    | '/_auth/profile'
-    | '/_auth/projects'
     | '/_auth/welcome'
   fileRoutesById: FileRoutesById
 }
@@ -227,9 +194,8 @@ export const routeTree = rootRoute
       "filePath": "_auth.tsx",
       "children": [
         "/_auth/$projectId",
+        "/_auth/home",
         "/_auth/pricing",
-        "/_auth/profile",
-        "/_auth/projects",
         "/_auth/welcome"
       ]
     },
@@ -237,16 +203,12 @@ export const routeTree = rootRoute
       "filePath": "_auth.$projectId.tsx",
       "parent": "/_auth"
     },
+    "/_auth/home": {
+      "filePath": "_auth.home.tsx",
+      "parent": "/_auth"
+    },
     "/_auth/pricing": {
       "filePath": "_auth.pricing.tsx",
-      "parent": "/_auth"
-    },
-    "/_auth/profile": {
-      "filePath": "_auth.profile.tsx",
-      "parent": "/_auth"
-    },
-    "/_auth/projects": {
-      "filePath": "_auth.projects.tsx",
       "parent": "/_auth"
     },
     "/_auth/welcome": {

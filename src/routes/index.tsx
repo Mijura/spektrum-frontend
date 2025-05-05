@@ -8,7 +8,7 @@ export const Route: any = createFileRoute("/")({
 
 		try {
 			await getCurrentUser()
-			navigate({ to: "/profile" })
+			navigate({ to: "/home" })
 		} catch {
 			return <LoginPage />
 		}

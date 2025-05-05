@@ -1,12 +1,11 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import CubeIcon from "../shared/icons/cube-icon"
 import WorkspaceIcon from "../shared/icons/workspace-icon"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
-import ProfileIcon from "../shared/icons/profile-icon"
+import HomeIcon from "../shared/icons/home-icon"
 import LogoutIcon from "../shared/icons/logout-icon"
 import { signOut } from "aws-amplify/auth"
 import PricingIcon from "../shared/icons/pricing-icon"
@@ -39,9 +38,8 @@ const LeftSideMenu = () => {
 		>
 			<ul className="flex flex-col mt-4">
 				{[
-					{ name: "profile", icon: ProfileIcon, label: "Profile", route: "/profile" },
+					{ name: "home", icon: HomeIcon, label: "Home", route: "/home" },
 					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/workspace" },
-					{ name: "projects", icon: CubeIcon, label: "Projects", route: "/projects" },
 					{ name: "pricing", icon: PricingIcon, label: "Pricing", route: "/pricing" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
