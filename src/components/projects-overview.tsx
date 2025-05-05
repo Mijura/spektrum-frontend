@@ -149,7 +149,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 				<div className="grow bg-[#1a1a1a]"></div>
 
 				{selectedProject && (
-					<div className="flex flex-row w-[300px] h-fit">
+					<div className="absolute flex flex-row w-[300px] h-fit">
 						<Modal isOpen={editModalOpened} onOpenCallback={() => {}} onCloseCallback={handleEditModalClose}>
 							<ModalTrigger>
 								<div
