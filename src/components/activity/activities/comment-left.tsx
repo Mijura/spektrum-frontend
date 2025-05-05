@@ -5,7 +5,7 @@ import { ActivityData, CommentLeftMetadata } from "../../../types/activity"
 
 export const CommentLeftActivity = ({ activity }: { activity: ActivityData }) => (
 	<div className="w-full flex">
-		<div className="w-full flex flex-row items-center p-1 2xl:p-2 text-sm">
+		<div className="w-full flex flex-row items-center text-sm">
 			<motion.div className="italic bg-surface-light rounded-sm p-1 2xl:p-2 w-full" transition={{ duration: 0.2 }}>
 				<div className="flex flex-row gap-x-2 items-center">
 					<Chip label={activity.userId} className="bg-surface text-highlight-200" />
