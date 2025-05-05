@@ -15,7 +15,6 @@ export const TitleUpdatedActivity = ({ activity }: { activity: ActivityData }) =
 					{(activity.metadata as TitleUpdatedMetadata).message}
 				</span>
 			</div>
-			<div className="text-xs italic"></div>
 		</motion.div>
 	</div>
 )

@@ -11,9 +11,9 @@ export const StartedWorkActivity = ({ activity }: { activity: ActivityData }) =>
 		</div>
 		<motion.div className="flex flex-col w-full gap-x-3 text-sm p-2 rounded-sm" transition={{ duration: 0.2 }}>
 			<div className="flex flex-row gap-x-1 text-xs italic w-full">
-				<div className="text-secondary mr-2 w-fit items-center flex">{formatTimestamp(activity.occurredAt)}</div>
+				<div className="text-secondary w-fit items-center flex mr-2">{formatTimestamp(activity.occurredAt)}</div>
 				<div className="grow">
-					<AnimatedText text={(activity.metadata as StartedWorkMetadata).message} />
+					<AnimatedText text={(activity.metadata as StartedWorkMetadata).message} className="justify-start p-0" />
 				</div>
 			</div>
 		</motion.div>
