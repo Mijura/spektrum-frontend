@@ -93,7 +93,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 		projects && (
 			<div className="w-full flex flex-row bg-surface pl-4">
 				<div className="h-[100dvh] overflow-y-auto custom-scrollbar w-fit bg-surface border border-primary-200 rounded-sm">
-					<div className="py-8 px-4 w-full min-w-[325px] max-w-[325px] ">
+					<div className="py-8 px-4 w-full min-w-[300px] max-w-[300px] 2xl:min-w-[325px] 2xl:max-w-[325px] ">
 						<div className="flex flex-row w-full mb-2">
 							<h1 className="text-secondary-100 font-semibold w-fit flex items-center">Projects</h1>
 

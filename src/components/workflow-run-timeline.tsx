@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 import { useWorkflowRunTimeline, useSelectedProject } from "../hooks/store"
-import { WorkflowRunData } from "../types/workflow-run"
+import { WorkflowRunDetails } from "../types/workflow-run"
 import WorkflowRun from "./workflow-run"
 import { Loader } from "@honeycomb-app/design"
 import { fetchWorkflowRunTimeline } from "../api/workflow-run"
@@ -34,7 +34,7 @@ const WorkflowRunTimeline: React.FC = () => {
 					<Loader size="small" message="Timeline loading..." />
 				</div>
 			) : (
-				workflowRunTimeline.map((runInfo: WorkflowRunData, index: number) => (
+				workflowRunTimeline.map((runInfo: WorkflowRunDetails, index: number) => (
 					<div key={index}>
 						<div className="flex flex-col items-center px-3 text-sm">
 							<WorkflowRun runInfo={runInfo} />

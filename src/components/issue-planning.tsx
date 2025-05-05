@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedIssue } from "../hooks/store"
 import { runPrototypingWorkflow } from "../api/workflow-run"
 
-const Planning: React.FC = () => {
+const IssuePlanning: React.FC = () => {
 	const selectedProject = useSelectedProject()
 	const dispatch = useDispatch()
 
@@ -37,7 +37,7 @@ const Planning: React.FC = () => {
 	return (
 		selectedProject && (
 			<>
-				<div className="px-4 w-full min-w-[325px] max-w-[325px] h-[calc(100dvh-50px)]">
+				<div className="px-4 w-full min-w-[300px] max-w-[300px] 2xl:min-w-[325px] 2xl:max-w-[325px] h-[calc(100dvh-50px)]">
 					<div className="flex flex-row w-full py-4 items-center">
 						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Issues</h1>
 
@@ -119,4 +119,4 @@ const Planning: React.FC = () => {
 	)
 }
 
-export default Planning
+export default IssuePlanning

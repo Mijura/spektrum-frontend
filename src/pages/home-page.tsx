@@ -73,8 +73,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 					</motion.div>
 				)}
 			</div>
-			<div className="w-[325px] flex flex-col rounded-[2px]">
-				<ActivityRewards />
+			<div className="w-[300px] 2xl:w-[325px] flex flex-col rounded-[2px]">
 				<WorkflowRunTimeline />
 			</div>
 		</div>

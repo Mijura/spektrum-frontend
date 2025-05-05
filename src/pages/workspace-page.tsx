@@ -1,5 +1,5 @@
 import ActivityRewards from "../components/activity-rewards"
-import Planning from "../components/planning"
+import IssuePlanning from "../components/issue-planning"
 import AppPreview from "../components/app-preview"
 import Deployment from "../components/deployment"
 import WorkflowRunTimeline from "../components/workflow-run-timeline"
@@ -87,7 +87,7 @@ export default function WorkspacePage() {
 						{activeTab === "overview" && (
 							<div className="flex flex-row overflow-y-auto custom-scrollbar">
 								<div className="h-full w-fit bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
-									<Planning />
+									<IssuePlanning />
 								</div>
 								<IssueOverview />
 							</div>
@@ -96,7 +96,7 @@ export default function WorkspacePage() {
 						{activeTab === "deployment" && <Deployment />}
 					</div>
 
-					<div className="w-[325px] flex flex-col rounded-[2px]">
+					<div className="w-fit flex flex-col rounded-[2px]">
 						<ActivityRewards />
 						<WorkflowRunTimeline />
 					</div>

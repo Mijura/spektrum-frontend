@@ -66,7 +66,7 @@ export default function IssueOverview() {
 						onBlur={handleDescriptionChange}
 						onChange={setDescription}
 					></SmartInput>
-					<div className="text-progress">Activities</div>
+					<div className="text-progress">Activity Feed</div>
 
 					<AnimatePresence>
 						<div className="flex flex-col gap-y-4">

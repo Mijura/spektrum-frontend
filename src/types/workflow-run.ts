@@ -8,16 +8,14 @@ export enum WorkflowId {
 	Prototyping = "Prototyping",
 }
 
-export type WorkflowRunData = {
+export type WorkflowRunDetails = {
 	id: string
 	projectId: string
 	issueId: string
 	occurredAt: string
-	metadata: {
-		message: string
-		phase: string
-		status: WorkflowStatus
-		workflowId: WorkflowId
-		title: string
-	}
+	message: string
+	phase: string
+	status: WorkflowStatus
+	workflowId: WorkflowId
+	title: string
 }

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Issue } from "../types/issue"
-import { WorkflowRunData } from "../types/workflow-run"
-import { ActivityData } from "../types/activity"
+import { WorkflowRunDetails } from "../types/workflow-run"
+
 export interface Project {
 	id?: string
 	name?: string
@@ -13,7 +13,7 @@ export interface Project {
 export interface WorkspaceState {
 	selectedProject: Project
 	selectedIssue: Issue | null
-	workflowRunTimeline: WorkflowRunData[]
+	workflowRunTimeline: WorkflowRunDetails[]
 }
 
 let initialState: WorkspaceState = {
@@ -47,7 +47,7 @@ export const workspaceSlice = createSlice({
 				issue.id === action.payload.id ? action.payload : issue,
 			)
 		},
-		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunData[]>) => {
+		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunDetails[]>) => {
 			state.workflowRunTimeline = action.payload
 		},
 	},
