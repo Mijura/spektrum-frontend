@@ -12,7 +12,7 @@ export type WorkflowRunDetails = {
 	id: string
 	projectId: string
 	issueId: string
-	occurredAt: string
+	timestamp: string
 	message: string
 	phase: string
 	status: WorkflowStatus
