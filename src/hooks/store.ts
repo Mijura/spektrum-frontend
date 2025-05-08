@@ -10,5 +10,6 @@ export const useProjects = () => useAppSelector((state: any) => state.projects.p
 export const useLoadedPage = () => useAppSelector((state: any) => state.navigation.page)
 export const useSelectedIssue = () => useAppSelector((state: any) => state.workspace.selectedIssue)
 export const useSelectedProject = () => useAppSelector((state: any) => state.workspace.selectedProject)
+export const useSelectedProjectId = () => useAppSelector((state: any) => state.workspace.selectedProject?.id)
 export const useWorkflowRunTimeline = () => useAppSelector((state: any) => state.workspace.workflowRunTimeline)
 export const useProjectInitialization = () => useAppSelector((state: any) => state.workspace.projectInitialization)

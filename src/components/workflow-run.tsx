@@ -23,7 +23,6 @@ const WorkflowRun: React.FC<{ runInfo: WorkflowRunDetails }> = ({ runInfo }) => 
 	}
 
 	useEffect(() => {
-		console.log("runInfo", runInfo)
 		if (runInfo) {
 			const border = getBorder(runInfo.status)
 			setBorderStyle(border)
@@ -54,7 +53,7 @@ const WorkflowRun: React.FC<{ runInfo: WorkflowRunDetails }> = ({ runInfo }) => 
 							)}
 							<div className="grow text-secondary-100 text-xs items-center justify-end flex h-fit gap-1">
 								<WatchIcon />
-								{formatTimestamp(workflowRunDetails.timestamp)}
+								{formatTimestamp(workflowRunDetails.occurredAt)}
 							</div>
 						</div>
 					</div>

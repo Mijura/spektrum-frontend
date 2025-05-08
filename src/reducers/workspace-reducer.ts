@@ -52,6 +52,18 @@ export const workspaceSlice = createSlice({
 		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunDetails[]>) => {
 			state.workflowRunTimeline = action.payload
 		},
+
+		workflowRunTriggered: (state, action: PayloadAction<WorkflowRunDetails>) => {
+			// adding newly created workflow run to the beginning of the timeline
+			state.workflowRunTimeline.unshift(action.payload)
+		},
+
+		workflowRunUpdated: (state, action: PayloadAction<WorkflowRunDetails>) => {
+			state.workflowRunTimeline = state.workflowRunTimeline.map((workflowRun) =>
+				workflowRun.id === action.payload.id ? action.payload : workflowRun,
+			)
+		},
+
 		projectInitalizationRequested: (state) => {
 			state.projectInitialization = true
 		},
@@ -67,6 +79,8 @@ export const {
 	issueSelected,
 	issueUpdated,
 	workflowRunTimelineUpdated,
+	workflowRunTriggered,
+	workflowRunUpdated,
 	projectInitalizationRequested,
 	projectInitalizationCompleted,
 } = workspaceSlice.actions

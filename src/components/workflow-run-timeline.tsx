@@ -1,29 +1,45 @@
 import React, { useEffect, useState } from "react"
 
-import { useWorkflowRunTimeline, useSelectedProject } from "../hooks/store"
+import { useWorkflowRunTimeline, useSelectedProjectId } from "../hooks/store"
 import { WorkflowRunDetails } from "../types/workflow-run"
 import WorkflowRun from "./workflow-run"
 import { Loader } from "@honeycomb-app/design"
 import { fetchWorkflowRunTimeline } from "../api/workflow-run"
 import { workflowRunTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
+import { getCurrentUser } from "aws-amplify/auth"
+import { useWorkflowRunListener } from "../hooks/workflow-run-listener"
+
 const WorkflowRunTimeline: React.FC = () => {
-	const selectedProject = useSelectedProject()
+	const selectedProjectId = useSelectedProjectId()
 	const workflowRunTimeline = useWorkflowRunTimeline()
 	const [isLoading, setIsLoading] = useState(true)
 	const dispatch = useDispatch()
+	const [accountId, setAccountId] = useState<string | null>(null)
 
 	const fetchTimeline = async () => {
-		if (selectedProject) {
-			const timeline = await fetchWorkflowRunTimeline(selectedProject.id)
+		if (selectedProjectId) {
+			const timeline = await fetchWorkflowRunTimeline(selectedProjectId)
 			dispatch(workflowRunTimelineUpdated(timeline))
 			setIsLoading(false)
 		}
 	}
 
+	const getAccountId = async () => {
+		const user = await getCurrentUser()
+		const authorId = user.signInDetails?.loginId
+		console.log("authorId", authorId)
+		if (authorId) {
+			setAccountId(authorId)
+		}
+	}
+
 	useEffect(() => {
 		fetchTimeline()
-	}, [selectedProject])
+		getAccountId()
+	}, [selectedProjectId])
+
+	useWorkflowRunListener({ accountId: accountId })
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">

@@ -41,7 +41,8 @@ export default function IssueOverview() {
 
 	const handleLeaveComment = async (): Promise<void> => {
 		const user = await getCurrentUser()
-		const authorId = user.signInDetails?.loginId ?? "You"
+		const authorId = user.signInDetails?.loginId
+		if (!authorId) return
 		if (commentText.length === 0) return
 		const updatedIssue = await leaveComment(issue.id, authorId, commentText)
 		dispatch(issueUpdated(updatedIssue))
