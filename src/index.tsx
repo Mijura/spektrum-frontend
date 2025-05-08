@@ -5,7 +5,6 @@ import { createRouter, RouterProvider } from "@tanstack/react-router"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 import { HoneycombUIProvider } from "@honeycomb-app/design"
-import { JigJoyProvider } from "@honeycomb-app/jigjoy-react-sdk"
 import { persistor, store } from "./shared/store"
 import { Amplify } from "aws-amplify"
 import "./index.css"
@@ -40,9 +39,7 @@ rootDiv.render(
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<HoneycombUIProvider theme="dark">
-					<JigJoyProvider>
-						<RouterProvider router={router} />
-					</JigJoyProvider>
+					<RouterProvider router={router} />
 				</HoneycombUIProvider>
 			</PersistGate>
 		</Provider>

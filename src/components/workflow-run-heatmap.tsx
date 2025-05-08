@@ -2,8 +2,12 @@ import React, { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
-import { useHeatmap } from "@honeycomb-app/jigjoy-react-sdk"
 import { Loader } from "@honeycomb-app/design"
+import { fetchHeatmap } from "../api/workflow-run"
+import { getCurrentUser } from "aws-amplify/auth"
+import { useWorkflowRunHeatmap } from "../hooks/store"
+import { useDispatch } from "react-redux"
+import { workflowRunHeatmapLoaded } from "../reducers/workspace-reducer"
 
 const WorkflowRunHeatmap: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
@@ -11,8 +15,22 @@ const WorkflowRunHeatmap: React.FC = () => {
 	const width = 1200
 	const height = 350
 	const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; intensity: number } | null>(null)
+	const dispatch = useDispatch()
+	const [loading, setLoading] = useState(true)
+	const heatmapData = useWorkflowRunHeatmap()
 
-	const { heatmapData } = useHeatmap({ gameId: "honeycomb", timeRange: { start: "2025-01-01", end: "2025-12-31" } })
+	const updateHeatmap = async () => {
+		const user = await getCurrentUser()
+		const accountId = user.signInDetails?.loginId
+		if (!accountId) return
+		const heatmap = await fetchHeatmap(accountId)
+		dispatch(workflowRunHeatmapLoaded(heatmap))
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		updateHeatmap()
+	}, [])
 
 	useEffect(() => {
 		if (!svgRef.current || !legendRef.current || !heatmapData || heatmapData.length === 0) return
@@ -48,7 +66,7 @@ const WorkflowRunHeatmap: React.FC = () => {
 				let y = hexRadius * i * 1.5 + hexRadius + margin.top
 				let index = j * MapRows + i
 				if (index >= heatmapData.length) break
-				let intensity = heatmapData[index]?.count ?? 0
+				let intensity = heatmapData[index]?.runCount ?? 0
 				if (intensity > maxIntensity) maxIntensity = intensity
 				let date = heatmapData[index]?.date ?? "Unknown"
 				points.push({ x, y, intensity, date })
@@ -182,14 +200,14 @@ const WorkflowRunHeatmap: React.FC = () => {
 
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
-			<div className="w-full mx-auto overflow-x-auto h-fit overflow-y-hidden">
-				{heatmapData ? (
-					<>
-						<svg ref={svgRef} className="w-full" style={{ height: height / 2 }} />
+			<div className="flex w-full mx-auto overflow-x-auto h-fit overflow-y-hidden custom-scrollbar">
+				{!loading ? (
+					<div className="w-[600px] 2xl:w-full">
+						<svg ref={svgRef} className="w-[1200px]" style={{ height: height / 2 }} />
 						<svg ref={legendRef} className="w-full" style={{ height: "60px" }} />
-					</>
+					</div>
 				) : (
-					<div className="flex justify-center items-center">
+					<div className="flex w-full justify-center items-center">
 						<Loader size="small" message="Loading activity data..." />
 					</div>
 				)}
