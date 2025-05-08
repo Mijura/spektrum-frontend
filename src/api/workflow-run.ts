@@ -1,13 +1,13 @@
 const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
-export async function runPrototypingWorkflow(issueId: string, accountId: string): Promise<any> {
+export async function runPrototypingWorkflow(taskId: string, accountId: string): Promise<any> {
 	const options = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			issueId: issueId,
+			taskId: taskId,
 			accountId: accountId,
 		}),
 	}

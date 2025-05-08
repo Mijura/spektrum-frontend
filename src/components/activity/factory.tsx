@@ -1,5 +1,5 @@
 import { CommentLeftActivity } from "./activities/comment-left"
-import { IssueCreatedActivity } from "./activities/issue-created"
+import { TaskCreatedActivity } from "./activities/task-created"
 import { ActivityData } from "../../types/activity"
 import { JSX } from "react"
 import { TitleUpdatedActivity } from "./activities/title-updated"
@@ -11,8 +11,8 @@ export function getActivityComponent(activity: ActivityData): JSX.Element {
 	switch (activity.type) {
 		case "CommentLeft":
 			return <CommentLeftActivity activity={activity} />
-		case "IssueCreated":
-			return <IssueCreatedActivity activity={activity} />
+		case "TaskCreated":
+			return <TaskCreatedActivity activity={activity} />
 		case "TitleUpdated":
 			return <TitleUpdatedActivity activity={activity} />
 		case "DescriptionUpdated":

@@ -11,7 +11,7 @@ export type TitleUpdatedMetadata = {
 	newTitle: string
 }
 
-export type IssueCreatedMetadata = {
+export type TaskCreatedMetadata = {
 	message: string
 	title: string
 	description: string
@@ -54,13 +54,13 @@ export type ActivityMetadata =
 	| CommentLeftMetadata
 	| TitleUpdatedMetadata
 	| DescriptionUpdatedMetadata
-	| IssueCreatedMetadata
+	| TaskCreatedMetadata
 	| StartedWorkMetadata
 	| FinishedWorkMetadata
 	| WorkflowRunMetadata
 
 export enum ActivityType {
-	ISSUE_CREATED = "IssueCreated",
+	TASK_CREATED = "TaskCreated",
 	COMMENT_LEFT = "CommentLeft",
 	TITLE_UPDATED = "TitleUpdated",
 	DESCRIPTION_UPDATED = "DescriptionUpdated",
@@ -88,7 +88,7 @@ export type ActivityData = {
 	id: string
 	type: ActivityType
 	projectId: string
-	issueId: string
+	taskId: string
 	userId: string
 	metadata: ActivityMetadata
 	occurredAt: string

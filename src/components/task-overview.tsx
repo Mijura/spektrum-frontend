@@ -1,56 +1,56 @@
 import { SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
-import { useSelectedIssue } from "../hooks/store"
+import { useSelectedTask } from "../hooks/store"
 import { useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { issueUpdated } from "../reducers/workspace-reducer"
+import { taskUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
-import { leaveComment, updateIssueDescription, updateIssueTitle } from "../api/issue"
+import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/task"
 import { motion, AnimatePresence } from "framer-motion"
 import { getCurrentUser } from "aws-amplify/auth"
 import { getActivityComponent } from "./activity/factory"
 
-export default function IssueOverview() {
+export default function TaskOverview() {
 	const dispatch = useDispatch()
-	const issue = useSelectedIssue()
+	const task = useSelectedTask()
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
 	const [commentText, setCommentText] = useState("")
 
 	const handleTitleChange = async (newTitle: string) => {
-		if (newTitle === issue.title) return
+		if (newTitle === task.title) return
 		setTitle(newTitle)
-		const newIssue = { ...issue, title: newTitle }
-		const updatedIssue = await updateIssueTitle(newIssue)
-		dispatch(issueUpdated(updatedIssue))
+		const newTask = { ...task, title: newTitle }
+		const updatedTask = await updateTaskTitle(newTask)
+		dispatch(taskUpdated(updatedTask))
 	}
 
 	const handleDescriptionChange = async (newDescription: string) => {
-		if (newDescription === issue.description) return
+		if (newDescription === task.description) return
 		setDescription(newDescription)
-		const newIssue = { ...issue, description: newDescription }
-		const updatedIssue = await updateIssueDescription(newIssue)
-		dispatch(issueUpdated(updatedIssue))
+		const newTask = { ...task, description: newDescription }
+		const updatedTask = await updateTaskDescription(newTask)
+		dispatch(taskUpdated(updatedTask))
 	}
 
 	useLayoutEffect(() => {
-		if (issue) {
-			setTitle(issue.title)
-			setDescription(issue.description)
+		if (task) {
+			setTitle(task.title)
+			setDescription(task.description)
 		}
-	}, [issue])
+	}, [task])
 
 	const handleLeaveComment = async (): Promise<void> => {
 		const user = await getCurrentUser()
 		const authorId = user.signInDetails?.loginId
 		if (!authorId) return
 		if (commentText.length === 0) return
-		const updatedIssue = await leaveComment(issue.id, authorId, commentText)
-		dispatch(issueUpdated(updatedIssue))
+		const updatedTask = await leaveComment(task.id, authorId, commentText)
+		dispatch(taskUpdated(updatedTask))
 		setCommentText("")
 	}
 
 	return (
-		issue && (
+		task && (
 			<div className="text-secondary-100 flex h-[calc(100vh-50px)] grow justify-center overflow-y-auto">
 				<div className="flex flex-col max-w-full w-[500px] 2xl:w-[700px] mt-20 gap-4">
 					<SmartInput
@@ -71,8 +71,8 @@ export default function IssueOverview() {
 
 					<AnimatePresence>
 						<div className="flex flex-col gap-y-4">
-							{issue &&
-								issue.activities.map((activity: any, index: number) => {
+							{task &&
+								task.activities.map((activity: any, index: number) => {
 									return (
 										<AnimatePresence>
 											<motion.div

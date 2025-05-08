@@ -11,7 +11,7 @@ export enum WorkflowId {
 export type WorkflowRunDetails = {
 	id: string
 	projectId: string
-	issueId: string
+	taskId: string
 	occurredAt: string
 	message: string
 	phase: string

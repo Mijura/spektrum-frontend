@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { io, Socket } from "socket.io-client"
-import { issueUpdated } from "../reducers/workspace-reducer"
-import { Issue } from "../types/issue"
+import { taskUpdated } from "../reducers/workspace-reducer"
+import { Task } from "../types/task"
 
 type UseActivityListenerProps = {
 	room: string
@@ -14,8 +14,8 @@ export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
 	const dispatch = useDispatch()
 
-	const onUpdate = (issue: Issue) => {
-		dispatch(issueUpdated(issue))
+	const onUpdate = (task: Task) => {
+		dispatch(taskUpdated(task))
 	}
 
 	useEffect(() => {
@@ -29,7 +29,7 @@ export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 
 		socketRef.current = socket
 
-		socket.on("issue:update", onUpdate)
+		socket.on("task:update", onUpdate)
 
 		return () => {
 			if (onUpdate) socket.off("update", onUpdate)

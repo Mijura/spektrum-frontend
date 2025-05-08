@@ -1,15 +1,15 @@
-export enum IssueStatus {
+export enum TaskStatus {
 	TODO = "Todo",
 	IN_PROGRESS = "In Progress",
 	DONE = "Done",
 }
 
-export interface Issue {
+export interface Task {
 	id: string
 	title: string
 	description: string
 	projectId: string
-	status: IssueStatus
+	status: TaskStatus
 	created: string
 	updated: string
 }
@@ -18,5 +18,5 @@ export default interface Project {
 	name?: string
 	description?: string
 	owner?: any
-	issues?: Issue[]
+	tasks?: Task[]
 }
