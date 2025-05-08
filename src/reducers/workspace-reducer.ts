@@ -10,10 +10,16 @@ export interface Project {
 	tasks: Task[]
 }
 
+export interface WorkflowRunHeatmap {
+	date: string
+	runCount: number
+}
+
 export interface WorkspaceState {
 	selectedProject: Project
 	selectedTask: Task | null
 	workflowRunTimeline: WorkflowRunDetails[]
+	workflowRunHeatmap: WorkflowRunHeatmap[]
 	projectInitialization: boolean
 }
 
@@ -23,6 +29,7 @@ let initialState: WorkspaceState = {
 	},
 	selectedTask: null,
 	workflowRunTimeline: [],
+	workflowRunHeatmap: [],
 	projectInitialization: false,
 }
 
@@ -53,6 +60,10 @@ export const workspaceSlice = createSlice({
 			state.workflowRunTimeline = action.payload
 		},
 
+		workflowRunHeatmapLoaded: (state, action: PayloadAction<WorkflowRunHeatmap[]>) => {
+			state.workflowRunHeatmap = action.payload
+		},
+
 		workflowRunTriggered: (state, action: PayloadAction<WorkflowRunDetails>) => {
 			// adding newly created workflow run to the beginning of the timeline
 			state.workflowRunTimeline.unshift(action.payload)
@@ -79,6 +90,7 @@ export const {
 	taskSelected,
 	taskUpdated,
 	workflowRunTimelineUpdated,
+	workflowRunHeatmapLoaded,
 	workflowRunTriggered,
 	workflowRunUpdated,
 	projectInitalizationRequested,

@@ -4,7 +4,6 @@ import { handleConfirmSignIn } from "../api/account-and-billing"
 import { getCurrentUser } from "aws-amplify/auth"
 import { Loader } from "@honeycomb-app/design"
 import { useEffect } from "react"
-import { useJigJoy } from "@honeycomb-app/jigjoy-react-sdk"
 
 export const Route = createFileRoute("/_auth")({
 	beforeLoad: async ({ search }) => {
@@ -37,17 +36,6 @@ export const Route = createFileRoute("/_auth")({
 })
 
 function AuthLayout() {
-	const { setPlayer } = useJigJoy()
-
-	const setupPlayer = async () => {
-		const user = await getCurrentUser()
-		setPlayer(user.userId)
-	}
-
-	useEffect(() => {
-		setupPlayer()
-	}, [])
-
 	return (
 		<div className="flex flex-col bg-[#1a1a1a] h-screen min-h-screen max-h-screen w-full overflow-hidden">
 			<div className="grow flex flex-row">

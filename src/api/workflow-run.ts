@@ -26,3 +26,13 @@ export async function fetchWorkflowRunTimeline(projectId: string, page: number =
 	const res: any = await fetch(url)
 	return await res.json()
 }
+
+export async function fetchHeatmap(accountId: string) {
+	const url = new URL(`${HONEYCOMB_ENDPOINT}/workflow-run/heatmap`)
+	url.searchParams.append("accountId", accountId)
+	url.searchParams.append("startDate", "2025-01-01")
+	url.searchParams.append("endDate", "2025-12-31")
+
+	const res: any = await fetch(url)
+	return await res.json()
+}

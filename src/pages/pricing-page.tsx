@@ -134,12 +134,12 @@ export default function PricingPage() {
 					</div>
 				</div>
 			</div>
-			<div className="py-1 bg-progress text-primary-100 gap-2 flex flex-row items-center fixed bottom-0 w-full justify-center">
+			{/* <div className="py-1 bg-progress text-primary-100 gap-2 flex flex-row items-center fixed bottom-0 w-full justify-center">
 				<div>You can earn JigJoy tokens and use them to run workflows.</div>
 				<Button size="sm" variant="primary">
 					Discover how
 				</Button>
-			</div>
+			</div> */}
 		</div>
 	)
 }
