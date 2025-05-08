@@ -8,6 +8,7 @@ import { issueCreated, issueSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedIssue } from "../hooks/store"
 import { runPrototypingWorkflow } from "../api/workflow-run"
+import { getCurrentUser } from "aws-amplify/auth"
 
 const IssuePlanning: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -19,7 +20,12 @@ const IssuePlanning: React.FC = () => {
 	const [modalOpened, setModalOpened] = useState(false)
 
 	const handleRunWorkflow = async (issueId: string) => {
-		await runPrototypingWorkflow(issueId)
+		const user = await getCurrentUser()
+		const userId = user.signInDetails?.loginId
+
+		if (!userId) return
+
+		await runPrototypingWorkflow(issueId, userId)
 	}
 
 	const handleCreateIssue = async () => {

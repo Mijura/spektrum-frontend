@@ -35,7 +35,7 @@ function WorkspaceComponent() {
 	const selectedProject = useSelectedProject()
 	const [isLoaded, setIsLoaded] = useState(false)
 
-	useActivityListener({ projectId: data.project.id })
+	useActivityListener({ room: data.project.id })
 
 	useEffect(() => {
 		if (selectedProject) {

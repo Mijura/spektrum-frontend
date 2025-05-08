@@ -5,13 +5,12 @@ import { issueUpdated } from "../reducers/workspace-reducer"
 import { Issue } from "../types/issue"
 
 type UseActivityListenerProps = {
-	projectId: string
+	room: string
 }
 
-// TODO: Rename endpoint name to something more descriptive
 const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
-export const useActivityListener = ({ projectId }: UseActivityListenerProps) => {
+export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
 	const dispatch = useDispatch()
 
@@ -20,12 +19,12 @@ export const useActivityListener = ({ projectId }: UseActivityListenerProps) => 
 	}
 
 	useEffect(() => {
-		if (!projectId) return
+		if (!room) return
 
 		const socket = io(HONEYCOMB_ENDPOINT)
 
 		socket.on("connect", () => {
-			socket.emit("subscribe", projectId)
+			socket.emit("subscribe", room)
 		})
 
 		socketRef.current = socket
@@ -36,5 +35,5 @@ export const useActivityListener = ({ projectId }: UseActivityListenerProps) => 
 			if (onUpdate) socket.off("update", onUpdate)
 			socket.disconnect()
 		}
-	}, [projectId])
+	}, [room])
 }
