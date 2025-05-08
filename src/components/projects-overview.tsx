@@ -9,7 +9,7 @@ import { archiveProject } from "../api/project"
 import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import EditIcon from "../shared/icons/edit-icon"
-import Project from "../types/issue"
+import Project from "../types/task"
 import { projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
 
 export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {

@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { Loader, ProgressBar } from "@honeycomb-app/design"
 import { useProfile, useProjectInitialization } from "../hooks/store"
 import WorkflowRunHeatmap from "../components/workflow-run-heatmap"
-import Project from "../types/issue"
+import Project from "../types/task"
 import ProjectsOverview from "../components/projects-overview"
 import WorkflowRunTimeline from "../components/workflow-run-timeline"
 

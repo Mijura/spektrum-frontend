@@ -3,41 +3,41 @@ import React, { useState } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
-import { createIssue } from "../api/issue"
-import { issueCreated, issueSelected } from "../reducers/workspace-reducer"
+import { createTask } from "../api/task"
+import { taskCreated, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { useSelectedProject, useSelectedIssue } from "../hooks/store"
+import { useSelectedProject, useSelectedTask } from "../hooks/store"
 import { runPrototypingWorkflow } from "../api/workflow-run"
 import { getCurrentUser } from "aws-amplify/auth"
 
-const IssuePlanning: React.FC = () => {
+const TasksPlanner: React.FC = () => {
 	const selectedProject = useSelectedProject()
 	const dispatch = useDispatch()
 
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
-	const selectedIssue = useSelectedIssue()
+	const selectedTask = useSelectedTask()
 	const [modalOpened, setModalOpened] = useState(false)
 
-	const handleRunWorkflow = async (issueId: string) => {
+	const handleRunWorkflow = async (taskId: string) => {
 		const user = await getCurrentUser()
 		const userId = user.signInDetails?.loginId
 
 		if (!userId) return
 
-		await runPrototypingWorkflow(issueId, userId)
+		await runPrototypingWorkflow(taskId, userId)
 	}
 
-	const handleCreateIssue = async () => {
+	const handleCreateTask = async () => {
 		setModalOpened(false)
-		const createdIssue = await createIssue(selectedProject.id, title, description)
-		dispatch(issueCreated(createdIssue))
-		return createdIssue
+		const createdTask = await createTask(selectedProject.id, title, description)
+		dispatch(taskCreated(createdTask))
+		return createdTask
 	}
 
-	const handleCreateIssueAndRunWorkflow = async () => {
-		const issue = await handleCreateIssue()
-		await handleRunWorkflow(issue.id)
+	const handleCreateTaskAndRunWorkflow = async () => {
+		const task = await handleCreateTask()
+		await handleRunWorkflow(task.id)
 	}
 
 	return (
@@ -45,11 +45,11 @@ const IssuePlanning: React.FC = () => {
 			<>
 				<div className="px-4 w-full min-w-[300px] max-w-[300px] 2xl:min-w-[325px] 2xl:max-w-[325px] h-[calc(100dvh-50px)]">
 					<div className="flex flex-row w-full py-4 items-center">
-						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Issues</h1>
+						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Tasks</h1>
 
 						<div className="flex justify-end grow">
 							<div onClick={() => setModalOpened(true)}>
-								<Tooltip message="Create new issue">
+								<Tooltip message="Create new task">
 									<CreateIcon />
 								</Tooltip>
 							</div>
@@ -57,21 +57,21 @@ const IssuePlanning: React.FC = () => {
 					</div>
 
 					<div className="pb-4">
-						{selectedProject.issues &&
-							selectedProject.issues.map((issue: any) => (
+						{selectedProject.tasks &&
+							selectedProject.tasks.map((task: any) => (
 								<Card
-									key={issue.id}
-									onClick={() => dispatch(issueSelected(issue))}
-									className={`hover:bg-surface-muted/75 cursor-default my-2 p-3 flex flex-col ${selectedIssue?.id === issue.id ? "border-highlight border-1" : ""}`}
+									key={task.id}
+									onClick={() => dispatch(taskSelected(task))}
+									className={`hover:bg-surface-muted/75 cursor-default my-2 p-3 flex flex-col ${selectedTask?.id === task.id ? "border-highlight border-1" : ""}`}
 								>
-									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{issue.title}</div>
+									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{task.title}</div>
 									<div className="mt-2 flex flex-row gap-2 w-full">
 										<Tooltip message="Change status">
 											<MoreOptionsIcon />
 										</Tooltip>
 
 										<div className="flex grow w-full justify-end">
-											<div onClick={() => handleRunWorkflow(issue.id)}>
+											<div onClick={() => handleRunWorkflow(task.id)}>
 												<Tooltip message="Run workflow">
 													<PlayIcon />
 												</Tooltip>
@@ -95,9 +95,9 @@ const IssuePlanning: React.FC = () => {
 								}}
 							/>
 						</ModalTrigger>
-						<ModalContent title="New issue" className="w-[600px] max-w-[90vw]">
+						<ModalContent title="New task" className="w-[600px] max-w-[90vw]">
 							<Input
-								placeholder="Issue title"
+								placeholder="Task title"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 								className="mb-4 w-full"
@@ -110,10 +110,10 @@ const IssuePlanning: React.FC = () => {
 								rows={4}
 							/>
 							<div className="flex justify-end gap-2">
-								<Button size="sm" variant="primary" onClick={handleCreateIssue}>
+								<Button size="sm" variant="primary" onClick={handleCreateTask}>
 									Save for later
 								</Button>
-								<Button size="sm" variant="secondary" onClick={handleCreateIssueAndRunWorkflow}>
+								<Button size="sm" variant="secondary" onClick={handleCreateTaskAndRunWorkflow}>
 									Create & run workflow
 								</Button>
 							</div>
@@ -125,4 +125,4 @@ const IssuePlanning: React.FC = () => {
 	)
 }
 
-export default IssuePlanning
+export default TasksPlanner

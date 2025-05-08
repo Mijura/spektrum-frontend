@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Issue } from "../types/issue"
+import { Task } from "../types/task"
 import { WorkflowRunDetails } from "../types/workflow-run"
 
 export interface Project {
@@ -7,21 +7,21 @@ export interface Project {
 	name?: string
 	description?: string
 	owner?: any
-	issues: Issue[]
+	tasks: Task[]
 }
 
 export interface WorkspaceState {
 	selectedProject: Project
-	selectedIssue: Issue | null
+	selectedTask: Task | null
 	workflowRunTimeline: WorkflowRunDetails[]
 	projectInitialization: boolean
 }
 
 let initialState: WorkspaceState = {
 	selectedProject: {
-		issues: [],
+		tasks: [],
 	},
-	selectedIssue: null,
+	selectedTask: null,
 	workflowRunTimeline: [],
 	projectInitialization: false,
 }
@@ -34,19 +34,19 @@ export const workspaceSlice = createSlice({
 		projectSelected: (state, action: PayloadAction<Project>) => {
 			state.selectedProject = action.payload
 		},
-		issueCreated: (state, action: PayloadAction<Issue>) => {
-			state.selectedProject.issues.push(action.payload)
-			state.selectedIssue = action.payload
+		taskCreated: (state, action: PayloadAction<Task>) => {
+			state.selectedProject.tasks.push(action.payload)
+			state.selectedTask = action.payload
 		},
-		issueSelected: (state, action: PayloadAction<Issue | null>) => {
-			state.selectedIssue = action.payload
+		taskSelected: (state, action: PayloadAction<Task | null>) => {
+			state.selectedTask = action.payload
 		},
-		issueUpdated: (state, action: PayloadAction<Issue>) => {
-			if (state.selectedIssue?.id === action.payload.id) {
-				state.selectedIssue = action.payload
+		taskUpdated: (state, action: PayloadAction<Task>) => {
+			if (state.selectedTask?.id === action.payload.id) {
+				state.selectedTask = action.payload
 			}
-			state.selectedProject.issues = state.selectedProject.issues.map((issue) =>
-				issue.id === action.payload.id ? action.payload : issue,
+			state.selectedProject.tasks = state.selectedProject.tasks.map((task) =>
+				task.id === action.payload.id ? action.payload : task,
 			)
 		},
 		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunDetails[]>) => {
@@ -75,9 +75,9 @@ export const workspaceSlice = createSlice({
 
 export const {
 	projectSelected,
-	issueCreated,
-	issueSelected,
-	issueUpdated,
+	taskCreated,
+	taskSelected,
+	taskUpdated,
 	workflowRunTimelineUpdated,
 	workflowRunTriggered,
 	workflowRunUpdated,
