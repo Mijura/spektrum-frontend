@@ -32,13 +32,13 @@ const AppPreview: React.FC = () => {
 				className="flex flex-col h-full"
 			>
 				<div className="flex flex-col h-full">
-					<div className="h-[40px] flex flew-row bg-surface rounded-tr-lg">
+					<div className="h-[40px] flex flew-row bg-surface rounded-tr-lg ml-4">
+						<div className="m-2 rounded-full bg-surface-muted w-full px-4 text-secondary">/</div>
 						<Tooltip message="Reload page">
 							<div onClick={reloadPage}>
-								<ReloadIcon color="ml-4 h-[40px] items-center text-secondary-100 hover:text-secondary cursor-pointer" />
+								<ReloadIcon color="mr-4 h-[40px] items-center text-secondary-100 hover:text-secondary cursor-pointer" />
 							</div>
 						</Tooltip>
-						<div className="m-2 rounded-full bg-surface-muted w-full px-4 text-secondary">/</div>
 					</div>
 					<div className="flex h-full">
 						<iframe key={iframeKey} src={`${HONEYCOMB_ENDPOINT}/${selectedProject.id}`} className="grow" />
