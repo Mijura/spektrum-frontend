@@ -4,13 +4,13 @@ import { useWorkflowRunTimeline, useSelectedProjectId } from "../hooks/store"
 import { WorkflowRunDetails } from "../types/workflow-run"
 import WorkflowRun from "./workflow-run"
 import { Loader } from "@honeycomb-app/design"
-import { fetchWorkflowRunTimeline } from "../api/workflow-run"
+import { fetchProjectTimeline, fetchAccountTimeline } from "../api/workflow-run"
 import { workflowRunTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { getCurrentUser } from "aws-amplify/auth"
 import { useWorkflowRunListener } from "../hooks/workflow-run-listener"
 
-const WorkflowRunTimeline: React.FC = () => {
+const WorkflowRunTimeline: React.FC<{ type: "project" | "account" }> = ({ type }) => {
 	const selectedProjectId = useSelectedProjectId()
 	const workflowRunTimeline = useWorkflowRunTimeline()
 	const [isLoading, setIsLoading] = useState(true)
@@ -18,8 +18,12 @@ const WorkflowRunTimeline: React.FC = () => {
 	const [accountId, setAccountId] = useState<string | null>(null)
 
 	const fetchTimeline = async () => {
-		if (selectedProjectId) {
-			const timeline = await fetchWorkflowRunTimeline(selectedProjectId)
+		if (type === "project" && selectedProjectId) {
+			const timeline = await fetchProjectTimeline(selectedProjectId)
+			dispatch(workflowRunTimelineUpdated(timeline))
+			setIsLoading(false)
+		} else if (type === "account" && accountId) {
+			const timeline = await fetchAccountTimeline(accountId)
 			dispatch(workflowRunTimelineUpdated(timeline))
 			setIsLoading(false)
 		}
@@ -35,9 +39,9 @@ const WorkflowRunTimeline: React.FC = () => {
 	}
 
 	useEffect(() => {
-		fetchTimeline()
 		getAccountId()
-	}, [selectedProjectId])
+		fetchTimeline()
+	}, [selectedProjectId, accountId])
 
 	useWorkflowRunListener({ accountId: accountId })
 

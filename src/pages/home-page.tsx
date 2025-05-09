@@ -78,7 +78,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 				)}
 			</div>
 			<div className="w-[300px] 2xl:w-[325px] flex flex-col rounded-[2px]">
-				<WorkflowRunTimeline />
+				<WorkflowRunTimeline type="account" />
 			</div>
 		</div>
 	)
