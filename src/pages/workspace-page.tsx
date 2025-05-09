@@ -98,7 +98,7 @@ export default function WorkspacePage() {
 
 					<div className="w-fit flex flex-col rounded-[2px]">
 						<ActivityRewards />
-						<WorkflowRunTimeline />
+						<WorkflowRunTimeline type="project" />
 					</div>
 				</div>
 			</div>
