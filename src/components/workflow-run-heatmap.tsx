@@ -201,16 +201,18 @@ const WorkflowRunHeatmap: React.FC = () => {
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
 			<div className="flex w-full mx-auto overflow-x-auto h-fit overflow-y-hidden custom-scrollbar">
-				{!loading ? (
-					<div className="w-[600px] 2xl:w-full">
-						<svg ref={svgRef} className="w-[1200px]" style={{ height: height / 2 }} />
-						<svg ref={legendRef} className="w-full" style={{ height: "60px" }} />
-					</div>
-				) : (
-					<div className="flex w-full justify-center items-center">
-						<Loader size="small" message="Loading activity data..." />
-					</div>
-				)}
+				<div className="w-[600px] 2xl:w-full">
+					{!loading ? (
+						<div>
+							<svg ref={svgRef} className="w-[1200px]" style={{ height: height / 2 }} />
+							<svg ref={legendRef} className="w-full" style={{ height: "60px" }} />
+						</div>
+					) : (
+						<div className="flex w-full justify-center items-center">
+							<Loader size="small" message="Loading activity data..." />
+						</div>
+					)}
+				</div>
 			</div>
 
 			{tooltip &&

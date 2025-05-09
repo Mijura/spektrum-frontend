@@ -15,11 +15,11 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 			<Loader message="Project initialization" size="small" />
 		</div>
 	) : (
-		<div className="flex flex-row overflow-x-auto w-full">
+		<div className="flex flex-row w-full">
 			<div className="w-fit">
 				<ProjectsOverview loadedProjects={loadedProjects} />
 			</div>
-			<div className="grow">
+			<div className="grow min-w-0">
 				{profile && (
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -71,7 +71,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 							</div>
 						</div>
 						{/* Activity Graph */}
-						<div className="w-full bg-surface px-2 h-fit border border-primary-200 rounded-sm">
+						<div className="w-fit 2xl:w-[1300px] bg-surface p-8 h-fit border border-primary-200 rounded-sm">
 							<WorkflowRunHeatmap />
 						</div>
 					</motion.div>
