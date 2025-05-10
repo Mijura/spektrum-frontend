@@ -38,7 +38,6 @@ function WorkspaceComponent() {
 	useActivityListener({ room: data.project.id })
 
 	useEffect(() => {
-		console.log("data", data)
 		if (selectedProject) {
 			// reset task if project has changed
 			if (selectedProject.id !== data.project.id) {

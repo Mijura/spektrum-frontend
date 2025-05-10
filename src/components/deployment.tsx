@@ -16,10 +16,14 @@ const Deployment: React.FC = () => {
 		setDeploying(true)
 		const deployedProject = await deploy(selectedProject.id)
 		dispatch(projectUpdated({ ...selectedProject, deploymentId: deployedProject._deploymentId })) // TODO: fix this
-		console.log(deployedProject)
-		setDeploymentId(deployedProject._deploymentId) // TODO: fix this
 		setDeploying(false)
 	}
+
+	useEffect(() => {
+		if (selectedProject.deploymentId) {
+			setDeploymentId(selectedProject.deploymentId)
+		}
+	}, [selectedProject.deploymentId])
 
 	return (
 		<>

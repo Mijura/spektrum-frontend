@@ -32,7 +32,6 @@ const WorkflowRunTimeline: React.FC<{ type: "project" | "account" }> = ({ type }
 	const getAccountId = async () => {
 		const user = await getCurrentUser()
 		const authorId = user.signInDetails?.loginId
-		console.log("authorId", authorId)
 		if (authorId) {
 			setAccountId(authorId)
 		}
