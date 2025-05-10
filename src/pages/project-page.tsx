@@ -96,7 +96,7 @@ export default function ProjectPage() {
 						{activeTab === "deployment" && <Deployment />}
 					</div>
 
-					<div className="w-fit flex flex-col rounded-[2px]">
+					<div className="w-[300px] 2xl:w-[325px] flex flex-col rounded-[2px]">
 						<ActivityRewards />
 						<WorkflowRunTimeline type="project" />
 					</div>
