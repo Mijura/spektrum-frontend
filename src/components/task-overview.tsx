@@ -117,14 +117,17 @@ export default function TaskOverview() {
 
 			{selectedProject.tasks.length === 0 && (
 				<div className="w-full flex mt-40 justify-center h-fit">
-					<div className="flex flex-col gap-y-2 w-full max-w-[400px]">
+					<div className="flex flex-col gap-y-3 w-full max-w-[400px]">
 						<TasksIcon />
 						<div className="font-semibold text-highlight-100 mt-4">Tasks</div>
 						<div className="text-secondary-100 text-sm">
-							Get started by creating your first task. Define what needs to be done, and our AI workers will handle the
-							execution.
+							Projects are broken down into tasks, which are small jobs that the AI workers complete.
 						</div>
-						<div className="mt-4">
+						<div className="text-secondary-100 text-sm">
+							Get started by creating your first task. Define what needs to be done, and our AI workers will handle the
+							workflow execution.
+						</div>
+						<div>
 							<Button onClick={() => dispatch(taskCreationRequested())}>Create first task</Button>
 						</div>
 					</div>

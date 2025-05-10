@@ -1,6 +1,6 @@
 import ActivityRewards from "../components/activity-rewards"
 import TasksPlanner from "../components/tasks-planner"
-import AppPreview from "../components/app-preview"
+import OutputPreview from "../components/output-preview"
 import Deployment from "../components/deployment"
 import WorkflowRunTimeline from "../components/workflow-run-timeline"
 import TaskOverview from "../components/task-overview"
@@ -92,7 +92,7 @@ export default function WorkspacePage() {
 								<TaskOverview />
 							</div>
 						)}
-						{activeTab === "output" && <AppPreview />}
+						{activeTab === "output" && <OutputPreview />}
 						{activeTab === "deployment" && <Deployment />}
 					</div>
 

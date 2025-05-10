@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion"
 
 export const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
-const AppPreview: React.FC = () => {
+const OutputPreview: React.FC = () => {
 	const selectedProject = useSelectedProject()
 
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
@@ -49,4 +49,4 @@ const AppPreview: React.FC = () => {
 	)
 }
 
-export default AppPreview
+export default OutputPreview
