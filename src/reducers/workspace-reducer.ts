@@ -7,6 +7,7 @@ export interface Project {
 	name?: string
 	description?: string
 	owner?: any
+	deploymentId: string | null
 	tasks: Task[]
 }
 
@@ -27,6 +28,7 @@ export interface WorkspaceState {
 let initialState: WorkspaceState = {
 	selectedProject: {
 		tasks: [],
+		deploymentId: null,
 	},
 	selectedTask: null,
 	workflowRunTimeline: [],
@@ -41,6 +43,10 @@ export const workspaceSlice = createSlice({
 
 	reducers: {
 		projectSelected: (state, action: PayloadAction<Project>) => {
+			state.selectedProject = action.payload
+		},
+
+		projectUpdated: (state, action: PayloadAction<Project>) => {
 			state.selectedProject = action.payload
 		},
 
@@ -100,6 +106,7 @@ export const workspaceSlice = createSlice({
 
 export const {
 	projectSelected,
+	projectUpdated,
 	taskCreated,
 	taskSelected,
 	taskUpdated,
