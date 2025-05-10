@@ -86,7 +86,7 @@ export default function WorkspacePage() {
 					<div className="w-full h-full">
 						{activeTab === "overview" && (
 							<div className="flex flex-row overflow-y-auto custom-scrollbar">
-								<div className="h-full w-fit bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
+								<div className="h-full w-full max-w-[300px] 2xl:max-w-[325px] bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
 									<TasksPlanner />
 								</div>
 								<TaskOverview />

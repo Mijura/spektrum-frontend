@@ -21,6 +21,7 @@ export interface WorkspaceState {
 	workflowRunTimeline: WorkflowRunDetails[]
 	workflowRunHeatmap: WorkflowRunHeatmap[]
 	projectInitialization: boolean
+	taskCreationRequested: boolean
 }
 
 let initialState: WorkspaceState = {
@@ -31,6 +32,7 @@ let initialState: WorkspaceState = {
 	workflowRunTimeline: [],
 	workflowRunHeatmap: [],
 	projectInitialization: false,
+	taskCreationRequested: false,
 }
 
 export const workspaceSlice = createSlice({
@@ -41,13 +43,17 @@ export const workspaceSlice = createSlice({
 		projectSelected: (state, action: PayloadAction<Project>) => {
 			state.selectedProject = action.payload
 		},
+
 		taskCreated: (state, action: PayloadAction<Task>) => {
 			state.selectedProject.tasks.push(action.payload)
 			state.selectedTask = action.payload
+			state.taskCreationRequested = false
 		},
+
 		taskSelected: (state, action: PayloadAction<Task | null>) => {
 			state.selectedTask = action.payload
 		},
+
 		taskUpdated: (state, action: PayloadAction<Task>) => {
 			if (state.selectedTask?.id === action.payload.id) {
 				state.selectedTask = action.payload
@@ -56,6 +62,7 @@ export const workspaceSlice = createSlice({
 				task.id === action.payload.id ? action.payload : task,
 			)
 		},
+
 		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunDetails[]>) => {
 			state.workflowRunTimeline = action.payload
 		},
@@ -63,7 +70,6 @@ export const workspaceSlice = createSlice({
 		workflowRunHeatmapLoaded: (state, action: PayloadAction<WorkflowRunHeatmap[]>) => {
 			state.workflowRunHeatmap = action.payload
 		},
-
 		workflowRunTriggered: (state, action: PayloadAction<WorkflowRunDetails>) => {
 			// adding newly created workflow run to the beginning of the timeline
 			state.workflowRunTimeline.unshift(action.payload)
@@ -73,6 +79,14 @@ export const workspaceSlice = createSlice({
 			state.workflowRunTimeline = state.workflowRunTimeline.map((workflowRun) =>
 				workflowRun.id === action.payload.id ? action.payload : workflowRun,
 			)
+		},
+
+		taskCreationRequested: (state) => {
+			state.taskCreationRequested = true
+		},
+
+		taskCreationClosed: (state) => {
+			state.taskCreationRequested = false
 		},
 
 		projectInitalizationRequested: (state) => {
@@ -93,6 +107,8 @@ export const {
 	workflowRunHeatmapLoaded,
 	workflowRunTriggered,
 	workflowRunUpdated,
+	taskCreationRequested,
+	taskCreationClosed,
 	projectInitalizationRequested,
 	projectInitalizationCompleted,
 } = workspaceSlice.actions

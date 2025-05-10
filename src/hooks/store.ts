@@ -14,3 +14,4 @@ export const useSelectedProjectId = () => useAppSelector((state: any) => state.w
 export const useWorkflowRunHeatmap = () => useAppSelector((state: any) => state.workspace.workflowRunHeatmap)
 export const useWorkflowRunTimeline = () => useAppSelector((state: any) => state.workspace.workflowRunTimeline)
 export const useProjectInitialization = () => useAppSelector((state: any) => state.workspace.projectInitialization)
+export const useTaskCreationRequested = () => useAppSelector((state: any) => state.workspace.taskCreationRequested)

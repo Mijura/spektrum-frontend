@@ -2,7 +2,7 @@ import { Button, SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
 import { useSelectedProject, useSelectedTask } from "../hooks/store"
 import { useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { taskUpdated } from "../reducers/workspace-reducer"
+import { taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
 import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/task"
 import { motion, AnimatePresence } from "framer-motion"
@@ -125,7 +125,7 @@ export default function TaskOverview() {
 							execution.
 						</div>
 						<div className="mt-4">
-							<Button>Create first task</Button>
+							<Button onClick={() => dispatch(taskCreationRequested())}>Create first task</Button>
 						</div>
 					</div>
 				</div>
