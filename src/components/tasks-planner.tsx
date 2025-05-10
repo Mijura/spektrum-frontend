@@ -43,10 +43,9 @@ const TasksPlanner: React.FC = () => {
 	return (
 		selectedProject && (
 			<>
-				<div className="px-4 w-full min-w-[300px] max-w-[300px] 2xl:min-w-[325px] 2xl:max-w-[325px] h-[calc(100dvh-50px)]">
-					<div className="flex flex-row w-full py-4 items-center">
-						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Tasks</h1>
-
+				<div className="h-[calc(100dvh-50px)] p-2">
+					<div className="flex flex-row items-center justify-between">
+						<div className="text-secondary-100 font-semibold h-fit ml-1">Tasks</div>
 						<div className="flex justify-end grow">
 							<div onClick={() => setModalOpened(true)}>
 								<Tooltip message="Create new task">
@@ -83,7 +82,7 @@ const TasksPlanner: React.FC = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-row w-[300px] h-fit">
+				<div className="flex flex-row w-[300px] 2xl:w-[325px] h-fit">
 					<Modal isOpen={modalOpened} onOpenCallback={() => {}} onCloseCallback={() => setModalOpened(false)}>
 						<ModalTrigger>
 							<div
