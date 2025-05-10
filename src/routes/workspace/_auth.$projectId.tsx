@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router"
-import WorkspacePage from "../pages/workspace-page"
-import { fetchAllTasks } from "../api/task"
-import { fetchProject } from "../api/project"
-import { Loader } from "@honeycomb-app/design"
-import { PostError } from "../shared/errors/post-error"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
-import { taskSelected, projectSelected } from "../reducers/workspace-reducer"
-import { useSelectedProject } from "../hooks/store"
-import { useActivityListener } from "../hooks/activity-listener"
-export const Route: any = createFileRoute("/_auth/$projectId")({
+import { useSelectedProject } from "../../hooks/store"
+import { useActivityListener } from "../../hooks/activity-listener"
+import { projectSelected, taskSelected } from "../../reducers/workspace-reducer"
+import ProjectPage from "../../pages/project-page"
+import { fetchAllTasks } from "../../api/task"
+import { fetchProject } from "../../api/project"
+import { Loader } from "@honeycomb-app/design"
+import { PostError } from "../../shared/errors/post-error"
+export const Route: any = createFileRoute("/workspace/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
 		const [project, tasks] = await Promise.all([fetchProject(projectId), fetchAllTasks(projectId)])
 		return { project, tasks }
@@ -38,6 +38,7 @@ function WorkspaceComponent() {
 	useActivityListener({ room: data.project.id })
 
 	useEffect(() => {
+		console.log("data", data)
 		if (selectedProject) {
 			// reset task if project has changed
 			if (selectedProject.id !== data.project.id) {
@@ -55,5 +56,5 @@ function WorkspaceComponent() {
 		}
 	}, [data])
 
-	return isLoaded ? <WorkspacePage /> : <PendingComponent />
+	return isLoaded ? <ProjectPage /> : <PendingComponent />
 }

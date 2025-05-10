@@ -45,7 +45,7 @@ export default function WelcomePage() {
 		const user = await getCurrentUser()
 		const project: any = await createNewProject(user.username)
 		navigate({
-			to: `/${project.id}`,
+			to: `/workspace/${project.id}`,
 		})
 	}
 

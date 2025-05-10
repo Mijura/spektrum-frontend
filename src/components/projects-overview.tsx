@@ -38,7 +38,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 		setProjects([...projects, project])
 		dispatch(pageNavigated("workspace"))
 		await navigate({
-			to: `/${project.id}`,
+			to: `/workspace/${project.id}`,
 		})
 
 		dispatch(projectInitalizationCompleted())
@@ -47,7 +47,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 	const handleOpenProject = async (project: any) => {
 		dispatch(pageNavigated("workspace"))
 		await navigate({
-			to: `/${project.id}`,
+			to: `/workspace/${project.id}`,
 		})
 	}
 
