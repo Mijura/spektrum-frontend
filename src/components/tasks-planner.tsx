@@ -4,9 +4,9 @@ import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
 import { createTask } from "../api/task"
-import { taskCreated, taskSelected } from "../reducers/workspace-reducer"
+import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { useSelectedProject, useSelectedTask } from "../hooks/store"
+import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
 import { runPrototypingWorkflow } from "../api/workflow-run"
 import { getCurrentUser } from "aws-amplify/auth"
 
@@ -17,7 +17,7 @@ const TasksPlanner: React.FC = () => {
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
 	const selectedTask = useSelectedTask()
-	const [modalOpened, setModalOpened] = useState(false)
+	const taskCreationModalOpened = useTaskCreationRequested()
 
 	const handleRunWorkflow = async (taskId: string) => {
 		const user = await getCurrentUser()
@@ -29,7 +29,6 @@ const TasksPlanner: React.FC = () => {
 	}
 
 	const handleCreateTask = async () => {
-		setModalOpened(false)
 		const createdTask = await createTask(selectedProject.id, title, description)
 		dispatch(taskCreated(createdTask))
 		return createdTask
@@ -43,12 +42,11 @@ const TasksPlanner: React.FC = () => {
 	return (
 		selectedProject && (
 			<>
-				<div className="px-4 w-full min-w-[300px] max-w-[300px] 2xl:min-w-[325px] 2xl:max-w-[325px] h-[calc(100dvh-50px)]">
-					<div className="flex flex-row w-full py-4 items-center">
-						<h1 className="text-secondary-100 font-semibold w-fit h-fit">Tasks</h1>
-
+				<div className="max-w-[300px] 2xl:max-w-[325px] h-[calc(100dvh-50px)] p-3">
+					<div className="flex flex-row items-center justify-between">
+						<div className="text-secondary-100 font-semibold h-fit">Tasks</div>
 						<div className="flex justify-end grow">
-							<div onClick={() => setModalOpened(true)}>
+							<div onClick={() => dispatch(taskCreationRequested())}>
 								<Tooltip message="Create new task">
 									<CreateIcon />
 								</Tooltip>
@@ -83,13 +81,17 @@ const TasksPlanner: React.FC = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-row w-[300px] h-fit">
-					<Modal isOpen={modalOpened} onOpenCallback={() => {}} onCloseCallback={() => setModalOpened(false)}>
+				<div className="flex flex-row w-[300px] 2xl:w-[325px] h-fit">
+					<Modal
+						isOpen={taskCreationModalOpened}
+						onOpenCallback={() => {}}
+						onCloseCallback={() => dispatch(taskCreationClosed())}
+					>
 						<ModalTrigger>
 							<div
 								style={{ display: "none" }}
 								ref={(el) => {
-									if (el && modalOpened) {
+									if (el && taskCreationModalOpened) {
 										el.click()
 									}
 								}}
