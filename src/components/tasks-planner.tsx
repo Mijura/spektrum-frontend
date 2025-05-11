@@ -1,5 +1,5 @@
 import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@honeycomb-app/design"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
@@ -38,6 +38,11 @@ const TasksPlanner: React.FC = () => {
 		const task = await handleCreateTask()
 		await handleRunWorkflow(task.id)
 	}
+
+	useEffect(() => {
+		setTitle("")
+		setDescription("")
+	}, [taskCreationModalOpened])
 
 	return (
 		selectedProject && (
