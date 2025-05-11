@@ -25,7 +25,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 		setProjects([...projects, project])
 		dispatch(pageNavigated("workspace"))
 		await navigate({
-			to: `/workspace/${project.id}`,
+			to: `/${project.id}`,
 		})
 
 		dispatch(projectInitalizationCompleted())
@@ -33,7 +33,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 
 	const handleProjectSelection = (projectId: string | undefined) => {
 		if (projectId) {
-			navigate({ to: `/workspace/${projectId}` })
+			navigate({ to: `/${projectId}` })
 		}
 	}
 
@@ -52,7 +52,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 								className="w-full text-left bg-highlight text-surface hover:bg-highlight hover:text-surface p-2 border rounded"
 								onClick={() => setSelectorOpen(!selectorOpen)}
 							>
-								Select a project...
+								Select a project to work on...
 							</Button>
 							{selectorOpen && (
 								<div className="mt-4 absolute w-full h-[400px] custom-scrollbar overflow-y-auto bg-surface-muted border border-surface-light rounded shadow">

@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
-import { useSelectedProject } from "../../hooks/store"
-import { useActivityListener } from "../../hooks/activity-listener"
-import { projectSelected, taskSelected } from "../../reducers/workspace-reducer"
-import ProjectPage from "../../pages/project-page"
-import { fetchAllTasks } from "../../api/task"
-import { fetchProject } from "../../api/project"
 import { Loader } from "@honeycomb-app/design"
-import { PostError } from "../../shared/errors/post-error"
-export const Route: any = createFileRoute("/workspace/_auth/$projectId")({
+import { fetchProject } from "../api/project"
+import { fetchAllTasks } from "../api/task"
+import { PostError } from "../shared/errors/post-error"
+import { useSelectedProject } from "../hooks/store"
+import { useActivityListener } from "../hooks/activity-listener"
+import { projectSelected, taskSelected } from "../reducers/workspace-reducer"
+import ProjectPage from "../pages/project-page"
+export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
 		const [project, tasks] = await Promise.all([fetchProject(projectId), fetchAllTasks(projectId)])
 		return { project, tasks }

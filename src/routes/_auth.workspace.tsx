@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router"
-import WorkspacePage from "../../pages/workspace-page"
+import WorkspacePage from "../pages/workspace-page"
 import { Loader } from "@honeycomb-app/design"
 import { getCurrentUser } from "aws-amplify/auth"
-import { fetchAllProjects } from "../../api/project"
+import { fetchAllProjects } from "../api/project"
 
-export const Route = createFileRoute("/workspace/_auth/")({
+export const Route = createFileRoute("/_auth/workspace")({
 	loader: async () => {
 		try {
 			const user = await getCurrentUser()
