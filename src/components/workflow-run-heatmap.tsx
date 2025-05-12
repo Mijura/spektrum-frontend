@@ -201,7 +201,7 @@ const WorkflowRunHeatmap: React.FC = () => {
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
 			<div className="flex w-full mx-auto overflow-x-auto h-fit overflow-y-hidden custom-scrollbar">
-				<div className="w-[600px] 2xl:w-full">
+				<div className="xs:w-[320px] xl:w-[750px] 2xl:w-[800px] 3xl:w-[1200px]">
 					{!loading ? (
 						<div>
 							<svg ref={svgRef} className="w-[1200px]" style={{ height: height / 2 }} />
