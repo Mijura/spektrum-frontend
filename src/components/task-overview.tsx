@@ -54,8 +54,8 @@ export default function TaskOverview() {
 	return (
 		<>
 			{task && (
-				<div className="text-secondary-100 flex h-[calc(100vh-50px)] grow justify-center overflow-y-auto">
-					<div className="flex flex-col max-w-full w-[500px] 2xl:w-[700px] mt-20 gap-4">
+				<div className="text-secondary-100 flex h-fit md:h-[calc(100vh-50px)] grow justify-center overflow-y-auto">
+					<div className="flex flex-col w-[420px] md:w-[420px] xl:w-[500px] 2xl:w-[700px] md:mt-20 gap-4 p-10 md:p-0">
 						<SmartInput
 							className="bg-[#1a1a1a] border-none w-full min-h-10 mb-2 text-xl p-0"
 							value={title}
@@ -116,8 +116,8 @@ export default function TaskOverview() {
 			)}
 
 			{selectedProject.tasks.length === 0 && (
-				<div className="w-full flex mt-40 justify-center h-fit">
-					<div className="flex flex-col gap-y-3 w-full max-w-[400px]">
+				<div className="w-full flex mt-8 md:mt-40 justify-center h-fit">
+					<div className="flex flex-col gap-y-3 w-full md:w-[400px] px-8 md:px-0">
 						<TasksIcon />
 						<div className="font-semibold text-highlight-100 mt-4">Tasks</div>
 						<div className="text-secondary-100 text-sm">
