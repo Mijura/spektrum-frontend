@@ -47,7 +47,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 			{!initialization && projects.length > 0 && (
 				<div className="flex w-full justify-center mt-40 text-secondary-100">
 					<div className="flex flex-col gap-y-4">
-						<div className="relative w-[500px] max-w-[90vw]">
+						<div className="relative w-[340px] md:w-[500px]">
 							<Button
 								className="w-full text-left bg-highlight text-surface hover:bg-highlight hover:text-surface p-2 border rounded"
 								onClick={() => setSelectorOpen(!selectorOpen)}

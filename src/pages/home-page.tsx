@@ -15,11 +15,11 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 			<Loader message="Project initialization" size="small" />
 		</div>
 	) : (
-		<div className="flex flex-row w-full">
-			<div className="w-fit">
+		<div className="flex flex-row grow">
+			<div className="md:flex hidden w-fit">
 				<ProjectsOverview loadedProjects={loadedProjects} />
 			</div>
-			<div className="grow min-w-0">
+			<div className="grow min-w-0 ">
 				{profile && (
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -28,14 +28,14 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 						className={`w-full bg-[#1a1a1a] pt-16 px-3 flex flex-col items-center`}
 					>
 						{/* Top Section: Profile Info + Credits */}
-						<div className="w-full p-8 max-w-[1275px] flex flex-col md:flex-row justify-between items-start md:items-center mb-4 rounded-md shadow py-6">
+						<div className="xs:w-[340px] xl:w-[750px] 2xl:w-[800px] 3xl:w-[1200px] flex flex-row justify-between items-start md:items-center mb-4 rounded-md shadow py-6">
 							{/* Left: Profile Image & Basic Info */}
 
 							<div className="flex items-center h-fit">
 								<img
 									src={profile.image}
 									alt="Profile"
-									className="w-20 h-20 mr-4 rounded-full object-cover border-2 border-secondary-200"
+									className="w-15 h-15 xl:w-20 xl:h-20 mr-4 rounded-full object-cover border-2 border-secondary-200"
 								/>
 								<div className="flex flex-col h-fit">
 									<motion.h1
@@ -46,14 +46,6 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 									>
 										{profile.email}
 									</motion.h1>
-									{/* Level and XP */}
-									<div className="flex items-center gap-2 mt-1">
-										<span className="text-sm text-secondary-100">Level {profile.level}</span>
-										<span className="text-sm text-secondary-100">•</span>
-										<span className="text-sm text-secondary-100">{profile.progressToNextLevel * 10} / 1000 XP</span>
-									</div>
-
-									<ProgressBar progress={40} />
 								</div>
 							</div>
 
@@ -71,13 +63,13 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 							</div>
 						</div>
 						{/* Activity Graph */}
-						<div className="w-fit 2xl:w-[1300px] bg-surface p-8 h-fit border border-primary-200 rounded-sm">
+						<div className="bg-surface p-8 h-fit border border-primary-200 rounded-sm">
 							<WorkflowRunHeatmap />
 						</div>
 					</motion.div>
 				)}
 			</div>
-			<div className="w-[300px] 2xl:w-[325px] flex flex-col rounded-[2px]">
+			<div className="2xl:flex hidden 2xl:w-[300px] flex-col rounded-[2px]">
 				<WorkflowRunTimeline type="account" />
 			</div>
 		</div>

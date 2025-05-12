@@ -57,17 +57,17 @@ export default function PricingPage() {
 	}
 
 	return (
-		<div className="w-full bg-[#1a1a1a] text-secondary flex flex-col items-center px-4 py-20 2xl:py-40 font-body">
+		<div className="w-full bg-[#1a1a1a] text-secondary flex flex-col items-center px-4 py-8 md:py-20 2xl:py-40 font-body">
 			<div className="w-full md:w-3/4 2xl:w-1/2 flex h-fit">
 				<div className="flex flex-col lg:flex-row gap-6 w-full justify-center items-center">
 					{/* How It Works Card */}
-					<div className="flex flex-col w-full lg:w-[60%] h-fit">
+					<div className="flex flex-col w-full lg:w-[60%] h-fit px-8 md:px-0">
 						{/* Page Heading */}
 						<motion.h1
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5 }}
-							className="text-2xl font-bold mt-16 mx-8 mb-4 text-highlight-200"
+							className="text-2xl font-bold mt-2 xl:mt-16 md:mx-8 mb-4 text-highlight-200"
 						>
 							Pay-As-You-Go
 						</motion.h1>
@@ -77,12 +77,12 @@ export default function PricingPage() {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							transition={{ duration: 0.5, delay: 0.2 }}
-							className="m-8 text-secondary-100"
+							className="my-4 md:m-8 text-secondary-100"
 						>
 							No subscriptions. No waste. Just flexible, usage-based pricing.
 						</motion.div>
 
-						<Card className="h-fit p-8 cursor-default opacity-100 hover:opacity-100 text-sm my-2">
+						<Card className="h-fit md:p-8 cursor-default opacity-100 hover:opacity-100 text-sm md:my-2 ">
 							<div className="flex flex-col h-full">
 								<div className="space-y-6">
 									<div className="flex items-start gap-4">
@@ -98,7 +98,7 @@ export default function PricingPage() {
 							</div>
 						</Card>
 					</div>
-					<div className="w-full lg:w-[40%] grow flex h-full">
+					<div className="w-full lg:w-[40%] grow flex h-full px-8 md:px-0">
 						{/* Token Purchase Card */}
 						<Card className="w-full p-8 cursor-default my-2 grow">
 							<div className="flex flex-col items-center space-y-8">

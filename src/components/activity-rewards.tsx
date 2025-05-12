@@ -9,7 +9,7 @@ export default function ActivityRewards() {
 	return (
 		profile && (
 			<div className="flex flex-col font-body h-fit rounded-sm">
-				<div className="flex flex-col bg-surface h-full w-[300px] 2xl:w-[325px] border border-primary-200">
+				<div className="flex flex-col bg-surface h-full w-[300px] border border-primary-200">
 					<div className="flex flex-row w-full p-3">
 						<div className="grow text-secondary-100 text-sm flex flex-row justify-end">
 							Balance:&nbsp;<span className="text-highlight font-bold">{profile.tokens} tokens</span>

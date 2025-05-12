@@ -85,8 +85,8 @@ export default function ProjectPage() {
 				<div className="flex flex-row h-full">
 					<div className="w-full h-full">
 						{activeTab === "overview" && (
-							<div className="flex flex-row overflow-y-auto custom-scrollbar">
-								<div className="h-full w-full max-w-[300px] 2xl:max-w-[325px] bg-surface overflow-y-auto custom-scrollbar border border-primary-200 rounded-sm">
+							<div className="flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
+								<div className="h-full md:w-[300px] md:bg-surface border border-primary-200 rounded-sm">
 									<TasksPlanner />
 								</div>
 								<TaskOverview />
@@ -96,7 +96,7 @@ export default function ProjectPage() {
 						{activeTab === "deployment" && <Deployment />}
 					</div>
 
-					<div className="w-[300px] 2xl:w-[325px] flex flex-col rounded-[2px]">
+					<div className="w-[300px] hidden xl:flex flex-col rounded-[2px]">
 						<ActivityRewards />
 						<WorkflowRunTimeline type="project" />
 					</div>

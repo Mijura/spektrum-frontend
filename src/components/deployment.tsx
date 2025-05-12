@@ -28,7 +28,7 @@ const Deployment: React.FC = () => {
 	return (
 		<>
 			<div className="w-full flex mt-20 justify-center h-fit">
-				<div className="flex flex-col gap-y-3 w-full max-w-[400px]">
+				<div className="flex flex-col gap-y-3 w-full max-w-[400px] px-8 md:px-0">
 					<DeployBigIcon />
 					<div className="font-semibold text-highlight-100 mt-4">Deployment</div>
 					<div className="text-secondary-100 text-sm">

@@ -3,6 +3,10 @@
 
 @import "tailwindcss";
 
+@theme {
+	--breakpoint-xs: 30rem;
+	--breakpoint-3xl: 120rem;
+}
 @layer utilities {
 	.custom-scrollbar {
 		scrollbar-color: var(--primary-200) var(--primary); /* Firefox */

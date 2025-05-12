@@ -47,10 +47,10 @@ const TasksPlanner: React.FC = () => {
 	return (
 		selectedProject && (
 			<>
-				<div className="max-w-[300px] 2xl:max-w-[325px] h-[calc(100dvh-50px)] p-3">
-					<div className="flex flex-row items-center justify-between">
-						<div className="text-secondary-100 font-semibold h-fit">Tasks</div>
-						<div className="flex justify-end grow">
+				<div className="w-full md:w-[300px] h-fit md:h-[calc(100dvh-50px)] p-3 flex items-center justify-between md:justify-start md:flex-col">
+					<div className="flex px-8 md:px-0 flex-row items-center justify-between w-full">
+						<div className="text-secondary-100 font-semibold h-fit w-full">Tasks</div>
+						<div className="grow justify-end">
 							<div onClick={() => dispatch(taskCreationRequested())}>
 								<Tooltip message="Create new task">
 									<CreateIcon />
@@ -65,7 +65,7 @@ const TasksPlanner: React.FC = () => {
 								<Card
 									key={task.id}
 									onClick={() => dispatch(taskSelected(task))}
-									className={`hover:bg-surface-muted/75 cursor-default my-2 p-3 flex flex-col ${selectedTask?.id === task.id ? "border-highlight border-1" : ""}`}
+									className={`hidden md:flex hover:bg-surface-muted/75 cursor-default my-2 p-3 flex-col ${selectedTask?.id === task.id ? "border-highlight border-1" : ""}`}
 								>
 									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{task.title}</div>
 									<div className="mt-2 flex flex-row gap-2 w-full">
@@ -86,7 +86,7 @@ const TasksPlanner: React.FC = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-row w-[300px] 2xl:w-[325px] h-fit">
+				<div className="flex flex-row w-[300px] h-fit z-40">
 					<Modal
 						isOpen={taskCreationModalOpened}
 						onOpenCallback={() => {}}
@@ -102,7 +102,7 @@ const TasksPlanner: React.FC = () => {
 								}}
 							/>
 						</ModalTrigger>
-						<ModalContent title="New task" className="w-[600px] max-w-[90vw]">
+						<ModalContent title="New task" className="w-full md:w-[600px] max-w-[90vw]">
 							<Input
 								placeholder="Task title"
 								value={title}
