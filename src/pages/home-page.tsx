@@ -50,7 +50,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 							</div>
 
 							{/* Right: Token Widget */}
-							<div className="flex flex-col items-center md:items-end">
+							{/* <div className="flex flex-col items-center md:items-end">
 								<span className="text-lg text-secondary-100">Tokens</span>
 								<motion.span
 									initial={{ scale: 0 }}
@@ -60,7 +60,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 								>
 									{profile.tokens}
 								</motion.span>
-							</div>
+							</div> */}
 						</div>
 						{/* Activity Graph */}
 						<div className="bg-surface p-8 h-fit border border-primary-200 rounded-sm">
