@@ -53,6 +53,9 @@ module.exports = {
 		new rspack.HtmlRspackPlugin({
 			template: path.join(__dirname, "../public/index.html"),
 		}),
+		new rspack.CopyRspackPlugin({
+			patterns: [{ from: "manifest.json" }, { from: "./public/favicon.ico" }],
+		}),
 		new Dotenv({
 			path: "./.env",
 			safe: true,
