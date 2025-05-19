@@ -67,7 +67,7 @@ export default function LoginPage() {
 
 				{message && <div className={`flex flex-col ${color} mb-6`}>{message}</div>}
 
-				{!isLoggedIn && (
+				{!isLoggedIn && !inProgress && (
 					<Button disabled={inProgress} className="w-[320px]" size="lg" onClick={handleContinue}>
 						Continue to Honeycomb
 					</Button>
