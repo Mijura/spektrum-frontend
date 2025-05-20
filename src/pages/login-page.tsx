@@ -13,7 +13,7 @@ export default function LoginPage() {
 	const [color, setColor] = useState("text-secondary")
 
 	const handleContinue = async () => {
-		setMessage("")
+		setMessage("Sending magic link...")
 		setInProgress(true)
 		try {
 			if (!isEmail(email)) {

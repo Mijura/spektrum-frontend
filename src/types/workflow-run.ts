@@ -5,7 +5,7 @@ export enum WorkflowStatus {
 }
 
 export enum WorkflowId {
-	Prototyping = "Prototyping",
+	PROTOTYPING = "Prototyping",
 }
 
 export type WorkflowRunDetails = {
