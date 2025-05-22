@@ -32,7 +32,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 							{/* Left: Profile Image & Basic Info */}
 
 							<div className="flex items-center h-fit">
-								<img
+								{/* <img
 									src={profile.image}
 									alt="Profile"
 									className="w-15 h-15 xl:w-20 xl:h-20 mr-4 rounded-full object-cover border-2 border-secondary-200"
@@ -46,7 +46,8 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 									>
 										{profile.email}
 									</motion.h1>
-								</div>
+								</div> */}
+								<div className="text-secondary-100 text-4xl font-bold">Workflow Run Heatmap</div>
 							</div>
 
 							{/* Right: Token Widget */}
