@@ -59,7 +59,7 @@ const TasksPlanner: React.FC = () => {
 						</div>
 					</div>
 
-					<div className="pb-4">
+					<div className="pb-4 w-full">
 						{selectedProject.tasks &&
 							selectedProject.tasks.map((task: any) => (
 								<Card

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { Loader, ProgressBar } from "@honeycomb-app/design"
+import { Loader } from "@honeycomb-app/design"
 import { useProfile, useProjectInitialization } from "../hooks/store"
 import WorkflowRunHeatmap from "../components/workflow-run-heatmap"
 import Project from "../types/task"
