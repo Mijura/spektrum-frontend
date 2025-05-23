@@ -6,6 +6,8 @@ import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
 
+const FRONTEND_HOST_URL = process.env.FRONTEND_HOST_URL
+
 export const Route = createFileRoute("/_auth/gallery")({
 	loader: async () => {
 		try {
@@ -24,7 +26,7 @@ export const Route = createFileRoute("/_auth/gallery")({
 		const dispatch = useDispatch()
 
 		const handleOpenProject = async (project: any) => {
-			window.open(`http://localhost:3000/${project.deploymentId}`, "_blank")
+			window.open(`${FRONTEND_HOST_URL}/${project.deploymentId}`, "_blank")
 		}
 
 		return (
