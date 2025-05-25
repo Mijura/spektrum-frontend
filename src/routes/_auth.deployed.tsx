@@ -4,11 +4,10 @@ import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
-import { pageNavigated } from "../reducers/navigation-reducer"
 
 const FRONTEND_HOST_URL = process.env.FRONTEND_HOST_URL
 
-export const Route = createFileRoute("/_auth/gallery")({
+export const Route = createFileRoute("/_auth/deployed")({
 	loader: async () => {
 		try {
 			const user = await getCurrentUser()
@@ -30,8 +29,9 @@ export const Route = createFileRoute("/_auth/gallery")({
 		}
 
 		return (
-			<div className="w-full h-full bg-surface p-16 flex flex-col items-center">
-				<h1 className="text-4xl font-semibold text-highlight-100 mb-12">Honeycomb Gallery</h1>
+			<div className="w-full h-full bg-surface p-16 flex flex-col">
+				<h1 className="text-secondary-100 text-4xl font-bold mb-12">Deployed Apps</h1>
+				{data.length === 0 && <div className="text-secondary-100 text-sm">No deployed apps found.</div>}
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
 					{data.map((project: any) => (
 						<Card

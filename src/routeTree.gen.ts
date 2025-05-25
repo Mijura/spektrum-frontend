@@ -17,7 +17,7 @@ import { Route as AuthWorkspaceImport } from './routes/_auth.workspace'
 import { Route as AuthWelcomeImport } from './routes/_auth.welcome'
 import { Route as AuthPricingImport } from './routes/_auth.pricing'
 import { Route as AuthHomeImport } from './routes/_auth.home'
-import { Route as AuthGalleryImport } from './routes/_auth.gallery'
+import { Route as AuthDeployedImport } from './routes/_auth.deployed'
 import { Route as AuthProjectIdImport } from './routes/_auth.$projectId'
 
 // Create/Update Routes
@@ -57,9 +57,9 @@ const AuthHomeRoute = AuthHomeImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
-const AuthGalleryRoute = AuthGalleryImport.update({
-  id: '/gallery',
-  path: '/gallery',
+const AuthDeployedRoute = AuthDeployedImport.update({
+  id: '/deployed',
+  path: '/deployed',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -94,11 +94,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthProjectIdImport
       parentRoute: typeof AuthImport
     }
-    '/_auth/gallery': {
-      id: '/_auth/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof AuthGalleryImport
+    '/_auth/deployed': {
+      id: '/_auth/deployed'
+      path: '/deployed'
+      fullPath: '/deployed'
+      preLoaderRoute: typeof AuthDeployedImport
       parentRoute: typeof AuthImport
     }
     '/_auth/home': {
@@ -136,7 +136,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthRouteChildren {
   AuthProjectIdRoute: typeof AuthProjectIdRoute
-  AuthGalleryRoute: typeof AuthGalleryRoute
+  AuthDeployedRoute: typeof AuthDeployedRoute
   AuthHomeRoute: typeof AuthHomeRoute
   AuthPricingRoute: typeof AuthPricingRoute
   AuthWelcomeRoute: typeof AuthWelcomeRoute
@@ -145,7 +145,7 @@ interface AuthRouteChildren {
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthProjectIdRoute: AuthProjectIdRoute,
-  AuthGalleryRoute: AuthGalleryRoute,
+  AuthDeployedRoute: AuthDeployedRoute,
   AuthHomeRoute: AuthHomeRoute,
   AuthPricingRoute: AuthPricingRoute,
   AuthWelcomeRoute: AuthWelcomeRoute,
@@ -158,7 +158,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/$projectId': typeof AuthProjectIdRoute
-  '/gallery': typeof AuthGalleryRoute
+  '/deployed': typeof AuthDeployedRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
   '/welcome': typeof AuthWelcomeRoute
@@ -169,7 +169,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/$projectId': typeof AuthProjectIdRoute
-  '/gallery': typeof AuthGalleryRoute
+  '/deployed': typeof AuthDeployedRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
   '/welcome': typeof AuthWelcomeRoute
@@ -181,7 +181,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_auth/$projectId': typeof AuthProjectIdRoute
-  '/_auth/gallery': typeof AuthGalleryRoute
+  '/_auth/deployed': typeof AuthDeployedRoute
   '/_auth/home': typeof AuthHomeRoute
   '/_auth/pricing': typeof AuthPricingRoute
   '/_auth/welcome': typeof AuthWelcomeRoute
@@ -194,7 +194,7 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/$projectId'
-    | '/gallery'
+    | '/deployed'
     | '/home'
     | '/pricing'
     | '/welcome'
@@ -204,7 +204,7 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/$projectId'
-    | '/gallery'
+    | '/deployed'
     | '/home'
     | '/pricing'
     | '/welcome'
@@ -214,7 +214,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_auth'
     | '/_auth/$projectId'
-    | '/_auth/gallery'
+    | '/_auth/deployed'
     | '/_auth/home'
     | '/_auth/pricing'
     | '/_auth/welcome'
@@ -253,7 +253,7 @@ export const routeTree = rootRoute
       "filePath": "_auth.tsx",
       "children": [
         "/_auth/$projectId",
-        "/_auth/gallery",
+        "/_auth/deployed",
         "/_auth/home",
         "/_auth/pricing",
         "/_auth/welcome",
@@ -264,8 +264,8 @@ export const routeTree = rootRoute
       "filePath": "_auth.$projectId.tsx",
       "parent": "/_auth"
     },
-    "/_auth/gallery": {
-      "filePath": "_auth.gallery.tsx",
+    "/_auth/deployed": {
+      "filePath": "_auth.deployed.tsx",
       "parent": "/_auth"
     },
     "/_auth/home": {

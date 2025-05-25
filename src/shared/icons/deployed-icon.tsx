@@ -1,8 +1,8 @@
-interface GalleryIconProps {
+interface DeployedIconProps {
 	color: string
 }
 
-export default function GalleryIcon({ color }: GalleryIconProps) {
+export default function DeployedIcon({ color }: DeployedIconProps) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
