@@ -44,13 +44,13 @@ const WorkflowRun: React.FC<{ runInfo: WorkflowRunDetails }> = ({ runInfo }) => 
 						</div>
 
 						<div className="p-1 h-fit w-full text-secondary-100 flex items-end gap-2">
-							{workflowRunDetails.status === WorkflowStatus.SUCCEEDED && (
+							{/* {workflowRunDetails.status === WorkflowStatus.SUCCEEDED && (
 								<div className="cursor-pointer w-fit flex gap-1" onClick={() => {}}>
 									<Tooltip message="Check output">
 										<CheckOutputIcon />
 									</Tooltip>
 								</div>
-							)}
+							)} */}
 							<div className="grow text-secondary-100 text-xs items-center justify-end flex h-fit gap-1">
 								<WatchIcon />
 								{formatTimestamp(workflowRunDetails.occurredAt)}
