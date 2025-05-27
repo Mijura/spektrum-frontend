@@ -7,7 +7,7 @@ import { createTask } from "../api/task"
 import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
-import { runPrototypingWorkflow } from "../api/workflow-run"
+import { runFrontendDevelomentWorkflow } from "../api/workflow-run"
 import { getCurrentUser } from "aws-amplify/auth"
 
 const TasksPlanner: React.FC = () => {
@@ -25,7 +25,7 @@ const TasksPlanner: React.FC = () => {
 
 		if (!userId) return
 
-		await runPrototypingWorkflow(taskId, userId)
+		await runFrontendDevelomentWorkflow(taskId, userId)
 	}
 
 	const handleCreateTask = async () => {

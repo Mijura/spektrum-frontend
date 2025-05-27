@@ -2,7 +2,7 @@ import { WorkflowId } from "../types/workflow-run"
 
 const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
-export async function runPrototypingWorkflow(taskId: string, accountId: string): Promise<any> {
+export async function runFrontendDevelomentWorkflow(taskId: string, accountId: string): Promise<any> {
 	const options = {
 		method: "POST",
 		headers: {
@@ -10,7 +10,7 @@ export async function runPrototypingWorkflow(taskId: string, accountId: string):
 		},
 		body: JSON.stringify({
 			taskId: taskId,
-			workflowId: WorkflowId.PROTOTYPING,
+			workflowId: WorkflowId.FRONTEND_DEVELOPMENT,
 			accountId: accountId,
 		}),
 	}
