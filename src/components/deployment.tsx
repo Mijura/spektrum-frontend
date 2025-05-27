@@ -6,7 +6,7 @@ import DeployBigIcon from "../shared/icons/deploy-big-icon"
 import { useDispatch } from "react-redux"
 import { projectUpdated } from "../reducers/workspace-reducer"
 
-const FRONTEND_HOST_URL = process.env.FRONTEND_HOST_URL
+const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
 
 const Deployment: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -43,7 +43,7 @@ const Deployment: React.FC = () => {
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-highlight"
-								href={`${FRONTEND_HOST_URL}/${deploymentId}`}
+								href={`https://${deploymentId}.${FRONTEND_DOMAIN}`}
 							>
 								link
 							</a>

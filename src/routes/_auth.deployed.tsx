@@ -5,7 +5,7 @@ import { fetchAllProjects } from "../api/project"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 
-const FRONTEND_HOST_URL = process.env.FRONTEND_HOST_URL
+const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
 
 export const Route = createFileRoute("/_auth/deployed")({
 	loader: async () => {
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/_auth/deployed")({
 		const dispatch = useDispatch()
 
 		const handleOpenProject = async (project: any) => {
-			window.open(`${FRONTEND_HOST_URL}/${project.deploymentId}`, "_blank")
+			window.open(`https://${project.deploymentId}.${FRONTEND_DOMAIN}`, "_blank")
 		}
 
 		return (
