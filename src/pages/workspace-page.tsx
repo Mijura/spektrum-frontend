@@ -18,17 +18,21 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 
 	const initialization = useProjectInitialization()
 	const handleCreateNewProject = async () => {
-		dispatch(projectInitalizationRequested())
-		const user = await getCurrentUser()
-		const project: any = await createNewProject(user.username)
+		try {
+			dispatch(projectInitalizationRequested())
+			const user = await getCurrentUser()
+			const project: any = await createNewProject(user.username)
 
-		setProjects([...projects, project])
-		dispatch(pageNavigated("workspace"))
-		await navigate({
-			to: `/${project.id}`,
-		})
-
-		dispatch(projectInitalizationCompleted())
+			setProjects([...projects, project])
+			dispatch(pageNavigated("workspace"))
+			await navigate({
+				to: `/${project.id}`,
+			})
+		} catch (error) {
+			console.error(error)
+		} finally {
+			dispatch(projectInitalizationCompleted())
+		}
 	}
 
 	const handleProjectSelection = (projectId: string | undefined) => {
