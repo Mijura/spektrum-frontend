@@ -41,12 +41,18 @@ export default function WelcomePage() {
 	const [loading, setLoading] = useState(false)
 
 	const handleCreateNewProject = async () => {
-		setLoading(true)
-		const user = await getCurrentUser()
-		const project: any = await createNewProject(user.username)
-		navigate({
-			to: `/${project.id}`,
-		})
+		try {
+			setLoading(true)
+			const user = await getCurrentUser()
+			const project: any = await createNewProject(user.username)
+			navigate({
+				to: `/${project.id}`,
+			})
+		} catch (error) {
+			console.error(error)
+		} finally {
+			setLoading(false)
+		}
 	}
 
 	return loading ? (
