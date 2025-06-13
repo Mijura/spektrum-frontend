@@ -45,16 +45,16 @@ export async function updateTaskDescription(task: Task) {
 	return await res.json()
 }
 
-export async function leaveComment(taskId: string, authorId: string, commentText: string) {
+export async function leaveComment(comment: any) {
 	const options = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			taskId: taskId,
-			authorId: authorId,
-			commentText: commentText,
+			taskId: comment.taskId,
+			authorId: comment.authorId,
+			commentText: comment.commentText,
 		}),
 	}
 
