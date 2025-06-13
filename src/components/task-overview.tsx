@@ -46,9 +46,15 @@ export default function TaskOverview() {
 		const authorId = user.signInDetails?.loginId
 		if (!authorId) return
 		if (commentText.length === 0) return
-		const updatedTask = await leaveComment(task.id, authorId, commentText)
-		dispatch(taskUpdated(updatedTask))
+
+		const comment = {
+			authorId,
+			taskId: task.id,
+			commentText,
+		}
 		setCommentText("")
+		const updatedTask = await leaveComment(comment)
+		dispatch(taskUpdated(updatedTask))
 	}
 
 	return (
