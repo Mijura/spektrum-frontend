@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router"
 import { Card, Loader } from "@honeycomb-app/design"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
-import { useNavigate } from "@tanstack/react-router"
-import { useDispatch } from "react-redux"
 
 const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
 
