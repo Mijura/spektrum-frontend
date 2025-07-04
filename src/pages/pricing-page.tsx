@@ -11,10 +11,9 @@ const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "
 const PADDLE_TOKEN = process.env.PADDLE_TOKEN || ""
 
 // Token pricing configuration
-const TOKEN_PRICE = 0.2 // $0.20 per token
-const MIN_TOKENS = 50 // Minimum tokens (50 executions)
-const MAX_TOKENS = 1000 // Maximum tokens (1000 executions)
-const TOKENS_PER_EXECUTION = 2 // Average tokens per execution
+const TOKEN_PRICE = 0.5
+const MIN_TOKENS = 40
+const MAX_TOKENS = 1000
 
 export default function PricingPage() {
 	const [tokenAmount, setTokenAmount] = useState(MIN_TOKENS)
@@ -22,7 +21,6 @@ export default function PricingPage() {
 	const navigate = useNavigate()
 	// Calculate derived values
 	const totalPrice = (tokenAmount * TOKEN_PRICE).toFixed(2)
-	const estimatedExecutions = Math.floor(tokenAmount / TOKENS_PER_EXECUTION)
 
 	// Download and initialize Paddle instance from CDN
 	useEffect(() => {
@@ -88,10 +86,12 @@ export default function PricingPage() {
 									<div className="flex items-start gap-4">
 										<CheckmarkIcon color="text-highlight" />
 										<div>
-											<div className="text-highlight font-semibold p-0.5">Token Consumption</div>
+											<div className="text-highlight font-semibold p-0.5">Free Plan</div>
 											<div className="mt-2 text-secondary-100 italic">
-												Honeycomb workflows consume tokens based on the number of AI agents in workflow and request complexity.
+												Get started with AI –{" "}
+												<span className="font-semibold text-progress">run up to 5 tasks per day for free.</span>
 											</div>
+											<div className="mt-2 text-secondary-100 italic">Buy tokens anytime to unlock more task executions.</div>
 										</div>
 									</div>
 								</div>
@@ -118,12 +118,8 @@ export default function PricingPage() {
 								</div>
 
 								<div className="text-center space-y-2">
-									<p className="text-sm font-semibold text-secondary">
-										Estimated Workflow Executions: <span className="">{estimatedExecutions}</span>
-									</p>
-									<p className="text-xs text-secondary-100 italic mt-4">
-										* Estimates are based on the average token usage per workflow execution.
-									</p>
+									<p className="text-xl font-semibold text-progress">{tokenAmount} Task Runs</p>
+									<p className="text-sm text-highlight italic mt-4">* 50 cents per task run. No monthly token resets.</p>
 								</div>
 
 								<Button size="lg" className="bg-secondary text-primary hover:bg-gray-300/80" onClick={openCheckout}>

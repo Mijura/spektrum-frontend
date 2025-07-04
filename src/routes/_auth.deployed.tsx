@@ -21,8 +21,6 @@ export const Route = createFileRoute("/_auth/deployed")({
 	},
 	component: () => {
 		const data = Route.useLoaderData()
-		const navigate = useNavigate()
-		const dispatch = useDispatch()
 
 		const handleOpenProject = async (project: any) => {
 			window.open(`https://${project.deploymentId}.${FRONTEND_DOMAIN}`, "_blank")
