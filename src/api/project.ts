@@ -1,4 +1,5 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
+import { Task } from "../types/task"
 
 const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
@@ -46,6 +47,22 @@ export async function createNewProject(owner: string): Promise<any> {
 	}
 
 	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}`, options)
+	return await res.json()
+}
+
+export async function planTasksWithAI(projectId: string, projectDescription: string): Promise<Task[]> {
+	const options = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			projectId: projectId,
+			projectDescription: projectDescription,
+		}),
+	}
+
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/plan-tasks-with-ai`, options)
 	return await res.json()
 }
 
