@@ -1,4 +1,4 @@
-import { Button, SmartFooter, SmartInput, Tooltip } from "@honeycomb-app/design"
+import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea } from "@honeycomb-app/design"
 import { useSelectedProject, useSelectedTask } from "../hooks/store"
 import { useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { getCurrentUser } from "aws-amplify/auth"
 import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
+import { planTasksWithAI } from "../api/project"
 
 export default function TaskOverview() {
 	const dispatch = useDispatch()
@@ -17,6 +18,8 @@ export default function TaskOverview() {
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
 	const [commentText, setCommentText] = useState("")
+	const [aiTaskModalOpened, setAiTaskModalOpened] = useState(false)
+	const [projectDescription, setProjectDescription] = useState("")
 
 	const handleTitleChange = async (newTitle: string) => {
 		if (newTitle === task.title) return
@@ -55,6 +58,13 @@ export default function TaskOverview() {
 		setCommentText("")
 		const updatedTask = await leaveComment(comment)
 		dispatch(taskUpdated(updatedTask))
+	}
+
+	const handlePlanTasksWithAI = async () => {
+		const tasks = await planTasksWithAI(selectedProject.id, projectDescription)
+		console.log(tasks)
+		setProjectDescription("")
+		setAiTaskModalOpened(false)
 	}
 
 	return (
@@ -137,7 +147,7 @@ export default function TaskOverview() {
 								<Button onClick={() => dispatch(taskCreationRequested())}>Create task manually</Button>
 							</div>
 							<div>
-								<Button size="sm" variant="secondary" onClick={() => dispatch(taskCreationRequested())}>
+								<Button size="sm" variant="secondary" onClick={() => setAiTaskModalOpened(true)}>
 									Plan tasks with AI
 								</Button>
 							</div>
@@ -145,6 +155,27 @@ export default function TaskOverview() {
 					</div>
 				</div>
 			)}
+
+			{/* AI Task Planning Modal */}
+			<Modal isOpen={aiTaskModalOpened} onCloseCallback={() => setAiTaskModalOpened(false)}>
+				<ModalContent title="Plan Tasks with AI" className="w-full md:w-[600px] max-w-[90vw]">
+					<Textarea
+						placeholder="Describe what you want to build..."
+						value={projectDescription}
+						onChange={(e) => setProjectDescription(e.target.value)}
+						className="mb-4 w-full"
+						rows={6}
+					/>
+					<div className="flex justify-end gap-2">
+						<Button size="sm" variant="primary" onClick={() => setAiTaskModalOpened(false)}>
+							Cancel
+						</Button>
+						<Button size="sm" variant="secondary" onClick={handlePlanTasksWithAI}>
+							Plan Tasks
+						</Button>
+					</div>
+				</ModalContent>
+			</Modal>
 		</>
 	)
 }
