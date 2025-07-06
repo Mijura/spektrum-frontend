@@ -130,11 +130,17 @@ export default function TaskOverview() {
 							Projects are broken down into tasks, which are small jobs that the AI workers complete.
 						</div>
 						<div className="text-secondary-100 text-sm">
-							Get started by creating your first task. Define what needs to be done, and our AI workers will handle the
-							workflow execution.
+							Define what needs to be done, and our AI workers will handle the workflow execution.
 						</div>
-						<div>
-							<Button onClick={() => dispatch(taskCreationRequested())}>Create first task</Button>
+						<div className="flex flew-row gap-2">
+							<div>
+								<Button onClick={() => dispatch(taskCreationRequested())}>Create task manually</Button>
+							</div>
+							<div>
+								<Button size="sm" variant="secondary" onClick={() => dispatch(taskCreationRequested())}>
+									Plan tasks with AI
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>
