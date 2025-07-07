@@ -121,7 +121,7 @@ const TasksPlanner: React.FC = () => {
 									Save for later
 								</Button>
 								<Button size="sm" variant="secondary" onClick={handleCreateTaskAndRunWorkflow}>
-									Create & run workflow
+									Start execution
 								</Button>
 							</div>
 						</ModalContent>
