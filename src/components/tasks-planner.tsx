@@ -16,6 +16,7 @@ const TasksPlanner: React.FC = () => {
 
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
+	const [isExecuting, setIsExecuting] = useState(false)
 	const selectedTask = useSelectedTask()
 	const taskCreationModalOpened = useTaskCreationRequested()
 
@@ -35,13 +36,19 @@ const TasksPlanner: React.FC = () => {
 	}
 
 	const handleCreateTaskAndRunWorkflow = async () => {
-		const task = await handleCreateTask()
-		await handleRunWorkflow(task.id)
+		setIsExecuting(true)
+		try {
+			const task = await handleCreateTask()
+			await handleRunWorkflow(task.id)
+		} finally {
+			setIsExecuting(false)
+		}
 	}
 
 	useEffect(() => {
 		setTitle("")
 		setDescription("")
+		setIsExecuting(false)
 	}, [taskCreationModalOpened])
 
 	return (
@@ -117,10 +124,10 @@ const TasksPlanner: React.FC = () => {
 								rows={4}
 							/>
 							<div className="flex justify-end gap-2">
-								<Button size="sm" variant="primary" onClick={handleCreateTask}>
+								<Button size="sm" variant="primary" onClick={handleCreateTask} disabled={isExecuting}>
 									Save for later
 								</Button>
-								<Button size="sm" variant="secondary" onClick={handleCreateTaskAndRunWorkflow}>
+								<Button size="sm" variant="secondary" onClick={handleCreateTaskAndRunWorkflow} loading={isExecuting}>
 									Start execution
 								</Button>
 							</div>

@@ -20,6 +20,7 @@ export default function TaskOverview() {
 	const [commentText, setCommentText] = useState("")
 	const [aiTaskModalOpened, setAiTaskModalOpened] = useState(false)
 	const [projectDescription, setProjectDescription] = useState("")
+	const [isPlanningTasks, setIsPlanningTasks] = useState(false)
 
 	const handleTitleChange = async (newTitle: string) => {
 		if (newTitle === task.title) return
@@ -61,10 +62,17 @@ export default function TaskOverview() {
 	}
 
 	const handlePlanTasksWithAI = async () => {
-		const tasks = await planTasksWithAI(selectedProject.id, projectDescription)
-		console.log(tasks)
-		setProjectDescription("")
-		setAiTaskModalOpened(false)
+		setIsPlanningTasks(true)
+		try {
+			const tasks = await planTasksWithAI(selectedProject.id, projectDescription)
+			console.log(tasks)
+			setProjectDescription("")
+			setAiTaskModalOpened(false)
+		} catch (error) {
+			console.error("Error planning tasks:", error)
+		} finally {
+			setIsPlanningTasks(false)
+		}
 	}
 
 	return (
@@ -167,10 +175,10 @@ export default function TaskOverview() {
 						rows={6}
 					/>
 					<div className="flex justify-end gap-2">
-						<Button size="sm" variant="primary" onClick={() => setAiTaskModalOpened(false)}>
+						<Button size="sm" variant="primary" onClick={() => setAiTaskModalOpened(false)} disabled={isPlanningTasks}>
 							Cancel
 						</Button>
-						<Button size="sm" variant="secondary" onClick={handlePlanTasksWithAI}>
+						<Button size="sm" variant="secondary" onClick={handlePlanTasksWithAI} loading={isPlanningTasks}>
 							Plan Tasks
 						</Button>
 					</div>
