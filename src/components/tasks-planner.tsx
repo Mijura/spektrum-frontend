@@ -75,7 +75,7 @@ const TasksPlanner: React.FC = () => {
 
 										<div className="flex grow w-full justify-end">
 											<div onClick={() => handleRunWorkflow(task.id)}>
-												<Tooltip message="Run workflow">
+												<Tooltip message="Execute task">
 													<PlayIcon />
 												</Tooltip>
 											</div>
