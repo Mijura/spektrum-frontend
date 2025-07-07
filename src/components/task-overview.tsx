@@ -119,7 +119,7 @@ export default function TaskOverview() {
 								>
 									<SmartFooter>
 										<div className="flex items-end justify-end mx-1" onClick={handleLeaveComment}>
-											<Tooltip message="Re-run workflow">
+											<Tooltip message="Re-run task">
 												<PlayIcon color="text-highlight" />
 											</Tooltip>
 										</div>

@@ -47,7 +47,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 										{profile.email}
 									</motion.h1>
 								</div> */}
-								<div className="text-secondary-100 text-4xl font-bold">Workflow Run Heatmap</div>
+								<div className="text-secondary-100 text-4xl font-bold">Task Execution Heatmap</div>
 							</div>
 
 							{/* Right: Token Widget */}

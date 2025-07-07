@@ -46,7 +46,7 @@ const WorkflowRunTimeline: React.FC<{ type: "project" | "account" }> = ({ type }
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">
-			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-highlight-100 text-sm">Workflow Run Timeline</div>
+			<div className="px-4 pt-4 flex flex-row w-full bg-surface text-highlight-100 text-sm">Task Executions</div>
 
 			{isLoading ? (
 				<div className="flex flex-col items-center px-3 text-sm justify-center h-full">
