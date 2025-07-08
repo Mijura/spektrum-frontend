@@ -1,5 +1,5 @@
 import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@honeycomb-app/design"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
@@ -19,6 +19,7 @@ const TasksPlanner: React.FC = () => {
 	const [isExecuting, setIsExecuting] = useState(false)
 	const selectedTask = useSelectedTask()
 	const taskCreationModalOpened = useTaskCreationRequested()
+	const titleInputRef = useRef<HTMLInputElement>(null)
 
 	const handleRunWorkflow = async (taskId: string) => {
 		const user = await getCurrentUser()
@@ -96,7 +97,12 @@ const TasksPlanner: React.FC = () => {
 				<div className="flex flex-row w-[300px] h-fit z-40">
 					<Modal
 						isOpen={taskCreationModalOpened}
-						onOpenCallback={() => {}}
+						onOpenCallback={() => {
+							// Focus the input when modal opens
+							setTimeout(() => {
+								titleInputRef.current?.focus()
+							}, 200)
+						}}
 						onCloseCallback={() => dispatch(taskCreationClosed())}
 					>
 						<ModalTrigger>
@@ -109,8 +115,9 @@ const TasksPlanner: React.FC = () => {
 								}}
 							/>
 						</ModalTrigger>
-						<ModalContent title="New task" className="w-full md:w-[30vw] max-w-[90vw]">
+						<ModalContent title="New task" className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]">
 							<Input
+								ref={titleInputRef}
 								placeholder="Task title"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
