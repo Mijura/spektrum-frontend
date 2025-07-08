@@ -109,7 +109,7 @@ const TasksPlanner: React.FC = () => {
 								}}
 							/>
 						</ModalTrigger>
-						<ModalContent title="New task" className="w-full md:w-[600px] max-w-[90vw]">
+						<ModalContent title="New task" className="w-full md:w-[30vw] max-w-[90vw]">
 							<Input
 								placeholder="Task title"
 								value={title}
@@ -121,7 +121,7 @@ const TasksPlanner: React.FC = () => {
 								value={description}
 								onChange={(e) => setDescription(e.target.value)}
 								className="mb-4 w-full"
-								rows={4}
+								rows={10}
 							/>
 							<div className="flex justify-end gap-2">
 								<Button size="sm" variant="primary" onClick={handleCreateTask} disabled={isExecuting}>

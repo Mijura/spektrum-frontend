@@ -166,13 +166,13 @@ export default function TaskOverview() {
 
 			{/* AI Task Planning Modal */}
 			<Modal isOpen={aiTaskModalOpened} onCloseCallback={() => setAiTaskModalOpened(false)}>
-				<ModalContent title="Plan Tasks with AI" className="w-full md:w-[600px] max-w-[90vw]">
+				<ModalContent title="Plan Tasks with AI" className="w-full md:w-[30vw] max-w-[90vw]">
 					<Textarea
 						placeholder="Describe what you want to build..."
 						value={projectDescription}
 						onChange={(e) => setProjectDescription(e.target.value)}
 						className="mb-4 w-full"
-						rows={6}
+						rows={10}
 					/>
 					<div className="flex justify-end gap-2">
 						<Button size="sm" variant="primary" onClick={() => setAiTaskModalOpened(false)} disabled={isPlanningTasks}>

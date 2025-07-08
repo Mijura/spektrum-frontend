@@ -167,7 +167,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 									}}
 								/>
 							</ModalTrigger>
-							<ModalContent title="Project details update" className="w-[600px] max-w-[90vw]">
+							<ModalContent title="Project details update" className="md:w-[600px] max-w-[90vw]">
 								<Input
 									placeholder="Project name"
 									value={name}
