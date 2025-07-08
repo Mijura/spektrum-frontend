@@ -1,6 +1,6 @@
 import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea } from "@honeycomb-app/design"
 import { useSelectedProject, useSelectedTask } from "../hooks/store"
-import { useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { addTasksToProject, taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
@@ -21,6 +21,7 @@ export default function TaskOverview() {
 	const [aiTaskModalOpened, setAiTaskModalOpened] = useState(false)
 	const [projectDescription, setProjectDescription] = useState("")
 	const [isPlanningTasks, setIsPlanningTasks] = useState(false)
+	const projectDescriptionRef = useRef<HTMLTextAreaElement>(null)
 
 	const handleTitleChange = async (newTitle: string) => {
 		if (newTitle === task.title) return
@@ -165,9 +166,19 @@ export default function TaskOverview() {
 			)}
 
 			{/* AI Task Planning Modal */}
-			<Modal isOpen={aiTaskModalOpened} onCloseCallback={() => setAiTaskModalOpened(false)}>
-				<ModalContent title="Plan Tasks with AI" className="w-full md:w-[30vw] max-w-[90vw]">
+			<Modal
+				isOpen={aiTaskModalOpened}
+				onOpenCallback={() => {
+					// Focus the textarea when modal opens
+					setTimeout(() => {
+						projectDescriptionRef.current?.focus()
+					}, 200)
+				}}
+				onCloseCallback={() => setAiTaskModalOpened(false)}
+			>
+				<ModalContent title="Plan Tasks with AI" className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]">
 					<Textarea
+						ref={projectDescriptionRef}
 						placeholder="Describe what you want to build..."
 						value={projectDescription}
 						onChange={(e) => setProjectDescription(e.target.value)}
