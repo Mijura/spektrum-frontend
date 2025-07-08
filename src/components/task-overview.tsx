@@ -2,7 +2,7 @@ import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea
 import { useSelectedProject, useSelectedTask } from "../hooks/store"
 import { useLayoutEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
+import { addTasksToProject, taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
 import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/task"
 import { motion, AnimatePresence } from "framer-motion"
@@ -65,7 +65,7 @@ export default function TaskOverview() {
 		setIsPlanningTasks(true)
 		try {
 			const tasks = await planTasksWithAI(selectedProject.id, projectDescription)
-			console.log(tasks)
+			dispatch(addTasksToProject(tasks))
 			setProjectDescription("")
 			setAiTaskModalOpened(false)
 		} catch (error) {
