@@ -22,6 +22,9 @@ export default function PricingPage() {
 	// Calculate derived values
 	const totalPrice = (tokenAmount * TOKEN_PRICE).toFixed(2)
 
+	// Calculate slider fill percentage - fix calculation to account for full range
+	const sliderFillPercentage = (tokenAmount / MAX_TOKENS) * 100
+
 	// Download and initialize Paddle instance from CDN
 	useEffect(() => {
 		initializePaddle({ environment: PADDLE_ENVIRONMENT, token: PADDLE_TOKEN }).then(
@@ -106,15 +109,25 @@ export default function PricingPage() {
 									<div className="flex justify-end mb-2">
 										<span className="text-lg font-semibold">${totalPrice}</span>
 									</div>
-									<input
-										type="range"
-										min={MIN_TOKENS}
-										max={MAX_TOKENS}
-										step="10"
-										value={tokenAmount}
-										onChange={(e) => setTokenAmount(Number(e.target.value))}
-										className="w-full h-4 my-6 bg-secondary/20 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-highlight [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:hover:scale-110 [&::-moz-range-thumb]:h-8 [&::-moz-range-thumb]:w-8 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-highlight [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:transition-all [&::-moz-range-thumb]:hover:scale-110"
-									/>
+									<div className="relative w-full h-4 my-6">
+										{/* Background track */}
+										<div className="absolute inset-0 bg-secondary/20 rounded-full"></div>
+										{/* Progress fill */}
+										<div
+											className="absolute inset-y-0 left-0 bg-progress rounded-full"
+											style={{ width: `${sliderFillPercentage}%` }}
+										></div>
+										{/* Slider input */}
+										<input
+											type="range"
+											min={MIN_TOKENS}
+											max={MAX_TOKENS}
+											step="10"
+											value={tokenAmount}
+											onChange={(e) => setTokenAmount(Number(e.target.value))}
+											className="absolute inset-0 w-full h-4 appearance-none bg-transparent cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-highlight [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:hover:scale-110 [&::-moz-range-thumb]:h-8 [&::-moz-range-thumb]:w-8 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-highlight [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:transition-all [&::-moz-range-thumb]:hover:scale-110"
+										/>
+									</div>
 								</div>
 
 								<div className="text-center space-y-2">
