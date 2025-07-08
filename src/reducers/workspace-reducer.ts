@@ -101,6 +101,10 @@ export const workspaceSlice = createSlice({
 		projectInitalizationCompleted: (state) => {
 			state.projectInitialization = false
 		},
+
+		addTasksToProject: (state, action: PayloadAction<Task[]>) => {
+			state.selectedProject.tasks.push(...action.payload)
+		},
 	},
 })
 
@@ -118,6 +122,7 @@ export const {
 	taskCreationClosed,
 	projectInitalizationRequested,
 	projectInitalizationCompleted,
+	addTasksToProject,
 } = workspaceSlice.actions
 
 export default workspaceSlice.reducer
