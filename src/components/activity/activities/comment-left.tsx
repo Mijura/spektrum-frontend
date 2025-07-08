@@ -11,7 +11,7 @@ export const CommentLeftActivity = ({ activity }: { activity: ActivityData }) =>
 					<Chip label={activity.userId} className="bg-surface text-highlight-200" />
 					<span className="text-xs italic">{formatTimestamp(activity.occurredAt)}</span>
 				</div>
-				<div className="p-1 2xl:p-2">{(activity.metadata as CommentLeftMetadata).commentText}</div>
+				<div className="p-1 2xl:p-2 whitespace-pre-wrap">{(activity.metadata as CommentLeftMetadata).commentText}</div>
 			</motion.div>
 		</div>
 	</div>

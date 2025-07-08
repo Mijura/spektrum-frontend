@@ -94,7 +94,7 @@ export default function TaskOverview() {
 							onBlur={handleDescriptionChange}
 							onChange={setDescription}
 						></SmartInput>
-						<div className="text-progress">Activity Feed</div>
+						<div className="text-progress">Activities</div>
 
 						<AnimatePresence>
 							<div className="flex flex-col gap-y-4">
