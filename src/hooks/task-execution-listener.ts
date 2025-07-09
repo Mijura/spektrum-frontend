@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { io, Socket } from "socket.io-client"
-import { WorkflowRunDetails } from "../types/workflow-run"
-import { workflowRunTriggered, workflowRunUpdated } from "../reducers/workspace-reducer"
+import { TaskExecutionDetails } from "../types/task-execution"
+import { taskExecutionTriggered, taskExecutionUpdated } from "../reducers/workspace-reducer"
 
 type UseTaskExecutionListenerProps = {
 	accountId: string | null
@@ -14,12 +14,12 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 	const socketRef = useRef<Socket | null>(null)
 	const dispatch = useDispatch()
 
-	const onWorkflowRunCreation = (workflowRun: WorkflowRunDetails) => {
-		dispatch(workflowRunTriggered(workflowRun))
+	const onTaskExecutionCreation = (taskExecution: TaskExecutionDetails) => {
+		dispatch(taskExecutionTriggered(taskExecution))
 	}
 
-	const onWorkflowRunUpdate = (workflowRun: WorkflowRunDetails) => {
-		dispatch(workflowRunUpdated(workflowRun))
+	const onTaskExecutionUpdate = (taskExecution: TaskExecutionDetails) => {
+		dispatch(taskExecutionUpdated(taskExecution))
 	}
 
 	useEffect(() => {
@@ -33,11 +33,11 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 
 		socketRef.current = socket
 
-		socket.on("task-execution:new", onWorkflowRunCreation)
-		socket.on("task-execution:update", onWorkflowRunUpdate)
+		socket.on("task-execution:new", onTaskExecutionCreation)
+		socket.on("task-execution:update", onTaskExecutionUpdate)
 
 		return () => {
-			if (onWorkflowRunCreation) socket.off("update", onWorkflowRunCreation)
+			if (onTaskExecutionCreation) socket.off("update", onTaskExecutionCreation)
 			socket.disconnect()
 		}
 	}, [accountId])

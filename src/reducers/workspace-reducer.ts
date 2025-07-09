@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Task } from "../types/task"
-import { WorkflowRunDetails } from "../types/workflow-run"
+import { TaskExecutionDetails } from "../types/task-execution"
 
 export interface Project {
 	id?: string
@@ -11,7 +11,7 @@ export interface Project {
 	tasks: Task[]
 }
 
-export interface WorkflowRunHeatmap {
+export interface TaskExecutionHeatmap {
 	date: string
 	runCount: number
 }
@@ -19,8 +19,8 @@ export interface WorkflowRunHeatmap {
 export interface WorkspaceState {
 	selectedProject: Project
 	selectedTask: Task | null
-	workflowRunTimeline: WorkflowRunDetails[]
-	workflowRunHeatmap: WorkflowRunHeatmap[]
+	taskExecutionTimeline: TaskExecutionDetails[]
+	taskExecutionHeatmap: TaskExecutionHeatmap[]
 	projectInitialization: boolean
 	taskCreationRequested: boolean
 }
@@ -31,8 +31,8 @@ let initialState: WorkspaceState = {
 		deploymentId: null,
 	},
 	selectedTask: null,
-	workflowRunTimeline: [],
-	workflowRunHeatmap: [],
+	taskExecutionTimeline: [],
+	taskExecutionHeatmap: [],
 	projectInitialization: false,
 	taskCreationRequested: false,
 }
@@ -69,21 +69,22 @@ export const workspaceSlice = createSlice({
 			)
 		},
 
-		workflowRunTimelineUpdated: (state, action: PayloadAction<WorkflowRunDetails[]>) => {
-			state.workflowRunTimeline = action.payload
+		taskExecutionTimelineUpdated: (state, action: PayloadAction<TaskExecutionDetails[]>) => {
+			state.taskExecutionTimeline = action.payload
 		},
 
-		workflowRunHeatmapLoaded: (state, action: PayloadAction<WorkflowRunHeatmap[]>) => {
-			state.workflowRunHeatmap = action.payload
-		},
-		workflowRunTriggered: (state, action: PayloadAction<WorkflowRunDetails>) => {
-			// adding newly created workflow run to the beginning of the timeline
-			state.workflowRunTimeline.unshift(action.payload)
+		taskExecutionHeatmapLoaded: (state, action: PayloadAction<TaskExecutionHeatmap[]>) => {
+			state.taskExecutionHeatmap = action.payload
 		},
 
-		workflowRunUpdated: (state, action: PayloadAction<WorkflowRunDetails>) => {
-			state.workflowRunTimeline = state.workflowRunTimeline.map((workflowRun) =>
-				workflowRun.id === action.payload.id ? action.payload : workflowRun,
+		taskExecutionTriggered: (state, action: PayloadAction<TaskExecutionDetails>) => {
+			// adding newly created task execution to the beginning of the timeline
+			state.taskExecutionTimeline.unshift(action.payload)
+		},
+
+		taskExecutionUpdated: (state, action: PayloadAction<TaskExecutionDetails>) => {
+			state.taskExecutionTimeline = state.taskExecutionTimeline.map((taskExecution) =>
+				taskExecution.id === action.payload.id ? action.payload : taskExecution,
 			)
 		},
 
@@ -114,10 +115,10 @@ export const {
 	taskCreated,
 	taskSelected,
 	taskUpdated,
-	workflowRunTimelineUpdated,
-	workflowRunHeatmapLoaded,
-	workflowRunTriggered,
-	workflowRunUpdated,
+	taskExecutionTimelineUpdated,
+	taskExecutionHeatmapLoaded,
+	taskExecutionTriggered,
+	taskExecutionUpdated,
 	taskCreationRequested,
 	taskCreationClosed,
 	projectInitalizationRequested,

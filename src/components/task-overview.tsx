@@ -4,12 +4,13 @@ import { useLayoutEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { addTasksToProject, taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
-import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/task"
+import { updateTaskDescription, updateTaskTitle } from "../api/task"
 import { motion, AnimatePresence } from "framer-motion"
 import { getCurrentUser } from "aws-amplify/auth"
 import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
 import { planTasksWithAI } from "../api/project"
+import { reRunTaskExecution } from "../api/task-execution"
 
 export default function TaskOverview() {
 	const dispatch = useDispatch()
@@ -46,7 +47,7 @@ export default function TaskOverview() {
 		}
 	}, [task])
 
-	const handleLeaveComment = async (): Promise<void> => {
+	const handleReRunTaskExecution = async (): Promise<void> => {
 		const user = await getCurrentUser()
 		const authorId = user.signInDetails?.loginId
 		if (!authorId) return
@@ -58,7 +59,7 @@ export default function TaskOverview() {
 			commentText,
 		}
 		setCommentText("")
-		const updatedTask = await leaveComment(comment)
+		const updatedTask = await reRunTaskExecution(comment)
 		dispatch(taskUpdated(updatedTask))
 	}
 
@@ -124,10 +125,10 @@ export default function TaskOverview() {
 									className="focus:ring-0 rounded-sm text-sm w-full resize-none h-auto"
 									value={commentText}
 									onChange={setCommentText}
-									placeholder="Comment to re-run workflow…"
+									placeholder="Comment to re-run task…"
 								>
 									<SmartFooter>
-										<div className="flex items-end justify-end mx-1" onClick={handleLeaveComment}>
+										<div className="flex items-end justify-end mx-1" onClick={handleReRunTaskExecution}>
 											<Tooltip message="Re-run task">
 												<PlayIcon color="text-highlight" />
 											</Tooltip>
@@ -149,7 +150,7 @@ export default function TaskOverview() {
 							Projects are broken down into tasks, which are small jobs that the AI workers complete.
 						</div>
 						<div className="text-secondary-100 text-sm">
-							Define what needs to be done, and our AI workers will handle the workflow execution.
+							Define what needs to be done, and our AI workers will handle the task execution.
 						</div>
 						<div className="flex flew-row gap-2">
 							<div>

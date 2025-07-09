@@ -7,7 +7,7 @@ import { createTask } from "../api/task"
 import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
-import { runFrontendDevelomentWorkflow } from "../api/workflow-run"
+import { runTaskExecution } from "../api/task-execution"
 import { getCurrentUser } from "aws-amplify/auth"
 
 const TasksPlanner: React.FC = () => {
@@ -21,13 +21,13 @@ const TasksPlanner: React.FC = () => {
 	const taskCreationModalOpened = useTaskCreationRequested()
 	const titleInputRef = useRef<HTMLInputElement>(null)
 
-	const handleRunWorkflow = async (taskId: string) => {
+	const handleRunTaskExecution = async (taskId: string) => {
 		const user = await getCurrentUser()
 		const userId = user.signInDetails?.loginId
 
 		if (!userId) return
 
-		await runFrontendDevelomentWorkflow(taskId, userId)
+		await runTaskExecution(taskId, userId)
 	}
 
 	const handleCreateTask = async () => {
@@ -40,7 +40,7 @@ const TasksPlanner: React.FC = () => {
 		setIsExecuting(true)
 		try {
 			const task = await handleCreateTask()
-			await handleRunWorkflow(task.id)
+			await handleRunTaskExecution(task.id)
 		} finally {
 			setIsExecuting(false)
 		}
@@ -82,7 +82,7 @@ const TasksPlanner: React.FC = () => {
 										</Tooltip>
 
 										<div className="flex grow w-full justify-end">
-											<div onClick={() => handleRunWorkflow(task.id)}>
+											<div onClick={() => handleRunTaskExecution(task.id)}>
 												<Tooltip message="Execute task">
 													<PlayIcon />
 												</Tooltip>

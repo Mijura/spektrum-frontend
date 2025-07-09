@@ -45,23 +45,6 @@ export async function updateTaskDescription(task: Task) {
 	return await res.json()
 }
 
-export async function leaveComment(comment: any) {
-	const options = {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			taskId: comment.taskId,
-			authorId: comment.authorId,
-			commentText: comment.commentText,
-		}),
-	}
-
-	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/task/add-comment-and-run-workflow`, options)
-	return await res.json()
-}
-
 export async function fetchAllTasks(projectId: string) {
 	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/task/fetch-all/${projectId}`)
 	return await res.json()

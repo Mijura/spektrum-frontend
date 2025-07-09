@@ -3,13 +3,13 @@ import { createPortal } from "react-dom"
 import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
 import { Loader } from "@honeycomb-app/design"
-import { fetchHeatmap } from "../api/workflow-run"
+import { fetchHeatmap } from "../api/task-execution"
 import { getCurrentUser } from "aws-amplify/auth"
-import { useWorkflowRunHeatmap } from "../hooks/store"
+import { useTaskExecutionHeatmap } from "../hooks/store"
 import { useDispatch } from "react-redux"
-import { workflowRunHeatmapLoaded } from "../reducers/workspace-reducer"
+import { taskExecutionHeatmapLoaded } from "../reducers/workspace-reducer"
 
-const WorkflowRunHeatmap: React.FC = () => {
+const TaskExecutionHeatmap: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
 	const legendRef = useRef<SVGSVGElement>(null)
 	const width = 1200
@@ -17,14 +17,14 @@ const WorkflowRunHeatmap: React.FC = () => {
 	const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; intensity: number } | null>(null)
 	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(true)
-	const heatmapData = useWorkflowRunHeatmap()
+	const heatmapData = useTaskExecutionHeatmap()
 
 	const updateHeatmap = async () => {
 		const user = await getCurrentUser()
 		const accountId = user.signInDetails?.loginId
 		if (!accountId) return
 		const heatmap = await fetchHeatmap(accountId)
-		dispatch(workflowRunHeatmapLoaded(heatmap))
+		dispatch(taskExecutionHeatmapLoaded(heatmap))
 		setLoading(false)
 	}
 
@@ -236,4 +236,4 @@ const WorkflowRunHeatmap: React.FC = () => {
 	)
 }
 
-export default WorkflowRunHeatmap
+export default TaskExecutionHeatmap
