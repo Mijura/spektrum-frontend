@@ -4,13 +4,13 @@ import { io, Socket } from "socket.io-client"
 import { WorkflowRunDetails } from "../types/workflow-run"
 import { workflowRunTriggered, workflowRunUpdated } from "../reducers/workspace-reducer"
 
-type UseWorkflowRunListenerProps = {
+type UseTaskExecutionListenerProps = {
 	accountId: string | null
 }
 
 const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
 
-export const useWorkflowRunListener = ({ accountId }: UseWorkflowRunListenerProps) => {
+export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
 	const dispatch = useDispatch()
 
@@ -33,8 +33,8 @@ export const useWorkflowRunListener = ({ accountId }: UseWorkflowRunListenerProp
 
 		socketRef.current = socket
 
-		socket.on("workflow-run:new", onWorkflowRunCreation)
-		socket.on("workflow-run:update", onWorkflowRunUpdate)
+		socket.on("task-execution:new", onWorkflowRunCreation)
+		socket.on("task-execution:update", onWorkflowRunUpdate)
 
 		return () => {
 			if (onWorkflowRunCreation) socket.off("update", onWorkflowRunCreation)

@@ -8,9 +8,9 @@ import { fetchProjectTimeline, fetchAccountTimeline } from "../api/workflow-run"
 import { workflowRunTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { getCurrentUser } from "aws-amplify/auth"
-import { useWorkflowRunListener } from "../hooks/workflow-run-listener"
+import { useTaskExecutionListener } from "../hooks/task-execution-listener"
 
-const WorkflowRunTimeline: React.FC<{ type: "project" | "account" }> = ({ type }) => {
+const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type }) => {
 	const selectedProjectId = useSelectedProjectId()
 	const workflowRunTimeline = useWorkflowRunTimeline()
 	const [isLoading, setIsLoading] = useState(true)
@@ -42,7 +42,7 @@ const WorkflowRunTimeline: React.FC<{ type: "project" | "account" }> = ({ type }
 		fetchTimeline()
 	}, [selectedProjectId, accountId])
 
-	useWorkflowRunListener({ accountId: accountId })
+	useTaskExecutionListener({ accountId: accountId })
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">
@@ -69,4 +69,4 @@ const WorkflowRunTimeline: React.FC<{ type: "project" | "account" }> = ({ type }
 	)
 }
 
-export default WorkflowRunTimeline
+export default TaskExecutionTimeline

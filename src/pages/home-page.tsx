@@ -4,7 +4,7 @@ import { useProfile, useProjectInitialization } from "../hooks/store"
 import WorkflowRunHeatmap from "../components/workflow-run-heatmap"
 import Project from "../types/task"
 import ProjectsOverview from "../components/projects-overview"
-import WorkflowRunTimeline from "../components/workflow-run-timeline"
+import WorkflowRunTimeline from "../components/task-execution-timeline"
 
 export default function HomePage({ loadedProjects }: { loadedProjects: Project[] }) {
 	const profile = useProfile()
