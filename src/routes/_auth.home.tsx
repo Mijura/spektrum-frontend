@@ -20,7 +20,7 @@ export const Route = createFileRoute("/_auth/home")({
 	pendingComponent: () => {
 		return (
 			<div className="w-screen h-screen bg-surface flex items-center justify-center">
-				<Loader size="small" message="Loading projects..." />
+				<Loader size="large" message="Loading projects..." />
 			</div>
 		)
 	},

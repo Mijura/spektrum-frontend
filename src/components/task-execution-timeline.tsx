@@ -50,7 +50,7 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 
 			{isLoading ? (
 				<div className="flex flex-col items-center px-3 text-sm justify-center h-full">
-					<Loader message="Timeline loading..." />
+					<Loader size="large" message="Timeline loading..." />
 				</div>
 			) : taskExecutionTimeline.length === 0 ? (
 				<div className="flex flex-col px-4 text-sm items-center h-full">

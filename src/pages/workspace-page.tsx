@@ -45,7 +45,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 		<>
 			{initialization && (
 				<div className="w-full flex mt-40 justify-center h-fit">
-					<Loader message="Project initialization" />
+					<Loader size="large" message="Project initialization" />
 				</div>
 			)}
 			{!initialization && projects.length > 0 && (

@@ -48,7 +48,7 @@ export const Route = createFileRoute("/_auth/deployed")({
 	pendingComponent: () => {
 		return (
 			<div className="w-screen h-screen bg-surface flex items-center justify-center">
-				<Loader size="small" message="Loading gallery..." />
+				<Loader size="large" message="Loading deployed apps..." />
 			</div>
 		)
 	},
