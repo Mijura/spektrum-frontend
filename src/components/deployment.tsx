@@ -49,7 +49,7 @@ const Deployment: React.FC = () => {
 							</a>
 						</div>
 					)}
-					{deploying && <Loader size="small" message="Deploying application..." />}
+					{deploying && <Loader message="Deploying application..." />}
 					{!deploying && (
 						<Button className="h-fit w-fit bg-surface hover:bg-hover-primary" onClick={handleDeploy}>
 							Deploy

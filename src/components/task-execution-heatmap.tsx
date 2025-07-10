@@ -209,7 +209,7 @@ const TaskExecutionHeatmap: React.FC = () => {
 						</div>
 					) : (
 						<div className="flex w-full justify-center items-center">
-							<Loader size="small" message="Loading activity data..." />
+							<Loader message="Loading activity data..." />
 						</div>
 					)}
 				</div>

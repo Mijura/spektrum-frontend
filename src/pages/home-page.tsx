@@ -12,7 +12,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: Project[]
 
 	return projectInitialization ? (
 		<div className="bg-surface w-full h-full flex items-center justify-center">
-			<Loader message="Project initialization" size="small" />
+			<Loader message="Project initialization" />
 		</div>
 	) : (
 		<div className="flex flex-row grow">
