@@ -158,7 +158,7 @@ export default function TaskOverview() {
 							</div>
 							<div>
 								<Button size="sm" variant="secondary" onClick={() => setAiTaskModalOpened(true)}>
-									Plan tasks with AI
+									Plan features with AI
 								</Button>
 							</div>
 						</div>
@@ -191,7 +191,7 @@ export default function TaskOverview() {
 							Cancel
 						</Button>
 						<Button size="sm" variant="secondary" onClick={handlePlanTasksWithAI} loading={isPlanningTasks}>
-							Plan Tasks
+							Plan Features
 						</Button>
 					</div>
 				</ModalContent>
