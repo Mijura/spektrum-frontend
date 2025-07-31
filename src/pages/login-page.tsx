@@ -69,7 +69,7 @@ export default function LoginPage() {
 
 				{!isLoggedIn && !inProgress && (
 					<Button disabled={inProgress} className="w-[320px]" size="lg" onClick={handleContinue}>
-						Continue to Honeycomb
+						Continue to JigJoy
 					</Button>
 				)}
 			</motion.div>

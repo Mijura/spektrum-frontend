@@ -48,7 +48,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 					<Loader size="large" message="Project initialization" />
 				</div>
 			)}
-			{!initialization && projects.length > 0 && (
+			{!initialization && projects && projects.length > 0 && (
 				<div className="flex w-full justify-center mt-40 text-secondary-100">
 					<div className="flex flex-col gap-y-4">
 						<div className="relative w-[340px] md:w-[500px]">
@@ -76,7 +76,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 				</div>
 			)}
 
-			{!initialization && projects.length === 0 && (
+			{!initialization && projects && projects.length === 0 && (
 				<div className="w-full flex mt-40 justify-center h-fit">
 					<div className="flex flex-col gap-y-3 w-full max-w-[400px]">
 						<ProjectsIcon />
