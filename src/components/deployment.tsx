@@ -12,20 +12,14 @@ const Deployment: React.FC = () => {
 	const selectedProject = useSelectedProject()
 	const dispatch = useDispatch()
 
-	const [deploymentId, setDeploymentId] = useState<string | null>(null)
 	const [deploying, setDeploying] = useState<boolean>(false)
+
 	const handleDeploy = async () => {
 		setDeploying(true)
 		const deployedProject = await deploy(selectedProject.id)
-		dispatch(projectUpdated({ ...selectedProject, deploymentId: deployedProject._deploymentId })) // TODO: fix this
+		dispatch(projectUpdated(deployedProject))
 		setDeploying(false)
 	}
-
-	useEffect(() => {
-		if (selectedProject.deploymentId) {
-			setDeploymentId(selectedProject.deploymentId)
-		}
-	}, [selectedProject.deploymentId])
 
 	return (
 		<>
@@ -36,14 +30,14 @@ const Deployment: React.FC = () => {
 					<div className="text-secondary-100 text-sm">
 						Once deployed, you’ll get a unique link with latest changes to share your app with others.
 					</div>
-					{deploymentId && (
+					{selectedProject.latestProdDeployment && (
 						<div className="text-secondary-100 text-sm">
 							Latest deployment is available at{" "}
 							<a
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-highlight"
-								href={`https://${deploymentId}.${FRONTEND_DOMAIN}`}
+								href={selectedProject.latestProdDeployment.url}
 							>
 								link
 							</a>

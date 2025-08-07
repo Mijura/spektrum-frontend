@@ -41,11 +41,13 @@ const OutputPreview: React.FC = () => {
 						</Tooltip>
 					</div>
 					<div className="flex h-full">
-						<iframe
-							key={iframeKey}
-							src={`https://${selectedProject.id}.${FRONTEND_DOMAIN}/?nocache=${Date.now()}`}
-							className="grow"
-						/>
+						{selectedProject.latestDevDeployment && (
+							<iframe
+								key={iframeKey}
+								src={`${selectedProject.latestDevDeployment.url}/?nocache=${Date.now()}`}
+								className="grow"
+							/>
+						)}
 					</div>
 				</div>
 			</motion.div>
