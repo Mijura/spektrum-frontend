@@ -39,7 +39,7 @@ const TaskExecution: React.FC<{ runInfo: TaskExecutionDetails }> = ({ runInfo })
 						</div>
 
 						<div className="py-1 flex flex-row gap-1 text-secondary-100">
-							<Chip label={taskExecutionDetails.workflowId} />
+							<Chip label="Frontend Development" />
 						</div>
 
 						<div className="p-1 h-fit w-full text-secondary-100 flex items-end gap-2">
