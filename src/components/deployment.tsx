@@ -1,12 +1,10 @@
 import { Button, Loader } from "@honeycomb-app/design"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { deploy } from "../api/project"
 import { useSelectedProject } from "../hooks/store"
 import DeployBigIcon from "../shared/icons/deploy-big-icon"
 import { useDispatch } from "react-redux"
 import { projectUpdated } from "../reducers/workspace-reducer"
-
-const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
 
 const Deployment: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -17,7 +15,7 @@ const Deployment: React.FC = () => {
 	const handleDeploy = async () => {
 		setDeploying(true)
 		const deployedProject = await deploy(selectedProject.id)
-		dispatch(projectUpdated(deployedProject))
+		dispatch(projectUpdated({ ...selectedProject, ...deployedProject }))
 		setDeploying(false)
 	}
 
