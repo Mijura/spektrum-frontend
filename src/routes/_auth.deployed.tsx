@@ -3,15 +3,13 @@ import { Card, Loader } from "@honeycomb-app/design"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
 
-const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
-
 export const Route = createFileRoute("/_auth/deployed")({
 	loader: async () => {
 		try {
 			const user = await getCurrentUser()
 			const projects = await fetchAllProjects(user.userId)
 			// Filter only deployed projects
-			return projects.filter((project: any) => project.deploymentId)
+			return projects.filter((project: any) => project.latestProdDeployment)
 		} catch (error: any) {
 			console.error(error)
 			return []
@@ -21,7 +19,7 @@ export const Route = createFileRoute("/_auth/deployed")({
 		const data = Route.useLoaderData()
 
 		const handleOpenProject = async (project: any) => {
-			window.open(`https://${project.deploymentId}.${FRONTEND_DOMAIN}`, "_blank")
+			window.open(`${project.latestProdDeployment.url}`, "_blank")
 		}
 
 		return (
