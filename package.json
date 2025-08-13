@@ -41,7 +41,6 @@
 		"dotenv-webpack": "^8.1.0",
 		"postcss": "^8.5.1",
 		"postcss-loader": "^8.1.1",
-		"react-refresh": "^0.14.0",
 		"tailwindcss": "^4.0.0",
 		"ts-checker-rspack-plugin": "^1.1.1",
 		"typescript": "^5.4.5",
