@@ -77,9 +77,9 @@ const TasksPlanner: React.FC = () => {
 								>
 									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{task.title}</div>
 									<div className="mt-2 flex flex-row gap-2 w-full">
-										<Tooltip message="Change status">
+										{/* <Tooltip message="Change status">
 											<MoreOptionsIcon />
-										</Tooltip>
+										</Tooltip> */}
 
 										<div className="flex grow w-full justify-end">
 											<div onClick={() => handleRunTaskExecution(task.id)}>
