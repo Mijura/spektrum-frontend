@@ -98,6 +98,7 @@ const TasksPlanner: React.FC = () => {
 					<Modal
 						isOpen={taskCreationModalOpened}
 						onOpenCallback={() => {
+							console.log("onOpenCallback")
 							// Focus the input when modal opens
 							setTimeout(() => {
 								titleInputRef.current?.focus()
