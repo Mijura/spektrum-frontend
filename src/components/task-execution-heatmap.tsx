@@ -12,6 +12,7 @@ import { taskExecutionHeatmapLoaded } from "../reducers/workspace-reducer"
 const TaskExecutionHeatmap: React.FC = () => {
 	const svgRef = useRef<SVGSVGElement>(null)
 	const legendRef = useRef<SVGSVGElement>(null)
+	const containerRef = useRef<HTMLDivElement>(null)
 	const width = 1200
 	const height = 350
 	const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; intensity: number } | null>(null)
@@ -196,11 +197,32 @@ const TaskExecutionHeatmap: React.FC = () => {
 			.attr("fill", "var(--secondary-100)")
 			.attr("font-size", "12px")
 			.text("High")
+
+		// Auto-scroll to center the current date
+		if (containerRef.current) {
+			const today = new Date()
+			const timeDiff = today.getTime() - minDate.getTime()
+			const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))
+			
+			// Calculate the position of today's date in the heatmap
+			const todayColumn = Math.floor(daysDiff / 7) // Assuming 7 days per column
+			const todayX = hexRadius * todayColumn * Math.sqrt(3) + hexRadius + margin.left + 3
+			
+			// Calculate scroll position to center today's date
+			const containerWidth = containerRef.current.clientWidth
+			const scrollLeft = todayX - (containerWidth / 2)
+			
+			// Smooth scroll to the calculated position
+			containerRef.current.scrollTo({
+				left: Math.max(0, scrollLeft),
+				behavior: 'smooth'
+			})
+		}
 	}, [heatmapData])
 
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
-			<div className="flex w-full mx-auto overflow-x-auto h-fit overflow-y-hidden custom-scrollbar">
+			<div ref={containerRef} className="flex w-full mx-auto overflow-x-auto h-fit overflow-y-hidden custom-scrollbar">
 				<div className="xs:w-[320px] xl:w-[750px] 2xl:w-[800px] 3xl:w-[1200px]">
 					{!loading ? (
 						<div>

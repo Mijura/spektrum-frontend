@@ -5,8 +5,6 @@ import { v4 as uuidv4 } from "uuid"
 import { useSelectedProject } from "../hooks/store"
 import { AnimatePresence, motion } from "framer-motion"
 
-export const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
-
 const OutputPreview: React.FC = () => {
 	const selectedProject = useSelectedProject()
 
