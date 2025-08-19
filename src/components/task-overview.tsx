@@ -59,8 +59,7 @@ export default function TaskOverview() {
 			commentText,
 		}
 		setCommentText("")
-		const updatedTask = await reRunTaskExecution(comment)
-		dispatch(taskUpdated(updatedTask))
+		await reRunTaskExecution(comment)
 	}
 
 	const handlePlanTasksWithAI = async () => {
