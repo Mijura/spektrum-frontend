@@ -15,7 +15,7 @@ export async function runTaskExecution(taskId: string, accountId: string): Promi
 		}),
 	}
 
-	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/task-execution/run`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/task-execution/develop`, options)
 
 	return await res.json()
 }
@@ -33,7 +33,7 @@ export async function reRunTaskExecution(comment: any) {
 		}),
 	}
 
-	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/task-execution/re-run`, options)
+	const res: any = await fetch(`${HONEYCOMB_ENDPOINT}/task-execution/comment-and-develop`, options)
 	return await res.json()
 }
 
