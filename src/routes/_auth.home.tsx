@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
-import { Loader } from "@honeycomb-app/design"
+import { Loader } from "@jigjoy-io/design"
 import HomePage from "../pages/home-page"
 
 export const Route = createFileRoute("/_auth/home")({

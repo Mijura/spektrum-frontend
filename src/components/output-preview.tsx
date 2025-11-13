@@ -1,4 +1,4 @@
-import { Tooltip } from "@honeycomb-app/design"
+import { Tooltip } from "@jigjoy-io/design"
 import React, { useEffect } from "react"
 import ReloadIcon from "../shared/icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"

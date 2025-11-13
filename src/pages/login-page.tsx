@@ -1,4 +1,4 @@
-import { Button, Input, Loader, Logo } from "@honeycomb-app/design"
+import { Button, Input, Loader, Logo } from "@jigjoy-io/design"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { isEmail } from "../shared/util"
