@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
 import { ActivityData, StartedWorkMetadata } from "../../../types/activity"
 import { WorkerLoader } from "../../../shared/icons/worker-loader"
-import { AnimatedText } from "@honeycomb-app/design"
+import { AnimatedText } from "@jigjoy-io/design"
 
 export const StartedWorkActivity = ({ activity }: { activity: ActivityData }) => (
 	<div className="flex w-full items-center 2xl:gap-y-4 gap-x-1 h-fit">

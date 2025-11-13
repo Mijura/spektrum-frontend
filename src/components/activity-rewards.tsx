@@ -1,4 +1,4 @@
-import { Chevron, ChevronContent, ChevronTrigger, ProgressBar } from "@honeycomb-app/design"
+import { Chevron, ChevronContent, ChevronTrigger, ProgressBar } from "@jigjoy-io/design"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
 import { useProfile } from "../hooks/store"

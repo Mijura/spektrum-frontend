@@ -1,4 +1,4 @@
-import { Button, Loader } from "@honeycomb-app/design"
+import { Button, Loader } from "@jigjoy-io/design"
 import { useNavigate } from "@tanstack/react-router"
 import { motion } from "framer-motion"
 import { createNewProject } from "../api/project"

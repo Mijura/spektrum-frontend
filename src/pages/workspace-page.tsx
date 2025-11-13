@@ -1,5 +1,5 @@
 import Project from "../types/task"
-import { Button, Loader } from "@honeycomb-app/design"
+import { Button, Loader } from "@jigjoy-io/design"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 import { getCurrentUser } from "aws-amplify/auth"

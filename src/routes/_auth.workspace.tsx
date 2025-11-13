@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import WorkspacePage from "../pages/workspace-page"
-import { Loader } from "@honeycomb-app/design"
+import { Loader } from "@jigjoy-io/design"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
 

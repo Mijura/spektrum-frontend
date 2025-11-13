@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { Card, Loader } from "@honeycomb-app/design"
+import { Card, Loader } from "@jigjoy-io/design"
 import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project"
 
