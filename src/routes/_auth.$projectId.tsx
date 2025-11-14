@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
-import { Loader } from "@jigjoy-io/design"
+import { Loader } from "@jigjoy-io/ui-library"
 import { fetchProject } from "../api/project"
 import { fetchAllTasks } from "../api/task"
 import { PostError } from "../shared/errors/post-error"

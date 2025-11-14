@@ -1,4 +1,4 @@
-import { Button, Loader } from "@jigjoy-io/design"
+import { Button, Loader } from "@jigjoy-io/ui-library"
 import React, { useState } from "react"
 import { deploy } from "../api/project"
 import { useSelectedProject } from "../hooks/store"

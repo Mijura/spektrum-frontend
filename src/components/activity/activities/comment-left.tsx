@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { Chip } from "@jigjoy-io/design"
+import { Chip } from "@jigjoy-io/ui-library"
 import { ActivityData, CommentLeftMetadata } from "../../../types/activity"
 
 export const CommentLeftActivity = ({ activity }: { activity: ActivityData }) => (

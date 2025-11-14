@@ -1,4 +1,4 @@
-import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea } from "@jigjoy-io/design"
+import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea } from "@jigjoy-io/ui-library"
 import { useSelectedProject, useSelectedTask } from "../hooks/store"
 import { useLayoutEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
