@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { Button, Card } from "@jigjoy-io/design"
+import { Button, Card } from "@jigjoy-io/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"

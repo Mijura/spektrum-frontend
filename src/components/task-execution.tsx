@@ -1,5 +1,5 @@
 import { TaskExecutionDetails, TaskExecutionStatus } from "../types/task-execution"
-import { Card, Chip } from "@jigjoy-io/design"
+import { Card, Chip } from "@jigjoy-io/ui-library"
 import WatchIcon from "../shared/icons/watch-icon"
 import { formatTimestamp } from "../shared/util"
 import { useEffect, useState } from "react"
