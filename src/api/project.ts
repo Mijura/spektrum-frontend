@@ -1,7 +1,7 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 import { Task } from "../types/task"
 
-const PLANNING_ENDPOINT = process.env.PLANNING_ENDPOINT
+const PROJECT_PLANNING_ENDPOINT = process.env.PROJECT_PLANNING_ENDPOINT
 
 export async function deploy(projectId: string): Promise<any> {
 	const options = {
@@ -14,7 +14,7 @@ export async function deploy(projectId: string): Promise<any> {
 		}),
 	}
 
-	const res: any = await fetch(`${PLANNING_ENDPOINT}/project/deploy`, options)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project/deploy`, options)
 
 	return await res.json()
 }
@@ -30,7 +30,7 @@ export async function archiveProject(projectId: string): Promise<any> {
 		}),
 	}
 
-	const res: any = await fetch(`${PLANNING_ENDPOINT}/project/archive`, options)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project/archive`, options)
 
 	return await res.json()
 }
@@ -46,7 +46,7 @@ export async function createNewProject(owner: string): Promise<any> {
 		}),
 	}
 
-	const res: any = await fetch(`${PLANNING_ENDPOINT}/project`, options)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project`, options)
 	return await res.json()
 }
 
@@ -62,7 +62,7 @@ export async function planTasksWithAI(projectId: string, projectDescription: str
 		}),
 	}
 
-	const res: any = await fetch(`${PLANNING_ENDPOINT}/project/plan-tasks-with-ai`, options)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project/plan-tasks-with-ai`, options)
 	return await res.json()
 }
 
@@ -79,17 +79,17 @@ export async function updateProjectDetails(id: string, name: string, description
 		}),
 	}
 
-	const res: any = await fetch(`${PLANNING_ENDPOINT}/project`, options)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project`, options)
 	return await res.json()
 }
 
 export async function fetchProject(id: string) {
-	const res: any = await fetch(`${PLANNING_ENDPOINT}/project/fetch/${id}`)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project/fetch/${id}`)
 	if (res.status == 404) throw new ProjectNotFoundError()
 	return await res.json()
 }
 
 export async function fetchAllProjects(owner: string) {
-	const res: any = await fetch(`${PLANNING_ENDPOINT}/project/fetch-all/${owner}`)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project/fetch-all/${owner}`)
 	return await res.json()
 }
