@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
 	key: "root",
 	storage: storage,
-	whitelist: ["workspace", "navigation", "profile"],
+	whitelist: [],
 }
 
 const persistedReducer = persistReducer<ReturnType<typeof rootReducer>>(persistConfig, rootReducer)
