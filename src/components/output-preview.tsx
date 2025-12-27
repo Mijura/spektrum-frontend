@@ -4,13 +4,17 @@ import ReloadIcon from "../shared/icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"
 import { useSelectedProject } from "../hooks/store"
 import { AnimatePresence, motion } from "framer-motion"
+import { getEntryPoint } from "../api/project-deployment"
 
 const OutputPreview: React.FC = () => {
 	const selectedProject = useSelectedProject()
 
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
+	const [entryPoint, setEntryPoint] = React.useState<string | null>(null)
 
-	const reloadPage = () => {
+	const reloadPage = async () => {
+		const entryPoint = await getEntryPoint(selectedProject.id)
+		setEntryPoint(entryPoint.publicAppUrl)
 		setIframeKey(uuidv4())
 	}
 
@@ -39,10 +43,10 @@ const OutputPreview: React.FC = () => {
 						</Tooltip>
 					</div>
 					<div className="flex h-full">
-						{selectedProject.latestDevDeployment && (
+						{entryPoint && (
 							<iframe
 								key={iframeKey}
-								src={`${selectedProject.latestDevDeployment.url}/?nocache=${Date.now()}`}
+								src={`${entryPoint}/?nocache=${Date.now()}`}
 								className="grow"
 							/>
 						)}
