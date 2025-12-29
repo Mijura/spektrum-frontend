@@ -65,12 +65,12 @@ export async function planTasksWithAI(projectId: string, projectDescription: str
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project/plan-tasks-with-ai`, options)
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/project/plan-tasks`, options)
 	return await res.json()
 }
 
 export async function updateProjectDetails(id: string, name: string, description: string): Promise<any> {
-	
+
 	const options = {
 		method: "PUT",
 		headers: {
