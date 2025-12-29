@@ -4,6 +4,7 @@ import { Task } from "../types/task"
 const PROJECT_PLANNING_ENDPOINT = process.env.PROJECT_PLANNING_ENDPOINT
 
 export async function deploy(projectId: string): Promise<any> {
+
 	const options = {
 		method: "PUT",
 		headers: {
@@ -20,6 +21,7 @@ export async function deploy(projectId: string): Promise<any> {
 }
 
 export async function archiveProject(projectId: string): Promise<any> {
+
 	const options = {
 		method: "PUT",
 		headers: {
@@ -51,6 +53,7 @@ export async function createNewProject(owner: string): Promise<any> {
 }
 
 export async function planTasksWithAI(projectId: string, projectDescription: string): Promise<Task[]> {
+
 	const options = {
 		method: "POST",
 		headers: {
@@ -67,6 +70,7 @@ export async function planTasksWithAI(projectId: string, projectDescription: str
 }
 
 export async function updateProjectDetails(id: string, name: string, description: string): Promise<any> {
+	
 	const options = {
 		method: "PUT",
 		headers: {

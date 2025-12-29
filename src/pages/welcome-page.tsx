@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { createNewProject } from "../api/project"
 import { useState } from "react"
 import { getCurrentUser } from "aws-amplify/auth"
+import { entryPointLoaded } from "../reducers/workspace-reducer"
+import { useDispatch } from "react-redux"
 
 const sentences = [
 	"At JigJoy, we’re creating a space where anyone can design their own software development workflow and seamlessly connect it to our hexagonal ecosystem for execution.",
@@ -38,13 +40,17 @@ const staggeredText = (text: string, delay: number) => {
 
 export default function WelcomePage() {
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(false)
 
 	const handleCreateNewProject = async () => {
 		try {
 			setLoading(true)
 			const user = await getCurrentUser()
-			const project: any = await createNewProject(user.username)
+			const response: any = await createNewProject(user.username)
+			const project = response.project
+			
+			dispatch(entryPointLoaded(response.entryPoint))
 			navigate({
 				to: `/${project.id}`,
 			})

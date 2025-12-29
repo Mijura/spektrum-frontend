@@ -7,12 +7,15 @@ import { fetchAllTasks } from "../api/task"
 import { PostError } from "../shared/errors/post-error"
 import { useSelectedProject } from "../hooks/store"
 import { useActivityListener } from "../hooks/activity-listener"
-import { projectSelected, taskSelected } from "../reducers/workspace-reducer"
+import { entryPointLoaded, projectSelected, taskSelected } from "../reducers/workspace-reducer"
 import ProjectPage from "../pages/project-page"
+import { getEntryPoint } from "../api/project-deployment"
+
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
-		const [project, tasks] = await Promise.all([fetchProject(projectId), fetchAllTasks(projectId)])
-		return { project, tasks }
+
+		const [project, tasks, entryPoint] = await Promise.all([fetchProject(projectId), fetchAllTasks(projectId), getEntryPoint(projectId)])
+		return { project, tasks, entryPoint }
 	},
 	errorComponent: PostError,
 	pendingComponent: PendingComponent,
@@ -30,6 +33,7 @@ function PendingComponent() {
 }
 
 function WorkspaceComponent() {
+
 	const data = Route.useLoaderData()
 	const dispatch = useDispatch()
 	const selectedProject = useSelectedProject()
@@ -51,6 +55,8 @@ function WorkspaceComponent() {
 					tasks: data.tasks,
 				}),
 			)
+			
+			dispatch(entryPointLoaded(data.entryPoint))
 			setIsLoaded(true)
 		}
 	}, [data])

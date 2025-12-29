@@ -4,7 +4,7 @@ import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project"
 import { getCurrentUser } from "aws-amplify/auth"
 import { pageNavigated } from "../reducers/navigation-reducer"
-import { projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
+import { entryPointLoaded, projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import ProjectsIcon from "../shared/icons/projects-icon"
@@ -17,13 +17,15 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 	const [selectorOpen, setSelectorOpen] = useState(true)
 
 	const initialization = useProjectInitialization()
+
 	const handleCreateNewProject = async () => {
 		try {
 			dispatch(projectInitalizationRequested())
 			const user = await getCurrentUser()
-			const project: any = await createNewProject(user.username)
+			const response: any = await createNewProject(user.username)
+			const project = response.project
 
-			setProjects([...projects, project])
+			dispatch(entryPointLoaded(response.entryPoint))
 			dispatch(pageNavigated("workspace"))
 			await navigate({
 				to: `/${project.id}`,

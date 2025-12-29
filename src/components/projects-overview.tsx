@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import EditIcon from "../shared/icons/edit-icon"
 import Project from "../types/task"
-import { projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
+import { entryPointLoaded, projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
 
 export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {
 	const navigate = useNavigate()
@@ -34,10 +34,13 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 		try {
 			dispatch(projectInitalizationRequested())
 			const user = await getCurrentUser()
-			const project: any = await createNewProject(user.username)
+			const response: any = await createNewProject(user.username)
 
+			const project = response.project
 			setProjects([...projects, project])
+			dispatch(entryPointLoaded(response.entryPoint))
 			dispatch(pageNavigated("workspace"))
+			
 			await navigate({
 				to: `/${project.id}`,
 			})

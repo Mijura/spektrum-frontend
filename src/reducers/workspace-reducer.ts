@@ -23,6 +23,7 @@ export interface WorkspaceState {
 	taskExecutionHeatmap: TaskExecutionHeatmap[]
 	projectInitialization: boolean
 	taskCreationRequested: boolean
+	entryPoint: string | null
 }
 
 let initialState: WorkspaceState = {
@@ -35,6 +36,7 @@ let initialState: WorkspaceState = {
 	taskExecutionHeatmap: [],
 	projectInitialization: false,
 	taskCreationRequested: false,
+	entryPoint: null,
 }
 
 export const workspaceSlice = createSlice({
@@ -106,6 +108,11 @@ export const workspaceSlice = createSlice({
 		addTasksToProject: (state, action: PayloadAction<Task[]>) => {
 			state.selectedProject.tasks.push(...action.payload)
 		},
+
+		entryPointLoaded: (state, action: PayloadAction<string>) => {
+			state.entryPoint = action.payload
+		},
+
 	},
 })
 
@@ -124,6 +131,7 @@ export const {
 	projectInitalizationRequested,
 	projectInitalizationCompleted,
 	addTasksToProject,
+	entryPointLoaded,
 } = workspaceSlice.actions
 
 export default workspaceSlice.reducer
