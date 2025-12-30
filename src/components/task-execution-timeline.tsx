@@ -42,7 +42,7 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 		fetchTimeline()
 	}, [selectedProjectId, accountId])
 
-	useTaskExecutionListener({ accountId: accountId })
+	//useTaskExecutionListener({ accountId: accountId })
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">

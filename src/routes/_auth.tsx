@@ -3,7 +3,6 @@ import LeftSideMenu from "../components/left-side-menu"
 import { handleConfirmSignIn } from "../api/account-and-billing"
 import { getCurrentUser } from "aws-amplify/auth"
 import { Loader } from "@jigjoy-io/ui-library"
-import { useEffect } from "react"
 
 export const Route = createFileRoute("/_auth")({
 	beforeLoad: async ({ search }) => {
