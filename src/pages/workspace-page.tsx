@@ -1,10 +1,14 @@
 import Project from "../types/task"
 import { Button, Loader } from "@jigjoy-io/ui-library"
 import { useNavigate } from "@tanstack/react-router"
-import { createNewProject } from "../api/project"
+import { createNewProject } from "../api/project-planning"
 import { getCurrentUser } from "aws-amplify/auth"
 import { pageNavigated } from "../reducers/navigation-reducer"
-import { entryPointLoaded, projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
+import {
+	entryPointLoaded,
+	projectInitalizationCompleted,
+	projectInitalizationRequested,
+} from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import ProjectsIcon from "../shared/icons/projects-icon"

@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
 import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@jigjoy-io/ui-library"
 import { useNavigate } from "@tanstack/react-router"
-import { createNewProject, updateProjectDetails } from "../api/project"
+import { createNewProject, updateProjectDetails } from "../api/project-planning"
 import CreateIcon from "../shared/icons/create-icon"
 import { getCurrentUser } from "aws-amplify/auth"
 import ArchiveIcon from "../shared/icons/archive-icon"
-import { archiveProject } from "../api/project"
+import { archiveProject } from "../api/project-planning"
 import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import EditIcon from "../shared/icons/edit-icon"
 import Project from "../types/task"
-import { entryPointLoaded, projectInitalizationCompleted, projectInitalizationRequested } from "../reducers/workspace-reducer"
+import {
+	entryPointLoaded,
+	projectInitalizationCompleted,
+	projectInitalizationRequested,
+} from "../reducers/workspace-reducer"
 
 export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {
 	const navigate = useNavigate()
@@ -40,7 +44,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 			setProjects([...projects, project])
 			dispatch(entryPointLoaded(response.entryPoint))
 			dispatch(pageNavigated("workspace"))
-			
+
 			await navigate({
 				to: `/${project.id}`,
 			})

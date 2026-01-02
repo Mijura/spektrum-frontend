@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { Loader } from "@jigjoy-io/ui-library"
-import { fetchProject } from "../api/project"
-import { fetchAllTasks } from "../api/task"
+import { fetchProject } from "../api/project-planning"
+import { fetchAllTasks } from "../api/project-planning"
 import { PostError } from "../shared/errors/post-error"
 import { useSelectedProject } from "../hooks/store"
 import { useActivityListener } from "../hooks/activity-listener"
@@ -13,8 +13,11 @@ import { getEntryPoint } from "../api/project-deployment"
 
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
-
-		const [project, tasks, entryPoint] = await Promise.all([fetchProject(projectId), fetchAllTasks(projectId), getEntryPoint(projectId)])
+		const [project, tasks, entryPoint] = await Promise.all([
+			fetchProject(projectId),
+			fetchAllTasks(projectId),
+			getEntryPoint(projectId),
+		])
 		return { project, tasks, entryPoint }
 	},
 	errorComponent: PostError,
@@ -33,7 +36,6 @@ function PendingComponent() {
 }
 
 function WorkspaceComponent() {
-
 	const data = Route.useLoaderData()
 	const dispatch = useDispatch()
 	const selectedProject = useSelectedProject()
@@ -55,7 +57,7 @@ function WorkspaceComponent() {
 					tasks: data.tasks,
 				}),
 			)
-			
+
 			dispatch(entryPointLoaded(data.entryPoint))
 			setIsLoaded(true)
 		}

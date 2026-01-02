@@ -1,7 +1,7 @@
 import { Button, Loader } from "@jigjoy-io/ui-library"
 import { useNavigate } from "@tanstack/react-router"
 import { motion } from "framer-motion"
-import { createNewProject } from "../api/project"
+import { createNewProject } from "../api/project-planning"
 import { useState } from "react"
 import { getCurrentUser } from "aws-amplify/auth"
 import { entryPointLoaded } from "../reducers/workspace-reducer"
@@ -49,7 +49,7 @@ export default function WelcomePage() {
 			const user = await getCurrentUser()
 			const response: any = await createNewProject(user.username)
 			const project = response.project
-			
+
 			dispatch(entryPointLoaded(response.entryPoint))
 			navigate({
 				to: `/${project.id}`,

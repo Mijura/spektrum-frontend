@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import WorkspacePage from "../pages/workspace-page"
 import { Loader } from "@jigjoy-io/ui-library"
 import { getCurrentUser } from "aws-amplify/auth"
-import { fetchAllProjects } from "../api/project"
+import { fetchAllProjects } from "../api/project-planning"
 
 export const Route = createFileRoute("/_auth/workspace")({
 	loader: async () => {

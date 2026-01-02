@@ -4,12 +4,12 @@ import { useLayoutEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { addTasksToProject, taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
-import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/task"
+import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/project-planning"
 import { motion, AnimatePresence } from "framer-motion"
 import { getCurrentUser } from "aws-amplify/auth"
 import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
-import { planTasksWithAI } from "../api/project"
+import { planTasksWithAI } from "../api/project-planning"
 import { develop } from "../api/ai-coding"
 
 export default function TaskOverview() {
@@ -52,8 +52,7 @@ export default function TaskOverview() {
 		const authorId = user.signInDetails?.loginId
 		if (!authorId) return
 
-		if (commentText.length === 0) 
-			return
+		if (commentText.length === 0) return
 
 		const taskWithComment = await leaveComment(task.id, commentText, authorId)
 

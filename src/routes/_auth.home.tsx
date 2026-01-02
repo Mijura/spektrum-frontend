@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { getCurrentUser } from "aws-amplify/auth"
-import { fetchAllProjects } from "../api/project"
+import { fetchAllProjects } from "../api/project-planning"
 import { Loader } from "@jigjoy-io/ui-library"
 import HomePage from "../pages/home-page"
 

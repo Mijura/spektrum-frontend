@@ -3,7 +3,7 @@ import { createPortal } from "react-dom"
 import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
 import { Loader } from "@jigjoy-io/ui-library"
-import { fetchHeatmap } from "../api/task-execution"
+import { fetchHeatmap } from "../api/observability"
 import { getCurrentUser } from "aws-amplify/auth"
 import { useTaskExecutionHeatmap } from "../hooks/store"
 import { useDispatch } from "react-redux"
@@ -203,19 +203,19 @@ const TaskExecutionHeatmap: React.FC = () => {
 			const today = new Date()
 			const timeDiff = today.getTime() - minDate.getTime()
 			const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))
-			
+
 			// Calculate the position of today's date in the heatmap
 			const todayColumn = Math.floor(daysDiff / 7) // Assuming 7 days per column
 			const todayX = hexRadius * todayColumn * Math.sqrt(3) + hexRadius + margin.left + 3
-			
+
 			// Calculate scroll position to center today's date
 			const containerWidth = containerRef.current.clientWidth
-			const scrollLeft = todayX - (containerWidth / 2)
-			
+			const scrollLeft = todayX - containerWidth / 2
+
 			// Smooth scroll to the calculated position
 			containerRef.current.scrollTo({
 				left: Math.max(0, scrollLeft),
-				behavior: 'smooth'
+				behavior: "smooth",
 			})
 		}
 	}, [heatmapData])

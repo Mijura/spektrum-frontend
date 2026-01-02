@@ -1,6 +1,6 @@
 import { Button, Loader } from "@jigjoy-io/ui-library"
 import React, { useState } from "react"
-import { deploy } from "../api/project"
+import { deploy } from "../api/project-deployment"
 import { useSelectedProject } from "../hooks/store"
 import DeployBigIcon from "../shared/icons/deploy-big-icon"
 import { useDispatch } from "react-redux"

@@ -2,7 +2,7 @@ import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Toolt
 import React, { useEffect, useState, useRef } from "react"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
-import { createTask } from "../api/task"
+import { createTask } from "../api/project-planning"
 import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
@@ -77,7 +77,6 @@ const TasksPlanner: React.FC = () => {
 								>
 									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{task.title}</div>
 									<div className="mt-2 flex flex-row gap-2 w-full">
-
 										<div className="flex grow w-full justify-end">
 											<div onClick={() => handleRunTaskExecution(task)}>
 												<Tooltip message="Execute task">
