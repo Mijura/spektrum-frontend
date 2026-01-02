@@ -1,3 +1,5 @@
+import { ActivityData } from "./activity"
+
 export enum TaskStatus {
 	TODO = "Todo",
 	IN_PROGRESS = "In Progress",
@@ -12,6 +14,7 @@ export interface Task {
 	status: TaskStatus
 	created: string
 	updated: string
+	activities: ActivityData[]
 }
 
 export interface Version {

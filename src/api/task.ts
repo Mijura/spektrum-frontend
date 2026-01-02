@@ -49,3 +49,15 @@ export async function fetchAllTasks(projectId: string) {
 	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task/fetch-all/${projectId}`)
 	return await res.json()
 }
+
+export async function leaveComment(taskId: string, commentText: string, authorId: string) {
+	const options = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ taskId: taskId, comment: commentText, authorId: authorId }),
+	}
+	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task/leave-comment`, options)
+	return await res.json()
+}

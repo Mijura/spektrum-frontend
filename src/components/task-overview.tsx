@@ -4,13 +4,13 @@ import { useLayoutEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { addTasksToProject, taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
 import PlayIcon from "../shared/icons/play-icon"
-import { updateTaskDescription, updateTaskTitle } from "../api/task"
+import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/task"
 import { motion, AnimatePresence } from "framer-motion"
 import { getCurrentUser } from "aws-amplify/auth"
 import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
 import { planTasksWithAI } from "../api/project"
-import { reRunTaskExecution } from "../api/task-execution"
+import { develop } from "../api/ai-coding"
 
 export default function TaskOverview() {
 	const dispatch = useDispatch()
@@ -47,19 +47,18 @@ export default function TaskOverview() {
 		}
 	}, [task])
 
-	const handleReRunTaskExecution = async (): Promise<void> => {
+	const handleCommentLeft = async (): Promise<void> => {
 		const user = await getCurrentUser()
 		const authorId = user.signInDetails?.loginId
 		if (!authorId) return
-		if (commentText.length === 0) return
 
-		const comment = {
-			authorId,
-			taskId: task.id,
-			commentText,
-		}
+		if (commentText.length === 0) 
+			return
+
+		const taskWithComment = await leaveComment(task.id, commentText, authorId)
+
+		await develop(taskWithComment)
 		setCommentText("")
-		await reRunTaskExecution(comment)
 	}
 
 	const handlePlanTasksWithAI = async () => {
@@ -127,7 +126,7 @@ export default function TaskOverview() {
 									placeholder="Comment to re-run task…"
 								>
 									<SmartFooter>
-										<div className="flex items-end justify-end mx-1" onClick={handleReRunTaskExecution}>
+										<div className="flex items-end justify-end mx-1" onClick={handleCommentLeft}>
 											<Tooltip message="Re-run task">
 												<PlayIcon color="text-highlight" />
 											</Tooltip>

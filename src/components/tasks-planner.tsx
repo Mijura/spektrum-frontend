@@ -1,14 +1,14 @@
 import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@jigjoy-io/ui-library"
 import React, { useEffect, useState, useRef } from "react"
-import MoreOptionsIcon from "../shared/icons/more-options-icon"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
 import { createTask } from "../api/task"
 import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
-import { runTaskExecution } from "../api/task-execution"
+import { develop } from "../api/ai-coding"
 import { getCurrentUser } from "aws-amplify/auth"
+import { Task } from "../types/task"
 
 const TasksPlanner: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -21,13 +21,13 @@ const TasksPlanner: React.FC = () => {
 	const taskCreationModalOpened = useTaskCreationRequested()
 	const titleInputRef = useRef<HTMLInputElement>(null)
 
-	const handleRunTaskExecution = async (taskId: string) => {
+	const handleRunTaskExecution = async (task: Task) => {
 		const user = await getCurrentUser()
 		const userId = user.signInDetails?.loginId
 
 		if (!userId) return
 
-		await runTaskExecution(taskId, userId)
+		await develop(task)
 	}
 
 	const handleCreateTask = async () => {
@@ -40,7 +40,7 @@ const TasksPlanner: React.FC = () => {
 		setIsExecuting(true)
 		try {
 			const task = await handleCreateTask()
-			await handleRunTaskExecution(task.id)
+			await handleRunTaskExecution(task)
 		} finally {
 			setIsExecuting(false)
 		}
@@ -77,12 +77,9 @@ const TasksPlanner: React.FC = () => {
 								>
 									<div className="text-secondary-100 text-sm line-clamp-2 w-full">{task.title}</div>
 									<div className="mt-2 flex flex-row gap-2 w-full">
-										{/* <Tooltip message="Change status">
-											<MoreOptionsIcon />
-										</Tooltip> */}
 
 										<div className="flex grow w-full justify-end">
-											<div onClick={() => handleRunTaskExecution(task.id)}>
+											<div onClick={() => handleRunTaskExecution(task)}>
 												<Tooltip message="Execute task">
 													<PlayIcon />
 												</Tooltip>
