@@ -23,8 +23,8 @@ export async function fetchAccountTimeline(accountId: string, page: number = 1, 
 export async function fetchHeatmap(accountId: string) {
 	const url = new URL(`${OBSERVABILITY_ENDPOINT}/task-execution/heatmap`)
 	url.searchParams.append("accountId", accountId)
-	url.searchParams.append("startDate", "2025-01-01")
-	url.searchParams.append("endDate", "2025-12-31")
+	url.searchParams.append("startDate", "2026-01-01")
+	url.searchParams.append("endDate", "2026-12-31")
 
 	const res: any = await fetch(url)
 	return await res.json()
