@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { ActivityData, TaskCreatedMetadata } from "../../../types/activity"
+import { TaskCreatedActivity, TaskCreatedMetadata } from "@jigjoy-io/task-contracts"
 import CreateIcon from "../../../shared/icons/create-icon"
 
-export const TaskCreatedActivity = ({ activity }: { activity: ActivityData }) => (
+export const TaskCreatedActivityComponent = ({ activity }: { activity: TaskCreatedActivity }) => (
 	<div className="flex w-full items-center 2xl:gap-y-4 gap-x-1 h-fit">
 		<div className="w-fit h-fit">
 			<CreateIcon />

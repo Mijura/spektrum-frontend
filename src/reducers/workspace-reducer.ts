@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Task } from "../types/task"
+import { Task } from "@jigjoy-io/task-contracts"
 import { TaskExecutionDetails } from "../types/task-execution"
 
 export interface Project {

@@ -1,5 +1,5 @@
 import { AICodingClient } from "@jigjoy-io/ai-coding-client"
-import { Task } from "../types/task"
+import { Task } from "@jigjoy-io/task-contracts"
 
 const AI_CODING_ENDPOINT = process.env.AI_CODING_ENDPOINT || ""
 
