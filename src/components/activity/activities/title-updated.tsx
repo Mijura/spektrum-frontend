@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { ActivityData, TitleUpdatedMetadata } from "../../../types/activity"
+import { TitleUpdatedActivity, TitleUpdatedMetadata } from "@jigjoy-io/task-contracts"
 import EditIcon from "../../../shared/icons/edit-icon"
 
-export const TitleUpdatedActivity = ({ activity }: { activity: ActivityData }) => (
+export const TitleUpdatedActivityComponent = ({ activity }: { activity: TitleUpdatedActivity }) => (
 	<div className="flex w-full items-center 2xl:gap-y-4 gap-x-1 h-fit">
 		<div className="w-fit h-fit">
 			<EditIcon />

@@ -1,5 +1,5 @@
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
-import { Task } from "../types/task"
+import { Task } from "@jigjoy-io/task-contracts"
 
 const PROJECT_PLANNING_ENDPOINT = process.env.PROJECT_PLANNING_ENDPOINT
 

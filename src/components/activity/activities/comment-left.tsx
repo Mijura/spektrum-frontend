@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
 import { Chip } from "@jigjoy-io/ui-library"
-import { ActivityData, CommentLeftMetadata } from "../../../types/activity"
+import { CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-io/task-contracts"
 
-export const CommentLeftActivity = ({ activity }: { activity: ActivityData }) => (
+export const CommentLeftActivityComponent = ({ activity }: { activity: CommentLeftActivity  }) => (
 	<div className="w-full flex">
 		<div className="w-full flex flex-row items-center text-sm">
 			<motion.div className="italic bg-surface-light rounded-sm p-1 2xl:p-2 w-full" transition={{ duration: 0.2 }}>

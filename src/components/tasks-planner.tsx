@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
 import { develop } from "../api/ai-coding"
 import { getCurrentUser } from "aws-amplify/auth"
-import { Task } from "../types/task"
+import { Task } from "@jigjoy-io/task-contracts"
 
 const TasksPlanner: React.FC = () => {
 	const selectedProject = useSelectedProject()

@@ -1,26 +1,26 @@
-import { CommentLeftActivity } from "./activities/comment-left"
-import { TaskCreatedActivity } from "./activities/task-created"
-import { ActivityData } from "../../types/activity"
+import { CommentLeftActivityComponent } from "./activities/comment-left"
+import { TaskCreatedActivityComponent } from "./activities/task-created"
+import { TitleUpdatedActivityComponent } from "./activities/title-updated"
+import { DescriptionUpdatedActivityComponent } from "./activities/description-updated"
+import { StartedWorkActivityComponent } from "./activities/started-work"
+import { FinishedWorkActivityComponent } from "./activities/finished-work"
+import { Activity, ActivityType } from "@jigjoy-io/task-contracts"
 import { JSX } from "react"
-import { TitleUpdatedActivity } from "./activities/title-updated"
-import { DescriptionUpdatedActivity } from "./activities/description-updated"
-import { StartedWorkActivity } from "./activities/started-work"
-import { FinishedWorkActivity } from "./activities/finished-work"
 
-export function getActivityComponent(activity: ActivityData): JSX.Element {
+export function getActivityComponent(activity: Activity): JSX.Element {
 	switch (activity.type) {
-		case "CommentLeft":
-			return <CommentLeftActivity activity={activity} />
-		case "TaskCreated":
-			return <TaskCreatedActivity activity={activity} />
-		case "TitleUpdated":
-			return <TitleUpdatedActivity activity={activity} />
-		case "DescriptionUpdated":
-			return <DescriptionUpdatedActivity activity={activity} />
-		case "StartedWork":
-			return <StartedWorkActivity activity={activity} />
-		case "FinishedWork":
-			return <FinishedWorkActivity activity={activity} />
+		case ActivityType.COMMENT_LEFT:
+			return <CommentLeftActivityComponent activity={activity} />
+		case ActivityType.TASK_CREATED:
+			return <TaskCreatedActivityComponent activity={activity} />
+		case ActivityType.TITLE_UPDATED:
+			return <TitleUpdatedActivityComponent activity={activity} />
+		case ActivityType.DESCRIPTION_UPDATED:
+			return <DescriptionUpdatedActivityComponent activity={activity} />
+		case ActivityType.STARTED_WORK:
+			return <StartedWorkActivityComponent activity={activity} />
+		case ActivityType.FINISHED_WORK:
+			return <FinishedWorkActivityComponent activity={activity} />
 		default:
 			return <></>
 	}
