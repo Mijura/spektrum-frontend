@@ -41,15 +41,6 @@ export type FinishedWorkMetadata = {
 	phase: string
 }
 
-export type WorkflowRunMetadata = {
-	workflowId: string
-	status: WorkflowRunStatus
-	message: string
-	phase: string
-	title: string
-	error?: string
-}
-
 export type ActivityMetadata =
 	| CommentLeftMetadata
 	| TitleUpdatedMetadata
@@ -57,7 +48,6 @@ export type ActivityMetadata =
 	| TaskCreatedMetadata
 	| StartedWorkMetadata
 	| FinishedWorkMetadata
-	| WorkflowRunMetadata
 
 export enum ActivityType {
 	TASK_CREATED = "TaskCreated",
