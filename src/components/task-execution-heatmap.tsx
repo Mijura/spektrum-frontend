@@ -90,8 +90,7 @@ const TaskExecutionHeatmap: React.FC = () => {
 
 		// Weekdays (Show only Mon, Wed, Fri)
 		const weekdays = ["Mon", "Wed", "Fri"]
-		svg
-			.append("g")
+		svg.append("g")
 			.selectAll("text")
 			.data(weekdays)
 			.enter()
@@ -105,8 +104,7 @@ const TaskExecutionHeatmap: React.FC = () => {
 			.text((d) => d)
 
 		// X-Axis (Dynamically determined months)
-		svg
-			.append("g")
+		svg.append("g")
 			.selectAll("text")
 			.data(months)
 			.enter()
@@ -119,8 +117,7 @@ const TaskExecutionHeatmap: React.FC = () => {
 			.text((d) => d)
 
 		// Draw hexagons
-		svg
-			.append("g")
+		svg.append("g")
 			.selectAll(".hexagon")
 			.data(hexData)
 			.enter()
@@ -222,7 +219,10 @@ const TaskExecutionHeatmap: React.FC = () => {
 
 	return (
 		<div className="relative max-w-screen overflow-y-hidden">
-			<div ref={containerRef} className="flex w-full mx-auto overflow-x-auto h-fit overflow-y-hidden custom-scrollbar">
+			<div
+				ref={containerRef}
+				className="flex w-full mx-auto overflow-x-auto h-fit overflow-y-hidden custom-scrollbar"
+			>
 				<div className="xs:w-[320px] xl:w-[750px] 2xl:w-[800px] 3xl:w-[1200px]">
 					{!loading ? (
 						<div>

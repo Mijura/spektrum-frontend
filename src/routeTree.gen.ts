@@ -10,231 +10,213 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as AuthImport } from './routes/_auth'
-import { Route as IndexImport } from './routes/index'
-import { Route as AuthWorkspaceImport } from './routes/_auth.workspace'
-import { Route as AuthWelcomeImport } from './routes/_auth.welcome'
-import { Route as AuthPricingImport } from './routes/_auth.pricing'
-import { Route as AuthHomeImport } from './routes/_auth.home'
-import { Route as AuthDeployedImport } from './routes/_auth.deployed'
-import { Route as AuthProjectIdImport } from './routes/_auth.$projectId'
+import { Route as rootRoute } from "./routes/__root"
+import { Route as AuthImport } from "./routes/_auth"
+import { Route as IndexImport } from "./routes/index"
+import { Route as AuthWorkspaceImport } from "./routes/_auth.workspace"
+import { Route as AuthWelcomeImport } from "./routes/_auth.welcome"
+import { Route as AuthPricingImport } from "./routes/_auth.pricing"
+import { Route as AuthHomeImport } from "./routes/_auth.home"
+import { Route as AuthDeployedImport } from "./routes/_auth.deployed"
+import { Route as AuthProjectIdImport } from "./routes/_auth.$projectId"
 
 // Create/Update Routes
 
 const AuthRoute = AuthImport.update({
-  id: '/_auth',
-  getParentRoute: () => rootRoute,
+	id: "/_auth",
+	getParentRoute: () => rootRoute,
 } as any)
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRoute,
+	id: "/",
+	path: "/",
+	getParentRoute: () => rootRoute,
 } as any)
 
 const AuthWorkspaceRoute = AuthWorkspaceImport.update({
-  id: '/workspace',
-  path: '/workspace',
-  getParentRoute: () => AuthRoute,
+	id: "/workspace",
+	path: "/workspace",
+	getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthWelcomeRoute = AuthWelcomeImport.update({
-  id: '/welcome',
-  path: '/welcome',
-  getParentRoute: () => AuthRoute,
+	id: "/welcome",
+	path: "/welcome",
+	getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthPricingRoute = AuthPricingImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => AuthRoute,
+	id: "/pricing",
+	path: "/pricing",
+	getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthHomeRoute = AuthHomeImport.update({
-  id: '/home',
-  path: '/home',
-  getParentRoute: () => AuthRoute,
+	id: "/home",
+	path: "/home",
+	getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthDeployedRoute = AuthDeployedImport.update({
-  id: '/deployed',
-  path: '/deployed',
-  getParentRoute: () => AuthRoute,
+	id: "/deployed",
+	path: "/deployed",
+	getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthProjectIdRoute = AuthProjectIdImport.update({
-  id: '/$projectId',
-  path: '/$projectId',
-  getParentRoute: () => AuthRoute,
+	id: "/$projectId",
+	path: "/$projectId",
+	getParentRoute: () => AuthRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthImport
-      parentRoute: typeof rootRoute
-    }
-    '/_auth/$projectId': {
-      id: '/_auth/$projectId'
-      path: '/$projectId'
-      fullPath: '/$projectId'
-      preLoaderRoute: typeof AuthProjectIdImport
-      parentRoute: typeof AuthImport
-    }
-    '/_auth/deployed': {
-      id: '/_auth/deployed'
-      path: '/deployed'
-      fullPath: '/deployed'
-      preLoaderRoute: typeof AuthDeployedImport
-      parentRoute: typeof AuthImport
-    }
-    '/_auth/home': {
-      id: '/_auth/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof AuthHomeImport
-      parentRoute: typeof AuthImport
-    }
-    '/_auth/pricing': {
-      id: '/_auth/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof AuthPricingImport
-      parentRoute: typeof AuthImport
-    }
-    '/_auth/welcome': {
-      id: '/_auth/welcome'
-      path: '/welcome'
-      fullPath: '/welcome'
-      preLoaderRoute: typeof AuthWelcomeImport
-      parentRoute: typeof AuthImport
-    }
-    '/_auth/workspace': {
-      id: '/_auth/workspace'
-      path: '/workspace'
-      fullPath: '/workspace'
-      preLoaderRoute: typeof AuthWorkspaceImport
-      parentRoute: typeof AuthImport
-    }
-  }
+declare module "@tanstack/react-router" {
+	interface FileRoutesByPath {
+		"/": {
+			id: "/"
+			path: "/"
+			fullPath: "/"
+			preLoaderRoute: typeof IndexImport
+			parentRoute: typeof rootRoute
+		}
+		"/_auth": {
+			id: "/_auth"
+			path: ""
+			fullPath: ""
+			preLoaderRoute: typeof AuthImport
+			parentRoute: typeof rootRoute
+		}
+		"/_auth/$projectId": {
+			id: "/_auth/$projectId"
+			path: "/$projectId"
+			fullPath: "/$projectId"
+			preLoaderRoute: typeof AuthProjectIdImport
+			parentRoute: typeof AuthImport
+		}
+		"/_auth/deployed": {
+			id: "/_auth/deployed"
+			path: "/deployed"
+			fullPath: "/deployed"
+			preLoaderRoute: typeof AuthDeployedImport
+			parentRoute: typeof AuthImport
+		}
+		"/_auth/home": {
+			id: "/_auth/home"
+			path: "/home"
+			fullPath: "/home"
+			preLoaderRoute: typeof AuthHomeImport
+			parentRoute: typeof AuthImport
+		}
+		"/_auth/pricing": {
+			id: "/_auth/pricing"
+			path: "/pricing"
+			fullPath: "/pricing"
+			preLoaderRoute: typeof AuthPricingImport
+			parentRoute: typeof AuthImport
+		}
+		"/_auth/welcome": {
+			id: "/_auth/welcome"
+			path: "/welcome"
+			fullPath: "/welcome"
+			preLoaderRoute: typeof AuthWelcomeImport
+			parentRoute: typeof AuthImport
+		}
+		"/_auth/workspace": {
+			id: "/_auth/workspace"
+			path: "/workspace"
+			fullPath: "/workspace"
+			preLoaderRoute: typeof AuthWorkspaceImport
+			parentRoute: typeof AuthImport
+		}
+	}
 }
 
 // Create and export the route tree
 
 interface AuthRouteChildren {
-  AuthProjectIdRoute: typeof AuthProjectIdRoute
-  AuthDeployedRoute: typeof AuthDeployedRoute
-  AuthHomeRoute: typeof AuthHomeRoute
-  AuthPricingRoute: typeof AuthPricingRoute
-  AuthWelcomeRoute: typeof AuthWelcomeRoute
-  AuthWorkspaceRoute: typeof AuthWorkspaceRoute
+	AuthProjectIdRoute: typeof AuthProjectIdRoute
+	AuthDeployedRoute: typeof AuthDeployedRoute
+	AuthHomeRoute: typeof AuthHomeRoute
+	AuthPricingRoute: typeof AuthPricingRoute
+	AuthWelcomeRoute: typeof AuthWelcomeRoute
+	AuthWorkspaceRoute: typeof AuthWorkspaceRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
-  AuthProjectIdRoute: AuthProjectIdRoute,
-  AuthDeployedRoute: AuthDeployedRoute,
-  AuthHomeRoute: AuthHomeRoute,
-  AuthPricingRoute: AuthPricingRoute,
-  AuthWelcomeRoute: AuthWelcomeRoute,
-  AuthWorkspaceRoute: AuthWorkspaceRoute,
+	AuthProjectIdRoute: AuthProjectIdRoute,
+	AuthDeployedRoute: AuthDeployedRoute,
+	AuthHomeRoute: AuthHomeRoute,
+	AuthPricingRoute: AuthPricingRoute,
+	AuthWelcomeRoute: AuthWelcomeRoute,
+	AuthWorkspaceRoute: AuthWorkspaceRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '': typeof AuthRouteWithChildren
-  '/$projectId': typeof AuthProjectIdRoute
-  '/deployed': typeof AuthDeployedRoute
-  '/home': typeof AuthHomeRoute
-  '/pricing': typeof AuthPricingRoute
-  '/welcome': typeof AuthWelcomeRoute
-  '/workspace': typeof AuthWorkspaceRoute
+	"/": typeof IndexRoute
+	"": typeof AuthRouteWithChildren
+	"/$projectId": typeof AuthProjectIdRoute
+	"/deployed": typeof AuthDeployedRoute
+	"/home": typeof AuthHomeRoute
+	"/pricing": typeof AuthPricingRoute
+	"/welcome": typeof AuthWelcomeRoute
+	"/workspace": typeof AuthWorkspaceRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '': typeof AuthRouteWithChildren
-  '/$projectId': typeof AuthProjectIdRoute
-  '/deployed': typeof AuthDeployedRoute
-  '/home': typeof AuthHomeRoute
-  '/pricing': typeof AuthPricingRoute
-  '/welcome': typeof AuthWelcomeRoute
-  '/workspace': typeof AuthWorkspaceRoute
+	"/": typeof IndexRoute
+	"": typeof AuthRouteWithChildren
+	"/$projectId": typeof AuthProjectIdRoute
+	"/deployed": typeof AuthDeployedRoute
+	"/home": typeof AuthHomeRoute
+	"/pricing": typeof AuthPricingRoute
+	"/welcome": typeof AuthWelcomeRoute
+	"/workspace": typeof AuthWorkspaceRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/_auth': typeof AuthRouteWithChildren
-  '/_auth/$projectId': typeof AuthProjectIdRoute
-  '/_auth/deployed': typeof AuthDeployedRoute
-  '/_auth/home': typeof AuthHomeRoute
-  '/_auth/pricing': typeof AuthPricingRoute
-  '/_auth/welcome': typeof AuthWelcomeRoute
-  '/_auth/workspace': typeof AuthWorkspaceRoute
+	__root__: typeof rootRoute
+	"/": typeof IndexRoute
+	"/_auth": typeof AuthRouteWithChildren
+	"/_auth/$projectId": typeof AuthProjectIdRoute
+	"/_auth/deployed": typeof AuthDeployedRoute
+	"/_auth/home": typeof AuthHomeRoute
+	"/_auth/pricing": typeof AuthPricingRoute
+	"/_auth/welcome": typeof AuthWelcomeRoute
+	"/_auth/workspace": typeof AuthWorkspaceRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | ''
-    | '/$projectId'
-    | '/deployed'
-    | '/home'
-    | '/pricing'
-    | '/welcome'
-    | '/workspace'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | ''
-    | '/$projectId'
-    | '/deployed'
-    | '/home'
-    | '/pricing'
-    | '/welcome'
-    | '/workspace'
-  id:
-    | '__root__'
-    | '/'
-    | '/_auth'
-    | '/_auth/$projectId'
-    | '/_auth/deployed'
-    | '/_auth/home'
-    | '/_auth/pricing'
-    | '/_auth/welcome'
-    | '/_auth/workspace'
-  fileRoutesById: FileRoutesById
+	fileRoutesByFullPath: FileRoutesByFullPath
+	fullPaths: "/" | "" | "/$projectId" | "/deployed" | "/home" | "/pricing" | "/welcome" | "/workspace"
+	fileRoutesByTo: FileRoutesByTo
+	to: "/" | "" | "/$projectId" | "/deployed" | "/home" | "/pricing" | "/welcome" | "/workspace"
+	id:
+		| "__root__"
+		| "/"
+		| "/_auth"
+		| "/_auth/$projectId"
+		| "/_auth/deployed"
+		| "/_auth/home"
+		| "/_auth/pricing"
+		| "/_auth/welcome"
+		| "/_auth/workspace"
+	fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AuthRoute: typeof AuthRouteWithChildren
+	IndexRoute: typeof IndexRoute
+	AuthRoute: typeof AuthRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AuthRoute: AuthRouteWithChildren,
+	IndexRoute: IndexRoute,
+	AuthRoute: AuthRouteWithChildren,
 }
 
-export const routeTree = rootRoute
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {

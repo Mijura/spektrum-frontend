@@ -112,7 +112,10 @@ const TasksPlanner: React.FC = () => {
 								}}
 							/>
 						</ModalTrigger>
-						<ModalContent title="New task" className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]">
+						<ModalContent
+							title="New task"
+							className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]"
+						>
 							<Input
 								ref={titleInputRef}
 								placeholder="Task title"
@@ -131,7 +134,12 @@ const TasksPlanner: React.FC = () => {
 								<Button size="sm" variant="primary" onClick={handleCreateTask} disabled={isExecuting}>
 									Save for later
 								</Button>
-								<Button size="sm" variant="secondary" onClick={handleCreateTaskAndRunWorkflow} loading={isExecuting}>
+								<Button
+									size="sm"
+									variant="secondary"
+									onClick={handleCreateTaskAndRunWorkflow}
+									loading={isExecuting}
+								>
 									Start execution
 								</Button>
 							</div>

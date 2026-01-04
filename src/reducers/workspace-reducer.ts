@@ -112,7 +112,6 @@ export const workspaceSlice = createSlice({
 		entryPointLoaded: (state, action: PayloadAction<string>) => {
 			state.entryPoint = action.payload
 		},
-
 	},
 })
 

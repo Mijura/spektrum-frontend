@@ -58,7 +58,11 @@ const LeftSideMenu = () => {
 						<div className="py-2 w-[72px] flex justify-center items-center">
 							<Icon
 								color={
-									loadedPage === name ? "text-highlight" : hoveredOption === name ? "text-highlight-200" : "text-secondary-100"
+									loadedPage === name
+										? "text-highlight"
+										: hoveredOption === name
+											? "text-highlight-200"
+											: "text-secondary-100"
 								}
 							/>
 						</div>
@@ -92,7 +96,9 @@ const LeftSideMenu = () => {
 					}}
 				>
 					<div className="py-2 w-[72px] flex justify-center items-center">
-						<DiscordIcon color={hoveredOption === "discord" ? "text-highlight-200" : "text-secondary-100"} />
+						<DiscordIcon
+							color={hoveredOption === "discord" ? "text-highlight-200" : "text-secondary-100"}
+						/>
 					</div>
 					<AnimatePresence>
 						{menuExpanded && (

@@ -3,7 +3,7 @@ import { formatTimestamp } from "../../../shared/util"
 import { DescriptionUpdatedActivity, DescriptionUpdatedMetadata } from "@jigjoy-io/task-contracts"
 import EditIcon from "../../../shared/icons/edit-icon"
 
-export const DescriptionUpdatedActivityComponent = ({ activity }: { activity: DescriptionUpdatedActivity  }) => (
+export const DescriptionUpdatedActivityComponent = ({ activity }: { activity: DescriptionUpdatedActivity }) => (
 	<div className="flex w-full items-center 2xl:gap-y-4 gap-x-1 h-fit">
 		<div className="w-fit h-fit">
 			<EditIcon />

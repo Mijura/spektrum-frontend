@@ -108,9 +108,15 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 						</div>
 						<div className="flex flex-col gap-4 h-full py-4">
 							{projects.map((project: any) => (
-								<Card onClick={() => handleOpenProject(project)} className="w-full cursor-pointer" key={project.id}>
+								<Card
+									onClick={() => handleOpenProject(project)}
+									className="w-full cursor-pointer"
+									key={project.id}
+								>
 									<div className="text-highlight-200 text-sm">{project.name}</div>
-									<div className="mt-2 w-full text-xs italic text-secondary-100 line-clamp-2">{project.description}</div>
+									<div className="mt-2 w-full text-xs italic text-secondary-100 line-clamp-2">
+										{project.description}
+									</div>
 									<div className="flex flex-row justify-end grow gap-2 mt-2">
 										<div
 											onClick={(e) => {
@@ -144,8 +150,12 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 						<div className="flex flex-row h-fit">
 							<Modal isOpen={archiveModalOpened} onCloseCallback={() => setArchiveModalOpened(false)}>
 								<ModalContent title="Archive project">
-									<div className="flex flex-row gap-2">Are you sure you want to archive this project?</div>
-									<p className="text-sm text-secondary-100 py-2 italic">Your project activity will remain visible.</p>
+									<div className="flex flex-row gap-2">
+										Are you sure you want to archive this project?
+									</div>
+									<p className="text-sm text-secondary-100 py-2 italic">
+										Your project activity will remain visible.
+									</p>
 									<div className="flex justify-end gap-2 pt-4">
 										<Button variant="secondary" onClick={() => setArchiveModalOpened(false)}>
 											Cancel
@@ -163,7 +173,11 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 
 				{selectedProject && (
 					<div className="absolute flex flex-row w-[300px] h-fit">
-						<Modal isOpen={editModalOpened} onOpenCallback={() => {}} onCloseCallback={handleEditModalClose}>
+						<Modal
+							isOpen={editModalOpened}
+							onOpenCallback={() => {}}
+							onCloseCallback={handleEditModalClose}
+						>
 							<ModalTrigger>
 								<div
 									style={{ display: "none" }}

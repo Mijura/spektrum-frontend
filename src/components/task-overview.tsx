@@ -174,7 +174,10 @@ export default function TaskOverview() {
 				}}
 				onCloseCallback={() => setAiTaskModalOpened(false)}
 			>
-				<ModalContent title="Plan Tasks with AI" className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]">
+				<ModalContent
+					title="Plan Tasks with AI"
+					className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]"
+				>
 					<Textarea
 						ref={projectDescriptionRef}
 						placeholder="Describe what you want to build..."
@@ -184,7 +187,12 @@ export default function TaskOverview() {
 						rows={10}
 					/>
 					<div className="flex justify-end gap-2">
-						<Button size="sm" variant="primary" onClick={() => setAiTaskModalOpened(false)} disabled={isPlanningTasks}>
+						<Button
+							size="sm"
+							variant="primary"
+							onClick={() => setAiTaskModalOpened(false)}
+							disabled={isPlanningTasks}
+						>
 							Cancel
 						</Button>
 						<Button size="sm" variant="secondary" onClick={handlePlanTasksWithAI} loading={isPlanningTasks}>

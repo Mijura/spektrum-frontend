@@ -35,7 +35,9 @@ export const Route = createFileRoute("/_auth/deployed")({
 						>
 							<div className="">
 								<div className="text-highlight-200 text-lg font-semibold mb-2">{project.name}</div>
-								<div className="text-secondary-100 text-sm line-clamp-3 mb-2">{project.description}</div>
+								<div className="text-secondary-100 text-sm line-clamp-3 mb-2">
+									{project.description}
+								</div>
 							</div>
 						</Card>
 					))}

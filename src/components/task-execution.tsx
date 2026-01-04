@@ -31,7 +31,9 @@ const TaskExecution: React.FC<{ runInfo: TaskExecutionDetails }> = ({ runInfo })
 
 	return (
 		taskExecutionDetails && (
-			<Card className={`cursor-default p-1 rounded-md grow items-center flex flex-col w-full border-l-4 ${borderStyle}`}>
+			<Card
+				className={`cursor-default p-1 rounded-md grow items-center flex flex-col w-full border-l-4 ${borderStyle}`}
+			>
 				<div className="flex flex-row w-full">
 					<div className="pl-1 grow w-0">
 						<div className="gap-1 items-center flex flex-row">
