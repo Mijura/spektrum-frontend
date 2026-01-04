@@ -92,9 +92,13 @@ export default function PricingPage() {
 											<div className="text-highlight font-semibold p-0.5">Free Plan</div>
 											<div className="mt-2 text-secondary-100 italic">
 												Get started with AI –{" "}
-												<span className="font-semibold text-progress">run up to 5 tasks per day for free.</span>
+												<span className="font-semibold text-progress">
+													run up to 5 tasks per day for free.
+												</span>
 											</div>
-											<div className="mt-2 text-secondary-100 italic">Buy tokens anytime to unlock more task executions.</div>
+											<div className="mt-2 text-secondary-100 italic">
+												Buy tokens anytime to unlock more task executions.
+											</div>
 										</div>
 									</div>
 								</div>
@@ -132,10 +136,16 @@ export default function PricingPage() {
 
 								<div className="text-center space-y-2">
 									<p className="text-xl font-semibold text-progress">{tokenAmount} Task Runs</p>
-									<p className="text-sm text-highlight italic mt-4">* 50 cents per task run. No monthly token resets.</p>
+									<p className="text-sm text-highlight italic mt-4">
+										* 50 cents per task run. No monthly token resets.
+									</p>
 								</div>
 
-								<Button size="lg" className="bg-secondary text-primary hover:bg-gray-300/80" onClick={openCheckout}>
+								<Button
+									size="lg"
+									className="bg-secondary text-primary hover:bg-gray-300/80"
+									onClick={openCheckout}
+								>
 									Continue to Checkout
 								</Button>
 							</div>
