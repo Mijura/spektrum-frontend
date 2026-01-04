@@ -11,7 +11,8 @@ import { pageNavigated } from "../reducers/navigation-reducer"
 import EditIcon from "../shared/icons/edit-icon"
 import Project from "../types/project"
 import {
-	entryPointLoaded,
+	entryPointDevLoaded,
+	entryPointProdLoaded,
 	projectInitalizationCompleted,
 	projectInitalizationRequested,
 } from "../reducers/workspace-reducer"
@@ -42,7 +43,8 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 
 			const project = response.project
 			setProjects([...projects, project])
-			dispatch(entryPointLoaded(response.entryPoint))
+			dispatch(entryPointDevLoaded(response.entryPoint))
+			dispatch(entryPointProdLoaded(null))
 			dispatch(pageNavigated("workspace"))
 
 			await navigate({

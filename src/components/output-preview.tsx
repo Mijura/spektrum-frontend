@@ -2,14 +2,14 @@ import { Tooltip } from "@jigjoy-io/ui-library"
 import React, { useEffect } from "react"
 import ReloadIcon from "../shared/icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"
-import { useEntryPoint, useSelectedProject } from "../hooks/store"
+import { useEntryPointDev, useSelectedProject } from "../hooks/store"
 import { AnimatePresence, motion } from "framer-motion"
 
 const OutputPreview: React.FC = () => {
 	const selectedProject = useSelectedProject()
 
 	const [iframeKey, setIframeKey] = React.useState(uuidv4())
-	const entryPoint = useEntryPoint()
+	const entryPointDev = useEntryPointDev()
 
 	const reloadPage = async () => {
 		setIframeKey(uuidv4())
@@ -40,10 +40,10 @@ const OutputPreview: React.FC = () => {
 						</Tooltip>
 					</div>
 					<div className="flex h-full">
-						{entryPoint && (
+						{entryPointDev && (
 							<iframe
 								key={iframeKey}
-								src={`${entryPoint.publicAppUrl}/?nocache=${Date.now()}`}
+								src={`${entryPointDev.publicAppUrl}/?nocache=${Date.now()}`}
 								className="grow"
 							/>
 						)}

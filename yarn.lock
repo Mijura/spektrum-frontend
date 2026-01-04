@@ -970,11 +970,12 @@
   resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.12.tgz"
   integrity sha512-uqZMTLr/zR/ed4jIGnwSLkaHmPjOjJvnm6TVVitAa08SLS9Z0VM8wIRx7gWbJB5/J54YuIMInDquWyYvQLZkgw==
 
-"@jigjoy-io/ai-coding-client@^0.0.7":
-  version "0.0.7"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ai-coding-client/0.0.7/059e01e890110144c282b195919d7ad79bad322c"
-  integrity sha512-9/OJoQkIqfH9B8RFWdc1Wv/OCf4tVqfJsTek9TwQTjmVvWZrh4wmsKBIHw8OhHthVlTpH1Y+TxPBsTHNauEJJA==
+"@jigjoy-io/ai-coding-client@^0.0.8":
+  version "0.0.8"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ai-coding-client/0.0.8/11d91e542c3f59a427b716e93fe2e7bea0be9bed"
+  integrity sha512-M6lGhgmdoysX9CTs6/XPfYDlQytYuSHK12FWz+eDSDu7sy/oIFk4V8a/jrcfLe0FtdHVID2HPzAhNH4/88hQ/A==
   dependencies:
+    "@jigjoy-io/task-contracts" "^0.0.2"
     axios "^1.13.2"
 
 "@jigjoy-io/project-deployment-client@^0.0.6":

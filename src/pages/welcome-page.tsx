@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { createNewProject } from "../api/project-planning"
 import { useState } from "react"
 import { getCurrentUser } from "aws-amplify/auth"
-import { entryPointLoaded } from "../reducers/workspace-reducer"
+import { entryPointDevLoaded, entryPointProdLoaded } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 
 const sentences = [
@@ -48,9 +48,10 @@ export default function WelcomePage() {
 			setLoading(true)
 			const user = await getCurrentUser()
 			const response: any = await createNewProject(user.username)
+			dispatch(entryPointDevLoaded(response.entryPoint))
+			dispatch(entryPointProdLoaded(null))
 			const project = response.project
 
-			dispatch(entryPointLoaded(response.entryPoint))
 			navigate({
 				to: `/${project.id}`,
 			})

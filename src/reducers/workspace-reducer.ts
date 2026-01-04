@@ -23,7 +23,8 @@ export interface WorkspaceState {
 	taskExecutionHeatmap: TaskExecutionHeatmap[]
 	projectInitialization: boolean
 	taskCreationRequested: boolean
-	entryPoint: string | null
+	entryPointDev: { moduleId: string; publicAppUrl: string } | null
+	entryPointProd: { moduleId: string; publicAppUrl: string } | null
 }
 
 let initialState: WorkspaceState = {
@@ -36,7 +37,8 @@ let initialState: WorkspaceState = {
 	taskExecutionHeatmap: [],
 	projectInitialization: false,
 	taskCreationRequested: false,
-	entryPoint: null,
+	entryPointDev: null,
+	entryPointProd: null,
 }
 
 export const workspaceSlice = createSlice({
@@ -109,8 +111,12 @@ export const workspaceSlice = createSlice({
 			state.selectedProject.tasks.push(...action.payload)
 		},
 
-		entryPointLoaded: (state, action: PayloadAction<string>) => {
-			state.entryPoint = action.payload
+		entryPointDevLoaded: (state, action: PayloadAction<{ moduleId: string; publicAppUrl: string }>) => {
+			state.entryPointDev = action.payload
+		},
+
+		entryPointProdLoaded: (state, action: PayloadAction<{ moduleId: string; publicAppUrl: string } | null>) => {
+			state.entryPointProd = action.payload
 		},
 	},
 })
@@ -130,7 +136,8 @@ export const {
 	projectInitalizationRequested,
 	projectInitalizationCompleted,
 	addTasksToProject,
-	entryPointLoaded,
+	entryPointDevLoaded,
+	entryPointProdLoaded,
 } = workspaceSlice.actions
 
 export default workspaceSlice.reducer

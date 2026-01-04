@@ -5,7 +5,8 @@ import { createNewProject } from "../api/project-planning"
 import { getCurrentUser } from "aws-amplify/auth"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import {
-	entryPointLoaded,
+	entryPointDevLoaded,
+	entryPointProdLoaded,
 	projectInitalizationCompleted,
 	projectInitalizationRequested,
 } from "../reducers/workspace-reducer"
@@ -29,7 +30,8 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 			const response: any = await createNewProject(user.username)
 			const project = response.project
 
-			dispatch(entryPointLoaded(response.entryPoint))
+			dispatch(entryPointDevLoaded(response.entryPoint))
+			dispatch(entryPointProdLoaded(null))
 			dispatch(pageNavigated("workspace"))
 			await navigate({
 				to: `/${project.id}`,

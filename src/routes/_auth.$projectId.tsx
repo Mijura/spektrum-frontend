@@ -7,18 +7,20 @@ import { fetchAllTasks } from "../api/project-planning"
 import { PostError } from "../shared/errors/post-error"
 import { useSelectedProject } from "../hooks/store"
 import { useActivityListener } from "../hooks/activity-listener"
-import { entryPointLoaded, projectSelected, taskSelected } from "../reducers/workspace-reducer"
+import { entryPointDevLoaded, entryPointProdLoaded, projectSelected, taskSelected } from "../reducers/workspace-reducer"
 import ProjectPage from "../pages/project-page"
 import { getEntryPoint } from "../api/project-deployment"
+import { EnvironmentType } from "@jigjoy-io/project-deployment-client"
 
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {
-		const [project, tasks, entryPoint] = await Promise.all([
+		const [project, tasks, entryPointDev, entryPointProd] = await Promise.all([
 			fetchProject(projectId),
 			fetchAllTasks(projectId),
-			getEntryPoint(projectId),
+			getEntryPoint(projectId, EnvironmentType.DEV),
+			getEntryPoint(projectId, EnvironmentType.PROD),
 		])
-		return { project, tasks, entryPoint }
+		return { project, tasks, entryPointDev, entryPointProd }
 	},
 	errorComponent: PostError,
 	pendingComponent: PendingComponent,
@@ -58,7 +60,11 @@ function WorkspaceComponent() {
 				}),
 			)
 
-			dispatch(entryPointLoaded(data.entryPoint))
+			console.log(`entryPointDev: ${JSON.stringify(data.entryPointDev)}`)
+			console.log(`entryPointProd: ${JSON.stringify(data.entryPointProd)}`)
+
+			dispatch(entryPointDevLoaded(data.entryPointDev))
+			dispatch(entryPointProdLoaded(data.entryPointProd))
 			setIsLoaded(true)
 		}
 	}, [data])

@@ -1,21 +1,22 @@
 import { Button, Loader } from "@jigjoy-io/ui-library"
 import React, { useState } from "react"
-import { deploy } from "../api/project-deployment"
-import { useSelectedProject } from "../hooks/store"
+import { useEntryPointProd, useSelectedProject } from "../hooks/store"
 import DeployBigIcon from "../shared/icons/deploy-big-icon"
 import { useDispatch } from "react-redux"
-import { projectUpdated } from "../reducers/workspace-reducer"
+import { deployToProduction } from "../api/ai-coding"
+import { entryPointProdLoaded } from "../reducers/workspace-reducer"
 
 const Deployment: React.FC = () => {
 	const selectedProject = useSelectedProject()
 	const dispatch = useDispatch()
 
 	const [deploying, setDeploying] = useState<boolean>(false)
+	const entryPointProd = useEntryPointProd()
 
 	const handleDeploy = async () => {
 		setDeploying(true)
-		const deployedProject = await deploy(selectedProject.id)
-		dispatch(projectUpdated({ ...selectedProject, ...deployedProject }))
+		const entryPointProd = await deployToProduction(selectedProject.id)
+		dispatch(entryPointProdLoaded(entryPointProd))
 		setDeploying(false)
 	}
 
@@ -28,14 +29,14 @@ const Deployment: React.FC = () => {
 					<div className="text-secondary-100 text-sm">
 						Once deployed, you’ll get a unique link with latest changes to share your app with others.
 					</div>
-					{selectedProject.latestProdDeployment && (
+					{entryPointProd && (
 						<div className="text-secondary-100 text-sm">
 							Latest deployment is available at{" "}
 							<a
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-highlight"
-								href={selectedProject.latestProdDeployment.url}
+								href={entryPointProd.publicAppUrl}
 							>
 								link
 							</a>

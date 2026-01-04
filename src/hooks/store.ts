@@ -14,4 +14,5 @@ export const useTaskExecutionHeatmap = () => useAppSelector((state: any) => stat
 export const useTaskExecutionTimeline = () => useAppSelector((state: any) => state.workspace.taskExecutionTimeline)
 export const useProjectInitialization = () => useAppSelector((state: any) => state.workspace.projectInitialization)
 export const useTaskCreationRequested = () => useAppSelector((state: any) => state.workspace.taskCreationRequested)
-export const useEntryPoint = () => useAppSelector((state: any) => state.workspace.entryPoint)
+export const useEntryPointDev = () => useAppSelector((state: any) => state.workspace.entryPointDev)
+export const useEntryPointProd = () => useAppSelector((state: any) => state.workspace.entryPointProd)
