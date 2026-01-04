@@ -88,8 +88,8 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: Proj
 						<ProjectsIcon />
 						<div className="font-semibold text-highlight-100 mt-4">Projects</div>
 						<div className="text-secondary-100 text-sm">
-							Projects are collections of related tasks that help you achieve a specific goal, like building a landing page,
-							designing an onboarding flow, or creating a layout prototype.
+							Projects are collections of related tasks that help you achieve a specific goal, like
+							building a landing page, designing an onboarding flow, or creating a layout prototype.
 						</div>
 						<div>
 							<Button onClick={handleCreateNewProject}>Create first project</Button>

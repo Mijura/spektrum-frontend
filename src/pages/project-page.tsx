@@ -61,7 +61,10 @@ export default function ProjectPage() {
 								</svg>
 								Output
 							</div>
-							<div className={getButtonClassName("deployment")} onClick={() => setActiveTab("deployment")}>
+							<div
+								className={getButtonClassName("deployment")}
+								onClick={() => setActiveTab("deployment")}
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
