@@ -29,7 +29,7 @@ const Deployment: React.FC = () => {
 					<div className="text-secondary-100 text-sm">
 						Once deployed, you’ll get a unique link with latest changes to share your app with others.
 					</div>
-					{entryPointProd && (
+					{entryPointProd && entryPointProd.publicAppUrl && (
 						<div className="text-secondary-100 text-sm">
 							Latest deployment is available at{" "}
 							<a
