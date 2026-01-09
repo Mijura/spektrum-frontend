@@ -1,12 +1,12 @@
-import { TaskExecutionDetails, TaskExecutionStatus } from "../types/task-execution"
 import { Card, Chip } from "@jigjoy-io/ui-library"
 import WatchIcon from "../shared/icons/watch-icon"
 import { formatTimestamp } from "../shared/util"
 import { useEffect, useState } from "react"
+import { TaskExecution, TaskExecutionStatus } from "@jigjoy-io/observability-client"
 
-const TaskExecution: React.FC<{ runInfo: TaskExecutionDetails }> = ({ runInfo }) => {
+const TaskExecutionComponent: React.FC<{ runInfo: TaskExecution }> = ({ runInfo }) => {
 	const [borderStyle, setBorderStyle] = useState("border-l-highlight")
-	const [taskExecutionDetails, setTaskExecutionDetails] = useState<TaskExecutionDetails | null>(null)
+	const [taskExecutionDetails, setTaskExecutionDetails] = useState<TaskExecution | null>(null)
 
 	const getBorder = (status: TaskExecutionStatus) => {
 		switch (status) {
@@ -57,4 +57,4 @@ const TaskExecution: React.FC<{ runInfo: TaskExecutionDetails }> = ({ runInfo })
 	)
 }
 
-export default TaskExecution
+export default TaskExecutionComponent

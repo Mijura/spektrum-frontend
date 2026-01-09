@@ -978,6 +978,13 @@
     "@jigjoy-io/task-contracts" "^0.0.2"
     axios "^1.13.2"
 
+"@jigjoy-io/observability-client@^0.0.2":
+  version "0.0.2"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-io/observability-client/0.0.2/7eec10e25c36da656ee2f1dd80dbac2bb636a0d0"
+  integrity sha512-BzdYWM6yvx3puIe8S5bPbUmlAAFui7zPG2jeUtr/kZR2kohDuj63uRG5z7339v6oE6gKbNpKpWfHHPlc5cnFxg==
+  dependencies:
+    axios "^1.13.2"
+
 "@jigjoy-io/project-deployment-client@^0.0.6":
   version "0.0.6"
   resolved "https://npm.pkg.github.com/download/@jigjoy-io/project-deployment-client/0.0.6/334eac075ec91839aa5a8ed042ce6a744e4aac61"

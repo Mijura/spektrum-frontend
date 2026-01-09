@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { io, Socket } from "socket.io-client"
-import { TaskExecutionDetails } from "../types/task-execution"
 import { taskExecutionTriggered, taskExecutionUpdated } from "../reducers/workspace-reducer"
+import { TaskExecution } from "@jigjoy-io/observability-client"
 
 type UseTaskExecutionListenerProps = {
 	accountId: string | null
@@ -14,11 +14,11 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 	const socketRef = useRef<Socket | null>(null)
 	const dispatch = useDispatch()
 
-	const onTaskExecutionCreation = (taskExecution: TaskExecutionDetails) => {
+	const onTaskExecutionCreation = (taskExecution: TaskExecution) => {
 		dispatch(taskExecutionTriggered(taskExecution))
 	}
 
-	const onTaskExecutionUpdate = (taskExecution: TaskExecutionDetails) => {
+	const onTaskExecutionUpdate = (taskExecution: TaskExecution) => {
 		dispatch(taskExecutionUpdated(taskExecution))
 	}
 
