@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react"
-
 import { useTaskExecutionTimeline, useSelectedProjectId } from "../hooks/store"
-import { TaskExecutionDetails } from "../types/task-execution"
-import TaskExecution from "./task-execution"
+import TaskExecutionComponent from "./task-execution"
 import { Loader } from "@jigjoy-io/ui-library"
 import { fetchProjectTimeline, fetchAccountTimeline } from "../api/observability"
 import { taskExecutionTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { getCurrentUser } from "aws-amplify/auth"
 import { useTaskExecutionListener } from "../hooks/task-execution-listener"
+import { TaskExecution } from "@jigjoy-io/observability-client"
 
 const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type }) => {
 	const selectedProjectId = useSelectedProjectId()
@@ -59,10 +58,10 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 					</div>
 				</div>
 			) : (
-				taskExecutionTimeline.map((runInfo: TaskExecutionDetails, index: number) => (
+				taskExecutionTimeline.map((runInfo: TaskExecution, index: number) => (
 					<div key={index}>
 						<div className="flex flex-col items-center px-3 text-sm">
-							<TaskExecution runInfo={runInfo} />
+							<TaskExecutionComponent runInfo={runInfo} />
 						</div>
 					</div>
 				))

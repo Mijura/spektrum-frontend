@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Task } from "@jigjoy-io/task-contracts"
-import { TaskExecutionDetails } from "../types/task-execution"
+import { Heatmap, TaskExecution } from "@jigjoy-io/observability-client"
 
 export interface Project {
 	id?: string
@@ -19,8 +19,8 @@ export interface TaskExecutionHeatmap {
 export interface WorkspaceState {
 	selectedProject: Project
 	selectedTask: Task | null
-	taskExecutionTimeline: TaskExecutionDetails[]
-	taskExecutionHeatmap: TaskExecutionHeatmap[]
+	taskExecutionTimeline: TaskExecution[]
+	taskExecutionHeatmap: Heatmap[]
 	projectInitialization: boolean
 	taskCreationRequested: boolean
 	entryPointDev: { moduleId: string; publicAppUrl: string } | null
@@ -73,7 +73,7 @@ export const workspaceSlice = createSlice({
 			)
 		},
 
-		taskExecutionTimelineUpdated: (state, action: PayloadAction<TaskExecutionDetails[]>) => {
+		taskExecutionTimelineUpdated: (state, action: PayloadAction<TaskExecution[]>) => {
 			state.taskExecutionTimeline = action.payload
 		},
 
@@ -81,12 +81,12 @@ export const workspaceSlice = createSlice({
 			state.taskExecutionHeatmap = action.payload
 		},
 
-		taskExecutionTriggered: (state, action: PayloadAction<TaskExecutionDetails>) => {
+		taskExecutionTriggered: (state, action: PayloadAction<TaskExecution>) => {
 			// adding newly created task execution to the beginning of the timeline
 			state.taskExecutionTimeline.unshift(action.payload)
 		},
 
-		taskExecutionUpdated: (state, action: PayloadAction<TaskExecutionDetails>) => {
+		taskExecutionUpdated: (state, action: PayloadAction<TaskExecution>) => {
 			state.taskExecutionTimeline = state.taskExecutionTimeline.map((taskExecution) =>
 				taskExecution.id === action.payload.id ? action.payload : taskExecution,
 			)

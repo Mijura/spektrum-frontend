@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@jigjoy-io/ai-coding-client": "^0.0.8",
+		"@jigjoy-io/observability-client": "^0.0.2",
 		"@jigjoy-io/project-deployment-client": "^0.0.6",
 		"@jigjoy-io/task-contracts": "^0.0.2",
 		"@jigjoy-io/ui-library": "^0.1.1",
