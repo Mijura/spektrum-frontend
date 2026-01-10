@@ -26,7 +26,6 @@ const TasksPlanner: React.FC = () => {
 		const userId = user.signInDetails?.loginId
 
 		if (!userId) return
-
 		await develop(task)
 	}
 
