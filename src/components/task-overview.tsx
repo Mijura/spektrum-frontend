@@ -56,7 +56,7 @@ export default function TaskOverview() {
 
 		const taskWithComment = await leaveComment(task.id, commentText, authorId)
 
-		await develop(taskWithComment)
+		await develop(taskWithComment, authorId)
 		setCommentText("")
 	}
 
