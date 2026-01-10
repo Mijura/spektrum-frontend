@@ -8,7 +8,7 @@ type UseTaskExecutionListenerProps = {
 	accountId: string | null
 }
 
-const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
+const AI_CODING_ENDPOINT = process.env.AI_CODING_ENDPOINT
 
 export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
@@ -25,7 +25,7 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 	useEffect(() => {
 		if (!accountId) return
 
-		const socket = io(HONEYCOMB_ENDPOINT)
+		const socket = io(AI_CODING_ENDPOINT)
 
 		socket.on("connect", () => {
 			socket.emit("subscribe", accountId)
