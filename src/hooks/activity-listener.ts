@@ -8,7 +8,7 @@ type UseActivityListenerProps = {
 	room: string
 }
 
-const HONEYCOMB_ENDPOINT = process.env.HONEYCOMB_ENDPOINT
+const AI_CODING_ENDPOINT = process.env.AI_CODING_ENDPOINT
 
 export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
@@ -21,7 +21,7 @@ export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 	useEffect(() => {
 		if (!room) return
 
-		const socket = io(HONEYCOMB_ENDPOINT)
+		const socket = io(AI_CODING_ENDPOINT)
 
 		socket.on("connect", () => {
 			socket.emit("subscribe", room)
