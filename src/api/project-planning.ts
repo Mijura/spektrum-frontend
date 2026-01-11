@@ -1,7 +1,10 @@
+import { ProjectPlanningClient } from "@jigjoy-io/project-planning-client"
 import { ProjectNotFoundError } from "../shared/errors/project-not-found-error"
 import { Task } from "@jigjoy-io/task-contracts"
 
-const PROJECT_PLANNING_ENDPOINT = process.env.PROJECT_PLANNING_ENDPOINT
+const PROJECT_PLANNING_ENDPOINT = process.env.PROJECT_PLANNING_ENDPOINT || ""
+
+const projectPlanningClient = new ProjectPlanningClient(PROJECT_PLANNING_ENDPOINT)
 
 export async function archiveProject(projectId: string): Promise<any> {
 	const options = {
@@ -127,13 +130,5 @@ export async function fetchAllTasks(projectId: string) {
 }
 
 export async function leaveComment(taskId: string, commentText: string, authorId: string) {
-	const options = {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ taskId: taskId, comment: commentText, authorId: authorId }),
-	}
-	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task/leave-comment`, options)
-	return await res.json()
+	return await projectPlanningClient.leaveComment(taskId, commentText, authorId)
 }

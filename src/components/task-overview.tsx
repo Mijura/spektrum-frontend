@@ -11,6 +11,8 @@ import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
 import { planTasksWithAI } from "../api/project-planning"
 import { develop } from "../api/ai-coding"
+import { ActivityType, CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-io/task-contracts"
+import { v4 as uuidv4 } from "uuid"
 
 export default function TaskOverview() {
 	const dispatch = useDispatch()
@@ -54,10 +56,30 @@ export default function TaskOverview() {
 
 		if (commentText.length === 0) return
 
-		const taskWithComment = await leaveComment(task.id, commentText, authorId)
+		const commentMetadata: CommentLeftMetadata = {
+			commentText: commentText,
+			authorId: authorId,
+		}
+
+		const commentLeftActivity: CommentLeftActivity = {
+			id: uuidv4(),
+			type: ActivityType.COMMENT_LEFT,
+			projectId: task.projectId,
+			taskId: task.id,
+			userId: authorId,
+			occurredAt: new Date().toISOString(),
+			metadata: commentMetadata,
+		}
+
+		setCommentText("")
+
+		const mockTaskWithComment = { ...task, activities: [...task.activities, commentLeftActivity] }
+		dispatch(taskUpdated(mockTaskWithComment))
+
+		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText, authorId)
+		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
 		await develop(taskWithComment, authorId)
-		setCommentText("")
 	}
 
 	const handlePlanTasksWithAI = async () => {
