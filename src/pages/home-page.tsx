@@ -6,7 +6,7 @@ import Project from "../types/project"
 import ProjectsOverview from "../components/projects-overview"
 import WorkflowRunTimeline from "../components/task-execution-timeline"
 
-export default function HomePage({ loadedProjects }: { loadedProjects: Project[] }) {
+export default function HomePage({ loadedProjects }: { loadedProjects: any[] }) {
 	const profile = useProfile()
 	const projectInitialization = useProjectInitialization()
 

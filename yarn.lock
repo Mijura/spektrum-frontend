@@ -992,10 +992,10 @@
   dependencies:
     axios "^1.13.2"
 
-"@jigjoy-io/project-planning-client@^0.0.3":
-  version "0.0.3"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/project-planning-client/0.0.3/e97a42c5efe1ba87ed5f2b02163ecabba9fcbef2"
-  integrity sha512-x2MzzbM7CEtmM5cXyZrM6yPTIpa4/qEh3OqmlN9ExjmJP5dKv+DF5fzNXBCY/eiZQyklWxstryEjQF6cEOOVRA==
+"@jigjoy-io/project-planning-client@^0.0.5":
+  version "0.0.5"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-io/project-planning-client/0.0.5/1c8355c61aee2c6fe0c9726d6c2ba06520749663"
+  integrity sha512-UWdQpqnZND+0jgXMYju6VsQtpBubYEzkrQUXWz+hF27lVobs0n6gpBy/pTtjoaFTTJckMd6h3v3pwuYeDuIeEA==
   dependencies:
     "@jigjoy-io/task-contracts" "^0.0.2"
     axios "^1.13.2"
