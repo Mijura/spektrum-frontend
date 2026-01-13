@@ -11,6 +11,7 @@ export const Route = createFileRoute("/_auth/home")({
 			return await fetchAllProjects(user.userId)
 		} catch (error: any) {
 			console.error(error)
+			return []
 		}
 	},
 	component: () => {

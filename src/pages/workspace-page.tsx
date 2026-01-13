@@ -15,7 +15,7 @@ import { useState } from "react"
 import ProjectsIcon from "../shared/icons/projects-icon"
 import { useProjectInitialization } from "../hooks/store"
 
-export default function WorkspacePage({ loadedProjects }: { loadedProjects: Project[] }) {
+export default function WorkspacePage({ loadedProjects }: { loadedProjects: any[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [projects, setProjects] = useState<Project[]>(loadedProjects)

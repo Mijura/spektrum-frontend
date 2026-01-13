@@ -1,5 +1,5 @@
 import { ErrorComponent, ErrorComponentProps } from "@tanstack/react-router"
-import { ProjectNotFoundError } from "./project-not-found-error"
+import { ProjectNotFoundError } from "@jigjoy-io/project-planning-client"
 import { ProjectNotFound } from "./project-not-found"
 
 export function PostError({ error }: ErrorComponentProps) {
