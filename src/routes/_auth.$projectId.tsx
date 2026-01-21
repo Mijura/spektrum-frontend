@@ -32,7 +32,7 @@ export const Route: any = createFileRoute("/_auth/$projectId")({
 function PendingComponent() {
 	return (
 		<div className="w-screen h-screen bg-surface flex items-center justify-center">
-			<Loader size="large" message="Loading page..." />
+			<Loader size="large" message="Loading project..." />
 		</div>
 	)
 }
