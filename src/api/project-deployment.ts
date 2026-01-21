@@ -1,6 +1,6 @@
 import { EnvironmentType, ProjectDeploymentClient } from "@jigjoy-io/project-deployment-client"
 
-const PROJECT_DEPLOYMENT_ENDPOINT = process.env.PROJECT_DEPLOYMENT_ENDPOINT || ""
+const PROJECT_DEPLOYMENT_ENDPOINT = process.env.PROJECT_DEPLOYMENT_ENDPOINT as string
 
 const projectDeploymentClient = new ProjectDeploymentClient(PROJECT_DEPLOYMENT_ENDPOINT)
 
