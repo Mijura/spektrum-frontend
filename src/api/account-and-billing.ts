@@ -1,7 +1,5 @@
 export const ACCOUNT_AND_BILLING_ENDPOINT = process.env.ACCOUNT_AND_BILLING_ENDPOINT
 
-import { signIn, confirmSignIn } from "aws-amplify/auth"
-
 export async function sendMagicLink(auth: any) {
 	const options = {
 		method: "POST",
@@ -15,16 +13,16 @@ export async function sendMagicLink(auth: any) {
 	return await res.json()
 }
 
-export async function verifyMagicLink(email: string, challengeResponse: string) {
+export async function verifyMagickLinkToken(email: string, token: string) {
 
-	const res = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link`, {
+	const res = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link-token`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
 			email,
-			challengeResponse,
+			token,
 		}),
 	})
 

@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import LeftSideMenu from "../components/left-side-menu"
-import { handleConfirmSignIn } from "../api/account-and-billing"
+import { verifyMagickLinkToken } from "../api/account-and-billing"
 import { getCurrentUser } from "aws-amplify/auth"
 import { Loader } from "@jigjoy-io/ui-library"
 
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/_auth")({
 
 		if (email !== null && token !== null) {
 			try {
-				await handleConfirmSignIn(email, token)
+				await verifyMagickLinkToken(email, token)
 			} catch (error: any) {
 				console.error(error)
 			}
