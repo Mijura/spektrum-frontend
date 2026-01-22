@@ -1,8 +1,8 @@
-import { Button, Input, Loader, Logo } from "@jigjoy-io/ui-library"
+import { Button, Input, Loader } from "@jigjoy-io/ui-library"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { isEmail } from "../shared/util"
-import { createSingInChallenge } from "../api/account-and-billing"
+import { sendMagicLink } from "../api/account-and-billing"
 
 export default function LoginPage() {
 	const [message, setMessage] = useState("")
@@ -20,7 +20,7 @@ export default function LoginPage() {
 				setColor("text-danger")
 				setMessage("Please provide valid email address")
 			} else {
-				await createSingInChallenge({ email: email })
+				await sendMagicLink({ email: email })
 				setIsLoggedIn(true)
 				setColor("text-secondary")
 				setMessage("We’ve sent a login link — please check your email.")

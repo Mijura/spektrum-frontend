@@ -2,7 +2,7 @@ export const ACCOUNT_AND_BILLING_ENDPOINT = process.env.ACCOUNT_AND_BILLING_ENDP
 
 import { signIn, confirmSignIn } from "aws-amplify/auth"
 
-export async function createSingInChallenge(auth: any) {
+export async function sendMagicLink(auth: any) {
 	const options = {
 		method: "POST",
 		headers: {
@@ -15,19 +15,20 @@ export async function createSingInChallenge(auth: any) {
 	return await res.json()
 }
 
-export const handleConfirmSignIn = async (email: string, challengeResponse: string) => {
-	const { nextStep } = await signIn({
-		username: email,
-		options: {
-			authFlowType: "CUSTOM_WITHOUT_SRP",
+export async function verifyMagicLink(email: string, challengeResponse: string) {
+
+	const res = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
 		},
+		body: JSON.stringify({
+			email,
+			challengeResponse,
+		}),
 	})
 
-	if (nextStep.signInStep === "CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE") {
-		// to send the answer of the custom challenge
-		const output = await confirmSignIn({ challengeResponse })
-		return output.isSignedIn
-	} else {
-		return false
-	}
+	const data = await res.json()
+
+	return data.isSignedIn
 }
