@@ -1,30 +1,33 @@
 export const ACCOUNT_AND_BILLING_ENDPOINT = process.env.ACCOUNT_AND_BILLING_ENDPOINT
 
-export async function sendMagicLink(auth: any) {
+
+export async function sendMagicLinkChallenge(email: string) {
 	const options = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(auth),
+		body: JSON.stringify({ email: email }),
 	}
 
-	const res: any = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/send-magic-link/`, options)
+	const res: any = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/send-magic-link-challenge`, options)
 	return await res.json()
 }
 
-export async function verifyMagickLinkToken(email: string, token: string) {
+export async function verifyMagicLinkChallenge(email: string, challengeResponse: string) {
 
-	const res = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link-token`, {
+	const options = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
 			email,
-			token,
+			challengeResponse,
 		}),
-	})
+	}
+
+	const res = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link-challenge`, options)
 
 	const data = await res.json()
 

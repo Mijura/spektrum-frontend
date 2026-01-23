@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import LeftSideMenu from "../components/left-side-menu"
-import { verifyMagickLinkToken } from "../api/account-and-billing"
+import { verifyMagicLinkChallenge } from "../api/account-and-billing"
 import { getCurrentUser } from "aws-amplify/auth"
 import { Loader } from "@jigjoy-io/ui-library"
 
@@ -8,11 +8,11 @@ export const Route = createFileRoute("/_auth")({
 	beforeLoad: async ({ search }) => {
 		const searchParams = new URLSearchParams(search)
 		const email = searchParams.get("email") as string | null
-		const token = searchParams.get("token") as string | null
+		const challengeResponse = searchParams.get("token") as string | null
 
-		if (email !== null && token !== null) {
+		if (email !== null && challengeResponse !== null) {
 			try {
-				await verifyMagickLinkToken(email, token)
+				await verifyMagicLinkChallenge(email, challengeResponse)
 			} catch (error: any) {
 				console.error(error)
 			}
