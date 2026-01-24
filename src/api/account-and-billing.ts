@@ -28,9 +28,6 @@ export async function verifyMagicLinkChallenge(email: string, challengeResponse:
 		}),
 	}
 
-	const res = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link-challenge`, options)
+	await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link-challenge`, options)
 
-	const data = await res.json()
-
-	return data.isSignedIn
 }
