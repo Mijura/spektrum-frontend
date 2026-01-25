@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { Card, Loader } from "@jigjoy-io/ui-library"
-import { getCurrentUser } from "../api/account-and-billing"
 import { fetchAllProjects } from "../api/project-planning"
+import { store } from "../shared/store"
 
 export const Route = createFileRoute("/_auth/deployed")({
 	loader: async () => {
-		try {
-			const user = await getCurrentUser()
-			const projects = await fetchAllProjects(user.userId)
+		try {			
+			const state = store.getState()
+			const userData = state.account.userData 
+			const projects = await fetchAllProjects(userData.id)
 			// Filter only deployed projects
 			return projects.filter((project: any) => project.latestProdDeployment)
 		} catch (error: any) {

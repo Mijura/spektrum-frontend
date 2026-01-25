@@ -1,13 +1,13 @@
 import { Chevron, ChevronContent, ChevronTrigger, ProgressBar } from "@jigjoy-io/ui-library"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
-import { useProfile } from "../hooks/store"
+import { useUserData } from "../hooks/store"
 
 export default function ActivityRewards() {
-	const profile = useProfile()
+	const userData = useUserData()
 
 	return (
-		profile && (
+		userData && (
 			<div className="flex flex-col font-body h-fit rounded-sm">
 				<div className="flex flex-col bg-surface h-full w-[300px] border border-primary-200">
 					{/* <div className="flex flex-row w-full p-3">

@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { getCurrentUser } from "../api/account-and-billing"
 import { fetchAllProjects } from "../api/project-planning"
 import { Loader } from "@jigjoy-io/ui-library"
 import HomePage from "../pages/home-page"
+import { store } from "../shared/store"
 
 export const Route = createFileRoute("/_auth/home")({
 	loader: async () => {
-		try {
-			const user = await getCurrentUser()
-			return await fetchAllProjects(user.userId)
+		try {			
+			const state = store.getState()
+			console.log(state)
+			const userData = state.account.userData 
+			return await fetchAllProjects(userData.id)
 		} catch (error: any) {
 			console.error(error)
 			return []

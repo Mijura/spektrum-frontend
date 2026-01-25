@@ -1,5 +1,5 @@
 import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea } from "@jigjoy-io/ui-library"
-import { useSelectedProject, useSelectedTask } from "../hooks/store"
+import { useSelectedProject, useSelectedTask, useUserData } from "../hooks/store"
 import { useLayoutEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { addTasksToProject, taskCreationRequested, taskUpdated } from "../reducers/workspace-reducer"
@@ -12,7 +12,6 @@ import { planTasksWithAI } from "../api/project-planning"
 import { develop } from "../api/ai-coding"
 import { ActivityType, CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-io/task-contracts"
 import { v4 as uuidv4 } from "uuid"
-import { getCurrentUser } from "../api/account-and-billing"
 
 export default function TaskOverview() {
 	const dispatch = useDispatch()
@@ -25,6 +24,7 @@ export default function TaskOverview() {
 	const [projectDescription, setProjectDescription] = useState("")
 	const [isPlanningTasks, setIsPlanningTasks] = useState(false)
 	const projectDescriptionRef = useRef<HTMLTextAreaElement>(null)
+	const userData = useUserData()
 
 	const handleTitleChange = async (newTitle: string) => {
 		if (newTitle === task.title) return
@@ -50,14 +50,12 @@ export default function TaskOverview() {
 	}, [task])
 
 	const handleCommentLeft = async (): Promise<void> => {
-		const user = await getCurrentUser()
-		const authorId = user.email
 
 		if (commentText.length === 0) return
 
 		const commentMetadata: CommentLeftMetadata = {
 			commentText: commentText,
-			authorId: authorId,
+			authorId: userData.id,
 		}
 
 		const commentLeftActivity: CommentLeftActivity = {
@@ -65,7 +63,7 @@ export default function TaskOverview() {
 			type: ActivityType.COMMENT_LEFT,
 			projectId: task.projectId,
 			taskId: task.id,
-			userId: authorId,
+			userId: userData.id,
 			occurredAt: new Date().toISOString(),
 			metadata: commentMetadata,
 		}
@@ -75,10 +73,10 @@ export default function TaskOverview() {
 		const mockTaskWithComment = { ...task, activities: [...task.activities, commentLeftActivity] }
 		dispatch(taskUpdated(mockTaskWithComment))
 
-		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText, authorId)
+		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText, userData.id)
 		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
-		await develop(taskWithComment, authorId)
+		await develop(taskWithComment, userData.id)
 	}
 
 	const handlePlanTasksWithAI = async () => {
