@@ -1,14 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router"
 import WorkspacePage from "../pages/workspace-page"
 import { Loader } from "@jigjoy-io/ui-library"
-import { getCurrentUser } from "aws-amplify/auth"
 import { fetchAllProjects } from "../api/project-planning"
+
+import { store, persistor } from "../shared/store"
+
+function waitForRehydrate() {
+  return new Promise<void>((resolve) => {
+    if (persistor.getState().bootstrapped) return resolve()
+    const unsub = persistor.subscribe(() => {
+      if (persistor.getState().bootstrapped) {
+        unsub()
+        resolve()
+      }
+    })
+  })
+}
 
 export const Route = createFileRoute("/_auth/workspace")({
 	loader: async () => {
+		await waitForRehydrate()
 		try {
-			const user = await getCurrentUser()
-			return await fetchAllProjects(user.userId)
+			const state = store.getState()
+			console.log(state)
+			const userData = state.account.userData 
+			return await fetchAllProjects(userData.id)
 		} catch (error: any) {
 			console.error(error)
 			return []

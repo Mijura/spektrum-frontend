@@ -4,8 +4,7 @@ import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
 import { Loader } from "@jigjoy-io/ui-library"
 import { fetchHeatmap } from "../api/observability"
-import { getCurrentUser } from "aws-amplify/auth"
-import { useTaskExecutionHeatmap } from "../hooks/store"
+import { useTaskExecutionHeatmap, useUserData } from "../hooks/store"
 import { useDispatch } from "react-redux"
 import { taskExecutionHeatmapLoaded } from "../reducers/workspace-reducer"
 
@@ -19,12 +18,10 @@ const TaskExecutionHeatmap: React.FC = () => {
 	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(true)
 	const heatmapData = useTaskExecutionHeatmap()
-
+	const userData = useUserData()
+	
 	const updateHeatmap = async () => {
-		const user = await getCurrentUser()
-		const accountId = user.signInDetails?.loginId
-		if (!accountId) return
-		const heatmap = await fetchHeatmap(accountId)
+		const heatmap = await fetchHeatmap(userData.id)
 		dispatch(taskExecutionHeatmapLoaded(heatmap))
 		setLoading(false)
 	}

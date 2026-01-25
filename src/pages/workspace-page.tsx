@@ -2,7 +2,6 @@ import Project from "../types/project"
 import { Button, Loader } from "@jigjoy-io/ui-library"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project-planning"
-import { getCurrentUser } from "aws-amplify/auth"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import {
 	entryPointDevLoaded,
@@ -13,21 +12,21 @@ import {
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import ProjectsIcon from "../shared/icons/projects-icon"
-import { useProjectInitialization } from "../hooks/store"
+import { useProjectInitialization, useUserData } from "../hooks/store"
 
 export default function WorkspacePage({ loadedProjects }: { loadedProjects: any[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [projects, setProjects] = useState<Project[]>(loadedProjects)
 	const [selectorOpen, setSelectorOpen] = useState(true)
+	const userData = useUserData()
 
 	const initialization = useProjectInitialization()
 
 	const handleCreateNewProject = async () => {
 		try {
 			dispatch(projectInitalizationRequested())
-			const user = await getCurrentUser()
-			const response: any = await createNewProject(user.username)
+			const response: any = await createNewProject(userData.id)
 			const project = response.project
 
 			dispatch(entryPointDevLoaded(response.entryPoint))

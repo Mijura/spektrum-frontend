@@ -5,9 +5,8 @@ import CreateIcon from "../shared/icons/create-icon"
 import { createTask } from "../api/project-planning"
 import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
+import { useSelectedProject, useSelectedTask, useTaskCreationRequested, useUserData } from "../hooks/store"
 import { develop } from "../api/ai-coding"
-import { getCurrentUser } from "aws-amplify/auth"
 import { Task } from "@jigjoy-io/task-contracts"
 
 const TasksPlanner: React.FC = () => {
@@ -20,13 +19,10 @@ const TasksPlanner: React.FC = () => {
 	const selectedTask = useSelectedTask()
 	const taskCreationModalOpened = useTaskCreationRequested()
 	const titleInputRef = useRef<HTMLInputElement>(null)
+	const userData = useUserData()
 
 	const handleRunTaskExecution = async (task: Task) => {
-		const user = await getCurrentUser()
-		const userId = user.signInDetails?.loginId
-
-		if (!userId) return
-		await develop(task, userId)
+		await develop(task, userData.id)
 	}
 
 	const handleCreateTask = async () => {

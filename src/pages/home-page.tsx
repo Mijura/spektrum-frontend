@@ -1,13 +1,12 @@
 import { motion } from "framer-motion"
 import { Loader } from "@jigjoy-io/ui-library"
-import { useProfile, useProjectInitialization } from "../hooks/store"
+import { useUserData, useProjectInitialization } from "../hooks/store"
 import WorkflowRunHeatmap from "../components/task-execution-heatmap"
-import Project from "../types/project"
 import ProjectsOverview from "../components/projects-overview"
 import WorkflowRunTimeline from "../components/task-execution-timeline"
 
 export default function HomePage({ loadedProjects }: { loadedProjects: any[] }) {
-	const profile = useProfile()
+	const userData = useUserData()
 	const projectInitialization = useProjectInitialization()
 
 	return projectInitialization ? (
@@ -20,7 +19,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: any[] }) 
 				<ProjectsOverview loadedProjects={loadedProjects} />
 			</div>
 			<div className="grow min-w-0 ">
-				{profile && (
+				{userData && (
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}

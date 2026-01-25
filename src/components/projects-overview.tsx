@@ -3,7 +3,6 @@ import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Toolt
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject, updateProjectDetails } from "../api/project-planning"
 import CreateIcon from "../shared/icons/create-icon"
-import { getCurrentUser } from "aws-amplify/auth"
 import ArchiveIcon from "../shared/icons/archive-icon"
 import { archiveProject } from "../api/project-planning"
 import { useDispatch } from "react-redux"
@@ -16,11 +15,13 @@ import {
 	projectInitalizationCompleted,
 	projectInitalizationRequested,
 } from "../reducers/workspace-reducer"
+import { useUserData } from "../hooks/store"
 
 export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-
+	const userData = useUserData()
+	
 	const [selectedProject, selectProject] = useState<any>(null)
 	const [archiveModalOpened, setArchiveModalOpened] = useState(false)
 	const [projects, setProjects] = useState<any>([])
@@ -38,8 +39,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 	const handleCreateNewProject = async () => {
 		try {
 			dispatch(projectInitalizationRequested())
-			const user = await getCurrentUser()
-			const response: any = await createNewProject(user.username)
+			const response: any = await createNewProject(userData.id)
 
 			const project = response.project
 			setProjects([...projects, project])

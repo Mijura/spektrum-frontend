@@ -3,9 +3,9 @@ import { useNavigate } from "@tanstack/react-router"
 import { motion } from "framer-motion"
 import { createNewProject } from "../api/project-planning"
 import { useState } from "react"
-import { getCurrentUser } from "aws-amplify/auth"
 import { entryPointDevLoaded, entryPointProdLoaded } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
+import { useUserData } from "../hooks/store"
 
 const sentences = [
 	"At JigJoy, we’re creating a space where anyone can design their own software development workflow and seamlessly connect it to our hexagonal ecosystem for execution.",
@@ -42,12 +42,11 @@ export default function WelcomePage() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(false)
-
+	const userData = useUserData()
 	const handleCreateNewProject = async () => {
 		try {
 			setLoading(true)
-			const user = await getCurrentUser()
-			const response: any = await createNewProject(user.username)
+			const response: any = await createNewProject(userData.id)
 			dispatch(entryPointDevLoaded(response.entryPoint))
 			dispatch(entryPointProdLoaded(null))
 			const project = response.project

@@ -3,8 +3,8 @@ import { Button, Card } from "@jigjoy-io/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
-import { getCurrentUser } from "aws-amplify/auth"
 import { useNavigate } from "@tanstack/react-router"
+import { useUserData } from "../hooks/store"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -19,6 +19,8 @@ export default function PricingPage() {
 	const [tokenAmount, setTokenAmount] = useState(MIN_TOKENS)
 	const [paddle, setPaddle] = useState<Paddle>()
 	const navigate = useNavigate()
+	const userData = useUserData()
+	
 	// Calculate derived values
 	const totalPrice = (tokenAmount * TOKEN_PRICE).toFixed(2)
 
@@ -38,10 +40,8 @@ export default function PricingPage() {
 
 	// Callback to open a checkout
 	const openCheckout = async () => {
-		const user = await getCurrentUser()
-		const email = user?.signInDetails?.loginId
 
-		if (!email) {
+		if (!userData.email) {
 			navigate({ to: "/" })
 			return
 		}
@@ -49,10 +49,10 @@ export default function PricingPage() {
 		paddle?.Checkout.open({
 			items: [{ priceId: JIGJOY_TOKEN_PRICE_ID, quantity: tokenAmount }],
 			customer: {
-				email: email,
+				email: userData.email,
 			},
 			customData: {
-				email: email,
+				email: userData.email,
 			},
 		})
 	}
