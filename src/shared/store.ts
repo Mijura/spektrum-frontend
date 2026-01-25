@@ -3,7 +3,7 @@ import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer } from "redux-persist"
 import workspaceReducer from "../reducers/workspace-reducer"
 import navigationReducer from "../reducers/navigation-reducer"
-import profileReducer from "../reducers/profile-reducer"
+import profileReducer from "../reducers/account-reducer"
 const rootReducer = combineReducers({
 	workspace: workspaceReducer,
 	navigation: navigationReducer,

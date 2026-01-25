@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { useTaskExecutionTimeline, useSelectedProjectId } from "../hooks/store"
+import { useTaskExecutionTimeline, useSelectedProjectId, useUserData } from "../hooks/store"
 import TaskExecutionComponent from "./task-execution"
 import { Loader } from "@jigjoy-io/ui-library"
 import { fetchProjectTimeline, fetchAccountTimeline } from "../api/observability"
 import { taskExecutionTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { getCurrentUser } from "../api/account-and-billing"
 import { useTaskExecutionListener } from "../hooks/task-execution-listener"
 import { TaskExecution } from "@jigjoy-io/observability-client"
 
@@ -14,34 +13,25 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 	const taskExecutionTimeline = useTaskExecutionTimeline()
 	const [isLoading, setIsLoading] = useState(true)
 	const dispatch = useDispatch()
-	const [accountId, setAccountId] = useState<string | null>(null)
+	const userData = useUserData()
 
 	const fetchTimeline = async () => {
 		if (type === "project" && selectedProjectId) {
 			const timeline = await fetchProjectTimeline(selectedProjectId)
 			dispatch(taskExecutionTimelineUpdated(timeline))
 			setIsLoading(false)
-		} else if (type === "account" && accountId) {
-			const timeline = await fetchAccountTimeline(accountId)
+		} else if (type === "account" && userData.userId) {
+			const timeline = await fetchAccountTimeline(userData.userId)
 			dispatch(taskExecutionTimelineUpdated(timeline))
 			setIsLoading(false)
 		}
 	}
 
-	const getAccountId = async () => {
-		const user = await getCurrentUser()
-		const authorId = user.userId
-		if (authorId) {
-			setAccountId(authorId)
-		}
-	}
-
 	useEffect(() => {
-		getAccountId()
 		fetchTimeline()
-	}, [selectedProjectId, accountId])
+	}, [selectedProjectId, userData.userId])
 
-	useTaskExecutionListener({ accountId: accountId })
+	useTaskExecutionListener({ accountId: userData.userId })
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">

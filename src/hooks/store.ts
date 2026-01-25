@@ -5,7 +5,7 @@ export type RootState = ReturnType<typeof store.getState>
 
 export const useAppSelector = useSelector.withTypes<RootState>()
 
-export const useProfile = () => useAppSelector((state: any) => state.profile.profile)
+export const useUserData = () => useAppSelector((state: any) => state.account.userData)
 export const useLoadedPage = () => useAppSelector((state: any) => state.navigation.page)
 export const useSelectedTask = () => useAppSelector((state: any) => state.workspace.selectedTask)
 export const useSelectedProject = () => useAppSelector((state: any) => state.workspace.selectedProject)

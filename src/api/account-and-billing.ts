@@ -2,20 +2,17 @@ export const ACCOUNT_AND_BILLING_ENDPOINT = process.env.ACCOUNT_AND_BILLING_ENDP
 
 
 import axios from "axios"
-let accessToken: string | null = null
 
-export function setAccessToken(token: string) {
-  accessToken = token
-  localStorage.setItem("accessToken", token)
+export const setAccessToken = (token: string) => {
+	sessionStorage.setItem("accessToken", token)
+  }
+  
+export const getAccessToken = () => {
+	return sessionStorage.getItem("accessToken")
 }
-
-export function getAccessToken() {
-  return accessToken ?? localStorage.getItem("accessToken")
-}
-
-export function clearAccessToken() {
-  accessToken = null;
-  localStorage.removeItem("accessToken")
+  
+export const clearAccessToken = () => {
+	sessionStorage.removeItem("accessToken")
 }
 
 export const protectedApi = axios.create({ baseURL: ACCOUNT_AND_BILLING_ENDPOINT })
@@ -34,13 +31,13 @@ export async function sendMagicLinkChallenge(email: string) {
 }
 
 export async function verifyMagicLinkChallenge(email: string, challengeResponse: string) {
-	const res: any = await api.post(`/auth/challenge/magic-link/verify`, { email: email, challenge: challengeResponse })
-	return res.data.accessToken
 
-}
+	const options = {
+		email: email,
+		challenge: challengeResponse
+	}
 
+	const res: any = await api.post(`/auth/challenge/magic-link/verify`, options)
+	return res.data
 
-export async function getCurrentUser() {
-	const res: any = await protectedApi.get(`/auth/current-user`)
-	return res.data.userData
 }
