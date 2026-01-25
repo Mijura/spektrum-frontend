@@ -56,7 +56,7 @@ export default function LoginPage() {
 
 				<div className="text-secondary opacity-80 mt-2">Enter email to receive magic link.</div>
 				<div className="my-8">
-					<Loader size="large" message="Waiting for you to join the cool kids' club..." />
+					<Loader size="large" />
 				</div>
 
 				<Input
