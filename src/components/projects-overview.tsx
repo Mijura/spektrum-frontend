@@ -3,7 +3,7 @@ import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Toolt
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject, updateProjectDetails } from "../api/project-planning"
 import CreateIcon from "../shared/icons/create-icon"
-import { getCurrentUser } from "aws-amplify/auth"
+import { getCurrentUser } from "../api/account-and-billing"
 import ArchiveIcon from "../shared/icons/archive-icon"
 import { archiveProject } from "../api/project-planning"
 import { useDispatch } from "react-redux"
@@ -39,7 +39,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 		try {
 			dispatch(projectInitalizationRequested())
 			const user = await getCurrentUser()
-			const response: any = await createNewProject(user.username)
+			const response: any = await createNewProject(user.userId)
 
 			const project = response.project
 			setProjects([...projects, project])

@@ -2,7 +2,7 @@ import Project from "../types/project"
 import { Button, Loader } from "@jigjoy-io/ui-library"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project-planning"
-import { getCurrentUser } from "aws-amplify/auth"
+import { getCurrentUser } from "../api/account-and-billing"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import {
 	entryPointDevLoaded,
@@ -27,7 +27,7 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: any[
 		try {
 			dispatch(projectInitalizationRequested())
 			const user = await getCurrentUser()
-			const response: any = await createNewProject(user.username)
+			const response: any = await createNewProject(user.userId)
 			const project = response.project
 
 			dispatch(entryPointDevLoaded(response.entryPoint))

@@ -3,7 +3,7 @@ import { useNavigate } from "@tanstack/react-router"
 import { motion } from "framer-motion"
 import { createNewProject } from "../api/project-planning"
 import { useState } from "react"
-import { getCurrentUser } from "aws-amplify/auth"
+import { getCurrentUser } from "../api/account-and-billing"
 import { entryPointDevLoaded, entryPointProdLoaded } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 
@@ -47,7 +47,7 @@ export default function WelcomePage() {
 		try {
 			setLoading(true)
 			const user = await getCurrentUser()
-			const response: any = await createNewProject(user.username)
+			const response: any = await createNewProject(user.userId)
 			dispatch(entryPointDevLoaded(response.entryPoint))
 			dispatch(entryPointProdLoaded(null))
 			const project = response.project

@@ -3,7 +3,7 @@ import { Button, Card } from "@jigjoy-io/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
-import { getCurrentUser } from "aws-amplify/auth"
+import { getCurrentUser } from "../api/account-and-billing"
 import { useNavigate } from "@tanstack/react-router"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
@@ -39,7 +39,7 @@ export default function PricingPage() {
 	// Callback to open a checkout
 	const openCheckout = async () => {
 		const user = await getCurrentUser()
-		const email = user?.signInDetails?.loginId
+		const email = user.email
 
 		if (!email) {
 			navigate({ to: "/" })

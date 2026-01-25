@@ -10,7 +10,7 @@ export async function sendMagicLinkChallenge(email: string) {
 		body: JSON.stringify({ email: email }),
 	}
 
-	const res: any = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/send-magic-link-challenge`, options)
+	const res: any = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/auth/challenge/magic-link`, options)
 	return await res.json()
 }
 
@@ -28,6 +28,24 @@ export async function verifyMagicLinkChallenge(email: string, challengeResponse:
 		}),
 	}
 
-	await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/verify-magic-link-challenge`, options)
+	await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/auth/challenge/magic-link/verify`, options)
 
+}
+
+
+export async function getCurrentUser() {
+	const options = {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		credentials: "include" as RequestCredentials,
+	}
+
+	const res: any = await fetch(`${ACCOUNT_AND_BILLING_ENDPOINT}/auth/current-user`, options)
+
+	if (!res.ok || res.status === 400 || res.status === 401) {
+		throw new Error('Authentication failed')
+	}
+	return await res.json()
 }

@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import LeftSideMenu from "../components/left-side-menu"
 import { verifyMagicLinkChallenge } from "../api/account-and-billing"
-import { getCurrentUser } from "aws-amplify/auth"
+import { getCurrentUser } from "../api/account-and-billing"
 import { Loader } from "@jigjoy-io/ui-library"
 
 export const Route = createFileRoute("/_auth")({

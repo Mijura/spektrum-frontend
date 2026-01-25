@@ -5,7 +5,7 @@ import { Loader } from "@jigjoy-io/ui-library"
 import { fetchProjectTimeline, fetchAccountTimeline } from "../api/observability"
 import { taskExecutionTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { getCurrentUser } from "aws-amplify/auth"
+import { getCurrentUser } from "../api/account-and-billing"
 import { useTaskExecutionListener } from "../hooks/task-execution-listener"
 import { TaskExecution } from "@jigjoy-io/observability-client"
 
@@ -30,7 +30,7 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 
 	const getAccountId = async () => {
 		const user = await getCurrentUser()
-		const authorId = user.signInDetails?.loginId
+		const authorId = user.userId
 		if (authorId) {
 			setAccountId(authorId)
 		}

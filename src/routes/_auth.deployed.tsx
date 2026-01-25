@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { Card, Loader } from "@jigjoy-io/ui-library"
-import { getCurrentUser } from "aws-amplify/auth"
+import { getCurrentUser } from "../api/account-and-billing"
 import { fetchAllProjects } from "../api/project-planning"
 
 export const Route = createFileRoute("/_auth/deployed")({

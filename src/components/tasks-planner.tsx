@@ -7,8 +7,8 @@ import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } 
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
 import { develop } from "../api/ai-coding"
-import { getCurrentUser } from "aws-amplify/auth"
 import { Task } from "@jigjoy-io/task-contracts"
+import { getCurrentUser } from "../api/account-and-billing"
 
 const TasksPlanner: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -23,7 +23,7 @@ const TasksPlanner: React.FC = () => {
 
 	const handleRunTaskExecution = async (task: Task) => {
 		const user = await getCurrentUser()
-		const userId = user.signInDetails?.loginId
+		const userId = user.email
 
 		if (!userId) return
 		await develop(task, userId)

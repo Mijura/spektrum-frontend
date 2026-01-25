@@ -6,13 +6,13 @@ import { addTasksToProject, taskCreationRequested, taskUpdated } from "../reduce
 import PlayIcon from "../shared/icons/play-icon"
 import { leaveComment, updateTaskDescription, updateTaskTitle } from "../api/project-planning"
 import { motion, AnimatePresence } from "framer-motion"
-import { getCurrentUser } from "aws-amplify/auth"
 import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
 import { planTasksWithAI } from "../api/project-planning"
 import { develop } from "../api/ai-coding"
 import { ActivityType, CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-io/task-contracts"
 import { v4 as uuidv4 } from "uuid"
+import { getCurrentUser } from "../api/account-and-billing"
 
 export default function TaskOverview() {
 	const dispatch = useDispatch()
@@ -51,8 +51,7 @@ export default function TaskOverview() {
 
 	const handleCommentLeft = async (): Promise<void> => {
 		const user = await getCurrentUser()
-		const authorId = user.signInDetails?.loginId
-		if (!authorId) return
+		const authorId = user.email
 
 		if (commentText.length === 0) return
 
