@@ -8,8 +8,10 @@ import { useDispatch } from "react-redux"
 import { useUserData } from "../hooks/store"
 
 const sentences = [
-	"At JigJoy, we’re creating a space where anyone can design their own software development workflow and seamlessly connect it to our hexagonal ecosystem for execution.",
-	"We’re Miodrag Vilotijević and Miodrag Todorović, tech-savvy builders on a mission to make AI agents work for you - seamlessly, intelligently, and with full control. Welcome aboard! 🚀",
+	`"With tools and technology we already have, we can build much more valuable systems than most projects
+today. We can write software that is a pleasure to use and a pleasure to work on; software that doesn’t box
+us in as it grows, but creates new opportunities and continues to add value for its owners."`,
+	"Eric Evans",
 ]
 
 const staggeredText = (text: string, delay: number) => {
@@ -77,7 +79,7 @@ export default function WelcomePage() {
 				<div className="w-full text-secondary py-4">{staggeredText(sentences[0], 0)}</div>
 
 				<div className="w-full text-secondary py-4">
-					{staggeredText(sentences[1], 7)} {/* Starts after first sentence */}
+					{staggeredText(sentences[1], 14)} {/* Starts after first sentence */}
 				</div>
 
 				{/* Animated Button */}
@@ -85,7 +87,7 @@ export default function WelcomePage() {
 					className="mt-4"
 					initial={{ opacity: 0, y: 10 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 12, duration: 1 }} // Appears after text
+					transition={{ delay: 15, duration: 1 }} // Appears after text
 				>
 					<Button className="animate-bounce" onClick={handleCreateNewProject}>
 						Start Building
