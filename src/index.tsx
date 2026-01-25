@@ -6,17 +6,7 @@ import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 import { JigJoyUIProvider } from "@jigjoy-io/ui-library"
 import { persistor, store } from "./shared/store"
-import { Amplify } from "aws-amplify"
 import "./index.css"
-
-Amplify.configure({
-	Auth: {
-		Cognito: {
-			userPoolId: process.env.USER_POOL_ID || "",
-			userPoolClientId: process.env.USER_POOL_WEB_CLIENT_ID || "",
-		},
-	},
-})
 
 const root = document.createElement("div")
 document.body.appendChild(root)

@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux"
 import { pageNavigated } from "../reducers/navigation-reducer"
 import HomeIcon from "../shared/icons/home-icon"
 import LogoutIcon from "../shared/icons/logout-icon"
-import { signOut } from "aws-amplify/auth"
 import PricingIcon from "../shared/icons/pricing-icon"
 import { useLoadedPage } from "../hooks/store"
 import DeployedIcon from "../shared/icons/deployed-icon"
@@ -27,7 +26,7 @@ const LeftSideMenu = () => {
 	}
 
 	const handleLogout = async () => {
-		await signOut()
+		//await signOut()
 		navigate({ to: "/" })
 	}
 
