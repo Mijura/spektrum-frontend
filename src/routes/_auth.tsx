@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import LeftSideMenu from "../components/left-side-menu"
-import { verifyMagicLinkChallenge } from "../api/account-and-billing"
+import { setAccessToken, verifyMagicLinkChallenge } from "../api/account-and-billing"
 import { getCurrentUser } from "../api/account-and-billing"
 import { Loader } from "@jigjoy-io/ui-library"
 
@@ -12,19 +12,29 @@ export const Route = createFileRoute("/_auth")({
 
 		if (email !== null && challengeResponse !== null) {
 			try {
-				await verifyMagicLinkChallenge(email, challengeResponse)
+				const token = await verifyMagicLinkChallenge(email, challengeResponse)
+				setAccessToken(token)
 			} catch (error: any) {
 				console.error(error)
+				throw redirect({
+					to: "/",
+				})
 			}
+		}else{
+
+			try {
+				await getCurrentUser()
+			} catch (error: any) {
+				throw redirect({
+					to: "/",
+				})
+			}
+
 		}
 
-		try {
-			await getCurrentUser()
-		} catch (error: any) {
-			throw redirect({
-				to: "/",
-			})
-		}
+		
+
+
 	},
 	pendingComponent: () => (
 		<div className="w-screen h-screen bg-surface flex items-center justify-center">
