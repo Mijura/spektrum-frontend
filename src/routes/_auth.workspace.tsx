@@ -22,7 +22,6 @@ export const Route = createFileRoute("/_auth/workspace")({
 		await waitForRehydrate()
 		try {
 			const state = store.getState()
-			console.log(state)
 			const userData = state.account.userData 
 			return await fetchAllProjects(userData.id)
 		} catch (error: any) {

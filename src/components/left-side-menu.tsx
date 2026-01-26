@@ -9,6 +9,8 @@ import HomeIcon from "../shared/icons/home-icon"
 import LogoutIcon from "../shared/icons/logout-icon"
 import PricingIcon from "../shared/icons/pricing-icon"
 import { useLoadedPage } from "../hooks/store"
+import { clearAccessToken } from "../api/account-and-billing"
+import { clearUserData } from "../reducers/account-reducer"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
@@ -25,7 +27,8 @@ const LeftSideMenu = () => {
 	}
 
 	const handleLogout = async () => {
-		//await signOut()
+		clearAccessToken()
+		dispatch(clearUserData())
 		navigate({ to: "/" })
 	}
 
