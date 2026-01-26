@@ -1,6 +1,3 @@
-export const ACCOUNT_AND_BILLING_ENDPOINT = process.env.ACCOUNT_AND_BILLING_ENDPOINT
-
-
 import axios from "axios"
 
 export const setAccessToken = (token: string) => {
@@ -15,7 +12,8 @@ export const clearAccessToken = () => {
 	sessionStorage.removeItem("accessToken")
 }
 
-export const protectedApi = axios.create({ baseURL: ACCOUNT_AND_BILLING_ENDPOINT })
+export const API_GATEWAY = process.env.API_GATEWAY as string
+export const protectedApi = axios.create({ baseURL: API_GATEWAY })
 
 protectedApi.interceptors.request.use((config) => {
   const token = getAccessToken()
@@ -23,7 +21,7 @@ protectedApi.interceptors.request.use((config) => {
   return config
 })
 
-export const api = axios.create({ baseURL: ACCOUNT_AND_BILLING_ENDPOINT })
+export const api = axios.create({ baseURL: API_GATEWAY })
 
 export async function sendMagicLinkChallenge(email: string) {
 	const res: any = await api.post(`/auth/challenge/magic-link`, { email: email })
