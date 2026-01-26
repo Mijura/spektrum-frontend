@@ -9,7 +9,6 @@ import HomeIcon from "../shared/icons/home-icon"
 import LogoutIcon from "../shared/icons/logout-icon"
 import PricingIcon from "../shared/icons/pricing-icon"
 import { useLoadedPage } from "../hooks/store"
-import DeployedIcon from "../shared/icons/deployed-icon"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
@@ -40,7 +39,6 @@ const LeftSideMenu = () => {
 				{[
 					{ name: "home", icon: HomeIcon, label: "Home", route: "/home" },
 					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/workspace" },
-					{ name: "deployed", icon: DeployedIcon, label: "Deployed Apss", route: "/deployed" },
 					// { name: "pricing", icon: PricingIcon, label: "Pricing", route: "/pricing" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
