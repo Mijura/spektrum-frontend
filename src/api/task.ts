@@ -1,6 +1,6 @@
 import { Task } from "@jigjoy-io/task-contracts"
 
-const PROJECT_PLANNING_ENDPOINT = process.env.PROJECT_PLANNING_ENDPOINT
+const API_GATEWAY = process.env.API_GATEWAY || ""
 
 export async function createTask(projectId: string, title: string, description: string): Promise<any> {
 	const options = {
@@ -15,7 +15,7 @@ export async function createTask(projectId: string, title: string, description: 
 		}),
 	}
 
-	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task`, options)
+	const res: any = await fetch(`${API_GATEWAY}/planning/task`, options)
 	return await res.json()
 }
 
@@ -28,7 +28,7 @@ export async function updateTaskTitle(task: Task) {
 		body: JSON.stringify(task),
 	}
 
-	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task/title`, options)
+	const res: any = await fetch(`${API_GATEWAY}/planning/task/title`, options)
 	return await res.json()
 }
 
@@ -41,12 +41,12 @@ export async function updateTaskDescription(task: Task) {
 		body: JSON.stringify(task),
 	}
 
-	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task/description`, options)
+	const res: any = await fetch(`${API_GATEWAY}/planning/task/description`, options)
 	return await res.json()
 }
 
 export async function fetchAllTasks(projectId: string) {
-	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task/fetch-all/${projectId}`)
+	const res: any = await fetch(`${API_GATEWAY}/planning/task/fetch-all/${projectId}`)
 	return await res.json()
 }
 
@@ -58,6 +58,6 @@ export async function leaveComment(taskId: string, commentText: string, authorId
 		},
 		body: JSON.stringify({ taskId: taskId, comment: commentText, authorId: authorId }),
 	}
-	const res: any = await fetch(`${PROJECT_PLANNING_ENDPOINT}/task/leave-comment`, options)
+	const res: any = await fetch(`${API_GATEWAY}/planning/task/leave-comment`, options)
 	return await res.json()
 }

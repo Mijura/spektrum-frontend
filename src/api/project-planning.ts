@@ -1,9 +1,9 @@
 import { ProjectPlanningClient } from "@jigjoy-io/project-planning-client"
 import { Task } from "@jigjoy-io/task-contracts"
 
-const PROJECT_PLANNING_ENDPOINT = process.env.PROJECT_PLANNING_ENDPOINT || ""
+const API_GATEWAY = process.env.API_GATEWAY || ""
 
-const projectPlanningClient = new ProjectPlanningClient(PROJECT_PLANNING_ENDPOINT)
+const projectPlanningClient = new ProjectPlanningClient(`${API_GATEWAY}/planning`)
 
 export async function createNewProject(owner: string): Promise<any> {
 	return await projectPlanningClient.createNewProject(owner)
