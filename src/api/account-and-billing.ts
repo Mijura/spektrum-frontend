@@ -24,7 +24,7 @@ protectedApi.interceptors.request.use((config) => {
 export const api = axios.create({ baseURL: API_GATEWAY })
 
 export async function sendMagicLinkChallenge(email: string) {
-	const res: any = await api.post(`/auth/challenge/magic-link`, { email: email })
+	const res: any = await api.post(`/account/challenge/magic-link`, { email: email })
 	return res.data
 }
 
@@ -35,7 +35,7 @@ export async function verifyMagicLinkChallenge(email: string, challengeResponse:
 		challenge: challengeResponse
 	}
 
-	const res: any = await api.post(`/auth/challenge/magic-link/verify`, options)
+	const res: any = await api.post(`/account/challenge/magic-link/verify`, options)
 	return res.data
 
 }
