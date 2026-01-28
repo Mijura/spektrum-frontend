@@ -8,7 +8,7 @@ type UseActivityListenerProps = {
 	room: string
 }
 
-const AI_CODING_ENDPOINT = process.env.AI_CODING_ENDPOINT
+const API_GATEWAY = process.env.API_GATEWAY as string
 
 export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
@@ -21,7 +21,7 @@ export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 	useEffect(() => {
 		if (!room) return
 
-		const socket = io(AI_CODING_ENDPOINT)
+		const socket = io(`${API_GATEWAY}/socket.io`)
 
 		socket.on("connect", () => {
 			socket.emit("subscribe", room)

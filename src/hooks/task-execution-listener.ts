@@ -8,7 +8,7 @@ type UseTaskExecutionListenerProps = {
 	accountId: string | null
 }
 
-const AI_CODING_ENDPOINT = process.env.AI_CODING_ENDPOINT
+const API_GATEWAY = process.env.API_GATEWAY as string
 
 export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListenerProps) => {
 	const socketRef = useRef<Socket | null>(null)
@@ -25,7 +25,7 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 	useEffect(() => {
 		if (!accountId) return
 
-		const socket = io(AI_CODING_ENDPOINT)
+		const socket = io(`${API_GATEWAY}/socket.io`)
 
 		socket.on("connect", () => {
 			socket.emit("subscribe", accountId)
