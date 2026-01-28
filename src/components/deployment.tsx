@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useEntryPointProd, useSelectedProject } from "../hooks/store"
 import DeployBigIcon from "../shared/icons/deploy-big-icon"
 import { useDispatch } from "react-redux"
-import { deployToProduction } from "../api/ai-coding"
+import { deployModule } from "../api/ai-coding"
 import { entryPointProdLoaded } from "../reducers/workspace-reducer"
 
 const Deployment: React.FC = () => {
@@ -15,7 +15,7 @@ const Deployment: React.FC = () => {
 
 	const handleDeploy = async () => {
 		setDeploying(true)
-		const entryPointProd = await deployToProduction(selectedProject.id)
+		const entryPointProd = await deployModule(selectedProject.id)
 		dispatch(entryPointProdLoaded(entryPointProd))
 		setDeploying(false)
 	}

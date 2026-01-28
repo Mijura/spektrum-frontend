@@ -2,7 +2,7 @@ import { Heatmap, ObservabilityClient, Pagination, TaskExecution, TimeRange } fr
 
 const API_GATEWAY = process.env.API_GATEWAY || ""
 
-const observabilityClient = new ObservabilityClient(`${API_GATEWAY}/observability`)
+const observabilityClient = new ObservabilityClient(`${API_GATEWAY}`)
 
 export async function fetchProjectTimeline(
 	projectId: string,

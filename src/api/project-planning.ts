@@ -3,7 +3,7 @@ import { Task } from "@jigjoy-io/task-contracts"
 
 const API_GATEWAY = process.env.API_GATEWAY || ""
 
-const projectPlanningClient = new ProjectPlanningClient(`${API_GATEWAY}/planning`)
+const projectPlanningClient = new ProjectPlanningClient(`${API_GATEWAY}`)
 
 export async function createNewProject(owner: string): Promise<any> {
 	return await projectPlanningClient.createNewProject(owner)

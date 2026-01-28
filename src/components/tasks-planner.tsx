@@ -6,7 +6,7 @@ import { createTask } from "../api/project-planning"
 import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested, useUserData } from "../hooks/store"
-import { develop } from "../api/ai-coding"
+import { developModule } from "../api/ai-coding"
 import { Task } from "@jigjoy-io/task-contracts"
 
 const TasksPlanner: React.FC = () => {
@@ -22,7 +22,7 @@ const TasksPlanner: React.FC = () => {
 	const userData = useUserData()
 
 	const handleRunTaskExecution = async (task: Task) => {
-		await develop(task, userData.id)
+		await developModule(task, userData.id)
 	}
 
 	const handleCreateTask = async () => {

@@ -3,12 +3,12 @@ import { Task } from "@jigjoy-io/task-contracts"
 
 const API_GATEWAY = process.env.API_GATEWAY as string
 
-const aiCodingClient = new AICodingClient(`${API_GATEWAY}/ai`)
+const aiCodingClient = new AICodingClient(`${API_GATEWAY}`)
 
-export async function develop(task: Task, userId: string): Promise<any> {
+export async function developModule(task: Task, userId: string): Promise<any> {
 	return await aiCodingClient.develop(task, userId)
 }
 
-export async function deployToProduction(projectId: string): Promise<{ moduleId: string; publicAppUrl: string }> {
+export async function deployModule(projectId: string): Promise<{ moduleId: string; publicAppUrl: string }> {
 	return await aiCodingClient.deployToProduction(projectId)
 }

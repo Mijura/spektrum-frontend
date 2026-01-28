@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
 import { planTasksWithAI } from "../api/project-planning"
-import { develop } from "../api/ai-coding"
+import { developModule } from "../api/ai-coding"
 import { ActivityType, CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-io/task-contracts"
 import { v4 as uuidv4 } from "uuid"
 
@@ -76,7 +76,7 @@ export default function TaskOverview() {
 		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText, userData.id)
 		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
-		await develop(taskWithComment, userData.id)
+		await developModule(taskWithComment, userData.id)
 	}
 
 	const handlePlanTasksWithAI = async () => {
