@@ -1,9 +1,6 @@
-import { EnvironmentType, ProjectDeploymentClient } from "@jigjoy-io/project-deployment-client"
-
-const API_GATEWAY = process.env.API_GATEWAY as string
-
-const projectDeploymentClient = new ProjectDeploymentClient(`${API_GATEWAY}`)
+import { EnvironmentType } from "@jigjoy-io/platform-sdk"
+import jigjoyClient from "./platform-sdk"
 
 export async function getEntryPoint(projectId: string, environment: EnvironmentType = EnvironmentType.DEV) {
-	return await projectDeploymentClient.getEntryPoint(projectId, environment)
+	return await jigjoyClient.deployment.getEntryPoint(projectId, environment)
 }
