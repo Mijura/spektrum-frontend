@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import LeftSideMenu from "../components/left-side-menu"
-import { getAccessToken, setAccessToken, verifyMagicLinkChallenge } from "../api/account-and-billing"
+import { hasAccessToken, verifyMagicLinkChallenge } from "../api/account-and-billing"
 import { Loader } from "@jigjoy-io/ui-library"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
@@ -15,7 +15,6 @@ export const Route = createFileRoute("/_auth")({
 		if (email !== null && challengeResponse !== null) {
 			try {
 				const authSession = await verifyMagicLinkChallenge(email, challengeResponse)
-				setAccessToken(authSession.accessToken)
 				return authSession
 			} catch (error: any) {
 				console.error(error)
@@ -26,8 +25,8 @@ export const Route = createFileRoute("/_auth")({
 	},
 
 	loader: async ( {context} ) => {
-		const accessToken = getAccessToken()
-		if (!accessToken) {
+		const hasAccess = await hasAccessToken()
+		if (!hasAccess) {
 			throw redirect({
 				to: "/",
 			})

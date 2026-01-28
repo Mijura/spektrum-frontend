@@ -291,6 +291,14 @@
   resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.12.tgz"
   integrity sha512-uqZMTLr/zR/ed4jIGnwSLkaHmPjOjJvnm6TVVitAa08SLS9Z0VM8wIRx7gWbJB5/J54YuIMInDquWyYvQLZkgw==
 
+"@jigjoy-io/account-and-billing-client@^0.0.1":
+  version "0.0.1"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-io/account-and-billing-client/0.0.1/f7c200577d837b695b21d3d2c0cf520167e8b455"
+  integrity sha512-mFRjOtyeTCAhIzYJvhjCxs3SWyHcHT3BvZ0zhgFp6UFUUXSGlVibk9GWMj8sEFaBBt0pLFtUgKyrDp5FBC5lqQ==
+  dependencies:
+    "@jigjoy-io/task-contracts" "^0.0.2"
+    axios "^1.13.2"
+
 "@jigjoy-io/ai-coding-client@^0.0.9":
   version "0.0.9"
   resolved "https://npm.pkg.github.com/download/@jigjoy-io/ai-coding-client/0.0.9/a6d8067e0ce0fdfa28a626220f337c8a68737dfc"

@@ -1,41 +1,20 @@
-import axios from "axios"
-
-export const setAccessToken = (token: string) => {
-	sessionStorage.setItem("accessToken", token)
-  }
-  
-export const getAccessToken = () => {
-	return sessionStorage.getItem("accessToken")
-}
-  
-export const clearAccessToken = () => {
-	sessionStorage.removeItem("accessToken")
-}
-
+import { AccountAndBillingClient } from "@jigjoy-io/account-and-billing-client"
 export const API_GATEWAY = process.env.API_GATEWAY as string
-export const protectedApi = axios.create({ baseURL: API_GATEWAY })
 
-protectedApi.interceptors.request.use((config) => {
-  const token = getAccessToken()
-  if (token) config.headers.Authorization = `Bearer ${token}`
-  return config
-})
-
-export const api = axios.create({ baseURL: API_GATEWAY })
+const accountAndBillingClient = new AccountAndBillingClient(`${API_GATEWAY}`)
 
 export async function sendMagicLinkChallenge(email: string) {
-	const res: any = await api.post(`/account/challenge/magic-link`, { email: email })
-	return res.data
+	return await accountAndBillingClient.sendMagicLinkChallenge(email)
 }
 
 export async function verifyMagicLinkChallenge(email: string, challengeResponse: string) {
+	return await accountAndBillingClient.verifyMagicLinkChallenge(email, challengeResponse)
+}
 
-	const options = {
-		email: email,
-		challenge: challengeResponse
-	}
+export async function logout() {
+	return await accountAndBillingClient.logout()
+}
 
-	const res: any = await api.post(`/account/challenge/magic-link/verify`, options)
-	return res.data
-
+export async function hasAccessToken(){
+	return await accountAndBillingClient.hasAccessToken()
 }

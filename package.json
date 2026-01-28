@@ -11,6 +11,7 @@
 		"format": "prettier --write \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
+		"@jigjoy-io/account-and-billing-client": "^0.0.1",
 		"@jigjoy-io/ai-coding-client": "^0.0.9",
 		"@jigjoy-io/observability-client": "^0.0.5",
 		"@jigjoy-io/project-deployment-client": "^0.0.6",
@@ -20,7 +21,6 @@
 		"@paddle/paddle-js": "^1.4.0",
 		"@reduxjs/toolkit": "^2.5.0",
 		"@tanstack/react-router": "^1.92.11",
-		"axios": "^1.13.2",
 		"d3": "^7.9.0",
 		"d3-hexbin": "^0.2.2",
 		"framer-motion": "^11.18.0",
