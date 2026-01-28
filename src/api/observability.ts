@@ -1,8 +1,6 @@
-import { Heatmap, ObservabilityClient, Pagination, TaskExecution, TimeRange } from "@jigjoy-io/observability-client"
+import { Heatmap, Pagination, TaskExecution, TimeRange } from "@jigjoy-io/platform-sdk"
+import jigjoyClient from "./platform-sdk"
 
-const API_GATEWAY = process.env.API_GATEWAY || ""
-
-const observabilityClient = new ObservabilityClient(`${API_GATEWAY}`)
 
 export async function fetchProjectTimeline(
 	projectId: string,
@@ -13,7 +11,7 @@ export async function fetchProjectTimeline(
 		pageNumber: page,
 		pageSize: size,
 	}
-	return await observabilityClient.getProjectExecutions(projectId, pagination)
+	return await jigjoyClient.observability.getProjectExecutions(projectId, pagination)
 }
 
 export async function fetchAccountTimeline(
@@ -25,7 +23,7 @@ export async function fetchAccountTimeline(
 		pageNumber: page,
 		pageSize: size,
 	}
-	return await observabilityClient.getAccountExecutions(accountId, pagination)
+	return await jigjoyClient.observability.getAccountExecutions(accountId, pagination)
 }
 
 export async function fetchHeatmap(accountId: string): Promise<Heatmap[]> {
@@ -35,5 +33,5 @@ export async function fetchHeatmap(accountId: string): Promise<Heatmap[]> {
 		startDate: startDate.toISOString(),
 		endDate: endDate.toISOString(),
 	}
-	return await observabilityClient.getHeatmap(accountId, timeRange)
+	return await jigjoyClient.observability.getHeatmap(accountId, timeRange)
 }
