@@ -1,8 +1,8 @@
 import { Heatmap, ObservabilityClient, Pagination, TaskExecution, TimeRange } from "@jigjoy-io/observability-client"
 
-const OBSERVABILITY_ENDPOINT = process.env.OBSERVABILITY_ENDPOINT || ""
+const API_GATEWAY = process.env.API_GATEWAY || ""
 
-const observabilityClient = new ObservabilityClient(OBSERVABILITY_ENDPOINT)
+const observabilityClient = new ObservabilityClient(`${API_GATEWAY}/observability`)
 
 export async function fetchProjectTimeline(
 	projectId: string,
