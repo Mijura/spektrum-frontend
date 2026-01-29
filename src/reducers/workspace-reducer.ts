@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Task } from "@jigjoy-io/task-contracts"
-import { Heatmap, TaskExecution } from "@jigjoy-io/observability-client"
+import { Heatmap, TaskExecution } from "@jigjoy-io/platform-sdk"
 
 export interface Project {
 	id?: string

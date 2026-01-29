@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { io, Socket } from "socket.io-client"
 import { taskExecutionTriggered, taskExecutionUpdated } from "../reducers/workspace-reducer"
-import { TaskExecution } from "@jigjoy-io/observability-client"
+import { TaskExecution } from "@jigjoy-io/platform-sdk"
 
 type UseTaskExecutionListenerProps = {
 	accountId: string | null

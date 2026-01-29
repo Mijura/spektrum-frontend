@@ -2,7 +2,7 @@ import { Card, Chip } from "@jigjoy-io/ui-library"
 import WatchIcon from "../shared/icons/watch-icon"
 import { formatTimestamp } from "../shared/util"
 import { useEffect, useState } from "react"
-import { TaskExecution, TaskExecutionStatus } from "@jigjoy-io/observability-client"
+import { TaskExecution, TaskExecutionStatus } from "@jigjoy-io/platform-sdk"
 
 const TaskExecutionComponent: React.FC<{ runInfo: TaskExecution }> = ({ runInfo }) => {
 	const [borderStyle, setBorderStyle] = useState("border-l-highlight")
