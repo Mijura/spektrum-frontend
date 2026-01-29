@@ -8,7 +8,6 @@ export const Route = createFileRoute("/_auth/home")({
 	loader: async () => {
 		try {			
 			const state = store.getState()
-			console.log(state)
 			const userData = state.account.userData 
 			return await fetchAllProjects(userData.id)
 		} catch (error: any) {
