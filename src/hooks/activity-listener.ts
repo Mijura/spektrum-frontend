@@ -21,7 +21,7 @@ export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 	useEffect(() => {
 		if (!room) return
 
-		const socket = io(`${API_GATEWAY}/socket.io`)
+		const socket = io(`${API_GATEWAY}`)
 
 		socket.on("connect", () => {
 			socket.emit("subscribe", room)

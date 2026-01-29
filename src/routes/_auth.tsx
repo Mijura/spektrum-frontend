@@ -31,8 +31,6 @@ export const Route = createFileRoute("/_auth")({
 				to: "/",
 			})
 		}
-
-		console.log(context)
 		return context
 	},
 	
@@ -51,7 +49,6 @@ function AuthLayout() {
 
 	useEffect(() => {
 		if (data.userData) {
-			console.log(data.userData)
 			dispatch(setUserData(data.userData))
 		}
 	}, [data])

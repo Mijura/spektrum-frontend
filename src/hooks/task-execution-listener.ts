@@ -25,7 +25,7 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 	useEffect(() => {
 		if (!accountId) return
 
-		const socket = io(`${API_GATEWAY}/socket.io`)
+		const socket = io(`${API_GATEWAY}`)
 
 		socket.on("connect", () => {
 			socket.emit("subscribe", accountId)

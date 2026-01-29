@@ -60,9 +60,6 @@ function WorkspaceComponent() {
 				}),
 			)
 
-			console.log(`entryPointDev: ${JSON.stringify(data.entryPointDev)}`)
-			console.log(`entryPointProd: ${JSON.stringify(data.entryPointProd)}`)
-
 			dispatch(entryPointDevLoaded(data.entryPointDev))
 			dispatch(entryPointProdLoaded(data.entryPointProd))
 			setIsLoaded(true)
