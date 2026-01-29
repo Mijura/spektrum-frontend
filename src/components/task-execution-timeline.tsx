@@ -20,8 +20,8 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 			const timeline = await fetchProjectTimeline(selectedProjectId)
 			dispatch(taskExecutionTimelineUpdated(timeline))
 			setIsLoading(false)
-		} else if (type === "account" && userData.userId) {
-			const timeline = await fetchAccountTimeline(userData.userId)
+		} else if (type === "account" && userData.id) {
+			const timeline = await fetchAccountTimeline(userData.id)
 			dispatch(taskExecutionTimelineUpdated(timeline))
 			setIsLoading(false)
 		}
@@ -29,9 +29,9 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 
 	useEffect(() => {
 		fetchTimeline()
-	}, [selectedProjectId, userData.userId])
+	}, [selectedProjectId, userData.id])
 
-	useTaskExecutionListener({ accountId: userData.userId })
+	useTaskExecutionListener({ accountId: userData.id })
 
 	return (
 		<div className="flex flex-col bg-surface shadow-md grow h-0 gap-4 overflow-y-auto custom-scrollbar pb-4 border border-primary-200 rounded-sm">
