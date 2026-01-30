@@ -14,7 +14,7 @@
 		"@jigjoy-io/platform-sdk": "^0.0.6",
 		"@jigjoy-io/task-contracts": "^0.0.2",
 		"@jigjoy-io/ui-library": "^0.1.1",
-		"@paddle/paddle-js": "^1.4.0",
+		"@paddle/paddle-js": "^1.6.1",
 		"@reduxjs/toolkit": "^2.5.0",
 		"@tanstack/react-router": "^1.92.11",
 		"d3": "^7.9.0",

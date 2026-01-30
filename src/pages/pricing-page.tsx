@@ -10,6 +10,10 @@ const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
 const PADDLE_TOKEN = process.env.PADDLE_TOKEN || ""
 
+console.log("JIGJOY_TOKEN_PRICE_ID", JIGJOY_TOKEN_PRICE_ID)
+console.log("PADDLE_ENVIRONMENT", PADDLE_ENVIRONMENT)
+console.log("PADDLE_TOKEN", PADDLE_TOKEN)
+
 // Token pricing configuration
 const TOKEN_PRICE = 0.5
 const MIN_TOKENS = 40
@@ -20,7 +24,7 @@ export default function PricingPage() {
 	const [paddle, setPaddle] = useState<Paddle>()
 	const navigate = useNavigate()
 	const userData = useUserData()
-	
+
 	// Calculate derived values
 	const totalPrice = (tokenAmount * TOKEN_PRICE).toFixed(2)
 
@@ -40,7 +44,6 @@ export default function PricingPage() {
 
 	// Callback to open a checkout
 	const openCheckout = async () => {
-
 		if (!userData.email) {
 			navigate({ to: "/" })
 			return
