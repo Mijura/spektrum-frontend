@@ -42,7 +42,7 @@ const LeftSideMenu = () => {
 				{[
 					{ name: "home", icon: HomeIcon, label: "Home", route: "/home" },
 					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/workspace" },
-					// { name: "pricing", icon: PricingIcon, label: "Pricing", route: "/pricing" },
+					{ name: "pricing", icon: PricingIcon, label: "Pricing", route: "/pricing" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
 						key={name}
