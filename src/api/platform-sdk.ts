@@ -1,6 +1,6 @@
 import { PlatfromSDK } from "@jigjoy-io/platform-sdk"
 
-const API_GATEWAY = process.env.API_GATEWAY || ""
+const JIGJOY_API_ENDPOINT = process.env.JIGJOY_API_ENDPOINT || ""
 
-const jigjoyClient = new PlatfromSDK(`${API_GATEWAY}`)
+const jigjoyClient = new PlatfromSDK(`${JIGJOY_API_ENDPOINT}`)
 export default jigjoyClient
