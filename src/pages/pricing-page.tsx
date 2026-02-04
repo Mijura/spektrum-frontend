@@ -71,7 +71,9 @@ export default function PricingPage() {
 							transition={{ duration: 0.5, delay: 0.2 }}
 						>
 							Remaining Credits:
-							<div className="text-progress text-4xl">${userData.credits}</div>
+							<div className={`text-4xl my-2 ${userData.credits > 0 ? "text-progress" : "text-danger"}`}>
+								{userData.credits > 0 ? `$${Math.abs(userData.credits)}` : `-$${userData.credits}`}
+							</div>
 						</motion.div>
 						{/* Description */}
 						<motion.div
