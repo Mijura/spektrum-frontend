@@ -14,12 +14,12 @@ export default function PricingPage() {
 	const navigate = useNavigate()
 	const userData = useUserData()
 
-	const initializePaddleInstance = async () => {		
-		const paddleInstance = await initializePaddle({ environment: PADDLE_ENVIRONMENT, token: PADDLE_TOKEN,  })
+	const initializePaddleInstance = async () => {
+		const paddleInstance = await initializePaddle({ environment: PADDLE_ENVIRONMENT, token: PADDLE_TOKEN })
 		setPaddle(paddleInstance)
 	}
 	// Download and initialize Paddle instance from CDN
-	useEffect(() => {		
+	useEffect(() => {
 		initializePaddleInstance()
 	}, [])
 
@@ -40,8 +40,7 @@ export default function PricingPage() {
 				displayMode: "overlay",
 				variant: "one-page",
 				theme: "dark",
-				
-			  },
+			},
 			customer: {
 				email: userData.email,
 			},
@@ -62,31 +61,33 @@ export default function PricingPage() {
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5 }}
-							className="text-2xl font-bold mt-2 xl:mt-16 mtext-highlight-200"
+							className="text-2xl font-bold my-8"
 						>
 							Pay-As-You-Go
 						</motion.h1>
-
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.5, delay: 0.2 }}
+						>
+							Remaining Credits:
+							<div className="text-progress text-4xl">${userData.credits}</div>
+						</motion.div>
 						{/* Description */}
 						<motion.div
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							transition={{ duration: 0.5, delay: 0.2 }}
-							className="my-4 text-secondary-100"
+							className="mt-8 mb-4 text-secondary-100"
 						>
-							Your credit balance will be consumed as you use the API. 
+							Your credit balance will be consumed as you use the API.
 						</motion.div>
-						<Button
-									className="bg-secondary text-primary hover:bg-gray-300/80 w-fit"
-									onClick={openCheckout}
-								>
-									Add Credits
-								</Button>
-
+						<Button className="bg-secondary text-primary hover:bg-gray-300/80 w-fit" onClick={openCheckout}>
+							Add Credits
+						</Button>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	)
 }
