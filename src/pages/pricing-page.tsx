@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
 import { useUserData } from "../hooks/store"
-import { CircleQuestionMark } from "lucide-react"
+import { CircleQuestionMark, CreditCard, FileStack, Key, Webhook } from "lucide-react"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -78,39 +78,14 @@ export default function PricingPage() {
 			<div className="w-fit">
 				<div className="px-4 w-fit min-h-[50px] h-[50px] justify-center items-center text-secondary-100 gap-3 flex flex-row">
 					<div className={getButtonClassName("overview")} onClick={() => setActiveTab("overview")}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							stroke="currentColor"
-							className="size-4"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M16.5 8.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v8.25A2.25 2.25 0 0 0 6 16.5h2.25m8.25-8.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-7.5A2.25 2.25 0 0 1 8.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 0 0-2.25 2.25v6"
-							/>
-						</svg>
+					<CreditCard className="size-4" />
 						Overview
 					</div>
 					<div className={getButtonClassName("billing-history")} onClick={() => setActiveTab("billing-history")}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							stroke="currentColor"
-							className="size-4"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z"
-							/>
-						</svg>
+					<FileStack className="size-4" />
 						Billing History
 					</div>
+
 				</div>
 			</div>
 		</div>
