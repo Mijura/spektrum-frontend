@@ -15,6 +15,7 @@ import { Route as AuthWorkspaceRouteImport } from './routes/_auth.workspace'
 import { Route as AuthWelcomeRouteImport } from './routes/_auth.welcome'
 import { Route as AuthPricingRouteImport } from './routes/_auth.pricing'
 import { Route as AuthHomeRouteImport } from './routes/_auth.home'
+import { Route as AuthApiKeysRouteImport } from './routes/_auth.api-keys'
 import { Route as AuthProjectIdRouteImport } from './routes/_auth.$projectId'
 
 const AuthRoute = AuthRouteImport.update({
@@ -46,6 +47,11 @@ const AuthHomeRoute = AuthHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthApiKeysRoute = AuthApiKeysRouteImport.update({
+  id: '/api-keys',
+  path: '/api-keys',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthProjectIdRoute = AuthProjectIdRouteImport.update({
   id: '/$projectId',
   path: '/$projectId',
@@ -55,6 +61,7 @@ const AuthProjectIdRoute = AuthProjectIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$projectId': typeof AuthProjectIdRoute
+  '/api-keys': typeof AuthApiKeysRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
   '/welcome': typeof AuthWelcomeRoute
@@ -63,6 +70,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$projectId': typeof AuthProjectIdRoute
+  '/api-keys': typeof AuthApiKeysRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
   '/welcome': typeof AuthWelcomeRoute
@@ -73,6 +81,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_auth/$projectId': typeof AuthProjectIdRoute
+  '/_auth/api-keys': typeof AuthApiKeysRoute
   '/_auth/home': typeof AuthHomeRoute
   '/_auth/pricing': typeof AuthPricingRoute
   '/_auth/welcome': typeof AuthWelcomeRoute
@@ -83,17 +92,26 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$projectId'
+    | '/api-keys'
     | '/home'
     | '/pricing'
     | '/welcome'
     | '/workspace'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$projectId' | '/home' | '/pricing' | '/welcome' | '/workspace'
+  to:
+    | '/'
+    | '/$projectId'
+    | '/api-keys'
+    | '/home'
+    | '/pricing'
+    | '/welcome'
+    | '/workspace'
   id:
     | '__root__'
     | '/'
     | '/_auth'
     | '/_auth/$projectId'
+    | '/_auth/api-keys'
     | '/_auth/home'
     | '/_auth/pricing'
     | '/_auth/welcome'
@@ -149,6 +167,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthHomeRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth/api-keys': {
+      id: '/_auth/api-keys'
+      path: '/api-keys'
+      fullPath: '/api-keys'
+      preLoaderRoute: typeof AuthApiKeysRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_auth/$projectId': {
       id: '/_auth/$projectId'
       path: '/$projectId'
@@ -161,6 +186,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthRouteChildren {
   AuthProjectIdRoute: typeof AuthProjectIdRoute
+  AuthApiKeysRoute: typeof AuthApiKeysRoute
   AuthHomeRoute: typeof AuthHomeRoute
   AuthPricingRoute: typeof AuthPricingRoute
   AuthWelcomeRoute: typeof AuthWelcomeRoute
@@ -169,6 +195,7 @@ interface AuthRouteChildren {
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthProjectIdRoute: AuthProjectIdRoute,
+  AuthApiKeysRoute: AuthApiKeysRoute,
   AuthHomeRoute: AuthHomeRoute,
   AuthPricingRoute: AuthPricingRoute,
   AuthWelcomeRoute: AuthWelcomeRoute,

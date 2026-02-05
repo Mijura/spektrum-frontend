@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import WorkspaceIcon from "../shared/icons/workspace-icon"
+import WorkspaceIcon from "../shared/icons/workspace"
 import DiscordIcon from "../shared/icons/discord-icon"
 import { useNavigate } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
@@ -11,7 +11,7 @@ import PricingIcon from "../shared/icons/pricing-icon"
 import { useLoadedPage } from "../hooks/store"
 import { clearUserData } from "../reducers/account-reducer"
 import { logout } from "../api/account-and-billing"
-import { Key } from "lucide-react"
+import KeyRoundIcon from "../shared/icons/key-round"
 
 const LeftSideMenu = () => {
 	const [menuExpanded, setMenuExpanded] = useState(false)
@@ -43,7 +43,7 @@ const LeftSideMenu = () => {
 				{[
 					{ name: "home", icon: HomeIcon, label: "Home", route: "/home" },
 					{ name: "workspace", icon: WorkspaceIcon, label: "Workspace", route: "/workspace" },
-					{ name: "api-keys", icon: PricingIcon, label: "API Keys", route: "/api-keys" },
+					{ name: "api-keys", icon: KeyRoundIcon, label: "API Keys", route: "/api-keys" },
 					{ name: "pricing", icon: PricingIcon, label: "Pricing", route: "/pricing" },
 				].map(({ name, icon: Icon, label, route }) => (
 					<li
