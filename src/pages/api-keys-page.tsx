@@ -19,7 +19,7 @@ export default function ApiKeysPage() {
 			<div className="flex flex-row h-full">
 				<div className="w-full h-full">
 					<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
-						<div className="h-full w-full rounded-sm mx-40 mt-20">
+						<div className="h-full w-full xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
 							<h1 className="text-2xl font-bold text-secondary-100 mb-4">API keys</h1>
 							<hr className="border-secondary-200" />
 
@@ -29,16 +29,25 @@ export default function ApiKeysPage() {
 										You are authorized to access and control all API keys for this organization.
 									</div>
 									<div className="text-secondary-100">
-										Keep your API keys private and never include them in browser-based or client-side code. If a key is exposed publicly, JigJoy may deactivate it to maintain account security.
+										Keep your API keys private and never include them in browser-based or
+										client-side code. If a key is exposed publicly, JigJoy may deactivate it to
+										maintain account security.
 									</div>
-									
+
 									<div className="flex justify-end">
-											<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4" onClick={() => createApiKey()}>Create API Key</Button>
+										<Button
+											className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4"
+											onClick={() => createApiKey()}
+										>
+											Create API Key
+										</Button>
 									</div>
 
 									{userData.apiKeys.length === 0 && (
 										<>
-										<div className="mt-4 text-secondary bg-surface-light p-4 rounded-md">No API keys yet.</div>
+											<div className="mt-4 text-secondary bg-surface-light p-4 rounded-md">
+												No API keys yet.
+											</div>
 										</>
 									)}
 									{userData.apiKeys.map((apiKey: any) => (

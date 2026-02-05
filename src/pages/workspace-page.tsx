@@ -93,7 +93,12 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: any[
 							building a landing page, designing an onboarding flow, or creating a layout prototype.
 						</div>
 						<div>
-							<Button onClick={handleCreateNewProject}>Create first project</Button>
+							<Button
+								className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
+								onClick={handleCreateNewProject}
+							>
+								Create first project
+							</Button>
 						</div>
 					</div>
 				</div>
