@@ -126,9 +126,14 @@ export default function PricingPage() {
 						</div>
 					)}
 					{activeTab === "billing-history" && (
-						<>
-							<div>Billing History</div>
-						</>
+						<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
+							<div className="h-full w-full xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
+								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Billing History</h1>
+								<hr className="border-secondary-200" />
+
+								<div className="flex flex-col gap-4 mt-8"></div>
+							</div>
+						</div>
 					)}
 				</div>
 			</div>
