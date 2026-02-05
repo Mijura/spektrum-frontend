@@ -4,6 +4,8 @@ const initialState = {
 	userData: {
 		id: '',
 		email: '',
+		credits: 0.00,
+		apiKeys: [],
 	},
 }
 

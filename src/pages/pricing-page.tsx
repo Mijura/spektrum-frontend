@@ -50,6 +50,16 @@ export default function PricingPage() {
 		})
 	}
 
+	function formatCredits(value: number | string | null | undefined): string {
+		const num = Number(value ?? 0);
+	  
+		if (Number.isNaN(num)) return "$0.00";
+	  
+		const abs = Math.abs(num).toFixed(2);
+	  
+		return num < 0 ? `-$${abs}` : `$${abs}`;
+	  }
+
 	return (
 		<div className="mx-8 w-full bg-[#1a1a1a] text-secondary flex flex-col items-center px-4 py-8 md:py-20 2xl:py-40 font-body">
 			<div className="w-full md:w-3/4 2xl:w-1/2 flex h-fit">
@@ -72,7 +82,7 @@ export default function PricingPage() {
 						>
 							Remaining Credits:
 							<div className={`text-4xl my-2 ${userData.credits > 0 ? "text-progress" : "text-danger"}`}>
-								{userData.credits > 0 ? `$${Math.abs(userData.credits)}` : `-$${userData.credits}`}
+								{formatCredits(userData.credits)}
 							</div>
 						</motion.div>
 						{/* Description */}
