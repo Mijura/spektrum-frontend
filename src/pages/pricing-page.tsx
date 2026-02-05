@@ -1,18 +1,22 @@
-import { motion } from "framer-motion"
-import { Button } from "@jigjoy-io/ui-library"
+import { Button, Tooltip } from "@jigjoy-io/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
 import { useUserData } from "../hooks/store"
+import { CircleQuestionMark } from "lucide-react"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
 const PADDLE_TOKEN = process.env.PADDLE_TOKEN || ""
 
+type TabType = "overview" | "billing-history"
+
 export default function PricingPage() {
 	const [paddle, setPaddle] = useState<Paddle>()
 	const navigate = useNavigate()
 	const userData = useUserData()
+
+	const [activeTab, setActiveTab] = useState<TabType>("overview")
 
 	const initializePaddleInstance = async () => {
 		const paddleInstance = await initializePaddle({ environment: PADDLE_ENVIRONMENT, token: PADDLE_TOKEN })
@@ -60,44 +64,85 @@ export default function PricingPage() {
 		return num < 0 ? `-$${abs}` : `$${abs}`;
 	  }
 
+	  const getButtonClassName = (tab: TabType) => {
+		return `rounded-md h-fit p-1 px-2 ${
+			activeTab === tab
+				? "bg-highlight items-center hover:bg-highlight text-primary-100 cursor-default p-1 text-sm flex flex-row gap-1"
+				: "bg-surface-light items-center text-secondary-100 hover:bg-surface-light/80 p-1 gap-1 text-sm cursor-default flex flex-row"
+		}`
+	}
+
 	return (
-		<div className="mx-8 w-full bg-[#1a1a1a] text-secondary flex flex-col items-center px-4 py-8 md:py-20 2xl:py-40 font-body">
-			<div className="w-full md:w-3/4 2xl:w-1/2 flex h-fit">
-				<div className="flex flex-col lg:flex-row gap-6 w-full">
-					{/* How It Works Card */}
-					<div className="flex flex-col h-fit md:px-0">
-						{/* Page Heading */}
-						<motion.h1
-							initial={{ opacity: 0, y: -20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5 }}
-							className="text-2xl font-bold my-8"
+		<div className="w-full flex flex-col pl-4 bg-[#1a1a1a]">
+		<div className="h-fit bg-surface w-full flex items-center justify-center border-b border-secondary-200">
+			<div className="w-fit">
+				<div className="px-4 w-fit min-h-[50px] h-[50px] justify-center items-center text-secondary-100 gap-3 flex flex-row">
+					<div className={getButtonClassName("overview")} onClick={() => setActiveTab("overview")}>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="size-4"
 						>
-							Pay-As-You-Go
-						</motion.h1>
-						<motion.div
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.5, delay: 0.2 }}
-						>
-							Remaining Credits:
-							<div className={`text-4xl my-2 ${userData.credits > 0 ? "text-progress" : "text-danger"}`}>
-								{formatCredits(userData.credits)}
-							</div>
-						</motion.div>
-						{/* Description */}
-						<motion.div
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.5, delay: 0.2 }}
-							className="mt-8 mb-4 text-secondary-100"
-						>
-							Your credit balance will be consumed as you use the API.
-						</motion.div>
-						<Button className="bg-secondary text-primary hover:bg-gray-300/80 w-fit" onClick={openCheckout}>
-							Add Credits
-						</Button>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M16.5 8.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v8.25A2.25 2.25 0 0 0 6 16.5h2.25m8.25-8.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-7.5A2.25 2.25 0 0 1 8.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 0 0-2.25 2.25v6"
+							/>
+						</svg>
+						Overview
 					</div>
+					<div className={getButtonClassName("billing-history")} onClick={() => setActiveTab("billing-history")}>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="size-4"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z"
+							/>
+						</svg>
+						Billing History
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div className="flex flex-row h-full">
+			<div className="w-full h-full">
+				{activeTab === "overview" && (
+					<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
+						<div className="h-full w-full rounded-sm m-40">
+							<h1 className="text-2xl font-bold text-secondary-100">Pay-As-You-Go</h1>
+							<div className="flex flex-col gap-4">
+								<div className="flex flex-row gap-2">
+									<div className="w-1/2">
+										<span className="flex items-center gap-2 mt-8">
+											<h2 className="text-lg font-bold text-secondary-100">Credit Balance</h2>
+											<Tooltip message="Your credit balance will be consumed as you use the API">
+												<CircleQuestionMark className="w-4 h-4 text-secondary-100" />
+											</Tooltip>
+										</span>
+										<div className={`text-4xl my-2 mb-4 ${userData.credits > 0 ? "text-progress" : "text-danger"}`}>
+											{formatCredits(userData.credits)}
+										</div>
+										<Button className="bg-secondary text-primary hover:bg-gray-300/80 w-fit mt-2" onClick={openCheckout}>
+											Add Credits
+										</Button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				)}
+				{activeTab === "billing-history" && <><div>Billing History</div></>}
 				</div>
 			</div>
 		</div>
