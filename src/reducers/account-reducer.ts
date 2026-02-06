@@ -5,7 +5,7 @@ const initialState = {
 		id: '',
 		email: '',
 		credits: 0.00,
-		apiKeys: [],
+		apiKeys: [] as any[],
 	},
 }
 
@@ -19,8 +19,11 @@ const accountSlice = createSlice({
 		clearUserData(state) {
 			state.userData = initialState.userData
 		},
+		apiKeyCreated(state, action) {
+			state.userData.apiKeys.push(action.payload)
+		},
 	},
 })
 
-export const { setUserData, clearUserData } = accountSlice.actions
+export const { setUserData, clearUserData, apiKeyCreated } = accountSlice.actions
 export default accountSlice.reducer

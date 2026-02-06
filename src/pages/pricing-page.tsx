@@ -1,9 +1,9 @@
-import { Button, Tooltip } from "@jigjoy-io/ui-library"
+import { Button } from "@jigjoy-io/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
 import { useUserData } from "../hooks/store"
-import { CircleQuestionMark, CreditCard, FileStack } from "lucide-react"
+import { CreditCard, FileStack } from "lucide-react"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
