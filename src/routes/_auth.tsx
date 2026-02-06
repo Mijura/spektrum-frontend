@@ -18,7 +18,9 @@ export const Route = createFileRoute("/_auth")({
 				return authSession
 			} catch (error: any) {
 				console.error(error)
-				return null
+				throw redirect({
+					to: "/",
+				})
 			}
 		}
 		return null
@@ -48,8 +50,8 @@ function AuthLayout() {
 	const data = Route.useLoaderData()
 
 	useEffect(() => {
-		if (data.userData) {
-			dispatch(setUserData(data.userData))
+		if (data.authSession && data.authSession.userData) {
+			dispatch(setUserData(data.authSession.userData))
 		}
 	}, [data])
 	

@@ -1,11 +1,29 @@
+import { useRef, useState } from "react"
 import { useUserData } from "../hooks/store"
-import { Button } from "@jigjoy-io/ui-library"
+import { Button, Input, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui-library"
+import { createApiKey } from "../api/account-and-billing"
+import { useDispatch } from "react-redux"
+import { apiKeyCreated } from "../reducers/account-reducer"
 
 export default function ApiKeysPage() {
 	const userData = useUserData()
+	const [apiKeyName, setApiKeyName] = useState("")
 
-	const createApiKey = () => {
-		alert("createApiKey")
+	const apiKeyNameRef = useRef<HTMLInputElement>(null)
+	const [apiKeyCreationModalOpened, setApiKeyCreationModalOpened] = useState(false)
+	const [isExecuting, setIsExecuting] = useState(false)
+	const dispatch = useDispatch()
+
+	const handleCreateApiKey = async () => {
+		setIsExecuting(true)
+		try {
+			const apiKey = await createApiKey(userData.id, apiKeyName)
+			dispatch(apiKeyCreated(apiKey))
+			setApiKeyCreationModalOpened(false)
+			setApiKeyName("")
+		} finally {
+			setIsExecuting(false)
+		}
 	}
 
 	return (
@@ -33,7 +51,7 @@ export default function ApiKeysPage() {
 									</div>
 									
 									<div className="flex justify-end">
-											<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4" onClick={() => createApiKey()}>Create API Key</Button>
+										<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4" onClick={() => setApiKeyCreationModalOpened(true)}>Create API Key</Button>
 									</div>
 
 									{userData.apiKeys.length === 0 && (
@@ -53,6 +71,53 @@ export default function ApiKeysPage() {
 					</div>
 				</div>
 			</div>
+
+			<div className="flex flex-row w-[300px] h-fit z-40">
+					<Modal
+						isOpen={apiKeyCreationModalOpened}
+						onOpenCallback={() => {
+							// Focus the input when modal opens
+							setTimeout(() => {
+								apiKeyNameRef.current?.focus()
+							}, 200)
+						}}
+						onCloseCallback={() => setApiKeyCreationModalOpened(false)}
+					>
+						<ModalTrigger>
+							<div
+								style={{ display: "none" }}
+								ref={(el) => {
+									if (el && apiKeyCreationModalOpened) {
+										el.click()
+									}
+								}}
+							/>
+						</ModalTrigger>
+						<ModalContent
+							title="New task"
+							className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]"
+						>
+							<Input
+								ref={apiKeyNameRef}
+								placeholder="API key name"
+								value={apiKeyName}
+								onChange={(e) => setApiKeyName(e.target.value)}
+								className="mb-4 w-full"
+							/>
+							<div className="flex justify-end gap-2">
+
+								<Button
+									size="sm"
+									variant="secondary"
+									onClick={handleCreateApiKey}
+									loading={isExecuting}
+								>
+									Create API Key
+								</Button>
+							</div>
+						</ModalContent>
+					</Modal>
+				</div>
 		</div>
 	)
 }

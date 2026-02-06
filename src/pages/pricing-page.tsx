@@ -107,12 +107,12 @@ export default function PricingPage() {
 												</Tooltip>
 											</span>
 											<div
-												className={`text-4xl my-2 mb-4 ${userData.credits > 0 ? "text-progress" : "text-danger"}`}
+												className={`text-4xl my-2 mb-4 ${userData.credits > 0 ? "text-highlight-200" : "text-danger"}`}
 											>
 												{formatCredits(userData.credits)}
 											</div>
 											<Button
-												className="bg-secondary text-primary hover:bg-gray-300/80 w-fit mt-2"
+												className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-2"
 												onClick={openCheckout}
 											>
 												Add Credits

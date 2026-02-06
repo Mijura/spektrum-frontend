@@ -8,6 +8,10 @@ export async function verifyMagicLinkChallenge(email: string, challengeResponse:
 	return await jigjoyClient.account.verifyMagicLinkChallenge(email, challengeResponse)
 }
 
+export async function createApiKey(accountId: string, name: string) {
+	return await jigjoyClient.account.createApiKey(accountId, name)
+}
+
 export async function logout() {
 	return await jigjoyClient.account.logout()
 }
