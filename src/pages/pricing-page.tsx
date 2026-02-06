@@ -1,9 +1,9 @@
-import { Button, Tooltip } from "@jigjoy-io/ui-library"
+import { Button } from "@jigjoy-io/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
 import { useUserData } from "../hooks/store"
-import { CircleQuestionMark, CreditCard, FileStack } from "lucide-react"
+import { CreditCard, FileStack } from "lucide-react"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -74,59 +74,66 @@ export default function PricingPage() {
 
 	return (
 		<div className="w-full flex flex-col pl-4 bg-[#1a1a1a]">
-
-		<div className="h-fit bg-surface w-full flex items-center justify-center border-b border-secondary-200">
-			<div className="w-fit">
-				<div className="px-4 w-fit min-h-[50px] h-[50px] justify-center items-center text-secondary-100 gap-3 flex flex-row">
-					<div className={getButtonClassName("overview")} onClick={() => setActiveTab("overview")}>
-					<CreditCard className="size-4" />
-						Overview
+			<div className="h-fit bg-surface w-full flex items-center justify-center border-b border-secondary-200">
+				<div className="w-fit">
+					<div className="px-4 w-fit min-h-[50px] h-[50px] justify-center items-center text-secondary-100 gap-3 flex flex-row">
+						<div className={getButtonClassName("overview")} onClick={() => setActiveTab("overview")}>
+							<CreditCard className="size-4" />
+							Overview
+						</div>
+						<div
+							className={getButtonClassName("billing-history")}
+							onClick={() => setActiveTab("billing-history")}
+						>
+							<FileStack className="size-4" />
+							Billing History
+						</div>
 					</div>
-					<div className={getButtonClassName("billing-history")} onClick={() => setActiveTab("billing-history")}>
-					<FileStack className="size-4" />
-						Billing History
-					</div>
-
 				</div>
-			</div>
 			</div>
 
 			<div className="flex flex-row h-full">
 				<div className="w-full h-full">
 					{activeTab === "overview" && (
 						<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
-							<div className="h-full w-full rounded-sm mx-40 mt-20">
-								<h1 className="text-2xl font-bold text-secondary-100">Pay-As-You-Go</h1>
-								<div className="flex flex-col gap-4">
-									<div className="flex flex-row gap-2">
-										<div className="w-1/2">
-											<span className="flex items-center gap-2 mt-8">
-												<h2 className="text-lg text-secondary-100">Credit Balance</h2>
-												<Tooltip message="Your credit balance will be consumed as you use the API">
-													<CircleQuestionMark className="w-4 h-4 text-secondary-100" />
-												</Tooltip>
-											</span>
-											<div
-												className={`text-4xl my-2 mb-4 ${userData.credits > 0 ? "text-highlight-200" : "text-danger"}`}
-											>
-												{formatCredits(userData.credits)}
-											</div>
-											<Button
-												className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-2"
-												onClick={openCheckout}
-											>
-												Add Credits
-											</Button>
+							<div className="h-full w-full xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
+								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Pay-As-You-Go</h1>
+								<hr className="border-secondary-200" />
+
+								<div className="flex flex-col gap-4 mt-8">
+									<div className="flex flex-col gap-2">
+										<div className="text-secondary-100">
+											Your credit balance will be consumed as you use the API.
 										</div>
+										<div className="text-secondary-100">
+											App generation costs vary by task complexity and model, typically ranging
+											from $0.30 to $0.50, and may change as new pricing tiers are introduced.
+										</div>
+										<div
+											className={`text-4xl my-2 mb-4 ${userData.credits > 0 ? "text-highlight-200" : "text-danger"}`}
+										>
+											{formatCredits(userData.credits)}
+										</div>
+										<Button
+											className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
+											onClick={openCheckout}
+										>
+											Add Credits
+										</Button>
 									</div>
 								</div>
 							</div>
 						</div>
 					)}
 					{activeTab === "billing-history" && (
-						<>
-							<div>Billing History</div>
-						</>
+						<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
+							<div className="h-full w-full xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
+								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Billing History</h1>
+								<hr className="border-secondary-200" />
+
+								<div className="flex flex-col gap-4 mt-8"></div>
+							</div>
+						</div>
 					)}
 				</div>
 			</div>
