@@ -56,19 +56,30 @@ export default function ApiKeysPage() {
 										<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4" onClick={() => setApiKeyCreationModalOpened(true)}>Create API Key</Button>
 									</div>
 
-									{userData.apiKeys.length === 0 && (
+									{userData.apiKeys.length === 0 ? (
 										<>
 											<div className="mt-4 text-secondary bg-surface-light p-4 rounded-md">
 												No API keys yet.
 											</div>
 										</>
-									)}
-									{userData.apiKeys.map((apiKey: any) => (
-										<div key={apiKey.id}>
-											<h2 className="text-lg text-secondary-100">{apiKey.name}</h2>
-											<p className="text-sm text-secondary-100">{apiKey.key}</p>
-										</div>
-									))}
+										):(
+											<div className="w-full">
+													<div className="flex flex-row w-full gap-2">
+														<p className="text-sm text-highlight-200 p-4 rounded-md w-1/3">Name</p>
+														<p className="text-sm text-highlight-200 p-4 rounded-md w-2/3">API Key</p>
+													</div>
+												{userData.apiKeys.map((apiKey: any) => (
+													<div key={apiKey.id} className="flex flex-row w-full gap-2">
+														<p className="text-sm text-secondary-100 bg-surface-light p-4 rounded-md w-1/3">{apiKey.name}</p>
+														<p className="text-sm text-secondary-100 bg-surface-light p-4 rounded-md w-2/3">{apiKey.key}</p>
+													</div>
+												))}
+											</div>
+										
+										)
+									}
+
+
 								</div>
 							</div>
 						</div>
@@ -99,7 +110,7 @@ export default function ApiKeysPage() {
 						</ModalTrigger>
 						<ModalContent
 							title="New task"
-							className="w-full md:w-[65vw] xl:w-[50vw] 2xl:w-[30vw] max-w-[90vw]"
+							className="w-full xl:w-[600px] max-w-[90vw]"
 						>
 							<Input
 								ref={apiKeyNameRef}
@@ -112,7 +123,7 @@ export default function ApiKeysPage() {
 
 								<Button
 									size="sm"
-									variant="secondary"
+									className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
 									onClick={handleCreateApiKey}
 									loading={isExecuting}
 								>
