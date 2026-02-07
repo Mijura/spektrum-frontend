@@ -354,10 +354,10 @@
   resolved "https://npm.pkg.github.com/download/@jigjoy-io/task-contracts/0.0.2/5719d41913ba8bdf4a707518aaca7dba632cb13d"
   integrity sha512-Hxhd9VuND0ds2MuHEdNe8j4kvHJNDDjk2v8oKHcwI7pBdy8sdIFcsPPqGpxQRtAvX3uY49eRIF8zvbFYf2B38g==
 
-"@jigjoy-io/ui-library@^0.1.1":
-  version "0.1.1"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ui-library/0.1.1/7277a5d6ce40cb4ecc77d4821bb29de2818bcdf1"
-  integrity sha512-VOcdF3uk+zzSW49TSAZhNIt4MtVS8CokKN1FjVmrSNSHlWJUMqP60VNde5X5ARZn01KF/YG1tp09Rp+goCw0bQ==
+"@jigjoy-io/ui-library@^0.1.4":
+  version "0.1.4"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ui-library/0.1.4/782225b7502b7d7db84355ba75b3a7dd80257f6d"
+  integrity sha512-9z396dJMLT040jrzFPQssPj6pNQdw/l2yMGaq/jb5iJbI5MG1ga1+lAOd3P+DQqDKfl/xakh3Id7ONjl8gkdlw==
   dependencies:
     "@emotion/is-prop-valid" "^1.3.1"
 

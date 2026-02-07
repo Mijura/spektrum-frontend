@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { useUserData } from "../hooks/store"
-import { Button, Input, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui-library"
+import { Button, Copyable, Input, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui-library"
 import { createApiKey } from "../api/account-and-billing"
 import { useDispatch } from "react-redux"
 import { apiKeyCreated } from "../reducers/account-reducer"
@@ -8,7 +8,7 @@ import { apiKeyCreated } from "../reducers/account-reducer"
 export default function ApiKeysPage() {
 	const userData = useUserData()
 	const [apiKeyName, setApiKeyName] = useState("")
-
+	const [apiKeyHash, setApiKeyHash] = useState("")
 	const apiKeyNameRef = useRef<HTMLInputElement>(null)
 	const [apiKeyCreationModalOpened, setApiKeyCreationModalOpened] = useState(false)
 	const [isExecuting, setIsExecuting] = useState(false)
@@ -21,6 +21,8 @@ export default function ApiKeysPage() {
 			dispatch(apiKeyCreated(apiKey))
 			setApiKeyCreationModalOpened(false)
 			setApiKeyName("")
+			console.log(apiKey)
+			setApiKeyHash(apiKey.keyHash)
 		} finally {
 			setIsExecuting(false)
 		}
@@ -52,9 +54,13 @@ export default function ApiKeysPage() {
 										maintain account security.
 									</div>
 
-									<div className="flex justify-end">
-										<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4" onClick={() => setApiKeyCreationModalOpened(true)}>Create API Key</Button>
+									<div className="flex flex-row w-full items-center mt-10">
+										{apiKeyHash && <Copyable className="w-fit" text={apiKeyHash} tooltipMessage="Copy — this won’t be shown again."/>}
+										<div className="grow flex justify-end h-fit">
+											<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4" onClick={() => setApiKeyCreationModalOpened(true)}>Create API Key</Button>
+										</div>
 									</div>
+
 
 									{userData.apiKeys.length === 0 ? (
 										<>
@@ -69,9 +75,11 @@ export default function ApiKeysPage() {
 														<p className="text-sm text-highlight-200 p-4 rounded-md w-2/3">API Key</p>
 													</div>
 												{userData.apiKeys.map((apiKey: any) => (
-													<div key={apiKey.id} className="flex flex-row w-full gap-2">
-														<p className="text-sm text-secondary-100 bg-surface-light p-4 rounded-md w-1/3">{apiKey.name}</p>
-														<p className="text-sm text-secondary-100 bg-surface-light p-4 rounded-md w-2/3">{apiKey.key}</p>
+													<div className="flex flex-col py-1 gap-2">
+														<div className="flex flex-row w-full gap-2">
+															<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/3">{apiKey.name}</p>
+															<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-2/3">{apiKey.key}</p>
+														</div>
 													</div>
 												))}
 											</div>

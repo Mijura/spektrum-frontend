@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@jigjoy-io/platform-sdk": "^0.0.8",
 		"@jigjoy-io/task-contracts": "^0.0.2",
-		"@jigjoy-io/ui-library": "^0.1.1",
+		"@jigjoy-io/ui-library": "^0.1.4",
 		"@paddle/paddle-js": "^1.6.1",
 		"@reduxjs/toolkit": "^2.5.0",
 		"@tanstack/react-router": "^1.92.11",
