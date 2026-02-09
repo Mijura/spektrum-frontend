@@ -4,6 +4,8 @@ import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
 import { useUserData } from "../hooks/store"
 import { CreditCard, FileStack } from "lucide-react"
+import { useDispatch } from "react-redux"
+import { setUserData } from "../reducers/account-reducer"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -15,11 +17,21 @@ export default function PricingPage() {
 	const [paddle, setPaddle] = useState<Paddle>()
 	const navigate = useNavigate()
 	const userData = useUserData()
+	const dispatch = useDispatch()
 
 	const [activeTab, setActiveTab] = useState<TabType>("overview")
 
 	const initializePaddleInstance = async () => {
-		const paddleInstance = await initializePaddle({ environment: PADDLE_ENVIRONMENT, token: PADDLE_TOKEN })
+		const paddleInstance = await initializePaddle({ 
+			environment: PADDLE_ENVIRONMENT, 
+			token: PADDLE_TOKEN,   
+			eventCallback: function(response: any) {
+				if (response.name == "checkout.completed") {
+					const amount = Number(response.data.totals.total)
+					dispatch(setUserData({ ...userData, credits: userData.credits + amount }))
+				}
+			},
+		})
 		setPaddle(paddleInstance)
 	}
 	// Download and initialize Paddle instance from CDN
