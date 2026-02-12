@@ -1,4 +1,4 @@
-import { Button, Loader } from "@jigjoy-io/ui-library"
+import { Button, Loader } from "@jigjoy-ai/ui-library"
 import React, { useState } from "react"
 import { useEntryPointProd, useSelectedProject } from "../hooks/store"
 import DeployBigIcon from "../shared/icons/deploy-big-icon"

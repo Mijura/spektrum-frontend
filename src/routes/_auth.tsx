@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import LeftSideMenu from "../components/left-side-menu"
 import { hasAccessToken, verifyMagicLinkChallenge } from "../api/account-and-billing"
-import { Loader } from "@jigjoy-io/ui-library"
+import { Loader } from "@jigjoy-ai/ui-library"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setUserData } from "../reducers/account-reducer"

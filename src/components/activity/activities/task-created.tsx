@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { TaskCreatedActivity, TaskCreatedMetadata } from "@jigjoy-io/task-contracts"
+import { TaskCreatedActivity, TaskCreatedMetadata } from "@jigjoy-ai/task-contracts"
 import CreateIcon from "../../../shared/icons/create-icon"
 
 export const TaskCreatedActivityComponent = ({ activity }: { activity: TaskCreatedActivity }) => (

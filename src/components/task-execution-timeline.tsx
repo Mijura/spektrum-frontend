@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useTaskExecutionTimeline, useSelectedProjectId, useUserData } from "../hooks/store"
 import TaskExecutionComponent from "./task-execution"
-import { Loader } from "@jigjoy-io/ui-library"
+import { Loader } from "@jigjoy-ai/ui-library"
 import { fetchProjectTimeline, fetchAccountTimeline } from "../api/observability"
 import { taskExecutionTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useTaskExecutionListener } from "../hooks/task-execution-listener"
-import { TaskExecution } from "@jigjoy-io/platform-sdk"
+import { TaskExecution } from "@jigjoy-ai/platform-sdk"
 
 const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type }) => {
 	const selectedProjectId = useSelectedProjectId()

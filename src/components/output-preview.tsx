@@ -1,4 +1,4 @@
-import { Tooltip } from "@jigjoy-io/ui-library"
+import { Tooltip } from "@jigjoy-ai/ui-library"
 import React, { useEffect } from "react"
 import ReloadIcon from "../shared/icons/reload-icon"
 import { v4 as uuidv4 } from "uuid"

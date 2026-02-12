@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { Chip } from "@jigjoy-io/ui-library"
-import { CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-io/task-contracts"
+import { Chip } from "@jigjoy-ai/ui-library"
+import { CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-ai/task-contracts"
 
 export const CommentLeftActivityComponent = ({ activity }: { activity: CommentLeftActivity }) => (
 	<div className="w-full flex">

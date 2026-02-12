@@ -1,4 +1,4 @@
-import { Task } from "@jigjoy-io/task-contracts"
+import { Task } from "@jigjoy-ai/task-contracts"
 
 export interface Version {
 	projectId: string

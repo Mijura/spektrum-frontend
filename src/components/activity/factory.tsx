@@ -4,7 +4,7 @@ import { TitleUpdatedActivityComponent } from "./activities/title-updated"
 import { DescriptionUpdatedActivityComponent } from "./activities/description-updated"
 import { StartedWorkActivityComponent } from "./activities/started-work"
 import { FinishedWorkActivityComponent } from "./activities/finished-work"
-import { Activity, ActivityType } from "@jigjoy-io/task-contracts"
+import { Activity, ActivityType } from "@jigjoy-ai/task-contracts"
 import { JSX } from "react"
 
 export function getActivityComponent(activity: Activity): JSX.Element {

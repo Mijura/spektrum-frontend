@@ -24,7 +24,7 @@ jobs:
    - name: "Create .npmrc file"
      run: |
       echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_GITHUB_TOKEN }}" > .npmrc
-      echo "@jigjoy-io:registry=https://npm.pkg.github.com" >> .npmrc
+      echo "@jigjoy-ai:registry=https://npm.pkg.github.com" >> .npmrc
       cat .npmrc
 
    - name: "Create env file"

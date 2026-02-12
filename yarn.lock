@@ -291,73 +291,72 @@
   resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.12.tgz"
   integrity sha512-uqZMTLr/zR/ed4jIGnwSLkaHmPjOjJvnm6TVVitAa08SLS9Z0VM8wIRx7gWbJB5/J54YuIMInDquWyYvQLZkgw==
 
-"@jigjoy-io/account-and-billing-client@^0.0.3":
-  version "0.0.3"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/account-and-billing-client/0.0.3/3ef1df63170df40651a3d71f4fae845e77ef0c22"
-  integrity sha512-bR9mOMKZDoRyL2aUHmaMhYcpkZjSV4Hdw0O9mTask2+6yDtj4DTjTY94dl3277oST9k8y/yNcKPSI5WNF15w/g==
-  dependencies:
-    "@jigjoy-io/task-contracts" "^0.0.2"
-    axios "^1.13.2"
-
-"@jigjoy-io/ai-coding-client@^0.0.11":
-  version "0.0.11"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ai-coding-client/0.0.11/bfa0d87cecdab89c864b4d2e28ad2947068990cf"
-  integrity sha512-GnFChP1pqF3doxZUWQcvw6ikpLvW0vsj4+Qhd3AHFEFYTgD+cPuY3WyKPCIK7xfdkz05NgX9MXRmMFxKJRRjIw==
-  dependencies:
-    "@jigjoy-io/task-contracts" "^0.0.2"
-    axios "^1.13.2"
-
-"@jigjoy-io/observability-client@^0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/observability-client/0.0.6/25fbe304ad2161c5b1598c86e2b3e65a06a27733"
-  integrity sha512-xTTbNfu5G+crZQTRFpfLpQwtPNZFML4m0WLFxQfmJZLG1WQUR/GzDOYc1o2tRCi+6MT4BJT3nY0TZEHzJENYlQ==
+"@jigjoy-ai/account-and-billing-client@^0.0.5":
+  version "0.0.5"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/account-and-billing-client/0.0.5/fd20cb0441672a511f2a1cd5a5e3f3cb3d1d5e60"
+  integrity sha512-taZINziKIku91lBZe8utb4B9kLYDw+sfF3WTTmi0RmEQzHNXVv6Hc1ClU4ayfy1bUFgwRaKGGT9IoAPTOpGQAg==
   dependencies:
     axios "^1.13.2"
 
-"@jigjoy-io/platform-sdk@^0.0.8":
-  version "0.0.8"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/platform-sdk/0.0.8/a0d804f4118cff7be8109e63b52ae4ae64a60ab6"
-  integrity sha512-iHnKDwdK8S7yMlMPrAH1JHthdDP67oW5pimVWhmv8bPwH4e4E6gwzQNq/bZZ/hHPRDIVTIS12Q4Bp6Onwy9XdQ==
+"@jigjoy-ai/ai-coding-client@^0.0.12":
+  version "0.0.12"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/ai-coding-client/0.0.12/1881ba6ed015097a867f2dc92a262766473c2f66"
+  integrity sha512-ONDLbNzhI7WxDrl7EXcda/4seuXAMnW4imkoqLhEHcJkvxbpadyrr0vbyeTrx8ilOgZEP4QkOLa3gYote1ON/A==
   dependencies:
-    "@jigjoy-io/account-and-billing-client" "^0.0.3"
-    "@jigjoy-io/ai-coding-client" "^0.0.11"
-    "@jigjoy-io/observability-client" "^0.0.6"
-    "@jigjoy-io/project-deployment-client" "^0.0.9"
-    "@jigjoy-io/project-planning-client" "^0.0.6"
-    "@jigjoy-io/project-versioning-client" "^0.0.10"
+    "@jigjoy-ai/task-contracts" "^0.0.3"
     axios "^1.13.2"
 
-"@jigjoy-io/project-deployment-client@^0.0.9":
+"@jigjoy-ai/observability-client@^0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/observability-client/0.0.7/a0967d4c3d0949ce396c3295cdeda5223419cbc7"
+  integrity sha512-Ry2X3x4M+MUL4KUNeMGNbdDSAg1kB0mE/IueV4JMiHAMsl+z6SwmIFCGy4nVNd74SPxS4BgIEm8keapUJlJ/yg==
+  dependencies:
+    axios "^1.13.2"
+
+"@jigjoy-ai/platform-sdk@^0.0.9":
   version "0.0.9"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/project-deployment-client/0.0.9/5d5485184ec7f320fcd5b2009867e2bbf60621af"
-  integrity sha512-mQt5tDFz2Qi2bxYYGI5D/m9I4WfhgSmTkngIubKa1UQH9WQCIeWC6D7R4SKauxLQhwn15ZmTKwGuGwUFH+PfRw==
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/platform-sdk/0.0.9/ded86ad8d5c5d0f2364c7abb6b77595e8b3557ee"
+  integrity sha512-ozV/b7CI5jrfsH7gv/NaKnTcAF5or7YcUk2H1b1Uz7mD8kPvkIGSVNF2YR25I9S10cAxvmyQyjiSRuAqAN7o5w==
   dependencies:
+    "@jigjoy-ai/account-and-billing-client" "^0.0.5"
+    "@jigjoy-ai/ai-coding-client" "^0.0.12"
+    "@jigjoy-ai/observability-client" "^0.0.7"
+    "@jigjoy-ai/project-deployment-client" "^0.0.10"
+    "@jigjoy-ai/project-planning-client" "^0.0.7"
+    "@jigjoy-ai/project-versioning-client" "^0.0.11"
     axios "^1.13.2"
 
-"@jigjoy-io/project-planning-client@^0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/project-planning-client/0.0.6/8c855ae629998e2d6e40f80b02d8b1359020063a"
-  integrity sha512-7UXgeZBoTpfDc4pJN245PMagWJor2elbwouNMwlrCnYQV6KBEqGn1M+1Vs1AwjQYqgP7sCdOOmxpie5CpMxeyg==
-  dependencies:
-    "@jigjoy-io/task-contracts" "^0.0.2"
-    axios "^1.13.2"
-
-"@jigjoy-io/project-versioning-client@^0.0.10":
+"@jigjoy-ai/project-deployment-client@^0.0.10":
   version "0.0.10"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/project-versioning-client/0.0.10/b942ae2d33b8a18ef8f165aa9ed43a54818f784a"
-  integrity sha512-daDyDBDCzLzPFWZNlFqB2tALFCJDbriqMY4LjlXSLv7059qiVFwEw+VyYqjfB9TUaA9d/M+koGFxTsinBRoCyA==
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/project-deployment-client/0.0.10/3275637843cabeaeb2a634a2bd501cc2a5d1f69b"
+  integrity sha512-EE22j0gx2MiEFwn7kwHa0YC4jQX7pDIBpBQKAEV+BQPzQdjFuTtjCq75hSieQbCEB6x8appbMPI365RMIqa8fg==
   dependencies:
     axios "^1.13.2"
 
-"@jigjoy-io/task-contracts@^0.0.2":
-  version "0.0.2"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/task-contracts/0.0.2/5719d41913ba8bdf4a707518aaca7dba632cb13d"
-  integrity sha512-Hxhd9VuND0ds2MuHEdNe8j4kvHJNDDjk2v8oKHcwI7pBdy8sdIFcsPPqGpxQRtAvX3uY49eRIF8zvbFYf2B38g==
+"@jigjoy-ai/project-planning-client@^0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/project-planning-client/0.0.7/350474571afc3ccf4f62869e9cc98481107078a3"
+  integrity sha512-uJ3z3LgbHtT0SxYvPsP3boVg3FHuRpA3Tr5mkzWmtVc3fiTQSrZbfnZOgiIJ7IP6UhPU7CRbQq6zF51KZ5Vwdg==
+  dependencies:
+    "@jigjoy-ai/task-contracts" "^0.0.3"
+    axios "^1.13.2"
 
-"@jigjoy-io/ui-library@^0.1.4":
-  version "0.1.4"
-  resolved "https://npm.pkg.github.com/download/@jigjoy-io/ui-library/0.1.4/782225b7502b7d7db84355ba75b3a7dd80257f6d"
-  integrity sha512-9z396dJMLT040jrzFPQssPj6pNQdw/l2yMGaq/jb5iJbI5MG1ga1+lAOd3P+DQqDKfl/xakh3Id7ONjl8gkdlw==
+"@jigjoy-ai/project-versioning-client@^0.0.11":
+  version "0.0.11"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/project-versioning-client/0.0.11/8cd7d85f24568b2d3f411745933ddfaa2530fb77"
+  integrity sha512-3Lm3UVFfeSrdtmvKqIQJAWPTLrxnJIkfHZ5xOP1/KtBJjXeL9nrmB5u2ySh7Gef2XDQRMZq235ryrKeJ6KadHA==
+  dependencies:
+    axios "^1.13.2"
+
+"@jigjoy-ai/task-contracts@^0.0.3":
+  version "0.0.3"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/task-contracts/0.0.3/83dc1cfb69c5f0280a3bf4b0fe53c8d5ae2de677"
+  integrity sha512-Kq67bAI/nHR567RB4yYBXM09mMczRMfm/Nv+Tm3aaN+ZYim1ibDxseCZelSAUadsbg+xBty0utpoVzeQsyG+4A==
+
+"@jigjoy-ai/ui-library@^0.1.5":
+  version "0.1.5"
+  resolved "https://npm.pkg.github.com/download/@jigjoy-ai/ui-library/0.1.5/debb1dbbe5022df21ace923f8618f2031d2c900c"
+  integrity sha512-ls/yFV+E2sqdW7eBVlZ3goWzXRxtNjeXLeG2Eqlf18vfjwUAlpKrBliIR0iyNRd+CUtzUyXEX6r1oUrxY1sejw==
   dependencies:
     "@emotion/is-prop-valid" "^1.3.1"
 
@@ -523,20 +522,10 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.53.2.tgz"
   integrity sha512-yo8d6tdfdeBArzC7T/PnHd7OypfI9cbuZzPnzLJIyKYFhAQ8SvlkKtKBMbXDxe1h03Rcr7u++nFS7tqXz87Gtw==
 
-"@rollup/rollup-linux-x64-musl@4.53.2":
-  version "4.53.2"
-  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.53.2.tgz"
-  integrity sha512-ah59c1YkCxKExPP8O9PwOvs+XRLKwh/mV+3YdKqQ5AMQ0r4M4ZDuOrpWkUaqO7fzAHdINzV9tEVu8vNw48z0lA==
-
 "@rspack/binding-linux-x64-gnu@1.6.3":
   version "1.6.3"
   resolved "https://registry.npmjs.org/@rspack/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.6.3.tgz"
   integrity sha512-/W8/X3CBGVY7plii5eUzyIEyCKiYx1lqrSVuD1HLlVHvzC4H2Kpk0EwvY2gUhnQRLU0Ym77Sh4PRd1ZOOzP4LQ==
-
-"@rspack/binding-linux-x64-musl@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.npmjs.org/@rspack/binding-linux-x64-musl/-/binding-linux-x64-musl-1.6.3.tgz"
-  integrity sha512-h0Q3aM0fkRCd330DfRGZ9O3nk/rfRyXRX4dEIoLcLAq34VOmp3HZUP7rEy7feiJbuU4Atcvd0MD7U6RLwa1umQ==
 
 "@rspack/binding@1.6.3":
   version "1.6.3"
@@ -621,11 +610,6 @@
   version "4.1.17"
   resolved "https://registry.npmjs.org/@tailwindcss/oxide-linux-x64-gnu/-/oxide-linux-x64-gnu-4.1.17.tgz"
   integrity sha512-M3XZuORCGB7VPOEDH+nzpJ21XPvK5PyjlkSFkFziNHGLc5d6g3di2McAAblmaSUNl8IOmzYwLx9NsE7bplNkwQ==
-
-"@tailwindcss/oxide-linux-x64-musl@4.1.17":
-  version "4.1.17"
-  resolved "https://registry.npmjs.org/@tailwindcss/oxide-linux-x64-musl/-/oxide-linux-x64-musl-4.1.17.tgz"
-  integrity sha512-k7f+pf9eXLEey4pBlw+8dgfJHY4PZ5qOUFDyNf7SI6lHjQ9Zt7+NcscjpwdCEbYi6FI5c2KDTDWyf2iHcCSyyQ==
 
 "@tailwindcss/oxide@4.1.17":
   version "4.1.17"
@@ -2795,11 +2779,6 @@ lightningcss-linux-x64-gnu@1.30.2:
   version "1.30.2"
   resolved "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.30.2.tgz"
   integrity sha512-Cfd46gdmj1vQ+lR6VRTTadNHu6ALuw2pKR9lYq4FnhvgBc4zWY1EtZcAc6EffShbb1MFrIPfLDXD6Xprbnni4w==
-
-lightningcss-linux-x64-musl@1.30.2:
-  version "1.30.2"
-  resolved "https://registry.npmjs.org/lightningcss-linux-x64-musl/-/lightningcss-linux-x64-musl-1.30.2.tgz"
-  integrity sha512-XJaLUUFXb6/QG2lGIW6aIk6jKdtjtcffUT0NKvIqhSBY3hh9Ch+1LCeH80dR9q9LBjG3ewbDjnumefsLsP6aiA==
 
 lightningcss@^1.21.0, lightningcss@1.30.2:
   version "1.30.2"

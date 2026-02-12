@@ -1,8 +1,8 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { StartedWorkActivity, StartedWorkMetadata } from "@jigjoy-io/task-contracts"
+import { StartedWorkActivity, StartedWorkMetadata } from "@jigjoy-ai/task-contracts"
 import { WorkerLoader } from "../../../shared/icons/worker-loader"
-import { AnimatedText } from "@jigjoy-io/ui-library"
+import { AnimatedText } from "@jigjoy-ai/ui-library"
 
 export const StartedWorkActivityComponent = ({ activity }: { activity: StartedWorkActivity }) => (
 	<div className="flex w-full items-center 2xl:gap-y-4 gap-x-1 h-fit">

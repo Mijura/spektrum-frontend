@@ -4,7 +4,7 @@ import { routeTree } from "./routeTree.gen"
 import { createRouter, RouterProvider } from "@tanstack/react-router"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
-import { JigJoyUIProvider } from "@jigjoy-io/ui-library"
+import { JigJoyUIProvider } from "@jigjoy-ai/ui-library"
 import { persistor, store } from "./shared/store"
 import "./index.css"
 

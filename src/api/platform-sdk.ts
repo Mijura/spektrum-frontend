@@ -1,4 +1,4 @@
-import { PlatformSDK } from "@jigjoy-io/platform-sdk"
+import { PlatformSDK } from "@jigjoy-ai/platform-sdk"
 
 const JIGJOY_API_ENDPOINT = process.env.JIGJOY_API_ENDPOINT || ""
 

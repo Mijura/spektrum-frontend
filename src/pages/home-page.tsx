@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { Loader } from "@jigjoy-io/ui-library"
+import { Loader } from "@jigjoy-ai/ui-library"
 import { useUserData, useProjectInitialization } from "../hooks/store"
 import WorkflowRunHeatmap from "../components/task-execution-heatmap"
 import ProjectsOverview from "../components/projects-overview"

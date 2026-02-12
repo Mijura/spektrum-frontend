@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { io, Socket } from "socket.io-client"
 import { taskUpdated } from "../reducers/workspace-reducer"
-import { Task } from "@jigjoy-io/task-contracts"
+import { Task } from "@jigjoy-ai/task-contracts"
 
 type UseActivityListenerProps = {
 	room: string

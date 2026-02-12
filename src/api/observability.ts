@@ -1,4 +1,4 @@
-import { Heatmap, Pagination, TaskExecution, TimeRange } from "@jigjoy-io/platform-sdk"
+import { Heatmap, Pagination, TaskExecution, TimeRange } from "@jigjoy-ai/platform-sdk"
 import jigjoyClient from "./platform-sdk"
 
 

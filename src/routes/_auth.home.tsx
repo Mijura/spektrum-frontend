@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { fetchAllProjects } from "../api/project-planning"
-import { Loader } from "@jigjoy-io/ui-library"
+import { Loader } from "@jigjoy-ai/ui-library"
 import HomePage from "../pages/home-page"
 import { store } from "../shared/store"
 

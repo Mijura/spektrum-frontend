@@ -1,5 +1,5 @@
 import Project from "../types/project"
-import { Button, Loader } from "@jigjoy-io/ui-library"
+import { Button, Loader } from "@jigjoy-ai/ui-library"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject } from "../api/project-planning"
 import { pageNavigated } from "../reducers/navigation-reducer"

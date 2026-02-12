@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { useUserData } from "../hooks/store"
-import { Button, Copyable, Input, Modal, ModalContent, ModalTrigger } from "@jigjoy-io/ui-library"
+import { Button, Copyable, Input, Modal, ModalContent, ModalTrigger } from "@jigjoy-ai/ui-library"
 import { createApiKey } from "../api/account-and-billing"
 import { useDispatch } from "react-redux"
 import { apiKeyCreated } from "../reducers/account-reducer"

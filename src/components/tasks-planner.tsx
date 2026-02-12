@@ -1,4 +1,4 @@
-import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@jigjoy-io/ui-library"
+import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@jigjoy-ai/ui-library"
 import React, { useEffect, useState, useRef } from "react"
 import PlayIcon from "../shared/icons/play-icon"
 import CreateIcon from "../shared/icons/create-icon"
@@ -7,7 +7,7 @@ import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } 
 import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested, useUserData } from "../hooks/store"
 import { developModule } from "../api/ai-coding"
-import { Task } from "@jigjoy-io/task-contracts"
+import { Task } from "@jigjoy-ai/task-contracts"
 
 const TasksPlanner: React.FC = () => {
 	const selectedProject = useSelectedProject()

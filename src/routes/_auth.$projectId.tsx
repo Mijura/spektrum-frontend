@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
-import { Loader } from "@jigjoy-io/ui-library"
+import { Loader } from "@jigjoy-ai/ui-library"
 import { fetchProject } from "../api/project-planning"
 import { fetchAllTasks } from "../api/project-planning"
 import { PostError } from "../shared/errors/post-error"
@@ -10,7 +10,7 @@ import { useActivityListener } from "../hooks/activity-listener"
 import { entryPointDevLoaded, entryPointProdLoaded, projectSelected, taskSelected } from "../reducers/workspace-reducer"
 import ProjectPage from "../pages/project-page"
 import { getEntryPoint } from "../api/project-deployment"
-import { EnvironmentType } from "@jigjoy-io/platform-sdk"
+import { EnvironmentType } from "@jigjoy-ai/platform-sdk"
 
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {

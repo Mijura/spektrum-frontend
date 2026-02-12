@@ -1,4 +1,4 @@
-import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea } from "@jigjoy-io/ui-library"
+import { Button, SmartFooter, SmartInput, Tooltip, Modal, ModalContent, Textarea } from "@jigjoy-ai/ui-library"
 import { useSelectedProject, useSelectedTask, useUserData } from "../hooks/store"
 import { useLayoutEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
@@ -10,7 +10,7 @@ import { getActivityComponent } from "./activity/factory"
 import TasksIcon from "../shared/icons/tasks-icon"
 import { planTasksWithAI } from "../api/project-planning"
 import { developModule } from "../api/ai-coding"
-import { ActivityType, CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-io/task-contracts"
+import { ActivityType, CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-ai/task-contracts"
 import { v4 as uuidv4 } from "uuid"
 
 export default function TaskOverview() {

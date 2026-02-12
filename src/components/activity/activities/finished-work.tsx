@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { FinishedWorkActivity, FinishedWorkMetadata } from "@jigjoy-io/task-contracts"
+import { FinishedWorkActivity, FinishedWorkMetadata } from "@jigjoy-ai/task-contracts"
 import EditIcon from "../../../shared/icons/edit-icon"
 
 export const FinishedWorkActivityComponent = ({ activity }: { activity: FinishedWorkActivity }) => (

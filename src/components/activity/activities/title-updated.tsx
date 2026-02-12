@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { formatTimestamp } from "../../../shared/util"
-import { TitleUpdatedActivity, TitleUpdatedMetadata } from "@jigjoy-io/task-contracts"
+import { TitleUpdatedActivity, TitleUpdatedMetadata } from "@jigjoy-ai/task-contracts"
 import EditIcon from "../../../shared/icons/edit-icon"
 
 export const TitleUpdatedActivityComponent = ({ activity }: { activity: TitleUpdatedActivity }) => (

@@ -1,4 +1,4 @@
-import { Chevron, ChevronContent, ChevronTrigger, ProgressBar } from "@jigjoy-io/ui-library"
+import { Chevron, ChevronContent, ChevronTrigger, ProgressBar } from "@jigjoy-ai/ui-library"
 import CheckboxIcon from "../shared/icons/checkbox-icon"
 import CheckmarkIcon from "../shared/icons/checkmark-icon"
 import { useUserData } from "../hooks/store"

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@jigjoy-io/ui-library"
+import { Button, Card, Input, Modal, ModalContent, ModalTrigger, Textarea, Tooltip } from "@jigjoy-ai/ui-library"
 import { useNavigate } from "@tanstack/react-router"
 import { createNewProject, updateProjectDetails } from "../api/project-planning"
 import CreateIcon from "../shared/icons/create-icon"

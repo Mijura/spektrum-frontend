@@ -1,4 +1,4 @@
-import { Button } from "@jigjoy-io/ui-library"
+import { Button } from "@jigjoy-ai/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"

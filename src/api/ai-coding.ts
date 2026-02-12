@@ -1,4 +1,4 @@
-import { Task } from "@jigjoy-io/task-contracts"
+import { Task } from "@jigjoy-ai/task-contracts"
 import jigjoyClient from "./platform-sdk"
 
 export async function developModule(task: Task, userId: string): Promise<any> {
