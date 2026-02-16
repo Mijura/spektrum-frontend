@@ -8,6 +8,7 @@ region = "eu-west-1"
 profile = "spektrum-dev"
 confirm_changeset = false
 capabilities = "CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
+parameter_overrides = "CertificateArn=arn:aws:acm:us-east-1:425946675747:certificate/52599809-c373-484c-8bc8-7f11f1068d2d"
 disable_rollback = true
 image_repositories = []
 
