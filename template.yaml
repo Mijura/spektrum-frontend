@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  S3 static website hosting for the spektrum frontend SPA.
+
+Resources:
+  WebHostingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-web-hosting"
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+
+  WebHostingBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebHostingBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource: !Sub "${WebHostingBucket.Arn}/*"
+
+Outputs:
+  WebHostingBucketName:
+    Value: !Ref WebHostingBucket
+    Export:
+      Name: !Sub "${AWS::StackName}-WebHostingBucketName"
+
+  WebHostingBucketWebsiteUrl:
+    Value: !GetAtt WebHostingBucket.WebsiteURL
+    Export:
+      Name: !Sub "${AWS::StackName}-WebHostingBucketWebsiteUrl"
