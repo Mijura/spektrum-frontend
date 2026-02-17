@@ -1,21 +1,21 @@
-import jigjoyClient from "./platform-sdk"
+import spektrumClient from "./spektrum-client"
 
 export async function sendMagicLinkChallenge(email: string) {
-	return await jigjoyClient.account.sendMagicLinkChallenge(email)
+	return await spektrumClient.account.sendMagicLinkChallenge(email)
 }
 
 export async function verifyMagicLinkChallenge(email: string, challengeResponse: string) {
-	return await jigjoyClient.account.verifyMagicLinkChallenge(email, challengeResponse)
+	return await spektrumClient.account.verifyMagicLinkChallenge(email, challengeResponse)
 }
 
 export async function createApiKey(accountId: string, name: string) {
-	return await jigjoyClient.account.createApiKey(accountId, name)
+	return await spektrumClient.account.createApiKey(accountId, name)
 }
 
 export async function logout() {
-	return await jigjoyClient.account.logout()
+	return await spektrumClient.account.logout()
 }
 
 export async function hasAccessToken(){
-	return await jigjoyClient.account.hasAccessToken()
+	return await spektrumClient.account.hasAccessToken()
 }
