@@ -3,9 +3,6 @@ Description: >
   S3 static website hosting + CloudFront CDN for the spektrum frontend SPA.
 
 Parameters:
-  CertificateArn:
-    Type: String
-    Description: ACM certificate ARN in us-east-1 for CloudFront
   HostedZoneId:
     Type: String
     Default: Z07735212HGZVO529ELA1
@@ -61,7 +58,7 @@ Resources:
         Aliases:
           - !Ref DomainName
         ViewerCertificate:
-          AcmCertificateArn: !Ref CertificateArn
+          AcmCertificateArn: "{{resolve:ssm:/jigjoy/certs/frontend-wildcard-us-east-1}}"
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2021
         DefaultRootObject: index.html
