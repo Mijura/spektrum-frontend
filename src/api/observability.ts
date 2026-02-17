@@ -1,5 +1,5 @@
-import { Heatmap, Pagination, TaskExecution, TimeRange } from "@jigjoy-ai/platform-sdk"
-import jigjoyClient from "./platform-sdk"
+import { Heatmap, Pagination, TaskExecution, TimeRange } from "@jigjoy-ai/spektrum-client"
+import spektrumClient from "./spektrum-client"
 
 
 export async function fetchProjectTimeline(
@@ -11,7 +11,7 @@ export async function fetchProjectTimeline(
 		pageNumber: page,
 		pageSize: size,
 	}
-	return await jigjoyClient.observability.getProjectExecutions(projectId, pagination)
+	return await spektrumClient.observability.getProjectExecutions(projectId, pagination)
 }
 
 export async function fetchAccountTimeline(
@@ -23,7 +23,7 @@ export async function fetchAccountTimeline(
 		pageNumber: page,
 		pageSize: size,
 	}
-	return await jigjoyClient.observability.getAccountExecutions(accountId, pagination)
+	return await spektrumClient.observability.getAccountExecutions(accountId, pagination)
 }
 
 export async function fetchHeatmap(accountId: string): Promise<Heatmap[]> {
@@ -33,5 +33,5 @@ export async function fetchHeatmap(accountId: string): Promise<Heatmap[]> {
 		startDate: startDate.toISOString(),
 		endDate: endDate.toISOString(),
 	}
-	return await jigjoyClient.observability.getHeatmap(accountId, timeRange)
+	return await spektrumClient.observability.getHeatmap(accountId, timeRange)
 }
