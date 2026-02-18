@@ -6,7 +6,7 @@ import { fetchProjectTimeline, fetchAccountTimeline } from "../api/observability
 import { taskExecutionTimelineUpdated } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useTaskExecutionListener } from "../hooks/task-execution-listener"
-import { TaskExecution } from "@jigjoy-ai/platform-sdk"
+import { TaskExecution } from "@jigjoy-ai/spektrum-client"
 
 const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type }) => {
 	const selectedProjectId = useSelectedProjectId()

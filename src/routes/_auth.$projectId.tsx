@@ -10,7 +10,7 @@ import { useActivityListener } from "../hooks/activity-listener"
 import { entryPointDevLoaded, entryPointProdLoaded, projectSelected, taskSelected } from "../reducers/workspace-reducer"
 import ProjectPage from "../pages/project-page"
 import { getEntryPoint } from "../api/project-deployment"
-import { EnvironmentType } from "@jigjoy-ai/platform-sdk"
+import { EnvironmentType } from "@jigjoy-ai/spektrum-client"
 
 export const Route: any = createFileRoute("/_auth/$projectId")({
 	loader: async ({ params: { projectId } }) => {

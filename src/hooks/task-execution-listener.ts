@@ -2,7 +2,9 @@ import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { io, Socket } from "socket.io-client"
 import { taskExecutionTriggered, taskExecutionUpdated } from "../reducers/workspace-reducer"
-import { TaskExecution } from "@jigjoy-ai/platform-sdk"
+import { creditsSpent } from "../reducers/account-reducer"
+import { TaskExecution } from "@jigjoy-ai/spektrum-client"
+import { authStoreBrowser } from "@jigjoy-ai/http-client"
 
 type UseTaskExecutionListenerProps = {
 	accountId: string | null
@@ -22,23 +24,37 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 		dispatch(taskExecutionUpdated(taskExecution))
 	}
 
+	const onTaskExecutionCreditsSpent = (amount: number) => {
+		dispatch(creditsSpent(Number(amount)))
+	}
+
 	useEffect(() => {
 		if (!accountId) return
 
-		const socket = io(`${API_GATEWAY}`)
+		const credentials = authStoreBrowser.getCredentials()
+		if (credentials.kind === "bearer") {
+			const socket = io(`${API_GATEWAY}`, {   
+				extraHeaders: {
+					Authorization: `Bearer ${credentials.token}`
+				}
+			})
 
-		socket.on("connect", () => {
-			socket.emit("subscribe", accountId)
-		})
-
-		socketRef.current = socket
-
-		socket.on("task-execution:new", onTaskExecutionCreation)
-		socket.on("task-execution:update", onTaskExecutionUpdate)
-
-		return () => {
-			if (onTaskExecutionCreation) socket.off("update", onTaskExecutionCreation)
-			socket.disconnect()
+			socket.on("connect", () => {
+				socket.emit("subscribe", accountId)
+			})
+	
+			socketRef.current = socket
+	
+			socket.on("task-execution:new", onTaskExecutionCreation)
+			socket.on("task-execution:update", onTaskExecutionUpdate)
+			socket.on("task-execution:credits-spent", onTaskExecutionCreditsSpent)
+	
+			return () => {
+				if (onTaskExecutionCreation) socket.off("update", onTaskExecutionCreation)
+				socket.disconnect()
+			}
 		}
+
+
 	}, [accountId])
 }

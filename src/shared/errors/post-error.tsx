@@ -1,5 +1,5 @@
 import { ErrorComponent, ErrorComponentProps } from "@tanstack/react-router"
-import { ProjectNotFoundError } from "@jigjoy-ai/platform-sdk"
+import { ProjectNotFoundError } from "@jigjoy-ai/spektrum-client"
 import { ProjectNotFound } from "./project-not-found"
 
 export function PostError({ error }: ErrorComponentProps) {
