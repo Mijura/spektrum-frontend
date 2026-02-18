@@ -11,7 +11,8 @@
 		"format": "prettier --write \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
-		"@jigjoy-ai/spektrum-client": "^0.0.1",
+		"@jigjoy-ai/http-client": "^0.1.1",
+		"@jigjoy-ai/spektrum-client": "^0.0.4",
 		"@jigjoy-ai/task-contracts": "^0.0.3",
 		"@jigjoy-ai/ui-library": "^0.1.5",
 		"@paddle/paddle-js": "^1.6.1",

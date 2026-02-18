@@ -12,6 +12,7 @@ import { planTasksWithAI } from "../api/project-planning"
 import { developModule } from "../api/ai-coding"
 import { ActivityType, CommentLeftActivity, CommentLeftMetadata } from "@jigjoy-ai/task-contracts"
 import { v4 as uuidv4 } from "uuid"
+import { creditsSpent } from "../reducers/account-reducer"
 
 export default function TaskOverview() {
 	const dispatch = useDispatch()
@@ -77,6 +78,7 @@ export default function TaskOverview() {
 		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
 		await developModule(taskWithComment, userData.id)
+
 	}
 
 	const handlePlanTasksWithAI = async () => {

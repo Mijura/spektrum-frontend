@@ -21,7 +21,6 @@ export default function ApiKeysPage() {
 			dispatch(apiKeyCreated(apiKey))
 			setApiKeyCreationModalOpened(false)
 			setApiKeyName("")
-			console.log(apiKey)
 			setApiKeyHash(apiKey.keyHash)
 		} finally {
 			setIsExecuting(false)

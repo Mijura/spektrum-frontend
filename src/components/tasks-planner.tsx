@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux"
 import { useSelectedProject, useSelectedTask, useTaskCreationRequested, useUserData } from "../hooks/store"
 import { developModule } from "../api/ai-coding"
 import { Task } from "@jigjoy-ai/task-contracts"
+import { creditsSpent } from "../reducers/account-reducer"
 
 const TasksPlanner: React.FC = () => {
 	const selectedProject = useSelectedProject()
