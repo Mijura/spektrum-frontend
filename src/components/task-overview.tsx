@@ -75,7 +75,7 @@ export default function TaskOverview() {
 		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText)
 		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
-		await developModule(taskWithComment, userData.id)
+		await developModule(taskWithComment)
 	}
 
 	const handlePlanTasksWithAI = async () => {

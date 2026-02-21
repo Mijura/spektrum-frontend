@@ -5,10 +5,9 @@ import CreateIcon from "../shared/icons/create-icon"
 import { createTask } from "../api/project-planning"
 import { taskCreated, taskCreationClosed, taskCreationRequested, taskSelected } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { useSelectedProject, useSelectedTask, useTaskCreationRequested, useUserData } from "../hooks/store"
+import { useSelectedProject, useSelectedTask, useTaskCreationRequested } from "../hooks/store"
 import { developModule } from "../api/ai-coding"
 import { Task } from "@jigjoy-ai/task-contracts"
-import { creditsSpent } from "../reducers/account-reducer"
 
 const TasksPlanner: React.FC = () => {
 	const selectedProject = useSelectedProject()
@@ -20,10 +19,9 @@ const TasksPlanner: React.FC = () => {
 	const selectedTask = useSelectedTask()
 	const taskCreationModalOpened = useTaskCreationRequested()
 	const titleInputRef = useRef<HTMLInputElement>(null)
-	const userData = useUserData()
 
 	const handleRunTaskExecution = async (task: Task) => {
-		await developModule(task, userData.id)
+		await developModule(task)
 	}
 
 	const handleCreateTask = async () => {

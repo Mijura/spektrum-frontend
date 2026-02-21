@@ -20,8 +20,8 @@ const TaskExecutionTimeline: React.FC<{ type: "project" | "account" }> = ({ type
 			const timeline = await fetchProjectTimeline(selectedProjectId)
 			dispatch(taskExecutionTimelineUpdated(timeline))
 			setIsLoading(false)
-		} else if (type === "account" && userData.id) {
-			const timeline = await fetchAccountTimeline(userData.id)
+		} else if (type === "account") {
+			const timeline = await fetchAccountTimeline()
 			dispatch(taskExecutionTimelineUpdated(timeline))
 			setIsLoading(false)
 		}
