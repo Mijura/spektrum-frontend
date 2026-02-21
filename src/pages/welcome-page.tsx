@@ -5,7 +5,6 @@ import { createNewProject } from "../api/project-planning"
 import { useState } from "react"
 import { entryPointDevLoaded, entryPointProdLoaded } from "../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
-import { useUserData } from "../hooks/store"
 
 const sentences = [
 	`"With tools and technology we already have, we can build much more valuable systems than most projects
@@ -44,11 +43,11 @@ export default function WelcomePage() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(false)
-	const userData = useUserData()
+
 	const handleCreateNewProject = async () => {
 		try {
 			setLoading(true)
-			const response: any = await createNewProject(userData.id)
+			const response: any = await createNewProject()
 			dispatch(entryPointDevLoaded(response.entryPoint))
 			dispatch(entryPointProdLoaded(null))
 			const project = response.project
