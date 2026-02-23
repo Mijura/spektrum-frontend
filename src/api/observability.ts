@@ -1,7 +1,6 @@
 import { Heatmap, Pagination, TaskExecution, TimeRange } from "@jigjoy-ai/spektrum-client"
 import spektrumClient from "./spektrum-client"
 
-
 export async function fetchProjectTimeline(
 	projectId: string,
 	page: number = 1,
@@ -14,11 +13,7 @@ export async function fetchProjectTimeline(
 	return await spektrumClient.observability.getProjectExecutions(projectId, pagination)
 }
 
-export async function fetchAccountTimeline(
-	accountId: string,
-	page: number = 1,
-	size: number = 5,
-): Promise<TaskExecution[]> {
+export async function fetchAccountTimeline(page: number = 1, size: number = 5): Promise<TaskExecution[]> {
 	const pagination: Pagination = {
 		pageNumber: page,
 		pageSize: size,
@@ -26,7 +21,7 @@ export async function fetchAccountTimeline(
 	return await spektrumClient.observability.getAllExecutions(pagination)
 }
 
-export async function fetchHeatmap(accountId: string): Promise<Heatmap[]> {
+export async function fetchHeatmap(): Promise<Heatmap[]> {
 	const startDate = new Date("2026-01-01")
 	const endDate = new Date("2026-12-31")
 	const timeRange: TimeRange = {

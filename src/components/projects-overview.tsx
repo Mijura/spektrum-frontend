@@ -19,7 +19,7 @@ import {
 export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	
+
 	const [selectedProject, selectProject] = useState<any>(null)
 	const [archiveModalOpened, setArchiveModalOpened] = useState(false)
 	const [projects, setProjects] = useState<any>([])
@@ -203,7 +203,10 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 									rows={4}
 								/>
 								<div className="flex justify-end gap-4">
-									<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit" onClick={handleProjectDetailsUpdate}>
+									<Button
+										className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
+										onClick={handleProjectDetailsUpdate}
+									>
 										Update details
 									</Button>
 								</div>

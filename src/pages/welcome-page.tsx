@@ -43,6 +43,7 @@ export default function WelcomePage() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(false)
+	
 	const handleCreateNewProject = async () => {
 		try {
 			setLoading(true)

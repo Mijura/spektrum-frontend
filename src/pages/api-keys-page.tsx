@@ -54,12 +54,22 @@ export default function ApiKeysPage() {
 									</div>
 
 									<div className="flex flex-row w-full items-center mt-10">
-										{apiKeyHash && <Copyable className="w-fit" text={apiKeyHash} tooltipMessage="Copy — this won’t be shown again."/>}
+										{apiKeyHash && (
+											<Copyable
+												className="w-fit"
+												text={apiKeyHash}
+												tooltipMessage="Copy — this won’t be shown again."
+											/>
+										)}
 										<div className="grow flex justify-end h-fit">
-											<Button className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4" onClick={() => setApiKeyCreationModalOpened(true)}>Create API Key</Button>
+											<Button
+												className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4"
+												onClick={() => setApiKeyCreationModalOpened(true)}
+											>
+												Create API Key
+											</Button>
 										</div>
 									</div>
-
 
 									{userData.apiKeys.length === 0 ? (
 										<>
@@ -67,26 +77,28 @@ export default function ApiKeysPage() {
 												No API keys yet.
 											</div>
 										</>
-										):(
-											<div className="w-full">
-													<div className="flex flex-row w-full gap-2">
-														<p className="text-sm text-highlight-200 p-4 rounded-md w-1/3">Name</p>
-														<p className="text-sm text-highlight-200 p-4 rounded-md w-2/3">API Key</p>
-													</div>
-												{userData.apiKeys.map((apiKey: any) => (
-													<div className="flex flex-col py-1 gap-2">
-														<div className="flex flex-row w-full gap-2">
-															<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/3">{apiKey.name}</p>
-															<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-2/3">{apiKey.key}</p>
-														</div>
-													</div>
-												))}
+									) : (
+										<div className="w-full">
+											<div className="flex flex-row w-full gap-2">
+												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/3">Name</p>
+												<p className="text-sm text-highlight-200 p-4 rounded-md w-2/3">
+													API Key
+												</p>
 											</div>
-										
-										)
-									}
-
-
+											{userData.apiKeys.map((apiKey: any) => (
+												<div className="flex flex-col py-1 gap-2">
+													<div className="flex flex-row w-full gap-2">
+														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/3">
+															{apiKey.name}
+														</p>
+														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-2/3">
+															{apiKey.key}
+														</p>
+													</div>
+												</div>
+											))}
+										</div>
+									)}
 								</div>
 							</div>
 						</div>
@@ -95,51 +107,47 @@ export default function ApiKeysPage() {
 			</div>
 
 			<div className="flex flex-row w-[300px] h-fit z-40">
-					<Modal
-						isOpen={apiKeyCreationModalOpened}
-						onOpenCallback={() => {
-							// Focus the input when modal opens
-							setTimeout(() => {
-								apiKeyNameRef.current?.focus()
-							}, 200)
-						}}
-						onCloseCallback={() => setApiKeyCreationModalOpened(false)}
-					>
-						<ModalTrigger>
-							<div
-								style={{ display: "none" }}
-								ref={(el) => {
-									if (el && apiKeyCreationModalOpened) {
-										el.click()
-									}
-								}}
-							/>
-						</ModalTrigger>
-						<ModalContent
-							title="New task"
-							className="w-full xl:w-[600px] max-w-[90vw]"
-						>
-							<Input
-								ref={apiKeyNameRef}
-								placeholder="API key name"
-								value={apiKeyName}
-								onChange={(e) => setApiKeyName(e.target.value)}
-								className="mb-4 w-full"
-							/>
-							<div className="flex justify-end gap-2">
-
-								<Button
-									size="sm"
-									className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
-									onClick={handleCreateApiKey}
-									loading={isExecuting}
-								>
-									Create API Key
-								</Button>
-							</div>
-						</ModalContent>
-					</Modal>
-				</div>
+				<Modal
+					isOpen={apiKeyCreationModalOpened}
+					onOpenCallback={() => {
+						// Focus the input when modal opens
+						setTimeout(() => {
+							apiKeyNameRef.current?.focus()
+						}, 200)
+					}}
+					onCloseCallback={() => setApiKeyCreationModalOpened(false)}
+				>
+					<ModalTrigger>
+						<div
+							style={{ display: "none" }}
+							ref={(el) => {
+								if (el && apiKeyCreationModalOpened) {
+									el.click()
+								}
+							}}
+						/>
+					</ModalTrigger>
+					<ModalContent title="New task" className="w-full xl:w-[600px] max-w-[90vw]">
+						<Input
+							ref={apiKeyNameRef}
+							placeholder="API key name"
+							value={apiKeyName}
+							onChange={(e) => setApiKeyName(e.target.value)}
+							className="mb-4 w-full"
+						/>
+						<div className="flex justify-end gap-2">
+							<Button
+								size="sm"
+								className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
+								onClick={handleCreateApiKey}
+								loading={isExecuting}
+							>
+								Create API Key
+							</Button>
+						</div>
+					</ModalContent>
+				</Modal>
+			</div>
 		</div>
 	)
 }

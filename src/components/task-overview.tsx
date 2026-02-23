@@ -50,12 +50,11 @@ export default function TaskOverview() {
 	}, [task])
 
 	const handleCommentLeft = async (): Promise<void> => {
-
 		if (commentText.length === 0) return
 
 		const commentMetadata: CommentLeftMetadata = {
 			commentText: commentText,
-			authorId: userData.id,
+			authorId: userData.userEmail,
 		}
 
 		const commentLeftActivity: CommentLeftActivity = {
@@ -63,7 +62,7 @@ export default function TaskOverview() {
 			type: ActivityType.COMMENT_LEFT,
 			projectId: task.projectId,
 			taskId: task.id,
-			userId: userData.id,
+			userId: userData.userEmail,
 			occurredAt: new Date().toISOString(),
 			metadata: commentMetadata,
 		}
@@ -77,7 +76,6 @@ export default function TaskOverview() {
 		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
 		await developModule(taskWithComment)
-
 	}
 
 	const handlePlanTasksWithAI = async () => {

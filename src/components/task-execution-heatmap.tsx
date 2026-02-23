@@ -4,7 +4,7 @@ import * as d3 from "d3"
 import { hexbin as d3Hexbin } from "d3-hexbin"
 import { Loader } from "@jigjoy-ai/ui-library"
 import { fetchHeatmap } from "../api/observability"
-import { useTaskExecutionHeatmap, useUserData } from "../hooks/store"
+import { useTaskExecutionHeatmap } from "../hooks/store"
 import { useDispatch } from "react-redux"
 import { taskExecutionHeatmapLoaded } from "../reducers/workspace-reducer"
 
@@ -18,10 +18,9 @@ const TaskExecutionHeatmap: React.FC = () => {
 	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(true)
 	const heatmapData = useTaskExecutionHeatmap()
-	const userData = useUserData()
-	
+
 	const updateHeatmap = async () => {
-		const heatmap = await fetchHeatmap(userData.id)
+		const heatmap = await fetchHeatmap()
 		dispatch(taskExecutionHeatmapLoaded(heatmap))
 		setLoading(false)
 	}

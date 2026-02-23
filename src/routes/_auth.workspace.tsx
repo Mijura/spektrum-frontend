@@ -6,15 +6,15 @@ import { fetchAllProjects } from "../api/project-planning"
 import { persistor } from "../shared/store"
 
 function waitForRehydrate() {
-  return new Promise<void>((resolve) => {
-    if (persistor.getState().bootstrapped) return resolve()
-    const unsub = persistor.subscribe(() => {
-      if (persistor.getState().bootstrapped) {
-        unsub()
-        resolve()
-      }
-    })
-  })
+	return new Promise<void>((resolve) => {
+		if (persistor.getState().bootstrapped) return resolve()
+		const unsub = persistor.subscribe(() => {
+			if (persistor.getState().bootstrapped) {
+				unsub()
+				resolve()
+			}
+		})
+	})
 }
 
 export const Route = createFileRoute("/_auth/workspace")({

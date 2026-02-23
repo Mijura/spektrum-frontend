@@ -16,6 +16,6 @@ export async function logout() {
 	return await spektrumClient.account.logout()
 }
 
-export async function hasAccessToken(){
+export async function hasAccessToken() {
 	return await spektrumClient.account.hasAccessToken()
 }
