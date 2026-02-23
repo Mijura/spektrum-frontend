@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import WorkspacePage from "../pages/workspace-page"
 import { Loader } from "@jigjoy-ai/ui-library"
 import { fetchAllProjects } from "../api/project-planning"
+
 import { persistor } from "../shared/store"
 
 function waitForRehydrate() {

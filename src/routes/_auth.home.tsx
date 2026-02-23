@@ -5,6 +5,7 @@ import HomePage from "../pages/home-page"
 
 export const Route = createFileRoute("/_auth/home")({
 	loader: async () => {
+
 		try {
 			return await fetchAllProjects()
 		} catch (error: any) {
