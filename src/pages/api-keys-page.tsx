@@ -17,7 +17,7 @@ export default function ApiKeysPage() {
 	const handleCreateApiKey = async () => {
 		setIsExecuting(true)
 		try {
-			const apiKey = await createApiKey(userData.id, apiKeyName)
+			const apiKey = await createApiKey(apiKeyName)
 			dispatch(apiKeyCreated(apiKey))
 			setApiKeyCreationModalOpened(false)
 			setApiKeyName("")

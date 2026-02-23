@@ -8,8 +8,8 @@ export async function verifyMagicLinkChallenge(email: string, challengeResponse:
 	return await spektrumClient.account.verifyMagicLinkChallenge(email, challengeResponse)
 }
 
-export async function createApiKey(accountId: string, name: string) {
-	return await spektrumClient.account.createApiKey(accountId, name)
+export async function createApiKey(name: string) {
+	return await spektrumClient.account.createApiKey(name)
 }
 
 export async function logout() {

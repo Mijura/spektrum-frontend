@@ -23,7 +23,7 @@ export async function fetchAccountTimeline(
 		pageNumber: page,
 		pageSize: size,
 	}
-	return await spektrumClient.observability.getAccountExecutions(accountId, pagination)
+	return await spektrumClient.observability.getAllExecutions(pagination)
 }
 
 export async function fetchHeatmap(accountId: string): Promise<Heatmap[]> {
@@ -33,5 +33,5 @@ export async function fetchHeatmap(accountId: string): Promise<Heatmap[]> {
 		startDate: startDate.toISOString(),
 		endDate: endDate.toISOString(),
 	}
-	return await spektrumClient.observability.getHeatmap(accountId, timeRange)
+	return await spektrumClient.observability.getHeatmap(timeRange)
 }

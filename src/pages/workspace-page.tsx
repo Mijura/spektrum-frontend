@@ -12,21 +12,20 @@ import {
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import ProjectsIcon from "../shared/icons/projects-icon"
-import { useProjectInitialization, useUserData } from "../hooks/store"
+import { useProjectInitialization } from "../hooks/store"
 
 export default function WorkspacePage({ loadedProjects }: { loadedProjects: any[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [projects, setProjects] = useState<Project[]>(loadedProjects)
 	const [selectorOpen, setSelectorOpen] = useState(true)
-	const userData = useUserData()
 
 	const initialization = useProjectInitialization()
 
 	const handleCreateNewProject = async () => {
 		try {
 			dispatch(projectInitalizationRequested())
-			const response: any = await createNewProject(userData.id)
+			const response: any = await createNewProject()
 			const project = response.project
 
 			dispatch(entryPointDevLoaded(response.entryPoint))

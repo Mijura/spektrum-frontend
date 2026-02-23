@@ -15,12 +15,10 @@ import {
 	projectInitalizationCompleted,
 	projectInitalizationRequested,
 } from "../reducers/workspace-reducer"
-import { useUserData } from "../hooks/store"
 
 export default function ProjectsOverview({ loadedProjects }: { loadedProjects: Project[] }) {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const userData = useUserData()
 	
 	const [selectedProject, selectProject] = useState<any>(null)
 	const [archiveModalOpened, setArchiveModalOpened] = useState(false)
@@ -39,7 +37,7 @@ export default function ProjectsOverview({ loadedProjects }: { loadedProjects: P
 	const handleCreateNewProject = async () => {
 		try {
 			dispatch(projectInitalizationRequested())
-			const response: any = await createNewProject(userData.id)
+			const response: any = await createNewProject()
 
 			const project = response.project
 			setProjects([...projects, project])

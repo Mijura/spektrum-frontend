@@ -3,7 +3,7 @@ import WorkspacePage from "../pages/workspace-page"
 import { Loader } from "@jigjoy-ai/ui-library"
 import { fetchAllProjects } from "../api/project-planning"
 
-import { store, persistor } from "../shared/store"
+import { persistor } from "../shared/store"
 
 function waitForRehydrate() {
   return new Promise<void>((resolve) => {
@@ -21,9 +21,7 @@ export const Route = createFileRoute("/_auth/workspace")({
 	loader: async () => {
 		await waitForRehydrate()
 		try {
-			const state = store.getState()
-			const userData = state.account.userData 
-			return await fetchAllProjects(userData.id)
+			return await fetchAllProjects()
 		} catch (error: any) {
 			console.error(error)
 			return []
