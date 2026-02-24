@@ -27,13 +27,21 @@ jobs:
                   echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGES_TOKEN }}" > .npmrc
                   echo "@jigjoy-ai:registry=https://npm.pkg.github.com" >> .npmrc
 
-            - name: Create .env
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ env.AWS_REGION }}
+
+            - name: Create .env from Secrets Manager
               run: |
-                  cat > .env << 'EOF'
-                  API_GATEWAY=https://platform.dev.jigjoy.ai
-                  JIGJOY_TOKEN_PRICE_ID=${{ secrets.JIGJOY_TOKEN_PRICE_ID }}
-                  PADDLE_ENVIRONMENT=sandbox
-                  PADDLE_TOKEN=${{ secrets.PADDLE_TOKEN }}
+                  SECRETS=$(aws secretsmanager get-secret-value --secret-id vars --region ${{ env.AWS_REGION }} --query SecretString --output text)
+                  cat > .env << EOF
+                  API_GATEWAY=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['ApiGateway'])")
+                  PADDLE_ENVIRONMENT=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleEnvironment'])")
+                  PADDLE_TOKEN=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleToken'])")
+                  JIGJOY_TOKEN_PRICE_ID=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['JigjoyTokenPriceId'])")
                   EOF
 
             - name: Install dependencies
@@ -41,13 +49,6 @@ jobs:
 
             - name: Build
               run: npm run build
-
-            - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v4
-              with:
-                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ env.AWS_REGION }}
 
             - name: Deploy to S3
               run: |
