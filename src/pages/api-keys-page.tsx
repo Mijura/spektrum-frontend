@@ -4,11 +4,12 @@ import { Button, Copyable, Input, Modal, ModalContent, ModalTrigger } from "@jig
 import { createApiKey } from "../api/account-and-billing"
 import { useDispatch } from "react-redux"
 import { apiKeyCreated } from "../reducers/account-reducer"
+import { ApiKey } from "@jigjoy-ai/spektrum-client"
 
 export default function ApiKeysPage() {
 	const userData = useUserData()
 	const [apiKeyName, setApiKeyName] = useState("")
-	const [apiKeyHash, setApiKeyHash] = useState("")
+	const [rawApiKey, setRawApiKey] = useState("")
 	const apiKeyNameRef = useRef<HTMLInputElement>(null)
 	const [apiKeyCreationModalOpened, setApiKeyCreationModalOpened] = useState(false)
 	const [isExecuting, setIsExecuting] = useState(false)
@@ -17,11 +18,11 @@ export default function ApiKeysPage() {
 	const handleCreateApiKey = async () => {
 		setIsExecuting(true)
 		try {
-			const apiKey = await createApiKey(apiKeyName)
+			const apiKey: ApiKey = await createApiKey(apiKeyName)
 			dispatch(apiKeyCreated(apiKey))
 			setApiKeyCreationModalOpened(false)
 			setApiKeyName("")
-			setApiKeyHash(apiKey.keyHash)
+			setRawApiKey(apiKey.rawKey as string)
 		} finally {
 			setIsExecuting(false)
 		}
@@ -54,10 +55,10 @@ export default function ApiKeysPage() {
 									</div>
 
 									<div className="flex flex-row w-full items-center mt-10">
-										{apiKeyHash && (
+										{rawApiKey && (
 											<Copyable
 												className="w-fit"
-												text={apiKeyHash}
+												text={rawApiKey}
 												tooltipMessage="Copy — this won’t be shown again."
 											/>
 										)}
@@ -92,7 +93,7 @@ export default function ApiKeysPage() {
 															{apiKey.name}
 														</p>
 														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-2/3">
-															{apiKey.key}
+															{apiKey.displayKey}
 														</p>
 													</div>
 												</div>

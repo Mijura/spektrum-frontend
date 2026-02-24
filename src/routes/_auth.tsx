@@ -47,13 +47,13 @@ export const Route = createFileRoute("/_auth")({
 function AuthLayout() {
 	const dispatch = useDispatch()
 
-	const data = Route.useLoaderData()
+	const authSession = Route.useLoaderData()
 
 	useEffect(() => {
-		if (data.authSession && data.authSession.userData) {
-			dispatch(setUserData(data.authSession.userData))
+		if (authSession && authSession.userData) {
+			dispatch(setUserData(authSession.userData))
 		}
-	}, [data])
+	}, [authSession])
 	
 	return (
 		<div className="flex flex-col bg-[#1a1a1a] h-screen min-h-screen max-h-screen w-full overflow-hidden">

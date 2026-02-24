@@ -72,7 +72,7 @@ export default function TaskOverview() {
 		const mockTaskWithComment = { ...task, activities: [...task.activities, commentLeftActivity] }
 		dispatch(taskUpdated(mockTaskWithComment))
 
-		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText)
+		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText, userData.userEmail)
 		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
 		await developModule(taskWithComment)
