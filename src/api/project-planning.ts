@@ -41,6 +41,6 @@ export async function planTasksWithAI(projectId: string, projectDescription: str
 	return await spektrumClient.planning.planTasksWithAI(projectId, projectDescription)
 }
 
-export async function leaveComment(taskId: string, commentText: string): Promise<Task> {
-	return await spektrumClient.planning.leaveComment(taskId, commentText)
+export async function leaveComment(taskId: string, commentText: string, author: string): Promise<Task> {
+	return await spektrumClient.planning.leaveComment(taskId, commentText, author)
 }
