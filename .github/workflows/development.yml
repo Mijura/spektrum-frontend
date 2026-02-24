@@ -1,66 +1,67 @@
-name: Deploy Frontend (Dev Environment)
+name: Deploy Frontend (Dev)
+
 on:
- push:
-  branches:
-   - development
+    workflow_dispatch:
+    push:
+        branches: [development]
+
+env:
+    AWS_REGION: eu-west-1
+    STACK_NAME: spektrum-frontend
 
 jobs:
- deploy:
-  runs-on: ubuntu-latest
-  environment: development
-  permissions:
-   contents: read
-   packages: read
+    deploy:
+        runs-on: ubuntu-latest
 
-  steps:
-   - name: Checkout
-     uses: actions/checkout@v4
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-   - name: NodeJs Setup
-     uses: actions/setup-node@v4
-     with:
-      node-version: 18
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
 
-   - name: "Create .npmrc file"
-     run: |
-      echo "//npm.pkg.github.com/:_authToken=${{ secrets.MY_GITHUB_TOKEN }}" > .npmrc
-      echo "@jigjoy-ai:registry=https://npm.pkg.github.com" >> .npmrc
-      cat .npmrc
+            - name: Configure npm for private packages
+              run: |
+                  echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGES_TOKEN }}" > .npmrc
+                  echo "@jigjoy-ai:registry=https://npm.pkg.github.com" >> .npmrc
 
-   - name: "Create env file"
-     run: |
-      touch .env
-      echo HONEYCOMB_ENDPOINT=${{secrets.HONEYCOMB_ENDPOINT}} >> .env
-      echo ACCOUNT_AND_BILLING_ENDPOINT=${{secrets.ACCOUNT_AND_BILLING_ENDPOINT}} >> .env
-      echo USER_POOL_ID=${{secrets.USER_POOL_ID}} >> .env
-      echo USER_POOL_WEB_CLIENT_ID=${{secrets.USER_POOL_WEB_CLIENT_ID}} >> .env
-      cat .env
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ env.AWS_REGION }}
 
-   - name: Dependency Installation
-     run: npm install --legacy-peer-deps
+            - name: Create .env from Secrets Manager
+              run: |
+                  SECRETS=$(aws secretsmanager get-secret-value --secret-id vars --region ${{ env.AWS_REGION }} --query SecretString --output text)
+                  cat > .env << EOF
+                  API_GATEWAY=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['ApiGateway'])")
+                  PADDLE_ENVIRONMENT=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleEnvironment'])")
+                  PADDLE_TOKEN=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleToken'])")
+                  JIGJOY_TOKEN_PRICE_ID=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['JigjoyTokenPriceId'])")
+                  EOF
 
-   - name: Build
-     run: npm run build
+            - name: Install dependencies
+              run: npm install --legacy-peer-deps
 
-   - name: Config AWS Credentials
-     uses: aws-actions/configure-aws-credentials@v4
-     with:
-      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      aws-region: eu-west-1
+            - name: Build
+              run: npm run build
 
-   - name: Deploy to AWS S3
-     run: |
-      BUCKET_NAME=$(aws cloudformation describe-stacks \
-        --stack-name spektrum-frontend \
-        --query "Stacks[0].Outputs[?OutputKey=='WebHostingBucketName'].OutputValue" \
-        --output text)
-      aws s3 sync dist/ s3://$BUCKET_NAME --exclude 'assets/*' --delete
+            - name: Deploy to S3
+              run: |
+                  BUCKET_NAME=$(aws cloudformation describe-stacks \
+                      --stack-name ${{ env.STACK_NAME }} \
+                      --query "Stacks[0].Outputs[?OutputKey=='WebHostingBucketName'].OutputValue" \
+                      --output text)
+                  aws s3 sync dist/ s3://$BUCKET_NAME --delete
 
-   - name: Invalidate CloudFront Cache
-     run: |
-      DISTRIBUTION_ID=$(aws cloudformation describe-stacks \
-        --stack-name spektrum-frontend \
-        --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" \
-        --output text)
-      aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+            - name: Invalidate CloudFront cache
+              run: |
+                  DISTRIBUTION_ID=$(aws cloudformation describe-stacks \
+                      --stack-name ${{ env.STACK_NAME }} \
+                      --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" \
+                      --output text)
+                  aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
