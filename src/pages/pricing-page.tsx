@@ -6,6 +6,7 @@ import { useUserData } from "../hooks/store"
 import { CreditCard, FileStack } from "lucide-react"
 import { useDispatch } from "react-redux"
 import { setUserData } from "../reducers/account-reducer"
+import { UserData } from "@jigjoy-ai/spektrum-client"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -16,7 +17,7 @@ type TabType = "overview" | "billing-history"
 export default function PricingPage() {
 	const [paddle, setPaddle] = useState<Paddle>()
 	const navigate = useNavigate()
-	const userData = useUserData()
+	const userData: UserData = useUserData()
 	const dispatch = useDispatch()
 
 	const [activeTab, setActiveTab] = useState<TabType>("overview")
@@ -62,6 +63,7 @@ export default function PricingPage() {
 			},
 			customData: {
 				organizationId: userData.organizationId,
+				email: userData.email
 			},
 		})
 	}
