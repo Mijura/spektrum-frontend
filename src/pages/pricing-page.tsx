@@ -61,7 +61,7 @@ export default function PricingPage() {
 				email: userData.email,
 			},
 			customData: {
-				email: userData.email,
+				organizationId: userData.organizationId,
 			},
 		})
 	}
