@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { ApiKey, UserData } from "@jigjoy-ai/spektrum-client"
 
 const initialState = {
 	userData: {
 		id: '',
+		organizationId: '',
 		email: '',
 		credits: 0.00,
-		apiKeys: [] as any[],
-	},
+		apiKeys: [] as ApiKey[],
+	} as UserData,
 }
 
 const accountSlice = createSlice({

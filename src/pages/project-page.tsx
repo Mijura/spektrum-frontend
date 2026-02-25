@@ -2,7 +2,7 @@ import ActivityRewards from "../components/activity-rewards"
 import TasksPlanner from "../components/tasks-planner"
 import OutputPreview from "../components/output-preview"
 import Deployment from "../components/deployment"
-import WorkflowRunTimeline from "../components/task-execution-timeline"
+import TaskExecutionTimeline from "../components/task-execution-timeline"
 import TaskOverview from "../components/task-overview"
 import { useState } from "react"
 import { useSelectedProject } from "../hooks/store"
@@ -101,7 +101,7 @@ export default function ProjectPage() {
 
 					<div className="w-[300px] hidden xl:flex flex-col rounded-[2px]">
 						<ActivityRewards />
-						<WorkflowRunTimeline type="project" />
+						<TaskExecutionTimeline type="project" />
 					</div>
 				</div>
 			</div>
