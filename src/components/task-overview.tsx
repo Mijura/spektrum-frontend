@@ -54,7 +54,7 @@ export default function TaskOverview() {
 
 		const commentMetadata: CommentLeftMetadata = {
 			commentText: commentText,
-			authorId: userData.userEmail,
+			authorId: userData.email,
 		}
 
 		const commentLeftActivity: CommentLeftActivity = {
@@ -62,7 +62,7 @@ export default function TaskOverview() {
 			type: ActivityType.COMMENT_LEFT,
 			projectId: task.projectId,
 			taskId: task.id,
-			userId: userData.userEmail,
+			userId: userData.email,
 			occurredAt: new Date().toISOString(),
 			metadata: commentMetadata,
 		}
@@ -72,7 +72,7 @@ export default function TaskOverview() {
 		const mockTaskWithComment = { ...task, activities: [...task.activities, commentLeftActivity] }
 		dispatch(taskUpdated(mockTaskWithComment))
 
-		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText, userData.userEmail)
+		const taskWithComment = await leaveComment(task.id, commentMetadata.commentText, userData.email)
 		dispatch(taskUpdated(taskWithComment)) // update the task with real comment left activity
 
 		await developModule(taskWithComment)
