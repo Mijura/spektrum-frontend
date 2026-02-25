@@ -3,7 +3,7 @@ import { Loader } from "@jigjoy-ai/ui-library"
 import { useUserData, useProjectInitialization } from "../hooks/store"
 import WorkflowRunHeatmap from "../components/task-execution-heatmap"
 import ProjectsOverview from "../components/projects-overview"
-import WorkflowRunTimeline from "../components/task-execution-timeline"
+import TaskExecutionTimeline from "../components/task-execution-timeline"
 
 export default function HomePage({ loadedProjects }: { loadedProjects: any[] }) {
 	const userData = useUserData()
@@ -70,7 +70,7 @@ export default function HomePage({ loadedProjects }: { loadedProjects: any[] }) 
 				)}
 			</div>
 			<div className="2xl:flex hidden 2xl:w-[300px] flex-col rounded-[2px]">
-				<WorkflowRunTimeline type="account" />
+				<TaskExecutionTimeline type="account" />
 			</div>
 		</div>
 	)

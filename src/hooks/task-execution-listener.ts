@@ -39,6 +39,8 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 				}
 			})
 
+			console.log('Connecting for listening activities for accountId: ', accountId)
+
 			socket.on("connect", () => {
 				socket.emit("subscribe", accountId)
 			})
