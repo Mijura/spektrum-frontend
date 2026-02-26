@@ -41,6 +41,8 @@ jobs:
                   PADDLE_ENVIRONMENT=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleEnvironment'])")
                   PADDLE_TOKEN=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleToken'])")
                   JIGJOY_TOKEN_PRICE_ID=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['JigjoyTokenPriceId'])")
+                  POSTHOG_KEY=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PosthogKey'])")
+                  POSTHOG_HOST=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PosthogHost'])")
                   EOF
 
             - name: Install dependencies
