@@ -1,3 +1,4 @@
+import { Pagination } from "@jigjoy-ai/spektrum-client"
 import spektrumClient from "./spektrum-client"
 
 export async function sendMagicLinkChallenge(email: string) {
@@ -6,6 +7,10 @@ export async function sendMagicLinkChallenge(email: string) {
 
 export async function verifyMagicLinkChallenge(email: string, challengeResponse: string) {
 	return await spektrumClient.account.verifyMagicLinkChallenge(email, challengeResponse)
+}
+
+export async function getTransactionHistory(pagination: Pagination) {
+	return await spektrumClient.account.getTransactionHistory(pagination)
 }
 
 export async function createApiKey(name: string) {

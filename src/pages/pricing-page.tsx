@@ -7,6 +7,7 @@ import { CreditCard, FileStack } from "lucide-react"
 import { useDispatch } from "react-redux"
 import { setUserData } from "../reducers/account-reducer"
 import { UserData } from "@jigjoy-ai/spektrum-client"
+import { getTransactionHistory } from "../api/account-and-billing"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -35,9 +36,15 @@ export default function PricingPage() {
 		})
 		setPaddle(paddleInstance)
 	}
+
+	const fetchTransactionHistory = async () => {
+		const transactionHistory = await getTransactionHistory({ pageNumber: 1, pageSize: 10 })
+		console.log(transactionHistory)
+	}
 	// Download and initialize Paddle instance from CDN
 	useEffect(() => {
 		initializePaddleInstance()
+		fetchTransactionHistory()
 	}, [])
 
 	// Callback to open a checkout
@@ -142,7 +149,7 @@ export default function PricingPage() {
 					{activeTab === "billing-history" && (
 						<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
 							<div className="h-full w-full xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
-								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Billing History</h1>
+								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Transaction History</h1>
 								<hr className="border-secondary-200" />
 
 								<div className="flex flex-col gap-4 mt-8"></div>
