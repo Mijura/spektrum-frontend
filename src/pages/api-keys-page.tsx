@@ -87,7 +87,7 @@ export default function ApiKeysPage() {
 												</p>
 											</div>
 											{userData.apiKeys.map((apiKey: any) => (
-												<div className="flex flex-col py-1 gap-2">
+												<div className="flex flex-col py-1 gap-2" key={apiKey.id}>
 													<div className="flex flex-row w-full gap-2">
 														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/3">
 															{apiKey.name}

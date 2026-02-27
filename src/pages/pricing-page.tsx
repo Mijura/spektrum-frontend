@@ -3,10 +3,12 @@ import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
 import { useUserData } from "../hooks/store"
-import { CreditCard, FileStack } from "lucide-react"
+import { CreditCard, FileStack, Download } from "lucide-react"
 import { useDispatch } from "react-redux"
 import { setUserData } from "../reducers/account-reducer"
 import { UserData } from "@jigjoy-ai/spektrum-client"
+import { getTransactionHistory, downloadInvoicePdf } from "../api/account-and-billing"
+import { formatTimestamp } from "../shared/util"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -19,6 +21,8 @@ export default function PricingPage() {
 	const navigate = useNavigate()
 	const userData: UserData = useUserData()
 	const dispatch = useDispatch()
+	const [transactions, setTransactions] = useState<any[]>([])
+	const [downloadingInvoiceId, setDownloadingInvoiceId] = useState<string | null>(null)
 
 	const [activeTab, setActiveTab] = useState<TabType>("overview")
 
@@ -35,9 +39,15 @@ export default function PricingPage() {
 		})
 		setPaddle(paddleInstance)
 	}
+
+	const fetchTransactionHistory = async () => {
+		const transactionHistory = await getTransactionHistory({ pageNumber: 1, pageSize: 10 })
+		setTransactions(transactionHistory.items)
+	}
 	// Download and initialize Paddle instance from CDN
 	useEffect(() => {
 		initializePaddleInstance()
+		fetchTransactionHistory()
 	}, [])
 
 	// Callback to open a checkout
@@ -84,6 +94,25 @@ export default function PricingPage() {
 				? "bg-highlight items-center hover:bg-highlight text-primary-100 cursor-default p-1 text-sm flex flex-row gap-1"
 				: "bg-surface-light items-center text-secondary-100 hover:bg-surface-light/80 p-1 gap-1 text-sm cursor-default flex flex-row"
 		}`
+	}
+
+	const downloadInvoice = async (transactionId: string) => {
+		setDownloadingInvoiceId(transactionId)
+		try {
+			const blob = await downloadInvoicePdf(transactionId)
+			const blobUrl = window.URL.createObjectURL(blob)
+			const link = document.createElement("a")
+			link.href = blobUrl
+			link.download = `invoice-${transactionId}.pdf`
+			document.body.appendChild(link)
+			link.click()
+			document.body.removeChild(link)
+			window.URL.revokeObjectURL(blobUrl)
+		} catch (error) {
+			console.error("Failed to download invoice:", error)
+		} finally {
+			setDownloadingInvoiceId(null)
+		}
 	}
 
 	return (
@@ -142,10 +171,56 @@ export default function PricingPage() {
 					{activeTab === "billing-history" && (
 						<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
 							<div className="h-full w-[90%] xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
-								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Billing History</h1>
-								<hr className="border-secondary-200" />
+								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Transaction History</h1>
+								<hr className="border-secondary-200 mb-20" />
 
-								<div className="flex flex-col gap-4 mt-8"></div>
+								{transactions.length === 0 ? (
+										<>
+											<div className="mt-4 text-secondary bg-surface-light p-4 rounded-md">
+												No purchases yet.
+											</div>
+										</>
+									) : (
+										<div className="w-full text-right">
+											<div className="flex flex-row w-full gap-2">
+												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Date</p>
+												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Status</p>
+												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">
+													Amount
+												</p>
+												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">
+													Invoice
+												</p>
+											</div>
+											{transactions.map((transaction: any) => (
+												<div className="flex flex-col py-1 gap-2" key={transaction.id}>
+													<div className="flex flex-row w-full gap-2">
+														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4">
+															{formatTimestamp(transaction.createdAt)}
+														</p>
+														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4">
+															{transaction.status}
+														</p>
+														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4 text-right">
+															${transaction.amount.toFixed(2)}
+														</p>
+
+														<div className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4 flex justify-end">
+															<Button
+																onClick={() => downloadInvoice(transaction.id)}
+																className="h-6 px-2 text-xs bg-transparent hover:bg-surface-light/50 text-highlight-200"
+																loading={downloadingInvoiceId === transaction.id}
+																disabled={downloadingInvoiceId === transaction.id}
+															>
+																<Download className="size-3" />
+																Download
+															</Button>
+														</div>
+													</div>
+												</div>
+											))}
+										</div>
+									)}
 							</div>
 						</div>
 					)}
