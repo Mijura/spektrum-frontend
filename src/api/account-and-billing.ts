@@ -24,3 +24,7 @@ export async function logout() {
 export async function hasAccessToken() {
 	return await spektrumClient.account.hasAccessToken()
 }
+
+export async function downloadInvoicePdf(transactionId: string): Promise<Blob> {
+	return await spektrumClient.account.downloadInvoicePdf(transactionId)
+}
