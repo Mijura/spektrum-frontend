@@ -100,7 +100,8 @@ export default function PricingPage() {
 		setDownloadingInvoiceId(transactionId)
 		try {
 			const blob = await downloadInvoicePdf(transactionId)
-			const blobUrl = window.URL.createObjectURL(blob)
+			const pdfBlob = new Blob([blob], { type: "application/pdf" })
+			const blobUrl = window.URL.createObjectURL(pdfBlob)
 			const link = document.createElement("a")
 			link.href = blobUrl
 			link.download = `invoice-${transactionId}.pdf`
