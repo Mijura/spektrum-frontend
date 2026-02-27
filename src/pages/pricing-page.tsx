@@ -24,10 +24,10 @@ export default function PricingPage() {
 	const [activeTab, setActiveTab] = useState<TabType>("overview")
 
 	const initializePaddleInstance = async () => {
-		const paddleInstance = await initializePaddle({ 
-			environment: PADDLE_ENVIRONMENT, 
-			token: PADDLE_TOKEN,   
-			eventCallback: function(response: any) {
+		const paddleInstance = await initializePaddle({
+			environment: PADDLE_ENVIRONMENT,
+			token: PADDLE_TOKEN,
+			eventCallback: function (response: any) {
 				if (response.name == "checkout.completed") {
 					const amount = Number(response.data.totals.total)
 					dispatch(setUserData({ ...userData, credits: userData.credits + amount }))
@@ -70,7 +70,7 @@ export default function PricingPage() {
 			},
 			customData: {
 				organizationId: userData.organizationId,
-				email: userData.email
+				email: userData.email,
 			},
 		})
 	}
@@ -117,7 +117,7 @@ export default function PricingPage() {
 				<div className="w-full h-full">
 					{activeTab === "overview" && (
 						<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
-							<div className="h-full w-full xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
+							<div className="h-full w-[90%] xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
 								<h1 className="text-2xl font-bold text-secondary-100 mb-4">Pay-As-You-Go</h1>
 								<hr className="border-secondary-200" />
 

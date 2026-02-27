@@ -6,7 +6,6 @@ on:
         branches: [development]
 
 env:
-    AWS_REGION: eu-west-1
     STACK_NAME: spektrum-frontend
 
 jobs:
@@ -32,16 +31,18 @@ jobs:
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ env.AWS_REGION }}
+                  aws-region: ${{ secrets.AWS_REGION }}
 
             - name: Create .env from Secrets Manager
               run: |
-                  SECRETS=$(aws secretsmanager get-secret-value --secret-id vars --region ${{ env.AWS_REGION }} --query SecretString --output text)
+                  SECRETS=$(aws secretsmanager get-secret-value --secret-id vars --region ${{ secrets.AWS_REGION }} --query SecretString --output text)
                   cat > .env << EOF
                   API_GATEWAY=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['ApiGateway'])")
                   PADDLE_ENVIRONMENT=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleEnvironment'])")
                   PADDLE_TOKEN=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleToken'])")
                   JIGJOY_TOKEN_PRICE_ID=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['JigjoyTokenPriceId'])")
+                  POSTHOG_KEY=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PosthogKey'])")
+                  POSTHOG_HOST=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PosthogHost'])")
                   EOF
 
             - name: Install dependencies

@@ -63,6 +63,7 @@ export default function LoginPage() {
 					placeholder="Email Address"
 					className="mb-4 w-[320px] text-secondary-100"
 					onChange={(e) => setEmail(e.target.value)}
+					onKeyDown={(e) => { if (e.key === "Enter") handleContinue() }}
 				/>
 
 				{message && <div className={`flex flex-col ${color} mb-6`}>{message}</div>}

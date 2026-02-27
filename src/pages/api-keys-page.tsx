@@ -39,7 +39,7 @@ export default function ApiKeysPage() {
 			<div className="flex flex-row h-full">
 				<div className="w-full h-full">
 					<div className="h-full flex flex-col md:flex-row overflow-y-auto custom-scrollbar">
-						<div className="h-full w-full xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
+						<div className="h-full w-[90%] xl:w-2/3 2xl:w-1/2 rounded-sm justify-center items-center mx-auto mt-20">
 							<h1 className="text-2xl font-bold text-secondary-100 mb-4">API keys</h1>
 							<hr className="border-secondary-200" />
 
