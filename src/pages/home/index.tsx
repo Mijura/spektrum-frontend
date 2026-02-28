@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { Loader } from "@jigjoy-ai/ui-library"
-import { useUserData, useProjectInitialization } from "../hooks/store"
-import WorkflowRunHeatmap from "../components/task-execution-heatmap"
-import ProjectsOverview from "../components/projects-overview"
-import TaskExecutionTimeline from "../components/task-execution-timeline"
+import { useUserData, useProjectInitialization } from "../../hooks/store"
+import WorkflowRunHeatmap from "../../components/task-execution-heatmap"
+import ProjectsOverview from "../../components/projects-overview"
+import TaskExecutionTimeline from "../../components/task-execution-timeline"
 
 export default function HomePage({ loadedProjects }: { loadedProjects: any[] }) {
 	const userData = useUserData()

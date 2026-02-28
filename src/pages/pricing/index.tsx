@@ -2,13 +2,13 @@ import { Button } from "@jigjoy-ai/ui-library"
 import { useEffect, useState } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
-import { useUserData } from "../hooks/store"
+import { useUserData } from "../../hooks/store"
 import { CreditCard, FileStack, Download } from "lucide-react"
 import { useDispatch } from "react-redux"
-import { setUserData } from "../reducers/account-reducer"
+import { setUserData } from "../../reducers/account-reducer"
 import { UserData } from "@jigjoy-ai/spektrum-client"
-import { getTransactionHistory, downloadInvoicePdf } from "../api/account-and-billing"
-import { formatTimestamp } from "../shared/util"
+import { getTransactionHistory, downloadInvoicePdf } from "../../api/account-and-billing"
+import { formatTimestamp } from "../../shared/util"
 
 const JIGJOY_TOKEN_PRICE_ID = process.env.JIGJOY_TOKEN_PRICE_ID || ""
 const PADDLE_ENVIRONMENT = (process.env.PADDLE_ENVIRONMENT as Environments) || "sandbox"
@@ -176,52 +176,48 @@ export default function PricingPage() {
 								<hr className="border-secondary-200 mb-20" />
 
 								{transactions.length === 0 ? (
-										<>
-											<div className="mt-4 text-secondary bg-surface-light p-4 rounded-md">
-												No purchases yet.
-											</div>
-										</>
-									) : (
-										<div className="w-full text-right">
-											<div className="flex flex-row w-full gap-2">
-												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Date</p>
-												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Status</p>
-												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">
-													Amount
-												</p>
-												<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">
-													Invoice
-												</p>
-											</div>
-											{transactions.map((transaction: any) => (
-												<div className="flex flex-col py-1 gap-2" key={transaction.id}>
-													<div className="flex flex-row w-full gap-2">
-														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4">
-															{formatTimestamp(transaction.createdAt)}
-														</p>
-														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4">
-															{transaction.status}
-														</p>
-														<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4 text-right">
-															${transaction.amount.toFixed(2)}
-														</p>
+									<>
+										<div className="mt-4 text-secondary bg-surface-light p-4 rounded-md">
+											No purchases yet.
+										</div>
+									</>
+								) : (
+									<div className="w-full text-right">
+										<div className="flex flex-row w-full gap-2">
+											<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Date</p>
+											<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Status</p>
+											<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Amount</p>
+											<p className="text-sm text-highlight-200 p-4 rounded-md w-1/4">Invoice</p>
+										</div>
+										{transactions.map((transaction: any) => (
+											<div className="flex flex-col py-1 gap-2" key={transaction.id}>
+												<div className="flex flex-row w-full gap-2">
+													<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4">
+														{formatTimestamp(transaction.createdAt)}
+													</p>
+													<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4">
+														{transaction.status}
+													</p>
+													<p className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4 text-right">
+														${transaction.amount.toFixed(2)}
+													</p>
 
-														<div className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4 flex justify-end">
-															<Button
-																onClick={() => downloadInvoice(transaction.id)}
-																className="h-6 px-2 text-xs bg-transparent hover:bg-surface-light/50 text-highlight-200"
-																loading={downloadingInvoiceId === transaction.id}
-																disabled={downloadingInvoiceId === transaction.id}
-															>
-																<Download className="size-3" />
-																Download
-															</Button>
-														</div>
+													<div className="text-sm text-secondary-100 bg-surface-light p-2 rounded-md w-1/4 flex justify-end">
+														<Button
+															onClick={() => downloadInvoice(transaction.id)}
+															className="h-6 px-2 text-xs bg-transparent hover:bg-surface-light/50 text-highlight-200"
+															loading={downloadingInvoiceId === transaction.id}
+															disabled={downloadingInvoiceId === transaction.id}
+														>
+															<Download className="size-3" />
+															Download
+														</Button>
 													</div>
 												</div>
-											))}
-										</div>
-									)}
+											</div>
+										))}
+									</div>
+								)}
 							</div>
 						</div>
 					)}

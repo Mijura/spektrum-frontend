@@ -1,11 +1,11 @@
-import ActivityRewards from "../components/activity-rewards"
-import TasksPlanner from "../components/tasks-planner"
-import OutputPreview from "../components/output-preview"
-import Deployment from "../components/deployment"
-import TaskExecutionTimeline from "../components/task-execution-timeline"
-import TaskOverview from "../components/task-overview"
+import ActivityRewards from "../../components/activity-rewards"
+import TasksPlanner from "../../components/tasks-planner"
+import OutputPreview from "../../components/output-preview"
+import Deployment from "../../components/deployment"
+import TaskExecutionTimeline from "../../components/task-execution-timeline"
+import TaskOverview from "../../components/task-overview"
 import { useState } from "react"
-import { useSelectedProject } from "../hooks/store"
+import { useSelectedProject } from "../../hooks/store"
 
 type TabType = "overview" | "output" | "deployment"
 

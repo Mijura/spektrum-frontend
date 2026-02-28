@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import PricingPage from "../pages/pricing-page"
+import PricingPage from "../pages/pricing"
 
 export const Route = createFileRoute("/_auth/pricing")({
 	component: PricingPage,

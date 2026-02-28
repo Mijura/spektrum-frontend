@@ -1,18 +1,18 @@
-import Project from "../types/project"
+import Project from "../../types/project"
 import { Button, Loader } from "@jigjoy-ai/ui-library"
 import { useNavigate } from "@tanstack/react-router"
-import { createNewProject } from "../api/project-planning"
-import { pageNavigated } from "../reducers/navigation-reducer"
+import { createNewProject } from "../../api/project-planning"
+import { pageNavigated } from "../../reducers/navigation-reducer"
 import {
 	entryPointDevLoaded,
 	entryPointProdLoaded,
 	projectInitalizationCompleted,
 	projectInitalizationRequested,
-} from "../reducers/workspace-reducer"
+} from "../../reducers/workspace-reducer"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import ProjectsIcon from "../shared/icons/projects-icon"
-import { useProjectInitialization } from "../hooks/store"
+import ProjectsIcon from "../../shared/icons/projects-icon"
+import { useProjectInitialization } from "../../hooks/store"
 
 export default function WorkspacePage({ loadedProjects }: { loadedProjects: any[] }) {
 	const navigate = useNavigate()

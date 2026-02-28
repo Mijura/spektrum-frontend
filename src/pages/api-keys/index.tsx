@@ -1,9 +1,9 @@
 import { useRef, useState } from "react"
-import { useUserData } from "../hooks/store"
+import { useUserData } from "../../hooks/store"
 import { Button, Copyable, Input, Modal, ModalContent, ModalTrigger } from "@jigjoy-ai/ui-library"
-import { createApiKey } from "../api/account-and-billing"
+import { createApiKey } from "../../api/account-and-billing"
 import { useDispatch } from "react-redux"
-import { apiKeyCreated } from "../reducers/account-reducer"
+import { apiKeyCreated } from "../../reducers/account-reducer"
 import { ApiKey } from "@jigjoy-ai/spektrum-client"
 
 export default function ApiKeysPage() {

@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthWorkspaceRouteImport } from './routes/_auth.workspace'
-import { Route as AuthWelcomeRouteImport } from './routes/_auth.welcome'
 import { Route as AuthPricingRouteImport } from './routes/_auth.pricing'
 import { Route as AuthHomeRouteImport } from './routes/_auth.home'
 import { Route as AuthApiKeysRouteImport } from './routes/_auth.api-keys'
@@ -30,11 +29,6 @@ const IndexRoute = IndexRouteImport.update({
 const AuthWorkspaceRoute = AuthWorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
-  getParentRoute: () => AuthRoute,
-} as any)
-const AuthWelcomeRoute = AuthWelcomeRouteImport.update({
-  id: '/welcome',
-  path: '/welcome',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthPricingRoute = AuthPricingRouteImport.update({
@@ -64,7 +58,6 @@ export interface FileRoutesByFullPath {
   '/api-keys': typeof AuthApiKeysRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
-  '/welcome': typeof AuthWelcomeRoute
   '/workspace': typeof AuthWorkspaceRoute
 }
 export interface FileRoutesByTo {
@@ -73,7 +66,6 @@ export interface FileRoutesByTo {
   '/api-keys': typeof AuthApiKeysRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
-  '/welcome': typeof AuthWelcomeRoute
   '/workspace': typeof AuthWorkspaceRoute
 }
 export interface FileRoutesById {
@@ -84,7 +76,6 @@ export interface FileRoutesById {
   '/_auth/api-keys': typeof AuthApiKeysRoute
   '/_auth/home': typeof AuthHomeRoute
   '/_auth/pricing': typeof AuthPricingRoute
-  '/_auth/welcome': typeof AuthWelcomeRoute
   '/_auth/workspace': typeof AuthWorkspaceRoute
 }
 export interface FileRouteTypes {
@@ -95,17 +86,9 @@ export interface FileRouteTypes {
     | '/api-keys'
     | '/home'
     | '/pricing'
-    | '/welcome'
     | '/workspace'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/$projectId'
-    | '/api-keys'
-    | '/home'
-    | '/pricing'
-    | '/welcome'
-    | '/workspace'
+  to: '/' | '/$projectId' | '/api-keys' | '/home' | '/pricing' | '/workspace'
   id:
     | '__root__'
     | '/'
@@ -114,7 +97,6 @@ export interface FileRouteTypes {
     | '/_auth/api-keys'
     | '/_auth/home'
     | '/_auth/pricing'
-    | '/_auth/welcome'
     | '/_auth/workspace'
   fileRoutesById: FileRoutesById
 }
@@ -128,7 +110,7 @@ declare module '@tanstack/react-router' {
     '/_auth': {
       id: '/_auth'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -144,13 +126,6 @@ declare module '@tanstack/react-router' {
       path: '/workspace'
       fullPath: '/workspace'
       preLoaderRoute: typeof AuthWorkspaceRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/welcome': {
-      id: '/_auth/welcome'
-      path: '/welcome'
-      fullPath: '/welcome'
-      preLoaderRoute: typeof AuthWelcomeRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/pricing': {
@@ -189,7 +164,6 @@ interface AuthRouteChildren {
   AuthApiKeysRoute: typeof AuthApiKeysRoute
   AuthHomeRoute: typeof AuthHomeRoute
   AuthPricingRoute: typeof AuthPricingRoute
-  AuthWelcomeRoute: typeof AuthWelcomeRoute
   AuthWorkspaceRoute: typeof AuthWorkspaceRoute
 }
 
@@ -198,7 +172,6 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthApiKeysRoute: AuthApiKeysRoute,
   AuthHomeRoute: AuthHomeRoute,
   AuthPricingRoute: AuthPricingRoute,
-  AuthWelcomeRoute: AuthWelcomeRoute,
   AuthWorkspaceRoute: AuthWorkspaceRoute,
 }
 

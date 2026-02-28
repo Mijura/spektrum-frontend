@@ -1,8 +1,8 @@
 import { Button, Input, Loader } from "@jigjoy-ai/ui-library"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import { isEmail } from "../shared/util"
-import { sendMagicLinkChallenge } from "../api/account-and-billing"
+import { isEmail } from "../../shared/util"
+import { sendMagicLinkChallenge } from "../../api/account-and-billing"
 
 export default function LoginPage() {
 	const [message, setMessage] = useState("")
@@ -63,7 +63,9 @@ export default function LoginPage() {
 					placeholder="Email Address"
 					className="mb-4 w-[320px] text-secondary-100"
 					onChange={(e) => setEmail(e.target.value)}
-					onKeyDown={(e) => { if (e.key === "Enter") handleContinue() }}
+					onKeyDown={(e) => {
+						if (e.key === "Enter") handleContinue()
+					}}
 				/>
 
 				{message && <div className={`flex flex-col ${color} mb-6`}>{message}</div>}

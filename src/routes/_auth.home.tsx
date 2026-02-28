@@ -1,11 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { fetchAllProjects } from "../api/project-planning"
 import { Loader } from "@jigjoy-ai/ui-library"
-import HomePage from "../pages/home-page"
+import HomePage from "../pages/home"
 
 export const Route = createFileRoute("/_auth/home")({
 	loader: async () => {
-
 		try {
 			return await fetchAllProjects()
 		} catch (error: any) {
