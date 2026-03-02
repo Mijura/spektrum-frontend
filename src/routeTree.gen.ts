@@ -9,15 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthFullscreenRouteImport } from './routes/_auth-fullscreen'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthWorkspaceRouteImport } from './routes/_auth.workspace'
-import { Route as AuthWelcomeRouteImport } from './routes/_auth.welcome'
 import { Route as AuthPricingRouteImport } from './routes/_auth.pricing'
 import { Route as AuthHomeRouteImport } from './routes/_auth.home'
 import { Route as AuthApiKeysRouteImport } from './routes/_auth.api-keys'
 import { Route as AuthProjectIdRouteImport } from './routes/_auth.$projectId'
+import { Route as AuthFullscreenOnboardingRouteImport } from './routes/_auth-fullscreen.onboarding'
 
+const AuthFullscreenRoute = AuthFullscreenRouteImport.update({
+  id: '/_auth-fullscreen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
@@ -30,11 +35,6 @@ const IndexRoute = IndexRouteImport.update({
 const AuthWorkspaceRoute = AuthWorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
-  getParentRoute: () => AuthRoute,
-} as any)
-const AuthWelcomeRoute = AuthWelcomeRouteImport.update({
-  id: '/welcome',
-  path: '/welcome',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthPricingRoute = AuthPricingRouteImport.update({
@@ -57,74 +57,90 @@ const AuthProjectIdRoute = AuthProjectIdRouteImport.update({
   path: '/$projectId',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthFullscreenOnboardingRoute =
+  AuthFullscreenOnboardingRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
+    getParentRoute: () => AuthFullscreenRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/onboarding': typeof AuthFullscreenOnboardingRoute
   '/$projectId': typeof AuthProjectIdRoute
   '/api-keys': typeof AuthApiKeysRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
-  '/welcome': typeof AuthWelcomeRoute
   '/workspace': typeof AuthWorkspaceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/onboarding': typeof AuthFullscreenOnboardingRoute
   '/$projectId': typeof AuthProjectIdRoute
   '/api-keys': typeof AuthApiKeysRoute
   '/home': typeof AuthHomeRoute
   '/pricing': typeof AuthPricingRoute
-  '/welcome': typeof AuthWelcomeRoute
   '/workspace': typeof AuthWorkspaceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
+  '/_auth-fullscreen': typeof AuthFullscreenRouteWithChildren
+  '/_auth-fullscreen/onboarding': typeof AuthFullscreenOnboardingRoute
   '/_auth/$projectId': typeof AuthProjectIdRoute
   '/_auth/api-keys': typeof AuthApiKeysRoute
   '/_auth/home': typeof AuthHomeRoute
   '/_auth/pricing': typeof AuthPricingRoute
-  '/_auth/welcome': typeof AuthWelcomeRoute
   '/_auth/workspace': typeof AuthWorkspaceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/onboarding'
     | '/$projectId'
     | '/api-keys'
     | '/home'
     | '/pricing'
-    | '/welcome'
     | '/workspace'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/onboarding'
     | '/$projectId'
     | '/api-keys'
     | '/home'
     | '/pricing'
-    | '/welcome'
     | '/workspace'
   id:
     | '__root__'
     | '/'
     | '/_auth'
+    | '/_auth-fullscreen'
+    | '/_auth-fullscreen/onboarding'
     | '/_auth/$projectId'
     | '/_auth/api-keys'
     | '/_auth/home'
     | '/_auth/pricing'
-    | '/_auth/welcome'
     | '/_auth/workspace'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
+  AuthFullscreenRoute: typeof AuthFullscreenRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_auth-fullscreen': {
+      id: '/_auth-fullscreen'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthFullscreenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_auth': {
       id: '/_auth'
       path: ''
@@ -144,13 +160,6 @@ declare module '@tanstack/react-router' {
       path: '/workspace'
       fullPath: '/workspace'
       preLoaderRoute: typeof AuthWorkspaceRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/welcome': {
-      id: '/_auth/welcome'
-      path: '/welcome'
-      fullPath: '/welcome'
-      preLoaderRoute: typeof AuthWelcomeRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/pricing': {
@@ -181,6 +190,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthProjectIdRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth-fullscreen/onboarding': {
+      id: '/_auth-fullscreen/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof AuthFullscreenOnboardingRouteImport
+      parentRoute: typeof AuthFullscreenRoute
+    }
   }
 }
 
@@ -189,7 +205,6 @@ interface AuthRouteChildren {
   AuthApiKeysRoute: typeof AuthApiKeysRoute
   AuthHomeRoute: typeof AuthHomeRoute
   AuthPricingRoute: typeof AuthPricingRoute
-  AuthWelcomeRoute: typeof AuthWelcomeRoute
   AuthWorkspaceRoute: typeof AuthWorkspaceRoute
 }
 
@@ -198,15 +213,27 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthApiKeysRoute: AuthApiKeysRoute,
   AuthHomeRoute: AuthHomeRoute,
   AuthPricingRoute: AuthPricingRoute,
-  AuthWelcomeRoute: AuthWelcomeRoute,
   AuthWorkspaceRoute: AuthWorkspaceRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
+interface AuthFullscreenRouteChildren {
+  AuthFullscreenOnboardingRoute: typeof AuthFullscreenOnboardingRoute
+}
+
+const AuthFullscreenRouteChildren: AuthFullscreenRouteChildren = {
+  AuthFullscreenOnboardingRoute: AuthFullscreenOnboardingRoute,
+}
+
+const AuthFullscreenRouteWithChildren = AuthFullscreenRoute._addFileChildren(
+  AuthFullscreenRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
+  AuthFullscreenRoute: AuthFullscreenRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
