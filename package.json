@@ -3,8 +3,8 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"generate-routes": "tsr generate",
-		"watch-routes": "tsr watch",
+		"generate:routes": "tsr generate",
+		"watch:routes": "tsr watch",
 		"start": "rspack serve --config configs/rspack.dev.js",
 		"serve": "rspack serve --config configs/rspack.dev.js",
 		"build": "rspack --config configs/rspack.prod.js",
