@@ -8,7 +8,9 @@ import HighlightComponent from "./highlight"
 import TimelineIcon from "../../shared/icons/timeline"
 import { CircleCheckIcon } from "lucide-react"
 import { motion } from "framer-motion"
-import { createNewProject } from "../../api/project-planning"
+import { createNewProject, createTask } from "../../api/project-planning"
+import { developModule } from "../../api/ai-coding"
+import { demoProjectLoaded, nextStepLoaded } from "../../reducers/onboarding-reducer"
 
 type Step = "api-key" | "create-project" | "create-task" | "generate-app"
 
@@ -19,7 +21,11 @@ export default function GenerateFirstAppStep() {
 	const [displayApiKey, setDisplayApiKey] = useState("")
 	const [apiKeyCreationInProgress, setApiKeyCreationInProgress] = useState(false)
 	const [projectCreationInProgress, setProjectCreationInProgress] = useState(false)
-	const [publicAppUrl, setPublicAppUrl] = useState("")
+	const [taskCreationInProgress, setTaskCreationInProgress] = useState(false)
+	const [buildAndDeployAppInProgress, setBuildAndDeployAppInProgress] = useState(false)
+	const [createdProject, setCreatedProject] = useState<any | null>(null)
+	const [publicAppUrl, setPublicAppUrl] = useState<string | null>(null)
+	const [createdTask, setCreatedTask] = useState<any | null>(null)
 	const [activeStep, setActiveStep] = useState<Step>("api-key")
 	const [completedSteps, setCompletedSteps] = useState<Set<Step>>(new Set())
 	const dispatch = useDispatch()
@@ -55,11 +61,37 @@ export default function GenerateFirstAppStep() {
 	const handleCreateProject = async () => {
 		setProjectCreationInProgress(true)
 		try {
-			const project = await createNewProject()
-			setPublicAppUrl(project.entryPoint.publicAppUrl)
+			const response = await createNewProject()
+			setCreatedProject(response.project)
+			setPublicAppUrl(response.entryPoint.publicAppUrl)
+			dispatch(demoProjectLoaded(response.project.id as string))
 			completeStep("create-project")
 		} finally {
 			setProjectCreationInProgress(false)
+		}
+	}
+
+	const handleCreateTask = async () => {
+		if (!createdProject) return
+		setTaskCreationInProgress(true)
+		try {
+			const task = await createTask(createdProject.id, "Create a gamified app for learning Japanese vocabulary", '')
+			setCreatedTask(task)
+			completeStep("create-task")
+		} finally {
+			setTaskCreationInProgress(false)
+		}
+		completeStep("create-task")
+	}
+
+	const handleBuildAndDeployApp = async () => {
+		if (!createdProject || !createdTask) return
+		setBuildAndDeployAppInProgress(true)
+		try {
+			developModule(createdTask)
+			dispatch(nextStepLoaded())
+		} finally {
+			setBuildAndDeployAppInProgress(false)
 		}
 	}
 
@@ -176,7 +208,7 @@ console.log(project.entryPoint.publicAppUrl)`}
 									language="ts"
 								/>
 							</div>
-							{!publicAppUrl && (
+							{!createdProject && (
 								<div className="grow flex h-fit">
 									<Button
 										className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4"
@@ -254,15 +286,18 @@ console.log(project.entryPoint.publicAppUrl)`}
 									language="ts"
 								/>
 							</div>
-							<div className="grow flex h-fit">
+							{!completedSteps.has("create-task") && <div className="grow flex h-fit">
 								<Button
 									className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4"
-									onClick={handleCreateApiKey}
+									onClick={handleCreateTask}
+									loading={taskCreationInProgress}
 									disabled={activeStep !== "create-task"}
 								>
 									Run code to create task
 								</Button>
 							</div>
+							}
+							{completedSteps.has("create-task") && <div className="text-secondary-100">Task created successfully</div>}
 						</motion.div>
 					</div>
 				</div>
@@ -305,8 +340,7 @@ console.log(project.entryPoint.publicAppUrl)`}
 								)}
 							</div>
 							<div className="text-secondary-100">
-								When you hand off a task to AI agents, they'll automatically start building your app and
-								deploying it after it's done.
+								When you hand off a task to AI agents, they'll automatically build and deploy your app to the public URL you got when creating the project.
 							</div>
 
 							<div className="mt-4 p-2 bg-surface-muted rounded-sm border border-secondary-200 bg-card overflow-hidden">
@@ -315,7 +349,8 @@ console.log(project.entryPoint.publicAppUrl)`}
 							<div className="grow flex h-fit">
 								<Button
 									className="bg-highlight text-primary hover:bg-highlight/80 w-fit mt-4"
-									onClick={handleCreateApiKey}
+									onClick={handleBuildAndDeployApp}
+									loading={buildAndDeployAppInProgress}
 									disabled={activeStep !== "generate-app"}
 								>
 									Run code to build app

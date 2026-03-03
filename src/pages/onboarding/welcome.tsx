@@ -37,7 +37,6 @@ const staggeredText = (text: string, delay: number) => {
 }
 
 export default function WelcomeStep() {
-	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	return (

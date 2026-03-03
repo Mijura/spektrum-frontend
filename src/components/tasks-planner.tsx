@@ -46,6 +46,13 @@ const TasksPlanner: React.FC = () => {
 		setIsExecuting(false)
 	}, [taskCreationModalOpened])
 
+	// Select the first task on load if there are tasks and none selected
+	useEffect(() => {
+		if (selectedProject?.tasks?.length > 0 && !selectedTask) {
+			dispatch(taskSelected(selectedProject.tasks[0]))
+		}
+	}, [selectedProject?.tasks, selectedTask, dispatch])
+
 	return (
 		selectedProject && (
 			<>
