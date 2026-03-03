@@ -26,7 +26,7 @@ export const Route = createFileRoute("/_auth")({
 		return null
 	},
 
-	loader: async ( {context} ) => {
+	loader: async ({ context }) => {
 		const hasAccess = await hasAccessToken()
 		if (!hasAccess) {
 			throw redirect({
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/_auth")({
 		}
 		return context
 	},
-	
+
 	pendingComponent: () => (
 		<div className="w-screen h-screen bg-surface flex items-center justify-center">
 			<Loader size="large" message="Loading page..." />
@@ -54,7 +54,7 @@ function AuthLayout() {
 			dispatch(setUserData(authSession.userData))
 		}
 	}, [authSession])
-	
+
 	return (
 		<div className="flex flex-col bg-[#1a1a1a] h-screen min-h-screen max-h-screen w-full overflow-hidden">
 			<div className="grow flex flex-row">

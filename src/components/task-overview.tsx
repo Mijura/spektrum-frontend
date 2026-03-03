@@ -162,7 +162,8 @@ export default function TaskOverview() {
 						<TasksIcon />
 						<div className="font-semibold text-highlight-100 mt-4">Tasks</div>
 						<div className="text-secondary-100 text-sm">
-							A task is a command you give to AI agents — like "build a learning app", "fix the toolbar", or "refine the UI". You can run multiple tasks within the same project.
+							A task is a command you give to AI agents — like "build a learning app", "fix the toolbar",
+							or "refine the UI". You can run multiple tasks within the same project.
 						</div>
 						<div className="flex flew-row gap-2">
 							<div>

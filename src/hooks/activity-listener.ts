@@ -24,10 +24,10 @@ export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 
 		const credentials = authStoreBrowser.getCredentials()
 		if (credentials.kind === "bearer") {
-			const socket = io(`${API_GATEWAY}`, {   
+			const socket = io(`${API_GATEWAY}`, {
 				extraHeaders: {
-					Authorization: `Bearer ${credentials.token}`
-				}
+					Authorization: `Bearer ${credentials.token}`,
+				},
 			})
 
 			socket.on("connect", () => {
@@ -43,7 +43,5 @@ export const useActivityListener = ({ room }: UseActivityListenerProps) => {
 				socket.disconnect()
 			}
 		}
-
-
 	}, [room])
 }

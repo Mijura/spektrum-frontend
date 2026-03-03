@@ -12,7 +12,8 @@ export default function ActivityRewards() {
 				<div className="flex flex-col bg-surface h-full w-[300px] border border-primary-200">
 					<div className="flex flex-row w-full p-3">
 						<div className="grow text-secondary-100 text-sm flex flex-row justify-end">
-							Balance:&nbsp;<span className="text-highlight font-bold">${userData.credits.toFixed(2)}</span>
+							Balance:&nbsp;
+							<span className="text-highlight font-bold">${userData.credits.toFixed(2)}</span>
 						</div>
 					</div>
 					{/* <Chevron defaultExpanded={true} className="w-[325px] border border-primary-200">
