@@ -24,9 +24,9 @@ export const Stepper: React.FC<OnboardingProps> = ({ steps }) => {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 4 }}
-			className="h-screen flex justify-center bg-surface"
+			className="h-full py-20 overflow-y-auto flex justify-center bg-surface custom-scrollbar"
 		>
-			<div className="w-full max-w-5xl h-[70%] flex flex-col items-center justify-center bg-surface-200 p-8">
+			<div className="w-full max-w-5xl flex flex-col items-center justify-center bg-surface-200 p-8">
 				{/* Progress Bar */}
 				<div className="w-full h-4 rounded-full mb-10">
 					<p
