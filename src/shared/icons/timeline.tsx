@@ -6,7 +6,7 @@ export default function TimelineIcon({ className = "" }: { className?: string })
 			viewBox="0 0 16 16"
 			width="22"
 			height="22"
-			className={`inline-block text-secondary-200 ${className}`}
+			className={`inline-block ${className}`}
 		>
 			{/* Background fill to cover the border */}
 			<circle cx="8" cy="8" r="4" className="fill-background" />
