@@ -6,7 +6,7 @@ import { nextStepLoaded } from "../../reducers/onboarding-reducer"
 
 const sentences = [
 	`JigJoy was born from that rush developers feel when something they built finally appears on screen — and they realize: I actually made this.`,
-	`We felt it the first time a recursive function rendered a file system — folders, files, icons, perfectly nested. After hours of struggling, it just worked.`,
+	`We felt it the first time we wrote a recursive function to display a file system on the UI. After hours of struggling, folders and files finally appeared — nested, with their icons, exactly as they should. `,
 	`We've been chasing that feeling ever since. Spektrum is our latest attempt to help you feel it too.`,
 ]
 
@@ -40,35 +40,35 @@ export default function WelcomeStep() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
-	return <motion.div
-		className={`h-full w-full bg-surface flex flex-col`}
-	>
-		<div className="w-full flex flex-wrap">
-			{/* First message */}
-			<div className="w-full text-secondary py-4">{staggeredText(sentences[0], 4)}</div>
+	return (
+		<motion.div className={`h-full w-full bg-surface flex flex-col`}>
+			<div className="w-full flex flex-wrap">
+				{/* First message */}
+				<div className="w-full text-secondary py-4">{staggeredText(sentences[0], 4)}</div>
 
-			<div className="w-full text-secondary py-4">
-				{staggeredText(sentences[1], 12)} {/* Starts after first sentence */}
-			</div>
+				<div className="w-full text-secondary py-4">
+					{staggeredText(sentences[1], 12)} {/* Starts after first sentence */}
+				</div>
 
-			<div className="w-full text-secondary py-4">
-				{staggeredText(sentences[2], 21)} {/* Starts after first sentence */}
-			</div>
+				<div className="w-full text-secondary py-4">
+					{staggeredText(sentences[2], 23)} {/* Starts after first sentence */}
+				</div>
 
-			{/* Animated Button */}
-			<motion.div
-				className="mt-4"
-				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 27, duration: 1 }} // Appears after text
-			>
-				<Button
-					className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
-					onClick={() => dispatch(nextStepLoaded())}
+				{/* Animated Button */}
+				<motion.div
+					className="mt-4"
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 29, duration: 1 }} // Appears after text
 				>
-					Start Building, Feel JigJoy
-				</Button>
-			</motion.div>
-		</div>
-	</motion.div>
+					<Button
+						className="bg-highlight text-primary hover:bg-highlight/80 w-fit"
+						onClick={() => dispatch(nextStepLoaded())}
+					>
+						Start Building, Feel JigJoy
+					</Button>
+				</motion.div>
+			</div>
+		</motion.div>
+	)
 }

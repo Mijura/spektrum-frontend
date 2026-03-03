@@ -5,8 +5,8 @@ interface Step {
 	name: string
 	title: string
 	content: React.ReactNode
-    nextButtonText?: string
-    nextButtonOnClick?: () => void
+	nextButtonText?: string
+	nextButtonOnClick?: () => void
 }
 
 interface OnboardingProps {
@@ -17,19 +17,23 @@ export const Stepper: React.FC<OnboardingProps> = ({ steps }) => {
 	const currentStep = useCurrentStep()
 
 	// Calculate the progress percentage for the progress bar
-	const progressPercentage = (currentStep / (steps.length)) * 100
+	const progressPercentage = (currentStep / steps.length) * 100
 
 	return (
-		<motion.div 
-		initial={{ opacity: 0 }}
-		animate={{ opacity: 1 }}
-		transition={{ duration: 4 }} 
-		className="h-screen flex items-center justify-center bg-surface">
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 4 }}
+			className="h-screen flex justify-center bg-surface"
+		>
 			<div className="w-full max-w-5xl h-[70%] flex flex-col items-center justify-center bg-surface-200 p-8">
-
-                {/* Progress Bar */}
-                <div className="w-full h-4 rounded-full mb-10">
-                    <p className={`text-surface-100 text-sm mb-2 text-progress ${currentStep === 0 ? "opacity-0" : "opacity-100"}`}>Completed {progressPercentage.toFixed(0)}%</p>
+				{/* Progress Bar */}
+				<div className="w-full h-4 rounded-full mb-10">
+					<p
+						className={`text-surface-100 text-sm mb-2 text-progress ${currentStep === 0 ? "opacity-0" : "opacity-100"}`}
+					>
+						Completed {progressPercentage.toFixed(0)}%
+					</p>
 					<div
 						className="bg-progress h-0.5 rounded-full transition-all duration-300"
 						style={{ width: `${progressPercentage}%` }}
@@ -45,8 +49,8 @@ export const Stepper: React.FC<OnboardingProps> = ({ steps }) => {
 						const style = isCompleted
 							? "text-progress border border-progress text-progress opacity-40"
 							: isActive
-							? "text-secondary border border-highlight"
-							: `text-secondary border border-highlight ${currentStep === 0 ? "opacity-0" : "opacity-30"}`
+								? "text-secondary border border-highlight"
+								: `text-secondary border border-highlight ${currentStep === 0 ? "opacity-0" : "opacity-30"}`
 
 						return (
 							<motion.div key={index} className={`rounded-[2px] flex flex-col w-full px-4 py-2 ${style}`}>
@@ -57,12 +61,8 @@ export const Stepper: React.FC<OnboardingProps> = ({ steps }) => {
 					})}
 				</div>
 
-
-
-
 				{/* Step Content */}
-				<motion.div 
-				className="flex-grow flex w-full h-2/3">
+				<motion.div className="flex-grow flex w-full h-2/3">
 					<motion.div
 						key={currentStep}
 						initial={{ opacity: 0, y: 15 }}
@@ -74,7 +74,6 @@ export const Stepper: React.FC<OnboardingProps> = ({ steps }) => {
 						{steps[currentStep]?.content}
 					</motion.div>
 				</motion.div>
-
 			</div>
 		</motion.div>
 	)
