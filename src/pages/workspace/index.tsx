@@ -87,9 +87,8 @@ export default function WorkspacePage({ loadedProjects }: { loadedProjects: any[
 					<div className="flex flex-col gap-y-3 w-full max-w-[400px]">
 						<ProjectsIcon />
 						<div className="font-semibold text-highlight-100 mt-4">Projects</div>
-						<div className="text-secondary-100 text-sm">
-							Projects are collections of related tasks that help you achieve a specific goal, like
-							building a landing page, designing an onboarding flow, or creating a layout prototype.
+						<div className="text-secondary-100">
+							Projects are collections of tasks you hand off to AI agents to build your app.
 						</div>
 						<div>
 							<Button

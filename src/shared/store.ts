@@ -4,11 +4,13 @@ import { persistStore, persistReducer } from "redux-persist"
 import workspaceReducer from "../reducers/workspace-reducer"
 import navigationReducer from "../reducers/navigation-reducer"
 import accountReducer from "../reducers/account-reducer"
+import onboardingReducer from "../reducers/onboarding-reducer"
 
 const rootReducer = combineReducers({
 	workspace: workspaceReducer,
 	navigation: navigationReducer,
 	account: accountReducer,
+	onboarding: onboardingReducer,
 })
 
 const persistConfig = {

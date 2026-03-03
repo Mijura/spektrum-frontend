@@ -3,10 +3,10 @@ import { ApiKey, UserData } from "@jigjoy-ai/spektrum-client"
 
 const initialState = {
 	userData: {
-		id: '',
-		organizationId: '',
-		email: '',
-		credits: 0.00,
+		id: "",
+		organizationId: "",
+		email: "",
+		credits: 0.0,
 		apiKeys: [] as ApiKey[],
 	} as UserData,
 }

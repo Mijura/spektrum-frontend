@@ -8,179 +8,214 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteImport } from './routes/_auth'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthWorkspaceRouteImport } from './routes/_auth.workspace'
-import { Route as AuthPricingRouteImport } from './routes/_auth.pricing'
-import { Route as AuthHomeRouteImport } from './routes/_auth.home'
-import { Route as AuthApiKeysRouteImport } from './routes/_auth.api-keys'
-import { Route as AuthProjectIdRouteImport } from './routes/_auth.$projectId'
+import { Route as rootRouteImport } from "./routes/__root"
+import { Route as AuthFullscreenRouteImport } from "./routes/_auth-fullscreen"
+import { Route as AuthRouteImport } from "./routes/_auth"
+import { Route as IndexRouteImport } from "./routes/index"
+import { Route as AuthWorkspaceRouteImport } from "./routes/_auth.workspace"
+import { Route as AuthPricingRouteImport } from "./routes/_auth.pricing"
+import { Route as AuthHomeRouteImport } from "./routes/_auth.home"
+import { Route as AuthApiKeysRouteImport } from "./routes/_auth.api-keys"
+import { Route as AuthProjectIdRouteImport } from "./routes/_auth.$projectId"
+import { Route as AuthFullscreenOnboardingRouteImport } from "./routes/_auth-fullscreen.onboarding"
 
+const AuthFullscreenRoute = AuthFullscreenRouteImport.update({
+	id: "/_auth-fullscreen",
+	getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
-  id: '/_auth',
-  getParentRoute: () => rootRouteImport,
+	id: "/_auth",
+	getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
+	id: "/",
+	path: "/",
+	getParentRoute: () => rootRouteImport,
 } as any)
 const AuthWorkspaceRoute = AuthWorkspaceRouteImport.update({
-  id: '/workspace',
-  path: '/workspace',
-  getParentRoute: () => AuthRoute,
+	id: "/workspace",
+	path: "/workspace",
+	getParentRoute: () => AuthRoute,
 } as any)
 const AuthPricingRoute = AuthPricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => AuthRoute,
+	id: "/pricing",
+	path: "/pricing",
+	getParentRoute: () => AuthRoute,
 } as any)
 const AuthHomeRoute = AuthHomeRouteImport.update({
-  id: '/home',
-  path: '/home',
-  getParentRoute: () => AuthRoute,
+	id: "/home",
+	path: "/home",
+	getParentRoute: () => AuthRoute,
 } as any)
 const AuthApiKeysRoute = AuthApiKeysRouteImport.update({
-  id: '/api-keys',
-  path: '/api-keys',
-  getParentRoute: () => AuthRoute,
+	id: "/api-keys",
+	path: "/api-keys",
+	getParentRoute: () => AuthRoute,
 } as any)
 const AuthProjectIdRoute = AuthProjectIdRouteImport.update({
-  id: '/$projectId',
-  path: '/$projectId',
-  getParentRoute: () => AuthRoute,
+	id: "/$projectId",
+	path: "/$projectId",
+	getParentRoute: () => AuthRoute,
+} as any)
+const AuthFullscreenOnboardingRoute = AuthFullscreenOnboardingRouteImport.update({
+	id: "/onboarding",
+	path: "/onboarding",
+	getParentRoute: () => AuthFullscreenRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/$projectId': typeof AuthProjectIdRoute
-  '/api-keys': typeof AuthApiKeysRoute
-  '/home': typeof AuthHomeRoute
-  '/pricing': typeof AuthPricingRoute
-  '/workspace': typeof AuthWorkspaceRoute
+	"/": typeof IndexRoute
+	"/onboarding": typeof AuthFullscreenOnboardingRoute
+	"/$projectId": typeof AuthProjectIdRoute
+	"/api-keys": typeof AuthApiKeysRoute
+	"/home": typeof AuthHomeRoute
+	"/pricing": typeof AuthPricingRoute
+	"/workspace": typeof AuthWorkspaceRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/$projectId': typeof AuthProjectIdRoute
-  '/api-keys': typeof AuthApiKeysRoute
-  '/home': typeof AuthHomeRoute
-  '/pricing': typeof AuthPricingRoute
-  '/workspace': typeof AuthWorkspaceRoute
+	"/": typeof IndexRoute
+	"/onboarding": typeof AuthFullscreenOnboardingRoute
+	"/$projectId": typeof AuthProjectIdRoute
+	"/api-keys": typeof AuthApiKeysRoute
+	"/home": typeof AuthHomeRoute
+	"/pricing": typeof AuthPricingRoute
+	"/workspace": typeof AuthWorkspaceRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/_auth': typeof AuthRouteWithChildren
-  '/_auth/$projectId': typeof AuthProjectIdRoute
-  '/_auth/api-keys': typeof AuthApiKeysRoute
-  '/_auth/home': typeof AuthHomeRoute
-  '/_auth/pricing': typeof AuthPricingRoute
-  '/_auth/workspace': typeof AuthWorkspaceRoute
+	__root__: typeof rootRouteImport
+	"/": typeof IndexRoute
+	"/_auth": typeof AuthRouteWithChildren
+	"/_auth-fullscreen": typeof AuthFullscreenRouteWithChildren
+	"/_auth-fullscreen/onboarding": typeof AuthFullscreenOnboardingRoute
+	"/_auth/$projectId": typeof AuthProjectIdRoute
+	"/_auth/api-keys": typeof AuthApiKeysRoute
+	"/_auth/home": typeof AuthHomeRoute
+	"/_auth/pricing": typeof AuthPricingRoute
+	"/_auth/workspace": typeof AuthWorkspaceRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/$projectId'
-    | '/api-keys'
-    | '/home'
-    | '/pricing'
-    | '/workspace'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$projectId' | '/api-keys' | '/home' | '/pricing' | '/workspace'
-  id:
-    | '__root__'
-    | '/'
-    | '/_auth'
-    | '/_auth/$projectId'
-    | '/_auth/api-keys'
-    | '/_auth/home'
-    | '/_auth/pricing'
-    | '/_auth/workspace'
-  fileRoutesById: FileRoutesById
+	fileRoutesByFullPath: FileRoutesByFullPath
+	fullPaths: "/" | "/onboarding" | "/$projectId" | "/api-keys" | "/home" | "/pricing" | "/workspace"
+	fileRoutesByTo: FileRoutesByTo
+	to: "/" | "/onboarding" | "/$projectId" | "/api-keys" | "/home" | "/pricing" | "/workspace"
+	id:
+		| "__root__"
+		| "/"
+		| "/_auth"
+		| "/_auth-fullscreen"
+		| "/_auth-fullscreen/onboarding"
+		| "/_auth/$projectId"
+		| "/_auth/api-keys"
+		| "/_auth/home"
+		| "/_auth/pricing"
+		| "/_auth/workspace"
+	fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AuthRoute: typeof AuthRouteWithChildren
+	IndexRoute: typeof IndexRoute
+	AuthRoute: typeof AuthRouteWithChildren
+	AuthFullscreenRoute: typeof AuthFullscreenRouteWithChildren
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth/workspace': {
-      id: '/_auth/workspace'
-      path: '/workspace'
-      fullPath: '/workspace'
-      preLoaderRoute: typeof AuthWorkspaceRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/pricing': {
-      id: '/_auth/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof AuthPricingRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/home': {
-      id: '/_auth/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof AuthHomeRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/api-keys': {
-      id: '/_auth/api-keys'
-      path: '/api-keys'
-      fullPath: '/api-keys'
-      preLoaderRoute: typeof AuthApiKeysRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/$projectId': {
-      id: '/_auth/$projectId'
-      path: '/$projectId'
-      fullPath: '/$projectId'
-      preLoaderRoute: typeof AuthProjectIdRouteImport
-      parentRoute: typeof AuthRoute
-    }
-  }
+declare module "@tanstack/react-router" {
+	interface FileRoutesByPath {
+		"/_auth-fullscreen": {
+			id: "/_auth-fullscreen"
+			path: ""
+			fullPath: "/"
+			preLoaderRoute: typeof AuthFullscreenRouteImport
+			parentRoute: typeof rootRouteImport
+		}
+		"/_auth": {
+			id: "/_auth"
+			path: ""
+			fullPath: "/"
+			preLoaderRoute: typeof AuthRouteImport
+			parentRoute: typeof rootRouteImport
+		}
+		"/": {
+			id: "/"
+			path: "/"
+			fullPath: "/"
+			preLoaderRoute: typeof IndexRouteImport
+			parentRoute: typeof rootRouteImport
+		}
+		"/_auth/workspace": {
+			id: "/_auth/workspace"
+			path: "/workspace"
+			fullPath: "/workspace"
+			preLoaderRoute: typeof AuthWorkspaceRouteImport
+			parentRoute: typeof AuthRoute
+		}
+		"/_auth/pricing": {
+			id: "/_auth/pricing"
+			path: "/pricing"
+			fullPath: "/pricing"
+			preLoaderRoute: typeof AuthPricingRouteImport
+			parentRoute: typeof AuthRoute
+		}
+		"/_auth/home": {
+			id: "/_auth/home"
+			path: "/home"
+			fullPath: "/home"
+			preLoaderRoute: typeof AuthHomeRouteImport
+			parentRoute: typeof AuthRoute
+		}
+		"/_auth/api-keys": {
+			id: "/_auth/api-keys"
+			path: "/api-keys"
+			fullPath: "/api-keys"
+			preLoaderRoute: typeof AuthApiKeysRouteImport
+			parentRoute: typeof AuthRoute
+		}
+		"/_auth/$projectId": {
+			id: "/_auth/$projectId"
+			path: "/$projectId"
+			fullPath: "/$projectId"
+			preLoaderRoute: typeof AuthProjectIdRouteImport
+			parentRoute: typeof AuthRoute
+		}
+		"/_auth-fullscreen/onboarding": {
+			id: "/_auth-fullscreen/onboarding"
+			path: "/onboarding"
+			fullPath: "/onboarding"
+			preLoaderRoute: typeof AuthFullscreenOnboardingRouteImport
+			parentRoute: typeof AuthFullscreenRoute
+		}
+	}
 }
 
 interface AuthRouteChildren {
-  AuthProjectIdRoute: typeof AuthProjectIdRoute
-  AuthApiKeysRoute: typeof AuthApiKeysRoute
-  AuthHomeRoute: typeof AuthHomeRoute
-  AuthPricingRoute: typeof AuthPricingRoute
-  AuthWorkspaceRoute: typeof AuthWorkspaceRoute
+	AuthProjectIdRoute: typeof AuthProjectIdRoute
+	AuthApiKeysRoute: typeof AuthApiKeysRoute
+	AuthHomeRoute: typeof AuthHomeRoute
+	AuthPricingRoute: typeof AuthPricingRoute
+	AuthWorkspaceRoute: typeof AuthWorkspaceRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
-  AuthProjectIdRoute: AuthProjectIdRoute,
-  AuthApiKeysRoute: AuthApiKeysRoute,
-  AuthHomeRoute: AuthHomeRoute,
-  AuthPricingRoute: AuthPricingRoute,
-  AuthWorkspaceRoute: AuthWorkspaceRoute,
+	AuthProjectIdRoute: AuthProjectIdRoute,
+	AuthApiKeysRoute: AuthApiKeysRoute,
+	AuthHomeRoute: AuthHomeRoute,
+	AuthPricingRoute: AuthPricingRoute,
+	AuthWorkspaceRoute: AuthWorkspaceRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AuthRoute: AuthRouteWithChildren,
+interface AuthFullscreenRouteChildren {
+	AuthFullscreenOnboardingRoute: typeof AuthFullscreenOnboardingRoute
 }
-export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+
+const AuthFullscreenRouteChildren: AuthFullscreenRouteChildren = {
+	AuthFullscreenOnboardingRoute: AuthFullscreenOnboardingRoute,
+}
+
+const AuthFullscreenRouteWithChildren = AuthFullscreenRoute._addFileChildren(AuthFullscreenRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+	IndexRoute: IndexRoute,
+	AuthRoute: AuthRouteWithChildren,
+	AuthFullscreenRoute: AuthFullscreenRouteWithChildren,
+}
+export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>()

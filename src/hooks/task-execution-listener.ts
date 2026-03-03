@@ -33,30 +33,28 @@ export const useTaskExecutionListener = ({ accountId }: UseTaskExecutionListener
 
 		const credentials = authStoreBrowser.getCredentials()
 		if (credentials.kind === "bearer") {
-			const socket = io(`${API_GATEWAY}`, {   
+			const socket = io(`${API_GATEWAY}`, {
 				extraHeaders: {
-					Authorization: `Bearer ${credentials.token}`
-				}
+					Authorization: `Bearer ${credentials.token}`,
+				},
 			})
 
-			console.log('Connecting for listening activities for accountId: ', accountId)
+			console.log("Connecting for listening activities for accountId: ", accountId)
 
 			socket.on("connect", () => {
 				socket.emit("subscribe", accountId)
 			})
-	
+
 			socketRef.current = socket
-	
+
 			socket.on("task-execution:new", onTaskExecutionCreation)
 			socket.on("task-execution:update", onTaskExecutionUpdate)
 			socket.on("task-execution:credits-spent", onTaskExecutionCreditsSpent)
-	
+
 			return () => {
 				if (onTaskExecutionCreation) socket.off("update", onTaskExecutionCreation)
 				socket.disconnect()
 			}
 		}
-
-
 	}, [accountId])
 }
