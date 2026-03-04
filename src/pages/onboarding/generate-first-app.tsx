@@ -219,19 +219,22 @@ console.log(project.entryPoint.publicAppUrl)`}
 									</Button>
 								</div>
 							)}
-							{projectCreationInProgress && <AnimatedText text="Project creation in progress..." />}
+							{projectCreationInProgress && <AnimatedText className="mt-4 my-4 flex items-start justify-start p-0" text="Project creation in progress..." />}
 
 							{publicAppUrl && (
 								<>
 									<div className="text-secondary-100">
-										This is the public URL of your project. You recieve it programmatically after
+										This is the public URL of your project. You receive it programmatically after
 										project creation. All future changes to your project will be reflected here.
 									</div>
-									<Copyable
-										className="w-fit border-none rounded-sm mt-4"
-										text={publicAppUrl}
-										tooltipMessage="Copy and paste this URL into your browser to view your project."
-									/>
+									<a
+										href={publicAppUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="mt-4 text-progress hover:text-progress/80 underline underline-offset-4 transition-colors"
+									>
+										{publicAppUrl}
+									</a>
 								</>
 							)}
 						</motion.div>
