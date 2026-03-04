@@ -1,5 +1,5 @@
 import { Button } from "@jigjoy-ai/ui-library"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { initializePaddle, Paddle, Environments } from "@paddle/paddle-js"
 import { useNavigate } from "@tanstack/react-router"
 import { useUserData } from "../../hooks/store"
@@ -26,6 +26,12 @@ export default function PricingPage() {
 
 	const [activeTab, setActiveTab] = useState<TabType>("overview")
 
+	// Use ref to always access the latest userData in the Paddle callback
+	const userDataRef = useRef(userData)
+	useEffect(() => {
+		userDataRef.current = userData
+	}, [userData])
+
 	const initializePaddleInstance = async () => {
 		const paddleInstance = await initializePaddle({
 			environment: PADDLE_ENVIRONMENT,
@@ -33,7 +39,7 @@ export default function PricingPage() {
 			eventCallback: function (response: any) {
 				if (response.name == "checkout.completed") {
 					const amount = Number(response.data.totals.total)
-					dispatch(setUserData({ ...userData, credits: userData.credits + amount }))
+					dispatch(setUserData({ ...userDataRef.current, credits: userDataRef.current.credits + amount }))
 				}
 			},
 		})
