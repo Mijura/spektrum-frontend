@@ -1,8 +1,8 @@
 import { Highlight, themes } from "prism-react-renderer"
 
-export default function HighlightComponent({ code, language }: { code: string; language: string }) {
+export default function CodeBlock({ code }: { code: string }) {
 	return (
-		<Highlight code={code} language="javascript" theme={themes.nightOwl}>
+		<Highlight code={code} language="ts" theme={themes.nightOwl}>
 			{({ tokens, getLineProps, getTokenProps }) => (
 				<pre style={{ display: "table", width: "100%" }}>
 					{tokens.map((line, i) => (

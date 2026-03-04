@@ -4,7 +4,7 @@ import { apiKeyCreated } from "../../reducers/account-reducer"
 import { useDispatch } from "react-redux"
 import { useState, useRef } from "react"
 import { createApiKey } from "../../api/account-and-billing"
-import HighlightComponent from "./highlight"
+import CodeBlock from "./code-block"
 import TimelineIcon from "../../shared/icons/timeline"
 import { CircleCheckIcon } from "lucide-react"
 import { motion } from "framer-motion"
@@ -198,14 +198,13 @@ export default function GenerateFirstAppStep() {
 							</div>
 
 							<div className="mt-4 p-2 bg-surface-muted rounded-sm border border-secondary-200 bg-card overflow-hidden">
-								<HighlightComponent
+								<CodeBlock
 									code={`import { SpektrumSDK } from "@spektrum-ai/sdk"
 
 const spektrum = new SpektrumSDK(\"${displayApiKey}\")
 
 const project = await spektrum.createProject("learning-app")
 console.log(project.entryPoint.publicAppUrl)`}
-									language="ts"
 								/>
 							</div>
 							{!createdProject && (
@@ -278,12 +277,11 @@ console.log(project.entryPoint.publicAppUrl)`}
 							</div>
 
 							<div className="mt-4 p-2 bg-surface-muted rounded-sm border border-secondary-200 bg-card overflow-hidden">
-								<HighlightComponent
+								<CodeBlock
 									code={`const task = await spektrum.createTask(
 	project.id,
 	"Create a gamified app for learning Japanese vocabulary"
 )`}
-									language="ts"
 								/>
 							</div>
 							{!completedSteps.has("create-task") && <div className="grow flex h-fit">
@@ -344,7 +342,7 @@ console.log(project.entryPoint.publicAppUrl)`}
 							</div>
 
 							<div className="mt-4 p-2 bg-surface-muted rounded-sm border border-secondary-200 bg-card overflow-hidden">
-								<HighlightComponent code={`await spektrum.codeAndDeploy(task)`} language="ts" />
+								<CodeBlock code={`await spektrum.codeAndDeploy(task)`} />
 							</div>
 							<div className="grow flex h-fit">
 								<Button
