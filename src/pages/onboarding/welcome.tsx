@@ -1,5 +1,4 @@
 import { Button } from "@jigjoy-ai/ui-library"
-import { useNavigate } from "@tanstack/react-router"
 import { motion } from "framer-motion"
 import { useDispatch } from "react-redux"
 import { nextStepLoaded } from "../../reducers/onboarding-reducer"
@@ -7,7 +6,7 @@ import { nextStepLoaded } from "../../reducers/onboarding-reducer"
 const sentences = [
 	`JigJoy was born from that rush developers feel when something they built finally appears on screen — and they realize: I actually made this.`,
 	`We felt it the first time we wrote a recursive function to display a file system on the UI. After hours of struggling, folders and files finally appeared — nested, with their icons, exactly as they should. `,
-	`We've been chasing that feeling ever since. Spektrum is our latest attempt to help you feel it too.`,
+	`We've been chasing that feeling ever since. Spektrum is our latest attempt to help other developers feel it too.`,
 ]
 
 const staggeredText = (text: string, delay: number) => {

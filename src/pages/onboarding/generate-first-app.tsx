@@ -96,7 +96,11 @@ export default function GenerateFirstAppStep() {
 	}
 
 	return (
-		<div className="flex flex-col w-full">
+		<motion.div 
+			className="flex flex-col w-full" 
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 2 }}>
 			<div className="flex flex-col items-center">
 				<div
 					ref={(el) => {
@@ -298,6 +302,8 @@ console.log(project.entryPoint.publicAppUrl)`}
 								</Button>
 							</div>
 							}
+
+							{taskCreationInProgress && <AnimatedText className="mt-4 my-4 flex items-start justify-start p-0" text="Task creation in progress..." />}
 							{completedSteps.has("create-task") && <div className="text-secondary-100">Task created successfully</div>}
 						</motion.div>
 					</div>
@@ -361,6 +367,6 @@ console.log(project.entryPoint.publicAppUrl)`}
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	)
 }
