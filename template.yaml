@@ -4,19 +4,23 @@ Description: >
 
 Parameters:
   HostedZoneId:
-    Type: String
-    Default: Z07735212HGZVO529ELA1
-    Description: Route53 hosted zone ID for dev.jigjoy.ai
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /jigjoy/frontend/HostedZoneId
+    Description: SSM parameter for Route53 hosted zone ID
   DomainName:
-    Type: String
-    Default: app.dev.jigjoy.ai
-    Description: Custom domain for the frontend
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /jigjoy/frontend/DomainName
+    Description: SSM parameter for custom domain name
+  CertificateArn:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /jigjoy/frontend/CertificateArn
+    Description: SSM parameter for ACM certificate ARN (us-east-1)
 
 Resources:
   WebHostingBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${AWS::StackName}-web-hosting"
+      BucketName: !Sub "${AWS::StackName}-web-hosting-${AWS::AccountId}"
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
@@ -58,7 +62,7 @@ Resources:
         Aliases:
           - !Ref DomainName
         ViewerCertificate:
-          AcmCertificateArn: "{{resolve:ssm:/jigjoy/certs/frontend-wildcard-us-east-1}}"
+          AcmCertificateArn: !Ref CertificateArn
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2021
         DefaultRootObject: index.html
