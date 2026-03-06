@@ -1,0 +1,143 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { Task } from "@jigjoy-ai/task-contracts"
+import { Heatmap, TaskExecution } from "@jigjoy-ai/spektrum-client"
+
+export interface Project {
+	id?: string
+	name?: string
+	description?: string
+	owner?: any
+	deploymentId: string | null
+	tasks: Task[]
+}
+
+export interface TaskExecutionHeatmap {
+	date: string
+	runCount: number
+}
+
+export interface WorkspaceState {
+	selectedProject: Project
+	selectedTask: Task | null
+	taskExecutionTimeline: TaskExecution[]
+	taskExecutionHeatmap: Heatmap[]
+	projectInitialization: boolean
+	taskCreationRequested: boolean
+	entryPointDev: { moduleId: string; publicAppUrl: string } | null
+	entryPointProd: { moduleId: string; publicAppUrl: string } | null
+}
+
+let initialState: WorkspaceState = {
+	selectedProject: {
+		tasks: [],
+		deploymentId: null,
+	},
+	selectedTask: null,
+	taskExecutionTimeline: [],
+	taskExecutionHeatmap: [],
+	projectInitialization: false,
+	taskCreationRequested: false,
+	entryPointDev: null,
+	entryPointProd: null,
+}
+
+export const workspaceSlice = createSlice({
+	name: "workspace",
+	initialState,
+
+	reducers: {
+		projectSelected: (state, action: PayloadAction<Project>) => {
+			state.selectedProject = action.payload
+		},
+
+		projectUpdated: (state, action: PayloadAction<Project>) => {
+			state.selectedProject = action.payload
+		},
+
+		taskCreated: (state, action: PayloadAction<Task>) => {
+			state.selectedProject.tasks.push(action.payload)
+			state.selectedTask = action.payload
+			state.taskCreationRequested = false
+		},
+
+		taskSelected: (state, action: PayloadAction<Task | null>) => {
+			state.selectedTask = action.payload
+		},
+
+		taskUpdated: (state, action: PayloadAction<Task>) => {
+			if (state.selectedTask?.id === action.payload.id) {
+				state.selectedTask = action.payload
+			}
+			state.selectedProject.tasks = state.selectedProject.tasks.map((task) =>
+				task.id === action.payload.id ? action.payload : task,
+			)
+		},
+
+		taskExecutionTimelineUpdated: (state, action: PayloadAction<TaskExecution[]>) => {
+			state.taskExecutionTimeline = action.payload
+		},
+
+		taskExecutionHeatmapLoaded: (state, action: PayloadAction<TaskExecutionHeatmap[]>) => {
+			state.taskExecutionHeatmap = action.payload
+		},
+
+		taskExecutionTriggered: (state, action: PayloadAction<TaskExecution>) => {
+			// adding newly created task execution to the beginning of the timeline
+			state.taskExecutionTimeline.unshift(action.payload)
+		},
+
+		taskExecutionUpdated: (state, action: PayloadAction<TaskExecution>) => {
+			state.taskExecutionTimeline = state.taskExecutionTimeline.map((taskExecution) =>
+				taskExecution.id === action.payload.id ? action.payload : taskExecution,
+			)
+		},
+
+		taskCreationRequested: (state) => {
+			state.taskCreationRequested = true
+		},
+
+		taskCreationClosed: (state) => {
+			state.taskCreationRequested = false
+		},
+
+		projectInitalizationRequested: (state) => {
+			state.projectInitialization = true
+		},
+		projectInitalizationCompleted: (state) => {
+			state.projectInitialization = false
+		},
+
+		addTasksToProject: (state, action: PayloadAction<Task[]>) => {
+			state.selectedProject.tasks.push(...action.payload)
+		},
+
+		entryPointDevLoaded: (state, action: PayloadAction<{ moduleId: string; publicAppUrl: string }>) => {
+			state.entryPointDev = action.payload
+		},
+
+		entryPointProdLoaded: (state, action: PayloadAction<{ moduleId: string; publicAppUrl: string } | null>) => {
+			state.entryPointProd = action.payload
+		},
+	},
+})
+
+export const {
+	projectSelected,
+	projectUpdated,
+	taskCreated,
+	taskSelected,
+	taskUpdated,
+	taskExecutionTimelineUpdated,
+	taskExecutionHeatmapLoaded,
+	taskExecutionTriggered,
+	taskExecutionUpdated,
+	taskCreationRequested,
+	taskCreationClosed,
+	projectInitalizationRequested,
+	projectInitalizationCompleted,
+	addTasksToProject,
+	entryPointDevLoaded,
+	entryPointProdLoaded,
+} = workspaceSlice.actions
+
+export default workspaceSlice.reducer

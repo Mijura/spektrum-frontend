@@ -1,0 +1,112 @@
+@import "../node_modules/@jigjoy-ai/ui-library/dist/index.css";
+@import "../node_modules/@jigjoy-ai/ui-library/dist/theme.css";
+
+@import "tailwindcss";
+
+@theme {
+	--breakpoint-xs: 30rem;
+	--breakpoint-3xl: 120rem;
+}
+@layer utilities {
+	.custom-scrollbar {
+		scrollbar-color: var(--primary-200) var(--primary); /* Firefox */
+
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--primary-100); /* slate-600 */
+		}
+		scrollbar-color: var(--primary-100) var(--primary); /* dark thumb / track */
+
+		&::-webkit-scrollbar-track {
+			background: #f1f5f9; /* light track */
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: #94a3b8; /* slate-400 */
+			border-radius: 0.5rem;
+			border: 2px solid #f1f5f9;
+		}
+	}
+
+	.custom-scrollbar-thin {
+		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	@keyframes borderPulse {
+		0%,
+		100% {
+			border-left-color: var(--highlight);
+		}
+		50% {
+			border-left-color: var(--primary-200);
+		}
+	}
+
+	.animate-borderPulse {
+		animation: borderPulse 2s ease-in-out infinite;
+	}
+
+	.hexagon {
+		--b: 1px; /* Border thickness */
+		--size: 20px; /* Hexagon size */
+		position: relative;
+		width: var(--size);
+		aspect-ratio: calc(cos(30deg));
+	}
+
+	.hexagon::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		clip-path: polygon(
+			50% 0,
+			-50% 50%,
+			50% 100%,
+			150% 50%,
+			50% 0,
+			50% var(--b),
+			calc(100% - var(--b) * sin(60deg)) calc(25% + var(--b) * cos(60deg)),
+			calc(100% - var(--b) * sin(60deg)) calc(75% - var(--b) * cos(60deg)),
+			50% calc(100% - var(--b)),
+			calc(var(--b) * sin(60deg)) calc(75% - var(--b) * cos(60deg)),
+			calc(var(--b) * sin(60deg)) calc(25% + var(--b) * cos(60deg)),
+			50% var(--b)
+		);
+		background-color: var(--wax); /* Border color */
+	}
+
+	.hexagon::after {
+		content: "";
+		position: absolute;
+		inset: var(--b);
+		clip-path: polygon(50% 0, 0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%);
+
+		background-color: rgba(240, 168, 44, var(--honey-opacity));
+	}
+
+	.hexagon[data-opacity="100"] {
+		--honey-opacity: 1;
+	}
+
+	.hexagon[data-opacity="75"] {
+		--honey-opacity: 0.75;
+	}
+
+	.hexagon[data-opacity="50"] {
+		--honey-opacity: 0.5;
+	}
+
+	.hexagon[data-opacity="25"] {
+		--honey-opacity: 0.25;
+	}
+
+	.hexagon[data-opacity="0"] {
+		--honey-opacity: 0;
+	}
+}
+
+iframe {
+	background-color: white !important;
+}

@@ -1,0 +1,68 @@
+name: Deploy Frontend (Dev)
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [development]
+
+env:
+    STACK_NAME: spektrum-frontend
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+
+            - name: Configure npm for private packages
+              run: |
+                  echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGES_TOKEN }}" > .npmrc
+                  echo "@jigjoy-ai:registry=https://npm.pkg.github.com" >> .npmrc
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ secrets.AWS_REGION }}
+
+            - name: Create .env from Secrets Manager
+              run: |
+                  SECRETS=$(aws secretsmanager get-secret-value --secret-id vars --region ${{ secrets.AWS_REGION }} --query SecretString --output text)
+                  cat > .env << EOF
+                  API_GATEWAY=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['ApiGateway'])")
+                  PADDLE_ENVIRONMENT=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleEnvironment'])")
+                  PADDLE_TOKEN=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PaddleToken'])")
+                  JIGJOY_TOKEN_PRICE_ID=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['JigjoyTokenPriceId'])")
+                  POSTHOG_KEY=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PosthogKey'])")
+                  POSTHOG_HOST=$(echo "$SECRETS" | python3 -c "import sys,json; print(json.load(sys.stdin)['PosthogHost'])")
+                  EOF
+
+            - name: Install dependencies
+              run: npm install --legacy-peer-deps
+
+            - name: Build
+              run: npm run build
+
+            - name: Deploy to S3
+              run: |
+                  BUCKET_NAME=$(aws cloudformation describe-stacks \
+                      --stack-name ${{ env.STACK_NAME }} \
+                      --query "Stacks[0].Outputs[?OutputKey=='WebHostingBucketName'].OutputValue" \
+                      --output text)
+                  aws s3 sync dist/ s3://$BUCKET_NAME --delete
+
+            - name: Invalidate CloudFront cache
+              run: |
+                  DISTRIBUTION_ID=$(aws cloudformation describe-stacks \
+                      --stack-name ${{ env.STACK_NAME }} \
+                      --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" \
+                      --output text)
+                  aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
