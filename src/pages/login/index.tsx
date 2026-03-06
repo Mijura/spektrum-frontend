@@ -47,7 +47,7 @@ export default function LoginPage() {
 		<div className="flex flex-col bg-surface h-screen min-h-screen max-h-screen w-full overflow-hidden items-center justify-center">
 			{/* Main Content Container */}
 			<motion.div
-				className="bg-[#1a1a1a] flex flex-col items-center w-fit h-fit p-16 rounded-md"
+				className="bg-[#1a1a1a] flex flex-col items-center w-fit h-fit pt-16 px-8 rounded-md"
 				initial="hidden"
 				animate="visible"
 				transition={{ duration: 0.3 }}
@@ -75,6 +75,17 @@ export default function LoginPage() {
 						Continue to JigJoy
 					</Button>
 				)}
+				<div className="text-secondary-100 text-sm py-8">
+					By continuing, you agree to our{" "}
+					<a href="https://jigjoy.ai/terms" target="_blank" className="text-highlight">
+						Terms of Service
+					</a>{" "}
+					and{" "}
+					<a href="https://jigjoy.ai/privacy" target="_blank" className="text-highlight">
+						Privacy Policy
+					</a>
+					.
+				</div>
 			</motion.div>
 		</div>
 	)
