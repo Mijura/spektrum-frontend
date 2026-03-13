@@ -78,7 +78,7 @@ export default function LoginPage() {
 				<div className="text-secondary-100 text-sm py-8">
 					By continuing, you agree to our{" "}
 					<a href="https://jigjoy.ai/terms-of-use" target="_blank" className="text-highlight">
-						Terms of Service
+						Terms of Use
 					</a>{" "}
 					and{" "}
 					<a href="https://jigjoy.ai/privacy" target="_blank" className="text-highlight">
