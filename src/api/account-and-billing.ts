@@ -1,8 +1,8 @@
 import { Pagination } from "@jigjoy-ai/spektrum-client"
 import spektrumClient from "./spektrum-client"
 
-export async function sendMagicLinkChallenge(email: string) {
-	return await spektrumClient.account.sendMagicLinkChallenge(email)
+export async function sendMagicLinkChallenge(email: string, sdkUser: boolean) {
+	return await spektrumClient.account.sendMagicLinkChallenge(email, sdkUser)
 }
 
 export async function verifyMagicLinkChallenge(email: string, challengeResponse: string) {

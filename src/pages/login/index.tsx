@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { isEmail } from "../../shared/util"
 import { sendMagicLinkChallenge } from "../../api/account-and-billing"
 
-export default function LoginPage() {
+export default function LoginPage({ sdkUser }: { sdkUser: boolean }) {
 	const [message, setMessage] = useState("")
 	const [inProgress, setInProgress] = useState(false)
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -20,7 +20,7 @@ export default function LoginPage() {
 				setColor("text-danger")
 				setMessage("Please provide valid email address")
 			} else {
-				await sendMagicLinkChallenge(email)
+				await sendMagicLinkChallenge(email, sdkUser)
 				setIsLoggedIn(true)
 				setColor("text-secondary")
 				setMessage("We’ve sent a login link — please check your email.")
